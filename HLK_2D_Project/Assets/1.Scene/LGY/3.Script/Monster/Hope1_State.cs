@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hope1_State : Unit
+public class Hope1_State : MonoBehaviour
 {
-    private void Awake()
+    public UnitData data;
+
+    private void Start()
     {
-        data._HP = 3;
-        data._Detection = 7;
-        data._Range = 5;
-        data._AttackSpeed = 0.5f;
-        data._Strength = 1;
-        data._MoveSpeed = 2;
-        data._JumpForce = 0;
+        data = new UnitData
+            (name: "Hope1", hp: 3, detection: 7, range: 5, attackSpeed: 0.5f,
+            strength: 1, moveSpeed: 2, jumpForce: 0);
     }
 
-    public override void Die()
+    public void Die()
     {
+
     }
 }

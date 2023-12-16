@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blackwolf_State : Unit
-{
-    private void Awake()
+public class Blackwolf_State : MonoBehaviour
+{    
+    public UnitData data;
+
+    private void Start()
     {
-        data._HP = 15;
-        data._Detection = 10;
-        data._Range = 2;
-        data._AttackSpeed = 1;
-        data._Strength = 2;
-        data._MoveSpeed = 5;
-        data._JumpForce = 1;
+        data = new UnitData
+            (name: "Blackwolf", hp: 15, detection: 10, range: 2, attackSpeed: 1,
+            strength: 2, moveSpeed: 5, jumpForce: 1);
     }
 
-    public override void Die()
+    public void Die()
     {
+
     }
 }

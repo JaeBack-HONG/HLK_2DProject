@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fizz_State : Unit
+public class Fizz_State : MonoBehaviour,IUnit
 {
-    private void Awake()
+    public UnitData data;
+    private MonsterMove monsterMove;
+    private void Start()
     {
-        data._HP = 2;
-        data._Detection = 2;
-        data._Range = 1;
-        data._AttackSpeed = 1;
-        data._Strength = 1;
-        data._MoveSpeed = 2;
-        data._JumpForce = 0;
+        data = new UnitData
+            (name: "Fizz", hp: 2, detection: 2, range: 1, attackSpeed: 1,
+            strength: 2, moveSpeed: 2, jumpForce: 0);
+
+        monsterMove = GetComponent<MonsterMove>();
+        monsterMove.moveSpeed = data.MoveSpeed;        
     }
 
-    public override void Die()
+    public void Die()
     {
+        
     }
 }

@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ant_State : Unit
+public class Ant_State : MonoBehaviour,IUnit
 {
-    private void Awake()
+    public UnitData data;
+
+    private void Start()
     {
-        data._HP = 1;
-        data._Detection = 4;
-        data._Range = 1;
-        data._AttackSpeed = 1;
-        data._Strength = 1;
-        data._MoveSpeed = 1;
-        data._JumpForce = 0;
+        data = new UnitData
+            (name:"Ant", hp: 1, detection: 4, range: 1, attackSpeed: 1,
+            strength: 1, moveSpeed: 1, jumpForce: 0);
     }
 
-    public override void Die()
+    public void Die()
     {
+
     }
 }

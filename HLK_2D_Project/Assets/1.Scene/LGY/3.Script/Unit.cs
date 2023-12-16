@@ -1,21 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public struct Data
+public interface IUnit
 {
-    public int _HP;            // 체력
-    public float _Detection;   // 탐지범위
-    public float _Range;       // 공격사거리
-    public float _AttackSpeed; // 공격속도
-    public int _Strength;      // 공격력
-    public float _MoveSpeed;   // 이동속도
-    public float _JumpForce;   // 점프력
+    void Die();
 }
 
-public abstract class Unit : MonoBehaviour
+public class UnitData
 {
-    public Data data;
+    private string _Name;
+    private int _HP;
+    private float _Detection;
+    private float _Range;
+    private float _AttackSpeed;
+    private int _Strength;
+    private float _MoveSpeed;
+    private float _JumpForce;
 
-    public abstract void Die();
+    //캡슐화된 프로퍼티들
+    public string Name => _Name;
+    public int HP => _HP;
+    public float Detection => _Detection;
+    public float Range => _Range;
+    public float AttackSpeed => _AttackSpeed;
+    public int Strength => _Strength;
+    public float MoveSpeed => _MoveSpeed;
+    public float JumpForce => _JumpForce;
+
+    public UnitData(string name, int hp, float detection, float range, float attackSpeed, int strength, float moveSpeed, float jumpForce)
+    {
+        _Name = name;
+        _HP = hp;
+        _Detection = detection;
+        _Range = range;
+        _AttackSpeed = attackSpeed;
+        _Strength = strength;
+        _MoveSpeed = moveSpeed;
+        _JumpForce = jumpForce;
+    }    
 }
+
+
+

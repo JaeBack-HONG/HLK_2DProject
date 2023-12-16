@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knight1_State : Unit
+public class Knight1_State : MonoBehaviour
 {
-    private void Awake()
+    
+    public UnitData data;
+
+    private void Start()
     {
-        data._HP = 5;
-        data._Detection = 5;
-        data._Range = 2;
-        data._AttackSpeed = 1;
-        data._Strength = 2;
-        data._MoveSpeed = 1;
-        data._JumpForce = 0;
+        data = new UnitData
+            (name: "Knight1", hp: 5, detection: 5, range: 2, attackSpeed: 1,
+            strength: 2, moveSpeed: 1, jumpForce: 0);
     }
 
-    public override void Die()
+    public void Die()
     {
+
     }
 }
