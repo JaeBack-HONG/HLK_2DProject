@@ -13,9 +13,10 @@ public class CameraCotroll : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
-    
-    private void LateUpdate()
-    {
+
+
+    private void FixedUpdate()
+    {    
         camera.transform.position = new Vector3(player.transform.position.x, 0,-10);
     }
 }
