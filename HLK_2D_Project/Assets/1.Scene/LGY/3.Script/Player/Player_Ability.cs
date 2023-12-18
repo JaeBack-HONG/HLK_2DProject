@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Ability : MonoBehaviour
+public abstract class Player_Ability : MonoBehaviour
 {
-    private bool isBrown = false;
-    private bool isKnight_1 = false;
-    private bool isHope_1 = false;
-    private bool isBlackWolf = false;
+    public virtual void UseAbility(Animator player_ani, int changeidx)
+    {
+        player_ani = GameManager.instance.animators[changeidx];
+        Ability();
+        player_ani = GameManager.instance.animators[(int)Animator_List.Player];
+    }
+
+    public abstract void Ability();
 }
