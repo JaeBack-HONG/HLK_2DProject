@@ -12,7 +12,7 @@ public class Blackwolf_State : MonoBehaviour
         data = new UnitData
             (name: "Blackwolf", hp: 15, detection: 10, range: 2, attackSpeed: 1,
             strength: 2, moveSpeed: 5, jumpForce: 1);
-        monsterMove = GetComponent<BlackWolfMove>();
+        monsterMove = GetComponent<MonsterMove>();
         monsterMove.MoveSpeed = data.MoveSpeed;
     }
 

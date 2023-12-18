@@ -11,7 +11,7 @@ public class Hope1_State : MonoBehaviour
         data = new UnitData
             (name: "Hope1", hp: 3, detection: 7, range: 5, attackSpeed: 0.5f,
             strength: 1, moveSpeed: 2, jumpForce: 0);
-        monsterMove = GetComponent<Hope1Move>();
+        monsterMove = GetComponent<MonsterMove>();
         monsterMove.MoveSpeed = data.MoveSpeed;
     }
 

@@ -12,7 +12,7 @@ public class Knight1_State : MonoBehaviour
         data = new UnitData
             (name: "Knight1", hp: 5, detection: 5, range: 2, attackSpeed: 1,
             strength: 2, moveSpeed: 1, jumpForce: 0);
-        monsterMove = GetComponent<Knight1Move>();
+        monsterMove = GetComponent<MonsterMove>();
         monsterMove.MoveSpeed = data.MoveSpeed;
     }
 

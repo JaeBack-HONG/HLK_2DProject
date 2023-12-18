@@ -12,7 +12,7 @@ public class Fizz_State : MonoBehaviour,IUnit
             (name: "Fizz", hp: 2, detection: 2, range: 1, attackSpeed: 1,
             strength: 2, moveSpeed: 2, jumpForce: 0);
 
-        monsterMove = GetComponent<FizzMove>();
+        monsterMove = GetComponent<MonsterMove>();
         monsterMove.MoveSpeed = data.MoveSpeed;        
     }
 

@@ -13,7 +13,7 @@ public class Ant_State : MonoBehaviour,IUnit
             (name:"Ant", hp: 1, detection: 4, range: 1, attackSpeed: 1,
             strength: 1, moveSpeed: 1, jumpForce: 0);
 
-        monsterMove = GetComponent<AntMove>();
+        monsterMove = GetComponent<MonsterMove>();
         monsterMove.MoveSpeed = data.MoveSpeed;
     }
 
