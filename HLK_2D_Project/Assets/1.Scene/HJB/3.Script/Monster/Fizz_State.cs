@@ -5,15 +5,15 @@ using UnityEngine;
 public class Fizz_State : MonoBehaviour,IUnit
 {
     public UnitData data;
-    private MonsterMove monsterMove;
+    public MonsterMove monsterMove;
     private void Start()
     {
         data = new UnitData
             (name: "Fizz", hp: 2, detection: 2, range: 1, attackSpeed: 1,
             strength: 2, moveSpeed: 2, jumpForce: 0);
 
-        monsterMove = GetComponent<MonsterMove>();
-        monsterMove.moveSpeed = data.MoveSpeed;        
+        monsterMove = GetComponent<FizzMove>();
+        monsterMove.MoveSpeed = data.MoveSpeed;        
     }
 
     public void Die()
