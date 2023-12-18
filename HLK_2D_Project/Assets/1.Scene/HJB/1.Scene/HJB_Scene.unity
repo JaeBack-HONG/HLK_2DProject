@@ -8037,7 +8037,6 @@ GameObject:
   - component: {fileID: 726166756}
   - component: {fileID: 726166755}
   - component: {fileID: 726166758}
-  - component: {fileID: 726166759}
   m_Layer: 7
   m_Name: fizz
   m_TagString: Untagged
@@ -8179,23 +8178,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterMove: {fileID: 0}
---- !u!114 &726166759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726166751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fbe762b8f9b75b429719c3f104a1246, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0
-  rigidbody: {fileID: 0}
-  nextMove: 0
-  firstTime: 0
-  lastTime: 3
 --- !u!1 &749207261
 GameObject:
   m_ObjectHideFlags: 0
@@ -10277,7 +10259,6 @@ GameObject:
   - component: {fileID: 978106513}
   - component: {fileID: 978106512}
   - component: {fileID: 978106514}
-  - component: {fileID: 978106515}
   m_Layer: 7
   m_Name: Ant
   m_TagString: Untagged
@@ -10399,23 +10380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7342a2ac654a61341b296faede708498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &978106515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 978106509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1181dfb00cef99d4bb865ed6b13e5a74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0
-  rigidbody: {fileID: 0}
-  nextMove: 0
-  firstTime: 0
-  lastTime: 3
 --- !u!1 &1087544307
 GameObject:
   m_ObjectHideFlags: 0

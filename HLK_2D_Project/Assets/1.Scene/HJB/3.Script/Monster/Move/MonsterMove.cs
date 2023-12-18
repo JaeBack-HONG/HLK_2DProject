@@ -17,6 +17,12 @@ public class MonsterMove : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
+
+    private void FixedUpdate()
+    {
+        TotalMove();
+    }
+
     private void TotalMove()
     {
         WallCheck();
