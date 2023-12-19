@@ -4,8 +4,21 @@ using System.Collections.Generic;
 public interface IUnit
 {
     void Die();
+    
 }
+public enum Unit_state
+{
+    Idle,
+    Move,
+    Attack,
+    Groggy,
+    Poison,
+    Weakness,//약점노출
+    GroggyCool,
+    PoisonCool,
+    WeaknessCool,
 
+}
 public class UnitData
 {
     private string _Name;
