@@ -57,8 +57,16 @@ public class ParallaxController2 : MonoBehaviour
         distanceX = cam.position.x - camStartPos.x;
         distanceY = cam.position.y - camStartPos.y;
 
-        transform.position = new Vector3(cam.position.x, cam.position.y, 0);
+        transform.position = new Vector3(cam.position.x, 0, 0);
 
+        //for (int i = 0; i < backgrounds.Length; i++)
+        //{
+        //    float speedX = backSpeed[i] * parallaxSpeed;
+        //    float speedY = backSpeed[i] * parallaxSpeed;
+        //
+        //    // 아래 줄에서 new Vector2(0, distanceY)로 변경하여 Y 축에 대한 이동 값을 추가합니다.
+        //    mat[i].SetTextureOffset("_MainTex", new Vector2(distanceX, 0) * speedX + new Vector2(0, distanceY) * speedY);
+        //}
         for (int i = 0; i < backgrounds.Length; i++)
         {
             float speedX = backSpeed[i] * parallaxSpeed;
