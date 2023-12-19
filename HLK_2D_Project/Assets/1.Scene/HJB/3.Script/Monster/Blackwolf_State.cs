@@ -10,14 +10,7 @@ public class Blackwolf_State : Monster_State
         MonsterDataSetting();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //머리위가 플레이어라면
-        if (collision.gameObject.layer.Equals(8))
-        {
-            Health--;
-        }
-    }
+    
     public override void MonsterDataSetting()
     {
         data = new UnitData
