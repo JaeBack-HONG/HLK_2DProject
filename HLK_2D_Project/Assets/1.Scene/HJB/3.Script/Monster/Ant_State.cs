@@ -27,6 +27,10 @@ public class Ant_State : Monster_State
         Health = data.HP;
         base.MonsterDataSetting();
     }
+    private void FixedUpdate()
+    {
+        Monster_HealthCheck();
+    }
     public override void Monster_HealthCheck()
     {
         if (Health<=0)

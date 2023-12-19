@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public interface IUnit
 {
     void Die();
-    
+    void Attack(Player_State other);
 }
 public enum Unit_state
 {
@@ -14,6 +14,7 @@ public enum Unit_state
     Groggy,
     Poison,
     Weakness,//약점노출
+    Grab,
     GroggyCool,
     PoisonCool,
     WeaknessCool,

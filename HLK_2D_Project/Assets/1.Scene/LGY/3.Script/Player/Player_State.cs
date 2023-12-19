@@ -21,13 +21,20 @@ public class Player_State : MonoBehaviour
         Health = data.HP;
 
     }
-
+    private void FixedUpdate()
+    {
+        Player_HealthCheck();
+    }
     public void Player_HealthCheck()
     {
+        if (Health<=0)
+        {
 
-        Die();
+            Die();
+        }
     }
 
+    
     public void Die()
     {
         Destroy(gameObject, 1f);
