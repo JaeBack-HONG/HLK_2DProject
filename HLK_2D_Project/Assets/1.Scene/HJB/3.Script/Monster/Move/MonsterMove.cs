@@ -27,8 +27,7 @@ public class MonsterMove : MonoBehaviour
 
     SpriteRenderer renderer;
 
-    private Monster_State monster_State;
-    
+    private Monster_State monster_State;    
 
     private void Awake()
     {
@@ -41,41 +40,54 @@ public class MonsterMove : MonoBehaviour
     public void TotalMove()
     {
         //FollowPlayer();
-
+        
         if (monster_State.state.Equals(Unit_state.Move))
         {
             
             if (target)
             {
-                rigidbody.velocity = new Vector2(FlipDirection * MoveSpeed, rigidbody.velocity.y);
-
+                direction = (targetPlayer.localPosition.x - transform.localPosition.x);
+                direction = (direction >= 0) ? 1 : -1;
+                
+                //*FlipDirection 
+                rigidbody.velocity = new Vector2(direction* MoveSpeed, rigidbody.velocity.y);
+                if (direction<1)
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);                    
+                }
+                else
+                {                    
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+                
             }
             else
             {
                 WallCheck();
                 rigidbody.velocity = new Vector2(nextMove * MoveSpeed, rigidbody.velocity.y);
-            }
-            PlayerCheck();
+                
+                //정지면 방향그대로 한 후 리턴
+                if (nextMove == 0)
+                {
+                    return;
+                }
 
-            //정지면 방향그대로 한 후 리턴
-            if (nextMove == 0)
-            {
-                return;
-            }
+                //정지가 아니라면 방향에 맞춰 축변경
+                Flip = (nextMove < 0) ? true : false;
 
-            //정지가 아니라면 방향에 맞춰 축변경
-            Flip = (nextMove < 0) ? true : false;
+                if (Flip)
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                    FlipDirection = -1;
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                    FlipDirection = 1;
+                }
+            }
+            
 
-            if (Flip)
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-                FlipDirection = -1;
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                FlipDirection = 1;
-            }
             
         }
     }
@@ -102,8 +114,7 @@ public class MonsterMove : MonoBehaviour
         firstTime += Time.deltaTime;
         if (firstTime > lastTime)
         {
-            nextMove = Random.Range(-1, 2);
-            
+            nextMove = Random.Range(-1, 2);            
             firstTime = 0;
         }
     }
@@ -133,21 +144,9 @@ public class MonsterMove : MonoBehaviour
     }
     public float DistanceAndDirection()
     {
-        distance = Vector2.Distance(transform.position, targetPlayer.position);        
-    
-        direction = (targetPlayer.position.x - transform.position.x);
+        distance = Vector2.Distance(transform.position, targetPlayer.position);
 
-        return distance;
-        
-        //if (!Flip)
-        //{
-        //    direction = (direction > 0) ? 1 : -1;
-        //
-        //}
-        //else
-        //{
-        //    direction = (direction > 0) ? -1 : 1;
-        //}        
+        return distance;             
     }
 
     //private void FollowPlayer()
@@ -165,15 +164,7 @@ public class MonsterMove : MonoBehaviour
     //    }
     //}
 
-    private void PlayerCheck()
-    {
-        float targetDistance = DistanceAndDirection();
-        Debug.Log(targetDistance);
-        if (targetDistance < 2.5f)
-        {
-             monster_State.state = Unit_state.Attack;
-        }        
-    }
+    
 
 
 

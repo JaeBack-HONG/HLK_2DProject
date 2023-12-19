@@ -9,7 +9,7 @@ public class Fizz_State : Monster_State
     private void Start()
     {
         MonsterDataSetting();
-        state = Unit_state.Move;
+        
     }
 
     
@@ -20,12 +20,14 @@ public class Fizz_State : Monster_State
             (name: "Fizz", hp: 2, detection: 5, range: 1, attackSpeed: 1,
                 strength: 2, moveSpeed: 2, jumpForce: 0);
         Health = data.HP;
+        state = Unit_state.Move;
         base.MonsterDataSetting();   
         
     }
 
     private void FixedUpdate()
     {
+        monsterMove.TotalMove();
         Monster_HealthCheck();
     }
 

@@ -31,7 +31,7 @@ public abstract class Monster_State : MonoBehaviour
     }
     public void Attack(Player_State other)
     {        
-        Debug.Log("접근");
+        Debug.Log("플레이어 공격 당함");
         other.Health -= data.Strength;
     }
 }

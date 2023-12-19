@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Knight1_State : Monster_State
 {
-    WaitForSeconds cool = new WaitForSeconds(2.5f);
+    WaitForSeconds cool = new WaitForSeconds(0.9f);
     
     private void Start()
     {
@@ -23,6 +23,7 @@ public class Knight1_State : Monster_State
     private void FixedUpdate()
     {
         monsterMove.TotalMove();
+        Knight_PlayerCheck();
         Monster_HealthCheck();        
         SwordAttack();
     }
@@ -34,6 +35,16 @@ public class Knight1_State : Monster_State
         {
             isAttack = true;
             StartCoroutine(SwordAttack_co());
+        }
+    }
+
+    private void Knight_PlayerCheck()
+    {
+        float targetDistance = monsterMove.DistanceAndDirection();
+
+        if (targetDistance < 2.5f)
+        {
+            state = Unit_state.Attack;
         }
     }
 
