@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Brown_State : Monster_State
 {
-    public int Health;
+    
     private void Start()
     {
         MonsterDataSetting();

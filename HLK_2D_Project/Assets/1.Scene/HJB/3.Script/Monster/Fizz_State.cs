@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fizz_State : Monster_State
 {
     public Unit_state state;
-    public int Health;
+    
     private void Start()
     {
         MonsterDataSetting();
