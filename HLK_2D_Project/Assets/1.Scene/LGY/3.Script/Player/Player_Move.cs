@@ -9,10 +9,12 @@ public class Player_Move : MonoBehaviour
     public float jumpForce = 100f;
     private bool isJumping = false;
     public bool isGrab = false;
-
+    public Monster_State mon;
+    private Player_State P_State;
     private void Awake()
     {
         TryGetComponent<Rigidbody2D>(out rigidbody);
+        TryGetComponent<Player_State>(out P_State);
     }
 
     private void Update()
@@ -22,14 +24,14 @@ public class Player_Move : MonoBehaviour
         {
             rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
         }
-
-        Jump();
-
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        {
+            Jump();
+        }
 
     }
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, Vector2.down, Color.red, 1f);
         if (rigidbody.velocity.y < 0)
         {
             RaycastHit2D hit = Physics2D.Raycast(rigidbody.position, Vector2.down, 1, LayerMask.GetMask("Ground"));
@@ -47,11 +49,29 @@ public class Player_Move : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Top"))
+        {
+           
+            mon = collision.gameObject.transform.root.GetComponent<Monster_State>();
+            Jump();
+            if (mon != null)
+            {
+
+                P_State.Attack(mon);
+
+            }
+        }
+    }
+
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        rigidbody.velocity = rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+        rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        if (!isJumping)
         {
-            rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumping = true;
         }
     }
