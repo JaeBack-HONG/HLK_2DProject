@@ -21,8 +21,8 @@ public class MonsterMove : MonoBehaviour
 
     private bool Flip;
     private int FlipDirection = 1;
-
-   [SerializeField] private Transform targetPlayer;
+    public bool isGrab = false;
+    [SerializeField] private Transform targetPlayer;
 
     SpriteRenderer renderer;
 
@@ -45,18 +45,20 @@ public class MonsterMove : MonoBehaviour
 
     private void TotalMove()
     {
-        
+
         //FollowPlayer();
-        
-        if (target)
+        if (!isGrab)
         {
-            rigidbody.velocity = new Vector2(FlipDirection*MoveSpeed, rigidbody.velocity.y);
-            
-        }
-        else
-        {
-            WallCheck();
-            rigidbody.velocity = new Vector2(nextMove * MoveSpeed, rigidbody.velocity.y);
+            if (target)
+            {
+                rigidbody.velocity = new Vector2(FlipDirection * MoveSpeed, rigidbody.velocity.y);
+
+            }
+            else
+            {
+                WallCheck();
+                rigidbody.velocity = new Vector2(nextMove * MoveSpeed, rigidbody.velocity.y);
+            }
         }
         //정지면 방향그대로 한 후 리턴
         if (nextMove==0)
