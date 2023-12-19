@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class Monster_State : MonoBehaviour,IUnit
 {
-    
     public UnitData data;
     public MonsterMove monsterMove;
 
