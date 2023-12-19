@@ -7,10 +7,12 @@ public class Player_State : MonoBehaviour
     public UnitData data;
     public Unit_state state;
     public int Health;
+    public Player_Ability P_Ability;
     private void Start()
     {
+        P_Ability = GetComponent<Player_Brown_Mod>();
         MonsterDataSetting();
-        state = Unit_state.Move;
+        state = Unit_state.Idle;
     }
 
     public void MonsterDataSetting()
@@ -24,7 +26,7 @@ public class Player_State : MonoBehaviour
 
     public void Player_HealthCheck()
     {
-
+        
         Die();
     }
 
