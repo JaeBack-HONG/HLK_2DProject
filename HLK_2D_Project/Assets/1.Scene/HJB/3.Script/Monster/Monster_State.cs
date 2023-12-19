@@ -8,14 +8,12 @@ public abstract class Monster_State : MonoBehaviour,IUnit
     
     public UnitData data;
     public MonsterMove monsterMove;
-
+    public int Health;
     public virtual void MonsterDataSetting()
     {
         monsterMove = GetComponent<MonsterMove>();
         monsterMove.MoveSpeed = data.MoveSpeed;
         monsterMove.Detection = data.Detection;
-        
-        
     }
     
 

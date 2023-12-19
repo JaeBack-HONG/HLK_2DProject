@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Layer_Index
+{
+    Ground =6,
+    Enemy,
+    Player
+}
 public enum Animator_List
 {
     Player = 0,
