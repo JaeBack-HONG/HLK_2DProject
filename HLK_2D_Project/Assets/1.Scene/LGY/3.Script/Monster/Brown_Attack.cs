@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class Brown_Attack : MonoBehaviour
 {
-    public float throwForce = 5f;
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // 플레이어를 현재 객체의 상단으로 이동
             collision.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 1.5f);
 
-            // 플레이어의 Rigidbody2D 가져오기
-            Rigidbody2D otherRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
+            collision.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);
 
-            if (otherRigidbody != null)
-            {
-                // 던질 방향 계산
-                Vector2 throwDirection = (otherRigidbody.position - new Vector2(transform.position.x, transform.position.y)).normalized;
 
-                // 플레이어를 던지기
-                otherRigidbody.AddForce(throwDirection * throwForce, ForceMode2D.Impulse);
-            }
+            StartCoroutine(Brown_Ab(otherRigid));
         }
     }
+
+    IEnumerator Brown_Ab(Rigidbody2D otherRigid)
+    {
+        otherRigid.velocity = Vector2.zero;
+        otherRigid.gameObject.TryGetComponent<Player_Move>(out Player_Move playermove);
+        playermove.isGrab = true;
+        float random = Random.Range(0, 2).Equals(0) ? -1f : 1f;
+        yield return new WaitForSeconds(2f);
+        Vector2 randomvec = new Vector2(random, 1f).normalized;
+        
+        otherRigid.AddRelativeForce(randomvec * 20f, ForceMode2D.Impulse);
+
+        yield return null;
+    }
+
 
 }
