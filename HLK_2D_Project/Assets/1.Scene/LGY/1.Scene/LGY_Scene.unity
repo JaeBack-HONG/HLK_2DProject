@@ -8187,6 +8187,7 @@ MonoBehaviour:
   firstTime: 0
   lastTime: 3
   target: 0
+  isGrab: 0
   targetPlayer: {fileID: 1456566156}
 --- !u!114 &726166758
 MonoBehaviour:
@@ -8200,9 +8201,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c8d732e30c63e45adb6e4c1806a3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterMove: {fileID: 0}
-  Health: 0
   state: 0
+  C_State: 0
+  monsterMove: {fileID: 0}
+  monster_State: {fileID: 0}
+  animator: {fileID: 0}
+  rigidbody: {fileID: 0}
+  Health: 0
+  Strength: 0
+  isAttack: 0
 --- !u!1 &749207261
 GameObject:
   m_ObjectHideFlags: 0
@@ -10521,8 +10528,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7342a2ac654a61341b296faede708498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  C_State: 0
   monsterMove: {fileID: 0}
+  monster_State: {fileID: 0}
+  animator: {fileID: 0}
+  rigidbody: {fileID: 0}
   Health: 0
+  Strength: 0
+  isAttack: 0
 --- !u!114 &978106515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10542,6 +10556,7 @@ MonoBehaviour:
   firstTime: 0
   lastTime: 3
   target: 0
+  isGrab: 0
   targetPlayer: {fileID: 1456566156}
 --- !u!1 &1087544307
 GameObject:
@@ -10769,9 +10784,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992b2c50ac5b97645b37c6363bdf5b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  actState: 0
+  conState: 0
   Health: 0
   P_Ability: {fileID: 0}
+  P_Move: {fileID: 0}
 --- !u!114 &1456566151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10884,7 +10901,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3262169463685394559, guid: decfb2c7a44666745973e2eeb3d75e66, type: 3}
+  m_Sprite: {fileID: -7993561665574951429, guid: 1fa36f8297efe0a4490a816afaa64d41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
