@@ -11,11 +11,13 @@ public abstract class Monster_State : MonoBehaviour
     public MonsterMove monsterMove;
     public Monster_State monster_State;
     public Animator animator;
+    public Rigidbody2D rigidbody;
     public int Health;
     public int Strength;
     public bool isAttack = false;
     public virtual void MonsterDataSetting()
     {
+        rigidbody = GetComponent<Rigidbody2D>();
         monsterMove = GetComponent<MonsterMove>();
         animator = GetComponent<Animator>();
         monsterMove.MoveSpeed = data.MoveSpeed;
@@ -34,5 +36,11 @@ public abstract class Monster_State : MonoBehaviour
         Debug.Log("플레이어 공격 당함");
         other.Health -= data.Strength;
         //플레이어 State를 Hit으로 변경해주는 메서드 불러오기
+    }
+    
+    public virtual void IsGrab()
+    {
+        rigidbody.velocity = Vector2.zero;
+        rigidbody.gravityScale = 0f;
     }
 }
