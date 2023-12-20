@@ -254,6 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   C_State: 0
+  UnitHit: {fileID: 0}
   monsterMove: {fileID: 0}
   monster_State: {fileID: 0}
   animator: {fileID: 0}
@@ -261,6 +262,7 @@ MonoBehaviour:
   Health: 0
   Strength: 0
   isAttack: 0
+  Player: {fileID: 2720004892734596863, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
   hope_Bullet: {fileID: 601019318901146435, guid: 4920567ad137ca04993937c0d9478780, type: 3}
 --- !u!114 &452995729531822488
 MonoBehaviour:
@@ -282,7 +284,7 @@ MonoBehaviour:
   lastTime: 2
   target: 0
   isGrab: 0
-  targetPlayer: {fileID: 0}
+  targetPlayer: {fileID: 2720004892734596853, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
 --- !u!114 &6477984882516429435
 MonoBehaviour:
   m_ObjectHideFlags: 0

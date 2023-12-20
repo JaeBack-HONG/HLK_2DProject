@@ -119,18 +119,19 @@ public class MonsterMove : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        //플레이어 레이어이면
-        if (collision.gameObject.layer.Equals((int)Layer_Index.Player))
-        {
-            target = true;
-        }
-        else
-        {
-            target = false;
-        }
-    }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    //플레이어 레이어이면
+    //    if (collision.gameObject.layer.Equals((int)Layer_Index.Player))
+    //    {
+    //        target = true;
+    //        
+    //    }
+    //    else
+    //    {
+    //        target = false;
+    //    }
+    //}
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    if (collision.gameObject.CompareTag("Player"))
