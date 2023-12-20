@@ -131,17 +131,17 @@ public class MonsterMove : MonoBehaviour
             target = false;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {            
-            Player_State Player = collision.gameObject.GetComponent<Player_State>();            
-            if (Player != null)
-            {
-                monster_State.Attack(Player);
-            }
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {            
+    //        Player_State Player = collision.gameObject.GetComponent<Player_State>();            
+    //        if (Player != null)
+    //        {
+    //            monster_State.Attack(Player);
+    //        }
+    //    }
+    //}
     public float DistanceAndDirection()
     {
         distance = Vector2.Distance(transform.position, targetPlayer.position);

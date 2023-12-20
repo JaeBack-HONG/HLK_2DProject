@@ -87,5 +87,6 @@ public class Player_State : MonoBehaviour
     public void Attack(Monster_State other)
     {
         other.Health -= data.Strength;
+        other.UnitHit.Hit(other.gameObject.layer);
     }
 }

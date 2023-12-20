@@ -44,7 +44,7 @@ public class Brown_State : Monster_State
     }
     public override void Monster_HealthCheck()
     {
-        if (data.HP <= 0)
+        if (Health <= 0)
         {
             base.Die();
         }

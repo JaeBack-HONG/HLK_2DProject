@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 2085091745713037214}
   - component: {fileID: 2085091745713037201}
   - component: {fileID: 2085091745713037202}
+  - component: {fileID: -6728501014598578836}
   m_Layer: 7
   m_Name: Brown
   m_TagString: Untagged
@@ -216,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  C_State: 0
   monsterMove: {fileID: 0}
   monster_State: {fileID: 0}
   animator: {fileID: 0}
@@ -223,6 +225,18 @@ MonoBehaviour:
   Health: 0
   Strength: 0
   isAttack: 0
+--- !u!114 &-6728501014598578836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085091745713037200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18d146450eb4bd4d8ef85736d06a999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2085091746449606650
 GameObject:
   m_ObjectHideFlags: 0

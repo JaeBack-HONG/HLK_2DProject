@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 452995729531822492}
   - component: {fileID: 452995729531822503}
   - component: {fileID: 452995729531822488}
+  - component: {fileID: 6477984882516429435}
   m_Layer: 7
   m_Name: Hope
   m_TagString: Untagged
@@ -252,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  C_State: 0
   monsterMove: {fileID: 0}
   monster_State: {fileID: 0}
   animator: {fileID: 0}
@@ -281,3 +283,15 @@ MonoBehaviour:
   target: 0
   isGrab: 0
   targetPlayer: {fileID: 0}
+--- !u!114 &6477984882516429435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452995729531822493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18d146450eb4bd4d8ef85736d06a999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
