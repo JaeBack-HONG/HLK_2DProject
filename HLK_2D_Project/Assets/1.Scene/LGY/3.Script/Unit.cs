@@ -12,6 +12,7 @@ public enum Unit_state
     Move,
     Attack,    
     Grab,
+    Hit,
 }
 public enum Condition_state
 { 

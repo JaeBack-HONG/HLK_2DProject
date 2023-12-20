@@ -33,5 +33,6 @@ public abstract class Monster_State : MonoBehaviour
     {        
         Debug.Log("플레이어 공격 당함");
         other.Health -= data.Strength;
+        //플레이어 State를 Hit으로 변경해주는 메서드 불러오기
     }
 }
