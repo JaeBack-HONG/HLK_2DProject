@@ -7,30 +7,54 @@ public class Player_Move : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rigidbody;
     public float jumpForce = 100f;
+
     private bool isJumping = false;
     public bool isGrab = false;
+
     public Monster_State mon;
     private Player_State P_State;
+
+    private float horizontalInput;
+
     private void Awake()
     {
         TryGetComponent<Rigidbody2D>(out rigidbody);
         TryGetComponent<Player_State>(out P_State);
     }
 
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        if (!isGrab)
+        if (collision.gameObject.CompareTag("Top"))
         {
-            rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
-        {
+            mon = collision.gameObject.transform.root.GetComponent<Monster_State>();
             Jump();
+            if (mon != null)
+            {
+                P_State.Attack(mon);
+            }
+        }
+    }
+
+    public void IsGrab()
+    {
+        rigidbody.velocity = Vector2.zero;
+        rigidbody.gravityScale = 0f;
+    }
+
+    public void MoveCheck()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+        rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            P_State.actState = Unit_state.Jump;
         }
 
+        P_State.actState = horizontalInput.Equals(0) ? Unit_state.Idle : Unit_state.Move;
     }
-    private void FixedUpdate()
+
+    private void Jumping()
     {
         if (rigidbody.velocity.y < 0)
         {
@@ -39,40 +63,22 @@ public class Player_Move : MonoBehaviour
             {
                 if (hit.distance < 0.5f)
                 {
-                    if (isGrab)
-                    {
-                        isGrab = false;
-                    }
+                    P_State.actState = Unit_state.Idle;
                     isJumping = false;
                 }
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Top"))
-        {
-           
-            mon = collision.gameObject.transform.root.GetComponent<Monster_State>();
-            Jump();
-            if (mon != null)
-            {
-
-                P_State.Attack(mon);
-
-            }
-        }
-    }
 
     private void Jump()
     {
         rigidbody.velocity = rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
-        rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rigidbody.AddForce(Vector2.up * P_State.data.JumpForce, ForceMode2D.Impulse);
 
         if (!isJumping)
         {
-            isJumping = true;
+            P_State.actState = Unit_state.Jump;
         }
     }
 
