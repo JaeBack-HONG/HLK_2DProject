@@ -27,6 +27,24 @@ public class Player_State : MonoBehaviour
     {
         Player_HealthCheck();
     }
+
+    private void State_Check()
+    {
+        switch(state)
+        {
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                break;
+            case Unit_state.Grab:
+                break;           
+            case Unit_state.Hit:
+                break;
+        }
+    }
+
     public void Player_HealthCheck()
     {
 
