@@ -9,6 +9,8 @@ public class Player_State : MonoBehaviour
     public Unit_state actState;
     public Condition_state conState;
 
+    public Unit_Hit unithit;
+
     public int Health;
 
     public Player_Ability P_Ability;
@@ -19,6 +21,7 @@ public class Player_State : MonoBehaviour
         TryGetComponent<Player_Move>(out P_Move);
         PlayerDataSetting();
         actState = Unit_state.Idle;
+        TryGetComponent<Unit_Hit>(out unithit);
     }
 
     public void PlayerDataSetting()
@@ -80,6 +83,7 @@ public class Player_State : MonoBehaviour
     {
         Destroy(gameObject, 1f);
     }
+
     public void Attack(Monster_State other)
     {
         other.Health -= data.Strength;

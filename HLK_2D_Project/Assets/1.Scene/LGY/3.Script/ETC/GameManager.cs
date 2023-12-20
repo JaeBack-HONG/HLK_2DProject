@@ -6,7 +6,8 @@ public enum Layer_Index
 {
     Ground =6,
     Enemy,
-    Player
+    Player,
+    Hit,
 }
 public enum Animator_List
 {
