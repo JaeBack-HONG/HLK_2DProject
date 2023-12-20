@@ -11,13 +11,14 @@ public enum Unit_state
     Default = 0,
     Idle,
     Move,
-    Attack,    
+    Attack,
     Grab,
     Hit,
-    Jump
+    Jump,
+    Falling
 }
 public enum Condition_state
-{ 
+{
     Default = 0,
     Groggy,
     Poison,
@@ -58,7 +59,7 @@ public class UnitData
         _Strength = strength;
         _MoveSpeed = moveSpeed;
         _JumpForce = jumpForce;
-    }    
+    }
 }
 
 

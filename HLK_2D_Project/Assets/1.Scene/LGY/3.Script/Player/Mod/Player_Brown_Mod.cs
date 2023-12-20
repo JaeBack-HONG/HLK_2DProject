@@ -23,7 +23,7 @@ public class Player_Brown_Mod : Player_Ability
         {
             collision.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 1.5f);
 
-            Time.timeScale = 0.2f;
+           // Time.timeScale = 0.2f;
 
             collision.gameObject.TryGetComponent<Monster_State>(out Monster_State M_state);
             collision.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);

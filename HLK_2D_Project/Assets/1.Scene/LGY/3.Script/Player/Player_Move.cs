@@ -45,39 +45,44 @@ public class Player_Move : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
-        Jumping();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            P_State.actState = Unit_state.Jump;
-            Jump();
-        }
 
-        //P_State.actState = horizontalInput.Equals(0) ? Unit_state.Idle : Unit_state.Move;
-        P_State.actState = Unit_state.Move;
+
+        P_State.actState = horizontalInput.Equals(0) ? Unit_state.Idle : Unit_state.Move;
+        Jump();
     }
 
-    private void Jumping()
+    public void Falling()
     {
-        if (rigidbody.velocity.y < 0)
+
+        RaycastHit2D hit = Physics2D.Raycast(rigidbody.position, Vector2.down, 1, LayerMask.GetMask("Ground"));
+        if (hit.collider != null)
         {
-            RaycastHit2D hit = Physics2D.Raycast(rigidbody.position, Vector2.down, 1, LayerMask.GetMask("Ground"));
-            if (hit.collider != null)
+            if (hit.distance < 0.5f)
             {
-                if (hit.distance < 0.5f)
-                {
-                    P_State.actState = Unit_state.Idle;
-                    //isJumping = false;
-                }
+                P_State.actState = Unit_state.Idle;
+                //isJumping = false;
             }
         }
     }
 
-
-    private void Jump()
+    public void IsFalling()
     {
-        P_State.actState = Unit_state.Default;
-        rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
-        rigidbody.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
+        if (rigidbody.velocity.y < -1f)
+        {
+            P_State.actState = Unit_state.Falling;
+        }
+    }
+
+
+    public void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            P_State.actState = Unit_state.Jump;
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+            rigidbody.AddForce(Vector2.up * 15f, ForceMode2D.Impulse);
+        }
+
 
     }
 

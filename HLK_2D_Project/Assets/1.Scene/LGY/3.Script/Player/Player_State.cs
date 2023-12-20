@@ -29,6 +29,10 @@ public class Player_State : MonoBehaviour
     }
     private void Update()
     {
+
+        P_Move.Falling();
+        
+
         State_Check();
 
         Player_HealthCheck();
@@ -40,20 +44,26 @@ public class Player_State : MonoBehaviour
         switch (actState)
         {
             case Unit_state.Default:
+               
                 break;
             case Unit_state.Idle:
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Move:
-                P_Move.MoveCheck();                
+                P_Move.MoveCheck();
                 break;
             case Unit_state.Attack:
+
                 break;
             case Unit_state.Grab:
                 break;
             case Unit_state.Hit:
                 break;
             case Unit_state.Jump:
+                P_Move.IsFalling();
+                break;
+            case Unit_state.Falling:
+
                 break;
             default:
                 break;
