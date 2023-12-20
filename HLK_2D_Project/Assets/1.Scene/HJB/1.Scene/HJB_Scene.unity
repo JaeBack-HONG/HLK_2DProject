@@ -10315,9 +10315,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992b2c50ac5b97645b37c6363bdf5b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  actState: 0
+  conState: 0
   Health: 0
   P_Ability: {fileID: 0}
+  P_Move: {fileID: 0}
 --- !u!114 &1456566151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13294,6 +13296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brown
       objectReference: {fileID: 0}
+    - target: {fileID: 2085091745713037200, guid: b5061776784981a46aa2a95df7375fee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2085091745713037210, guid: b5061776784981a46aa2a95df7375fee, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -13422,7 +13428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2544133784858039432, guid: df93b016596ecb044b3ea1cc97684d7d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2544133784858039474, guid: df93b016596ecb044b3ea1cc97684d7d, type: 3}
       propertyPath: targetPlayer

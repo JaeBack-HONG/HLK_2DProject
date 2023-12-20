@@ -28,15 +28,10 @@ public class Player_State : MonoBehaviour
 
     }
     private void Update()
-    {
-
-        P_Move.Falling();
-        
-
+    {     
         State_Check();
 
-        Player_HealthCheck();
-        
+        Player_HealthCheck();        
     }
 
     private void State_Check()
@@ -48,9 +43,11 @@ public class Player_State : MonoBehaviour
                 break;
             case Unit_state.Idle:
                 P_Move.MoveCheck();
+                P_Move.GroundRayCheck();
                 break;
             case Unit_state.Move:
                 P_Move.MoveCheck();
+                P_Move.GroundRayCheck();
                 break;
             case Unit_state.Attack:
 
@@ -60,14 +57,15 @@ public class Player_State : MonoBehaviour
             case Unit_state.Hit:
                 break;
             case Unit_state.Jump:
-                P_Move.IsFalling();
+                P_Move.MoveCheck();
                 break;
             case Unit_state.Falling:
-
+                P_Move.MoveCheck();
                 break;
             default:
                 break;
         }
+        P_Move.IsFalling();
     }
 
     public void Player_HealthCheck()
