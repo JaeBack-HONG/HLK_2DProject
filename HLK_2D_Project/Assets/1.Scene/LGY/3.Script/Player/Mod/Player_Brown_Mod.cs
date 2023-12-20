@@ -6,30 +6,31 @@ public class Player_Brown_Mod : Player_Ability
 {
     Vector2 randomvec;
 
-    public override void UseAbility(Animator player_ani, int changeidx)
+    public override void UseAbility()
     {
-
-        player_ani = GameManager.instance.animators[changeidx];
-
-
-
-
-        player_ani = GameManager.instance.animators[(int)Animator_List.Player];
+        P_state.actState = Unit_state.Default;
+        Brown_Ability();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Brown_Ability()
     {
-        if (collision.gameObject.layer.Equals((int)Layer_Index.Enemy) && collision.gameObject.CompareTag("Enemy"))
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 3f, LayerMask.GetMask("Enemy"));
+        Debug.DrawRay(transform.position, Vector2.right * 3f, Color.red);
+        if (hit.collider != null)
         {
-            collision.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 3f);
+            if(hit.collider.gameObject.CompareTag("Enemy"))
+            {
+                hit.collider.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 3f);
+                animator.SetTrigger("BrownMod");
 
-
-            collision.gameObject.TryGetComponent<Monster_State>(out Monster_State M_state);
-            collision.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);
-            M_state.state = Unit_state.Grab;
-            StartCoroutine(Brown_Ab(otherRigid, M_state));
+                hit.collider.gameObject.TryGetComponent<Monster_State>(out Monster_State M_state);
+                hit.collider.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);
+                M_state.state = Unit_state.Grab;
+                StartCoroutine(Brown_Ab(otherRigid, M_state));
+            }
         }
     }
+
 
     IEnumerator Brown_Ab(Rigidbody2D otherRigid, Monster_State M_state)
     {
@@ -50,6 +51,7 @@ public class Player_Brown_Mod : Player_Ability
                 M_state.state = Unit_state.Idle;
                 otherRigid.gravityScale = 4f;
                 otherRigid.AddRelativeForce(randomvec * 20f, ForceMode2D.Impulse);
+                animator.SetTrigger("Idle");
                 break;
             }
             yield return null;

@@ -32,6 +32,10 @@ public class Player_State : MonoBehaviour
     }
     private void Update()
     {     
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            actState = Unit_state.Attack;
+        }
         State_Check();
 
         Player_HealthCheck();        
@@ -42,8 +46,8 @@ public class Player_State : MonoBehaviour
         switch (actState)
         {
             case Unit_state.Default:
-               
-                break;
+
+                return;
             case Unit_state.Idle:
                 P_Move.MoveCheck();
                 P_Move.GroundRayCheck();
@@ -53,7 +57,8 @@ public class Player_State : MonoBehaviour
                 P_Move.GroundRayCheck();
                 break;
             case Unit_state.Attack:
-
+                P_Ability = GetComponent<Player_Brown_Mod>();
+                P_Ability.UseAbility();
                 break;
             case Unit_state.Grab:
                 break;
