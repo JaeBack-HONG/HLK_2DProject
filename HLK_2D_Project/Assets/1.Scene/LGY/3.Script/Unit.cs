@@ -8,14 +8,17 @@ public interface IUnit
 }
 public enum Unit_state
 {
+    Default = 0,
     Idle,
     Move,
     Attack,    
     Grab,
     Hit,
+    Jump
 }
 public enum Condition_state
 { 
+    Default = 0,
     Groggy,
     Poison,
     Weakness,//약점노출

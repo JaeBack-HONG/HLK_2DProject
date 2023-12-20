@@ -25,9 +25,9 @@ public class Player_Brown_Mod : Player_Ability
 
             Time.timeScale = 0.2f;
 
+            collision.gameObject.TryGetComponent<Monster_State>(out Monster_State M_state);
             collision.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);
-            otherRigid.constraints = RigidbodyConstraints2D.FreezeAll;
-
+            M_state.state = Unit_state.Grab;
 
 
             StartCoroutine(Brown_Ab(otherRigid));
@@ -36,9 +36,6 @@ public class Player_Brown_Mod : Player_Ability
 
     IEnumerator Brown_Ab(Rigidbody2D otherRigid)
     {
-        otherRigid.velocity = Vector2.zero;
-        
-
         while (true)
         {
             if( Input.GetKeyDown(KeyCode.LeftArrow))
@@ -51,9 +48,9 @@ public class Player_Brown_Mod : Player_Ability
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
-                otherRigid.constraints = RigidbodyConstraints2D.None;
-                otherRigid.AddRelativeForce(randomvec * 20f, ForceMode2D.Impulse);
                 Time.timeScale = 1f;
+                otherRigid.gravityScale = 4f;
+                otherRigid.AddRelativeForce(randomvec * 20f, ForceMode2D.Impulse);
                 break;
             }
             yield return null;
