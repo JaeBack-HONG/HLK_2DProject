@@ -15,7 +15,8 @@ public enum Unit_state
     Grab,
     Hit,
     Jump,
-    Falling
+    Falling,
+    Dash
 }
 public enum Condition_state
 {
