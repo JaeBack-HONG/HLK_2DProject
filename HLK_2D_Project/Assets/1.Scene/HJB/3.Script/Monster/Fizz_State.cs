@@ -21,7 +21,7 @@ public class Fizz_State : Monster_State
                 strength: 2, moveSpeed: 2, jumpForce: 0);
         Health = data.HP;
         state = Unit_state.Move;
-        base.MonsterDataSetting();   
+        base.MonsterDataSetting();
         
     }
 

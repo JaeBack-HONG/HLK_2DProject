@@ -22,42 +22,43 @@ public class Knight1_State : Monster_State
     }
     private void FixedUpdate()
     {
-        monsterMove.TotalMove();
-        Knight_PlayerCheck();
-        Monster_HealthCheck();        
-        SwordAttack();
-    }
-    
-    public void SwordAttack()
-    {
-
-        if (state.Equals(Unit_state.Attack))
+        switch (state)
         {
-            
-            StartCoroutine(SwordAttack_co());
-        }
+            case Unit_state.Idle:
+                return;
+            case Unit_state.Move:
+                    monsterMove.TotalMove();
+                    Knight_PlayerCheck();
+                break;
+            case Unit_state.Attack:                                
+                StartCoroutine(SwordAttack_co());
+                break;            
+            case Unit_state.Hit:
+                break;
+            default:
+                break;
+        }        
+        Monster_HealthCheck();        
     }
-
     private void Knight_PlayerCheck()
     {
         float targetDistance = monsterMove.DistanceAndDirection();
 
-        if (targetDistance < 2.5f)
+        if (targetDistance < 2f)
         {
             state = Unit_state.Attack;
         }
     }
-
     private IEnumerator SwordAttack_co()
-    {     
+    {
         animator.SetTrigger("Attack");
+        rigidbody.velocity = Vector2.zero;
+        state = Unit_state.Idle;        
         yield return cool;
         animator.SetTrigger("Default");
         state = Unit_state.Move;        
         yield return null;
     }
-
-
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)

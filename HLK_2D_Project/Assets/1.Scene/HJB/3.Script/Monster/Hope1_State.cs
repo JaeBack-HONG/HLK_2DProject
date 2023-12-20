@@ -23,30 +23,42 @@ public class Hope1_State : Monster_State
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
-    {
-        monsterMove.TotalMove();
-        Hope_PlayerCheck();
-        Monster_HealthCheck();
-        HopeAttack();
-    }
-    public void HopeAttack()
-    {
-        if (state.Equals(Unit_state.Attack)&&!isAttack)
+    {        
+        switch (state)
         {
-            isAttack = true;
-            StartCoroutine(HopeAttack_co());
+            case Unit_state.Idle:
+                return;
+            case Unit_state.Move:
+                monsterMove.TotalMove();
+                Hope_PlayerCheck();
+                break;
+            case Unit_state.Attack:
+                StartCoroutine(HopeAttack_co());
+                break;
+            case Unit_state.Hit:
+                break;
+            default:
+                break;
         }
+        Monster_HealthCheck();
     }
+    
     private IEnumerator HopeAttack_co()
     {
-        GameObject bullet = GameObject.Instantiate(hope_Bullet, transform.position,Quaternion.identity);
-        bullet.SetActive(true);
+        state = Unit_state.Idle;
+        rigidbody.velocity = Vector2.zero;
+        CreateBullet();
         //animator.SetTrigger("Attack");
         yield return cool;
         //animator.SetTrigger("Default");
-        state = Unit_state.Move;
-        isAttack = false;
+        state = Unit_state.Move;        
         yield return null;
+    }
+
+    private void CreateBullet()
+    {
+        GameObject bullet = GameObject.Instantiate(hope_Bullet, transform.position, Quaternion.identity);
+        bullet.SetActive(true);
     }
 
     private void Hope_PlayerCheck()
