@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2544133784858039476}
   - component: {fileID: 2544133784858039473}
   - component: {fileID: 2544133784858039474}
+  - component: {fileID: 3892193154296562566}
   m_Layer: 7
   m_Name: fizz
   m_TagString: Untagged
@@ -158,9 +159,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  C_State: 0
   monsterMove: {fileID: 0}
   monster_State: {fileID: 0}
   animator: {fileID: 0}
+  rigidbody: {fileID: 0}
   Health: 0
   Strength: 0
   isAttack: 0
@@ -185,6 +188,18 @@ MonoBehaviour:
   target: 0
   isGrab: 0
   targetPlayer: {fileID: 0}
+--- !u!114 &3892193154296562566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2544133784858039432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18d146450eb4bd4d8ef85736d06a999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2544133785042753066
 GameObject:
   m_ObjectHideFlags: 0

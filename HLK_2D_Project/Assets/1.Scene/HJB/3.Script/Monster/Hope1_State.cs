@@ -50,8 +50,6 @@ public class Hope1_State : Monster_State
         }
 
         Monster_HealthCheck();
-
-
     }
 
     private IEnumerator HopeAttack_co()
@@ -84,7 +82,7 @@ public class Hope1_State : Monster_State
 
     public override void Monster_HealthCheck()
     {
-        if (data.HP <= 0)
+        if (Health <= 0)
         {
             base.Die();
         }
