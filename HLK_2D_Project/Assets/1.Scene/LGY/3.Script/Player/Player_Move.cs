@@ -45,13 +45,15 @@ public class Player_Move : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
-
+        Jumping();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             P_State.actState = Unit_state.Jump;
+            Jump();
         }
 
-        P_State.actState = horizontalInput.Equals(0) ? Unit_state.Idle : Unit_state.Move;
+        //P_State.actState = horizontalInput.Equals(0) ? Unit_state.Idle : Unit_state.Move;
+        P_State.actState = Unit_state.Move;
     }
 
     private void Jumping()
@@ -64,7 +66,7 @@ public class Player_Move : MonoBehaviour
                 if (hit.distance < 0.5f)
                 {
                     P_State.actState = Unit_state.Idle;
-                    isJumping = false;
+                    //isJumping = false;
                 }
             }
         }
@@ -73,13 +75,10 @@ public class Player_Move : MonoBehaviour
 
     private void Jump()
     {
-        rigidbody.velocity = rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
-        rigidbody.AddForce(Vector2.up * P_State.data.JumpForce, ForceMode2D.Impulse);
+        P_State.actState = Unit_state.Default;
+        rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+        rigidbody.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
 
-        if (!isJumping)
-        {
-            P_State.actState = Unit_state.Jump;
-        }
     }
 
 }

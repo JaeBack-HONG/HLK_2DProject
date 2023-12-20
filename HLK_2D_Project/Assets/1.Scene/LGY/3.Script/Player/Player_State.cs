@@ -27,7 +27,7 @@ public class Player_State : MonoBehaviour
         Health = data.HP;
 
     }
-    private void FixedUpdate()
+    private void Update()
     {
         State_Check();
 
@@ -45,7 +45,7 @@ public class Player_State : MonoBehaviour
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Move:
-                P_Move.MoveCheck();
+                P_Move.MoveCheck();                
                 break;
             case Unit_state.Attack:
                 break;
