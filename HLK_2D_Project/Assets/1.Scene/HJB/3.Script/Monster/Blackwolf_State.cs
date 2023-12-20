@@ -94,8 +94,7 @@ public class Blackwolf_State : Monster_State
 
     private void BlackWolf_PlayerCheck()
     {
-        float targetDistance = monsterMove.DistanceAndDirection();
-        Debug.Log(targetDistance);
+        float targetDistance = monsterMove.DistanceAndDirection();        
         if (targetDistance < 3f)
         {
             state = Unit_state.Attack;
