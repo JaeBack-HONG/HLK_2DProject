@@ -10733,7 +10733,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.5}
+  m_Size: {x: 5, y: 3}
   m_EdgeRadius: 0
 --- !u!1 &1719451447
 GameObject:
@@ -13689,7 +13689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8978649650146040587, guid: 14454c13d38035b45ad1a90b29d3564b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14454c13d38035b45ad1a90b29d3564b, type: 3}

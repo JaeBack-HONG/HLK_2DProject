@@ -31,9 +31,9 @@ public class Knight1_State : Monster_State
     public void SwordAttack()
     {
 
-        if (state.Equals(Unit_state.Attack) && !isAttack)
+        if (state.Equals(Unit_state.Attack))
         {
-            isAttack = true;
+            
             StartCoroutine(SwordAttack_co());
         }
     }
@@ -53,8 +53,7 @@ public class Knight1_State : Monster_State
         animator.SetTrigger("Attack");
         yield return cool;
         animator.SetTrigger("Default");
-        state = Unit_state.Move;
-        isAttack = false;
+        state = Unit_state.Move;        
         yield return null;
     }
 

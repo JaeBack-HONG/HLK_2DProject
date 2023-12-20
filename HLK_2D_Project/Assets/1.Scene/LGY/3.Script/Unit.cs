@@ -10,11 +10,14 @@ public enum Unit_state
 {
     Idle,
     Move,
-    Attack,
+    Attack,    
+    Grab,
+}
+public enum Condition_state
+{ 
     Groggy,
     Poison,
     Weakness,//약점노출
-    Grab,
     GroggyCool,
     PoisonCool,
     WeaknessCool,
