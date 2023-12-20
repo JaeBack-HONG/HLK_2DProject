@@ -64,7 +64,7 @@ public class Brown_State : Monster_State
 
             hit.transform.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);
             hit.transform.gameObject.TryGetComponent<Player_State>(out Player_State playerstate);
-            playerstate.state = Unit_state.Grab;
+            playerstate.actState = Unit_state.Grab;
             
             StartCoroutine(Brown_Ab(otherRigid));
         }

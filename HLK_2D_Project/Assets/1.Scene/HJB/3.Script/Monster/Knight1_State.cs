@@ -24,20 +24,28 @@ public class Knight1_State : Monster_State
     {
         switch (state)
         {
-            case Unit_state.Idle:
-                return;
-            case Unit_state.Move:
-                    monsterMove.TotalMove();
-                    Knight_PlayerCheck();
+            case Unit_state.Default:
                 break;
-            case Unit_state.Attack:                                
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                monsterMove.TotalMove();
+                Knight_PlayerCheck();
+                break;
+            case Unit_state.Attack:
                 StartCoroutine(SwordAttack_co());
-                break;            
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
             case Unit_state.Hit:
+                break;
+            case Unit_state.Jump:
                 break;
             default:
                 break;
-        }        
+        }
+  
         Monster_HealthCheck();        
     }
     private void Knight_PlayerCheck()

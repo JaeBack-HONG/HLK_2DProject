@@ -11,7 +11,7 @@ public class Hope1_State : Monster_State
         MonsterDataSetting();
     }
 
-    
+
     public override void MonsterDataSetting()
     {
         data = new UnitData
@@ -23,11 +23,14 @@ public class Hope1_State : Monster_State
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
-    {        
+    {
+
         switch (state)
         {
+            case Unit_state.Default:
+                break;
             case Unit_state.Idle:
-                return;
+                break;
             case Unit_state.Move:
                 monsterMove.TotalMove();
                 Hope_PlayerCheck();
@@ -35,14 +38,22 @@ public class Hope1_State : Monster_State
             case Unit_state.Attack:
                 StartCoroutine(HopeAttack_co());
                 break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
             case Unit_state.Hit:
+                break;
+            case Unit_state.Jump:
                 break;
             default:
                 break;
         }
+
         Monster_HealthCheck();
+
+
     }
-    
+
     private IEnumerator HopeAttack_co()
     {
         state = Unit_state.Idle;
@@ -51,7 +62,7 @@ public class Hope1_State : Monster_State
         //animator.SetTrigger("Attack");
         yield return cool;
         //animator.SetTrigger("Default");
-        state = Unit_state.Move;        
+        state = Unit_state.Move;
         yield return null;
     }
 
@@ -65,7 +76,7 @@ public class Hope1_State : Monster_State
     {
         float targetDistance = monsterMove.DistanceAndDirection();
 
-        if (targetDistance > 2f && targetDistance <5f)
+        if (targetDistance > 2f && targetDistance < 5f)
         {
             state = Unit_state.Attack;
         }

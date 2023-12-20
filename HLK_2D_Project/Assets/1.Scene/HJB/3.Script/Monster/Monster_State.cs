@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class Monster_State : MonoBehaviour
 {
     public Unit_state state;
+    public Condition_state C_State;
 
     public UnitData data;
     public MonsterMove monsterMove;
@@ -38,7 +39,7 @@ public abstract class Monster_State : MonoBehaviour
         //플레이어 State를 Hit으로 변경해주는 메서드 불러오기
     }
     
-    public virtual void IsGrab()
+    public void IsGrab()
     {
         rigidbody.velocity = Vector2.zero;
         rigidbody.gravityScale = 0f;
