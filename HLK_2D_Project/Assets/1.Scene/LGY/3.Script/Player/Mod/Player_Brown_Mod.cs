@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Player_Brown_Mod : Player_Ability
 {
-    Vector2 randomvec;
-    GameObject enemy;
+    Vector2 direction;
     public override void UseAbility()
     {
         Brown_Ability();
@@ -13,7 +12,8 @@ public class Player_Brown_Mod : Player_Ability
 
     private void Brown_Ability()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 3f, LayerMask.GetMask("Enemy"));
+        float ho = Input.GetAxis("Horizontal");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, ho * Vector2.right, 3f, LayerMask.GetMask("Enemy"));
         Debug.DrawRay(transform.position, Vector2.right * 3f, Color.red);
         if (hit.collider != null)
         {
@@ -34,23 +34,23 @@ public class Player_Brown_Mod : Player_Ability
 
         while (true)
         {
-
             rigidbody.velocity = Vector2.zero;
+
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                randomvec = new Vector2(-1f, 1f).normalized;
+                direction = new Vector2(-1f, 1f).normalized;
             }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                randomvec = new Vector2(1f, 1f).normalized;
+                direction = new Vector2(1f, 1f).normalized;
             }
-            if (Input.GetKeyDown(KeyCode.J))
+
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 M_state.state = Unit_state.Idle;
                 otherRigid.gravityScale = 4f;
-                otherRigid.AddRelativeForce(randomvec * 20f, ForceMode2D.Impulse);
+                otherRigid.AddRelativeForce(direction * 20f, ForceMode2D.Impulse);
                 animator.SetTrigger("Idle");
-                yield return new WaitForSeconds(0.2f);
                 transform.position = new Vector2(transform.position.x, transform.position.y - 1f);
                 rigidbody.isKinematic = false;
                 break;
