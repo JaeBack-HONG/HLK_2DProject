@@ -23,9 +23,7 @@ public class Knight1_State : Monster_State
     private void FixedUpdate()
     {
         switch (state)
-        {
-            case Unit_state.Default:
-                break;
+        {           
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:

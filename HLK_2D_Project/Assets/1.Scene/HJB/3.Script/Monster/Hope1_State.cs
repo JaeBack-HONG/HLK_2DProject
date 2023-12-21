@@ -26,9 +26,7 @@ public class Hope1_State : Monster_State
     {
 
         switch (state)
-        {
-            case Unit_state.Default:
-                break;
+        {           
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
@@ -66,7 +64,8 @@ public class Hope1_State : Monster_State
 
     private void CreateBullet()
     {
-        GameObject bullet = GameObject.Instantiate(hope_Bullet, transform.position, Quaternion.identity);
+        GameObject bullet = 
+            GameObject.Instantiate(hope_Bullet, transform.position, Quaternion.identity);
         bullet.SetActive(true);
     }
 
