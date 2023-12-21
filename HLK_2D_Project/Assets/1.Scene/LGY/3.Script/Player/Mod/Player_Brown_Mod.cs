@@ -5,10 +5,9 @@ using UnityEngine;
 public class Player_Brown_Mod : Player_Ability
 {
     Vector2 randomvec;
-
+    GameObject enemy;
     public override void UseAbility()
     {
-        P_state.actState = Unit_state.Default;
         Brown_Ability();
     }
 
@@ -18,16 +17,14 @@ public class Player_Brown_Mod : Player_Ability
         Debug.DrawRay(transform.position, Vector2.right * 3f, Color.red);
         if (hit.collider != null)
         {
-            if(hit.collider.gameObject.CompareTag("Enemy"))
-            {
-                hit.collider.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 3f);
-                animator.SetTrigger("BrownMod");
-
-                hit.collider.gameObject.TryGetComponent<Monster_State>(out Monster_State M_state);
-                hit.collider.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);
-                M_state.state = Unit_state.Grab;
-                StartCoroutine(Brown_Ab(otherRigid, M_state));
-            }
+            hit.collider.transform.position = new Vector2(transform.position.x, transform.position.y + 3f);
+            transform.position = new Vector2(transform.position.x, transform.position.y + 1f);
+            animator.SetTrigger("BrownMod");
+            rigidbody.isKinematic = true;
+            hit.collider.TryGetComponent<Monster_State>(out Monster_State M_state);
+            hit.collider.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);
+            M_state.state = Unit_state.Grab;
+            StartCoroutine(Brown_Ab(otherRigid, M_state));
         }
     }
 
@@ -37,6 +34,7 @@ public class Player_Brown_Mod : Player_Ability
 
         while (true)
         {
+
             rigidbody.velocity = Vector2.zero;
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -52,6 +50,9 @@ public class Player_Brown_Mod : Player_Ability
                 otherRigid.gravityScale = 4f;
                 otherRigid.AddRelativeForce(randomvec * 20f, ForceMode2D.Impulse);
                 animator.SetTrigger("Idle");
+                yield return new WaitForSeconds(0.2f);
+                transform.position = new Vector2(transform.position.x, transform.position.y - 1f);
+                rigidbody.isKinematic = false;
                 break;
             }
             yield return null;
