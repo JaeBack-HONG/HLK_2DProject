@@ -8,15 +8,13 @@ public interface IUnit
 }
 public enum Unit_state
 {
-    Default = 0,
-    Idle,
+    Idle = 0,
     Move,
     Attack,
     Grab,
     Hit,
     Jump,
-    Falling,
-    Dash
+    Dash = 6
 }
 public enum Condition_state
 {

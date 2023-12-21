@@ -14,4 +14,14 @@ public class Player_Knight_Mod : Player_Ability
 
         animator = GameManager.instance.animators[(int)Animator_List.Player];
     }
+    private IEnumerator SwordAttack_co()
+    {
+        animator.SetTrigger("Attack");
+        rigidbody.velocity = Vector2.zero;
+        P_state.actState = Unit_state.Idle;
+      //  yield return cool;
+        animator.SetTrigger("Default");
+        //state = Unit_state.Move;
+        yield return null;
+    }
 }
