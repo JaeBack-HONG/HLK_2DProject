@@ -28,9 +28,7 @@ public class Blackwolf_State : Monster_State
     private void FixedUpdate()
     {
         switch (state)
-        {
-            case Unit_state.Default:
-                break;
+        {         
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
@@ -94,10 +92,14 @@ public class Blackwolf_State : Monster_State
 
     private void BlackWolf_PlayerCheck()
     {
-        float targetDistance = monsterMove.DistanceAndDirection();        
-        if (targetDistance < 3f)
+        if (state != Unit_state.Grab)
         {
-            state = Unit_state.Attack;
+
+            float targetDistance = monsterMove.DistanceAndDirection();        
+            if (targetDistance < 3f)
+            {
+                state = Unit_state.Attack;
+            }
         }
     }
 

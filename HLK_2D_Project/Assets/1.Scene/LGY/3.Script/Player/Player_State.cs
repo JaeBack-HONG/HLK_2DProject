@@ -13,8 +13,6 @@ public enum Jump_State
 
 public class Player_State : MonoBehaviour
 {
-
-
     public UnitData data;
 
     public Unit_state actState;
@@ -89,7 +87,7 @@ public class Player_State : MonoBehaviour
 
     public void GroundRayCheck()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
         if (hit.collider != null)//&& JumState.Equals(Junmp_State.Idle))
         {
             JumState = Jump_State.Idle;

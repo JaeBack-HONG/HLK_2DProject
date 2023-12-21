@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 452995729479143176}
   - component: {fileID: 452995729479143191}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TargetDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 452995729507934909}
   - component: {fileID: 452995729507934908}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TopCheck
   m_TagString: Top
   m_Icon: {fileID: 0}

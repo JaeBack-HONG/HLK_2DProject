@@ -23,72 +23,65 @@ public class MonsterMove : MonoBehaviour
     private int FlipDirection = 1;
     public bool isGrab = false;
 
-   [SerializeField] private Transform targetPlayer;
+    [SerializeField] private Transform targetPlayer;
 
-    SpriteRenderer renderer;
+    
 
     private Monster_State monster_State;    
 
     private void Awake()
     {
         
-        rigidbody = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        rigidbody = GetComponent<Rigidbody2D>();        
         monster_State = GetComponent<Monster_State>();
     }
 
     public void TotalMove()
     {
-        //FollowPlayer();
+        //FollowPlayer();        
         
-        if (monster_State.state.Equals(Unit_state.Move))
+        if (target)
         {
-            
-            if (target)
+            direction = (targetPlayer.localPosition.x - transform.localPosition.x);
+            direction = (direction >= 0) ? 1 : -1;
+                
+            //*FlipDirection 
+            rigidbody.velocity = new Vector2(direction* MoveSpeed, rigidbody.velocity.y);
+            if (direction<1)
             {
-                direction = (targetPlayer.localPosition.x - transform.localPosition.x);
-                direction = (direction >= 0) ? 1 : -1;
+                transform.rotation = Quaternion.Euler(0, 180, 0);                    
+            }
+            else
+            {                    
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
                 
-                //*FlipDirection 
-                rigidbody.velocity = new Vector2(direction* MoveSpeed, rigidbody.velocity.y);
-                if (direction<1)
-                {
-                    transform.rotation = Quaternion.Euler(0, 180, 0);                    
-                }
-                else
-                {                    
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                }
+        }
+        else
+        {
+            WallCheck();
+            rigidbody.velocity = new Vector2(nextMove * MoveSpeed, rigidbody.velocity.y);
                 
+            //정지면 방향그대로 한 후 리턴
+            if (nextMove == 0)
+            {
+                return;
+            }
+
+            //정지가 아니라면 방향에 맞춰 축변경
+            Flip = (nextMove < 0) ? true : false;
+
+            if (Flip)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+                FlipDirection = -1;
             }
             else
             {
-                WallCheck();
-                rigidbody.velocity = new Vector2(nextMove * MoveSpeed, rigidbody.velocity.y);
-                
-                //정지면 방향그대로 한 후 리턴
-                if (nextMove == 0)
-                {
-                    return;
-                }
-
-                //정지가 아니라면 방향에 맞춰 축변경
-                Flip = (nextMove < 0) ? true : false;
-
-                if (Flip)
-                {
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
-                    FlipDirection = -1;
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                    FlipDirection = 1;
-                }
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                FlipDirection = 1;
             }
-            
-
-            
+                   
         }
     }
     private void WallCheck()
@@ -118,56 +111,11 @@ public class MonsterMove : MonoBehaviour
             firstTime = 0;
         }
     }
-
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    //플레이어 레이어이면
-    //    if (collision.gameObject.layer.Equals((int)Layer_Index.Player))
-    //    {
-    //        target = true;
-    //        
-    //    }
-    //    else
-    //    {
-    //        target = false;
-    //    }
-    //}
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {            
-    //        Player_State Player = collision.gameObject.GetComponent<Player_State>();            
-    //        if (Player != null)
-    //        {
-    //            monster_State.Attack(Player);
-    //        }
-    //    }
-    //}
+   
     public float DistanceAndDirection()
     {
         distance = Vector2.Distance(transform.position, targetPlayer.position);
 
         return distance;             
     }
-
-    //private void FollowPlayer()
-    //{
-    //    DistanceAndDirection();
-    //
-    //    if ( distance < Detection && direction>0)
-    //    {
-    //        target = true;
-    //        
-    //    }
-    //    else
-    //    {
-    //        target = false;
-    //    }
-    //}
-
-    
-
-
-
-
 }

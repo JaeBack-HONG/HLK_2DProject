@@ -29,7 +29,6 @@ public class Brown_State : Monster_State
                 return;
             case Unit_state.Move:
                 monsterMove.TotalMove();
-
                 break;
             case Unit_state.Attack:
 
@@ -52,7 +51,7 @@ public class Brown_State : Monster_State
 
     private void RayDetectionAttack()
     {
-        LayerMask PlayerMask = LayerMask.GetMask("Player");
+        LayerMask PlayerMask = LayerMask.GetMask("Player");        
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x - 2f, transform.position.y - 0.75f), Vector2.right, 4f, PlayerMask);
 
         Debug.DrawRay(new Vector2(transform.position.x - 2f, transform.position.y - 0.75f), Vector2.right * 4f, Color.red);
@@ -60,25 +59,26 @@ public class Brown_State : Monster_State
         {   
             state = Unit_state.Attack;
             rigidbody.velocity = Vector2.zero;
-            hit.transform.position = new Vector2(transform.position.x, transform.position.y + 1f);
+            hit.transform.position = new Vector2(transform.position.x, transform.position.y + 2f);
 
             hit.transform.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);
             hit.transform.gameObject.TryGetComponent<Player_State>(out Player_State playerstate);
             playerstate.actState = Unit_state.Grab;
             
-            StartCoroutine(Brown_Ab(otherRigid));
+            StartCoroutine(Brown_Ab(otherRigid,playerstate));
         }
         else
         {
             return;
         }
     }
-    IEnumerator Brown_Ab(Rigidbody2D otherRigid)
+    IEnumerator Brown_Ab(Rigidbody2D otherRigid,Player_State playerState)
     {
         float random = Random.Range(0, 2).Equals(0) ? -1f : 1f;
         yield return new WaitForSeconds(2f);
         Vector2 randomvec = new Vector2(random, 1f).normalized;
         otherRigid.gravityScale = 4f;
+        playerState.actState = Unit_state.Default;
         otherRigid.AddRelativeForce(randomvec * 20f, ForceMode2D.Impulse);
         state = Unit_state.Move;
         yield return null;
