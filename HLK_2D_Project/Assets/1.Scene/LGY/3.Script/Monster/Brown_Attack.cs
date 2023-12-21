@@ -21,7 +21,6 @@ public class Brown_Attack : MonoBehaviour
     {
         otherRigid.velocity = Vector2.zero;
         otherRigid.gameObject.TryGetComponent<Player_Move>(out Player_Move playermove);
-        playermove.isGrab = true;
         float random = Random.Range(0, 2).Equals(0) ? -1f : 1f;
         yield return new WaitForSeconds(2f);
         Vector2 randomvec = new Vector2(random, 1f).normalized;

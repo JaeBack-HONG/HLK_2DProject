@@ -6,10 +6,6 @@ public class Player_Move : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rigidbody;
-    public float jumpForce = 100f;
-
-    private bool isJumping = false;
-    public bool isGrab = false;
 
     public Monster_State mon;
     private Player_State P_State;
@@ -64,11 +60,11 @@ public class Player_Move : MonoBehaviour
 
     public void IsFalling()
     {
-        if (rigidbody.velocity.y <-0.01f)
+        if (rigidbody.velocity.y < -0.01f)
         {
             P_State.actState = Unit_state.Falling;
         }
-        else if(rigidbody.velocity.y > 0.1f&&P_State.actState.Equals(Unit_state.Move))
+        else if (rigidbody.velocity.y > 0.1f && P_State.actState.Equals(Unit_state.Move))
         {
             P_State.actState = Unit_state.Jump;
         }
@@ -80,10 +76,10 @@ public class Player_Move : MonoBehaviour
 
 
     public void Jump()
-    {        
-            P_State.actState = Unit_state.Jump;
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
-            rigidbody.AddForce(Vector2.up * 15f, ForceMode2D.Impulse);
+    {
+        P_State.actState = Unit_state.Jump;
+        rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+        rigidbody.AddForce(Vector2.up * 15f, ForceMode2D.Impulse);
     }
 
 }
