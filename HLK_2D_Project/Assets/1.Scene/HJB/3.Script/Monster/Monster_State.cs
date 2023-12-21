@@ -68,7 +68,12 @@ public abstract class Monster_State : MonoBehaviour
             Player = collision.gameObject.transform.GetComponent<Player_State>();
             monsterMove.target = true;
         }
-        else
+        
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //플레이어 레이어이면
+        if (collision.gameObject.layer.Equals((int)Layer_Index.Player))
         {
             monsterMove.target = false;
         }
