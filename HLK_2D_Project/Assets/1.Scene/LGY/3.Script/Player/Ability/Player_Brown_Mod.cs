@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Brown_Mod : Player_Ability
+public class Player_Brown_Mod : Ability
 {
     Vector2 direction;
     public override void UseAbility()
@@ -31,7 +31,7 @@ public class Player_Brown_Mod : Player_Ability
 
     IEnumerator Brown_Ab(Rigidbody2D otherRigid, Monster_State M_state)
     {
-
+        Input.ResetInputAxes();
         while (true)
         {
             rigidbody.velocity = Vector2.zero;

@@ -23,8 +23,8 @@ public class Player_State : MonoBehaviour
 
     public int Health;
 
-    public Player_Ability P_Ability;
     public Player_Move P_Move;
+    public Player_Ability P_Ability;
 
     private void Start()
     {
@@ -33,6 +33,7 @@ public class Player_State : MonoBehaviour
         actState = Unit_state.Idle;
         JumState = Jump_State.Idle;
         TryGetComponent<Unit_Hit>(out unithit);
+        TryGetComponent<Player_Ability>(out P_Ability);
     }
 
     public void PlayerDataSetting()
@@ -47,6 +48,7 @@ public class Player_State : MonoBehaviour
         {
             actState = Unit_state.Attack;
         }
+        P_Ability.AbilitySetting();
         State_Check();
 
         Player_HealthCheck();
@@ -63,8 +65,7 @@ public class Player_State : MonoBehaviour
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Attack:
-                P_Ability = GetComponent<Player_Brown_Mod>();
-                P_Ability.UseAbility();
+                P_Ability.current_Ab.UseAbility();
                 break;
             case Unit_state.Grab:
                 IsGrab();
@@ -132,19 +133,5 @@ public class Player_State : MonoBehaviour
         other.UnitHit.Hit(other.gameObject.layer);
     }
 
-    public void AbilitySetting()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
 
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-
-        }
-    }
 }

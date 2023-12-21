@@ -15,15 +15,20 @@ public enum Animator_List
     Brown,
     Hope1,
     Knight1,
-    BlackWolf
+    BlackWolf,
 }
+public enum Ability_List
+{
+    Brown = 0,
+    Knight,
+    Hope,
+    BlackWolf,
+}
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-
-    public Animator[] animators;
-
 
     private void Awake()
     {
@@ -36,5 +41,6 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
     }
 }

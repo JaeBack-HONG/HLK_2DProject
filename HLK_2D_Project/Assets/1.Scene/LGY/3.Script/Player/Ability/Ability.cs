@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Player_Ability : MonoBehaviour
+public abstract class Ability : MonoBehaviour
 {
-    public Player_State P_state;
-    public Rigidbody2D rigidbody;
-    public Animator animator;
+    [HideInInspector] public Player_State P_state;
+    [HideInInspector] public Rigidbody2D rigidbody;
+    [HideInInspector] public Animator animator;
 
     private void Start()
     {
