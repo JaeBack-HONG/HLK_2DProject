@@ -23,7 +23,10 @@ public class Knight1_State : Monster_State
     private void FixedUpdate()
     {
         switch (state)
-        {           
+        {
+
+            case Unit_state.Default:
+                break;
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
@@ -43,8 +46,12 @@ public class Knight1_State : Monster_State
             default:
                 break;
         }
-  
-        Monster_HealthCheck();        
+
+        if (!state.Equals(Unit_state.Default))
+        {
+            Monster_HealthCheck();
+
+        }
     }
     private void Knight_PlayerCheck()
     {

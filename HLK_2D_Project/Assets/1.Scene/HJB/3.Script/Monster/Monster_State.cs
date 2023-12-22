@@ -12,6 +12,9 @@ public abstract class Monster_State : MonoBehaviour
     public Monster_State monster_State;
     public Animator animator;
     public Rigidbody2D rigidbody;
+
+    private SpriteRenderer renderer;
+
     public int Health;
     public int Strength;
     public bool isAttack = false;
@@ -21,6 +24,7 @@ public abstract class Monster_State : MonoBehaviour
 
     public virtual void MonsterDataSetting()
     {
+        renderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         monsterMove = GetComponent<MonsterMove>();
         animator = GetComponent<Animator>();
@@ -34,7 +38,11 @@ public abstract class Monster_State : MonoBehaviour
 
     public virtual void Die()
     {
-        Destroy(gameObject, 1f);
+        renderer.color = Color.white;
+        Debug.Log("죽음");
+        state = Unit_state.Default;
+        animator.SetTrigger("Death");
+        Destroy(gameObject, 0.7f);
     }
     #region//플레이어에게 데미지주는 메서드(Player_State other)
     public void Attack(Player_State other)

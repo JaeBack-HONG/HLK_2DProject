@@ -30,8 +30,32 @@ public class Ant_State : Monster_State
     }
     private void FixedUpdate()
     {
-        monsterMove.TotalMove();
-        Monster_HealthCheck();
+       
+        switch (state)
+        {
+
+            case Unit_state.Default:
+                break;
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                monsterMove.TotalMove();                
+                break;
+            case Unit_state.Attack:               
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Hit:
+                break;            
+            default:
+                break;
+        }
+
+        if (!state.Equals(Unit_state.Default))
+        {
+            Monster_HealthCheck();
+        }
     }
     public override void Monster_HealthCheck()
     {
