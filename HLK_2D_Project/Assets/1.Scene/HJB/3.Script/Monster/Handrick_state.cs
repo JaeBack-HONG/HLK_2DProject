@@ -99,7 +99,7 @@ public class Handrick_state : Monster_State
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(direction*1f,0), 4f,ground);
         if (hit.collider!=null)
         {
-            rush = false;
+            rush = false;            
         }
     }    
 

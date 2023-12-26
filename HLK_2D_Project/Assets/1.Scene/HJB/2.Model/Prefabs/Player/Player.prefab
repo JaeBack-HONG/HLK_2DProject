@@ -164,6 +164,8 @@ MonoBehaviour:
   moveSpeed: 10
   rigidbody: {fileID: 0}
   mon: {fileID: 0}
+  jumpCount: 0
+  maxJumps: 1
 --- !u!114 &6217987538067908164
 MonoBehaviour:
   m_ObjectHideFlags: 0
