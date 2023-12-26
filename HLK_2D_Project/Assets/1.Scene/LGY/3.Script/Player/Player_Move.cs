@@ -10,9 +10,8 @@ public class Player_Move : MonoBehaviour
     public Monster_State mon;
     private Player_State P_State;
 
-    private float horizontalInput;
-
-    
+    public int jumpCount;
+    public int maxJumps = 1;
 
     private void Awake()
     {
@@ -35,24 +34,25 @@ public class Player_Move : MonoBehaviour
 
     public void MoveCheck()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxis("Horizontal");
         rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && P_State.JumState.Equals(Jump_State.Idle))
+        if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0))
         {
             Jump();
+
         }
     }
-
-
-
-
-
 
     public void Jump()
     {
         rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
         rigidbody.AddForce(Vector2.up * 15f, ForceMode2D.Impulse);
+        if (P_State.JumState.Equals(Jump_State.Idle))
+        {
+            P_State.JumState = Jump_State.Jumping;
+        }
+        jumpCount--;
     }
 
 }

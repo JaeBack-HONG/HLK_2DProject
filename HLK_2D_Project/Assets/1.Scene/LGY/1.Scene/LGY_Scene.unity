@@ -10436,6 +10436,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crow
       objectReference: {fileID: 0}
+    - target: {fileID: 3164703834299428487, guid: e03b8ee13ab3d2548b78ca74d962c524, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e03b8ee13ab3d2548b78ca74d962c524, type: 3}
 --- !u!1 &1736872661
@@ -13231,7 +13235,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134649887}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6c141b080327a942b99e0959c440da0, type: 3}
   m_Name: 
@@ -13730,7 +13734,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2720004891575682394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13765,6 +13769,8 @@ MonoBehaviour:
   moveSpeed: 10
   rigidbody: {fileID: 0}
   mon: {fileID: 0}
+  jumpCount: 0
+  maxJumps: 1
 --- !u!114 &2720004891575682396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13916,6 +13922,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 537116067006458275, guid: 14454c13d38035b45ad1a90b29d3564b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 537116067006458281, guid: 14454c13d38035b45ad1a90b29d3564b, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8978649650146040577, guid: 14454c13d38035b45ad1a90b29d3564b, type: 3}
       propertyPath: m_RootOrder
       value: 5
