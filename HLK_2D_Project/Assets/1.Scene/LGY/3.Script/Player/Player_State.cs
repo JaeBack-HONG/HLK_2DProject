@@ -89,8 +89,10 @@ public class Player_State : MonoBehaviour
     public void GroundRayCheck()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
+        Debug.DrawRay(transform.position, Vector2.down, Color.red, 0.5f);
         if (hit.collider != null)//&& JumState.Equals(Junmp_State.Idle))
         {
+            P_Move.jumpCount = P_Move.maxJumps;
             JumState = Jump_State.Idle;
 
             if(actState != Unit_state.Idle)
@@ -102,16 +104,10 @@ public class Player_State : MonoBehaviour
     }
     public void IsFalling()
     {
-        if (P_Move.rigidbody.velocity.y < -0.01f)
-        {
-            JumState = Jump_State.Falling;
-        }
-        else if (P_Move.rigidbody.velocity.y > 0.01f)
-        {
-            JumState = Jump_State.Jumping;
-        }
-
-
+        //if (P_Move.rigidbody.velocity.y < -0.01f)
+        //{
+        //    JumState = Jump_State.Falling;
+        //}
     }
 
     public void Player_HealthCheck()
