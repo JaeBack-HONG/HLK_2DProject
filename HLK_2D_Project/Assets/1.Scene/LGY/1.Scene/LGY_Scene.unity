@@ -13031,7 +13031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2085045961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13044,7 +13044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4085ded48adaa54193bc0c5580be545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2720004891575682384}
+  target: {fileID: 2720004891575682384}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.8408592, b: 0, a: 1}
@@ -13074,6 +13074,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  scopestate: 0
 --- !u!50 &2085045962
 Rigidbody2D:
   serializedVersion: 4
