@@ -37,10 +37,7 @@ public class Player_Move : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
         
-        if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0))
-        {
-            Jump();
-        }
+        if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0)) Jump();
         if (rigidbody.velocity.x.Equals(0)) return;
         transform.rotation = rigidbody.velocity.x <= 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
     }
