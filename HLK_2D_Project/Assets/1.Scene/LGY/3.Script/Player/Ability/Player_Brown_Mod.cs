@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player_Brown_Mod : Ability
 {
-    Vector2 direction;
     public override void UseAbility()
     {
         Brown_Ability();
@@ -36,14 +35,7 @@ public class Player_Brown_Mod : Ability
         {
             rigidbody.velocity = Vector2.zero;
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                direction = new Vector2(-1f, 1f).normalized;
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                direction = new Vector2(1f, 1f).normalized;
-            }
+            Vector2 direction = (transform.rotation.y == 0) ? Vector2.right : Vector2.left;
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
