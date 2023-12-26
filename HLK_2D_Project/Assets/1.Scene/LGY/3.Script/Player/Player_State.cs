@@ -23,8 +23,8 @@ public class Player_State : MonoBehaviour
 
     public int Health;
 
-    public Player_Move P_Move;
-    public Player_Ability P_Ability;
+    private Player_Ability P_Ability;
+    private Player_Move P_Move;
 
     private void Start()
     {
@@ -36,12 +36,7 @@ public class Player_State : MonoBehaviour
         TryGetComponent<Player_Ability>(out P_Ability);
     }
 
-    public void PlayerDataSetting()
-    {
-        data = new UnitData(name: "Player", hp: 10, detection: 5, range: 1, attackSpeed: 1, strength: 2, moveSpeed: 2, jumpForce: 100);
-        Health = data.HP;
 
-    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
@@ -52,6 +47,12 @@ public class Player_State : MonoBehaviour
         State_Check();
 
         Player_HealthCheck();
+    }
+
+    private void PlayerDataSetting()
+    {
+        data = new UnitData(name: "Player", hp: 10, detection: 5, range: 1, attackSpeed: 1, strength: 2, moveSpeed: 2, jumpForce: 100);
+        Health = data.HP;
     }
 
     private void State_Check()
@@ -73,6 +74,7 @@ public class Player_State : MonoBehaviour
                 IsGrab();
                 break;
             case Unit_state.Hit:
+                unithit.Hit(gameObject.layer);
                 break;
         }
         IsFalling();
@@ -84,7 +86,6 @@ public class Player_State : MonoBehaviour
         P_Move.rigidbody.velocity = Vector2.zero;
         P_Move.rigidbody.gravityScale = 0f;
     }
-
 
     public void GroundRayCheck()
     {
@@ -104,10 +105,10 @@ public class Player_State : MonoBehaviour
     }
     public void IsFalling()
     {
-        //if (P_Move.rigidbody.velocity.y < -0.01f)
-        //{
-        //    JumState = Jump_State.Falling;
-        //}
+        if (P_Move.rigidbody.velocity.y < -0.01f)
+        {
+            JumState = Jump_State.Falling;
+        }
     }
 
     public void Player_HealthCheck()
