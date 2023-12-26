@@ -58,6 +58,8 @@ public class Player_State : MonoBehaviour
     {
         switch (actState)
         {
+            case Unit_state.Default:
+                break;
             case Unit_state.Idle:
                 P_Move.MoveCheck();
                 break;
@@ -73,10 +75,8 @@ public class Player_State : MonoBehaviour
             case Unit_state.Hit:
                 break;
         }
-
         IsFalling();
         GroundRayCheck();
-
     }
 
     public void IsGrab()
