@@ -108,7 +108,7 @@ public class Blackwolf_State : Monster_State
     {
         state = Unit_state.Idle;
         animator.SetTrigger("Dash");
-        Debug.Log("진입");
+        
         float elapsedTime = 0f;
         float attackDuration = 1f; // 이동이 완료되기를 원하는 시간
 

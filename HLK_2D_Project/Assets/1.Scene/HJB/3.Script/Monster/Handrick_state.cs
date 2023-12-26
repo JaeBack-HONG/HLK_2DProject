@@ -63,7 +63,7 @@ public class Handrick_state : Monster_State
     }
     private void HandrickAttack_PlayerCheck()
     {
-        if (monsterMove.target.Equals(true))
+        if (monsterMove.target)
         {            
             targetPlayer = Player.gameObject;
             direction = (transform.localPosition.x - targetPlayer.transform.localPosition.x);

@@ -62,7 +62,7 @@ public class Bird_State : Monster_State
     }
     private void BirdAttack_PlayerCheck()
     {
-        if (monsterMove.target.Equals(true))
+        if (monsterMove.target)
         {            
             state = Unit_state.Attack;
         }
