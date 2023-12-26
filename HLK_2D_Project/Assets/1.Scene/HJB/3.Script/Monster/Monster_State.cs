@@ -81,9 +81,10 @@ public abstract class Monster_State : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         //플레이어 레이어이면
-        if (collision.gameObject.layer.Equals((int)Layer_Index.Player))
+        if (collision.gameObject.layer.Equals((int)Layer_Index.Player) || collision.gameObject.CompareTag("Player"))
         {
             monsterMove.target = false;
+            
         }
     }
     #endregion

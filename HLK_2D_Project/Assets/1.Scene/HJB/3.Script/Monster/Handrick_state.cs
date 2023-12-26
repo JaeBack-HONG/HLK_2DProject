@@ -39,7 +39,7 @@ public class Handrick_state : Monster_State
                 HandrickAttack_PlayerCheck();
                 break;
             case Unit_state.Attack:
-                HandrickAttack_co();
+               StartCoroutine(HandrickAttack_co());
                 break;
             case Unit_state.Grab:
                 IsGrab();
@@ -49,6 +49,7 @@ public class Handrick_state : Monster_State
             case Unit_state.Jump:
                 break;
             case Unit_state.Dash:
+                RushGroundCheck();
                 break;
             default:
                 break;
@@ -63,42 +64,44 @@ public class Handrick_state : Monster_State
     private void HandrickAttack_PlayerCheck()
     {
         if (monsterMove.target.Equals(true))
-        {
+        {            
             targetPlayer = Player.gameObject;
             direction = (transform.localPosition.x - targetPlayer.transform.localPosition.x);
-            direction = (direction < 0) ? -1 : 1;
-            Debug.Log(direction);
+            direction = (direction < 0) ? 1 : -1;            
             state = Unit_state.Attack;
         }
     }
 
     private IEnumerator HandrickAttack_co()
     {
+        animator.SetTrigger("Charge");
         state = Unit_state.Dash;
         rush = true;
         yield return new WaitForSeconds(0.5f);
-        //animator.SetTrigger();
+        animator.SetTrigger("Rush");
         while (rush)
-        {
-            //rigidbody.velocity = new Vector2(direction * 5f, rigidbody.velocity.y);
-            Debug.Log(rush);
-            rigidbody.velocity = new Vector2(direction * 5f, rigidbody.velocity.y);
+        {               
+            rigidbody.velocity = new Vector2(direction * 10f, rigidbody.velocity.y);
             yield return null;
         }
 
         state = Unit_state.Default;
+        animator.SetTrigger("Default");
         yield return new WaitForSeconds(0.5f);
         state = Unit_state.Move;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void RushGroundCheck()
     {
-        if (collision.gameObject.layer.Equals((int)Layer_Index.Ground)
-            )
+        LayerMask ground = LayerMask.GetMask("Ground");
+        Debug.DrawRay(transform.position, new Vector2(direction * 1f, 0) * 3f, Color.black);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(direction*1f,0), 4f,ground);
+        if (hit.collider!=null)
         {
-            //rush = false;
+            rush = false;
         }
-    }
+    }    
 
     public override void Monster_HealthCheck()
     {
