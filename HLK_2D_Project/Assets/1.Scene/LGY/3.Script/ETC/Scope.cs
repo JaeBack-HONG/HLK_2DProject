@@ -4,36 +4,58 @@ using UnityEngine;
 
 public class Scope : MonoBehaviour
 {
+    private enum ScopeState
+    {
+        Default = 0,
+        Aiming,
+        Shot
+    }
     private Rigidbody2D rigidbody;
-    [SerializeField] private Transform player;
-    float currentTime =0;
-    bool test = false;
-    public Gradient gradient;
-    SpriteRenderer spriterenderer;
+    [SerializeField] private Transform target;
+    [SerializeField] private Gradient gradient;
+
+    [SerializeField] private ScopeState scopestate;
+
+    private float currentTime =0;    // ÇöÀç½Ã°£
+    private SpriteRenderer spriterenderer;
 
     private void Awake()
     {
         TryGetComponent<Rigidbody2D>(out rigidbody);
         TryGetComponent<SpriteRenderer>(out spriterenderer);
+        scopestate = ScopeState.Aiming;
     }
 
     private void FixedUpdate()
     {
-        if(!test)
+        Sniping();
+    }
+
+    private void Sniping()
+    {
+        switch (scopestate)
         {
-            StartCoroutine(Target());
+            case ScopeState.Default:
+                break;
+            case ScopeState.Aiming:
+                StartCoroutine(Aiming_Co());
+                break;
+            case ScopeState.Shot:
+                StartCoroutine(Shot_Co());
+                break;
+            default:
+                break;
         }
     }
     
-    IEnumerator Target()
+    private IEnumerator Aiming_Co()
     {
-        
-        test = true;
+        scopestate = ScopeState.Default;
         while (currentTime < 3f) 
         {
             spriterenderer.color = gradient.Evaluate(currentTime * 0.2f);
             currentTime += Time.deltaTime;
-            Vector2 direction = (player.position - transform.position);
+            Vector2 direction = (target.position - transform.position);
             rigidbody.AddForce(direction * 2f, ForceMode2D.Force);
             yield return null;
         }
@@ -41,18 +63,24 @@ public class Scope : MonoBehaviour
         while (currentTime < 1.2f)
         {
             currentTime += Time.deltaTime;
-            Vector2 direction = (player.position - transform.position);
-            rigidbody.AddForce(direction * 0.8f, ForceMode2D.Force);
+            Vector2 direction = (target.position - transform.position);
+            rigidbody.AddForce(direction * 1.3f, ForceMode2D.Force);
             yield return null;
         }
+        currentTime = 0f;
+        scopestate = ScopeState.Shot;
+        yield return null;
+
+    }
+    private IEnumerator Shot_Co()
+    {
+        scopestate = ScopeState.Default;
         spriterenderer.color = gradient.Evaluate(1f);
         rigidbody.velocity = Vector2.zero;
-        currentTime = 0f;
         Debug.Log("»§");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         spriterenderer.color = gradient.Evaluate(0f);
-
-        test = false; 
+        scopestate = ScopeState.Aiming;
         yield return null;
     }
 }
