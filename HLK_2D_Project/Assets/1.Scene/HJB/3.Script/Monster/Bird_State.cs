@@ -72,7 +72,7 @@ public class Bird_State : Monster_State
     {
 
         float currentTime = 0f;
-        float attackTime = 3f;
+        float attackTime = 2f;
 
         state = Unit_state.Default;
         animator.SetTrigger("Attack");
@@ -95,11 +95,13 @@ public class Bird_State : Monster_State
 
         Dash = true;
         animator.SetTrigger("Default");
-        while (Dash||currentTime<attackTime)
+        while (Dash&&currentTime<attackTime)
         {
             currentTime += Time.deltaTime;
             rigidbody.velocity = targetDirection * 8f;
-            yield return null;            
+            yield return null;
+            Debug.Log(currentTime);
+            
         }
         rigidbody.velocity = Vector2.zero;
 

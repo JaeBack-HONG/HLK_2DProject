@@ -73,7 +73,7 @@ public class Hope1_State : Monster_State
     {
         float targetDistance = monsterMove.DistanceAndDirection();
 
-        if (targetDistance > 2f && targetDistance < 5f)
+        if (targetDistance < 10f)
         {
             state = Unit_state.Attack;
         }

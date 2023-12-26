@@ -8,8 +8,7 @@ public abstract class Monster_State : MonoBehaviour
 
     public UnitData data;
     public Unit_Hit UnitHit;
-    public MonsterMove monsterMove;
-    public Monster_State monster_State;
+    public MonsterMove monsterMove;    
     public Animator animator;
     public Rigidbody2D rigidbody;
 
