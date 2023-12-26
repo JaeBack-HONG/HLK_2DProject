@@ -31,15 +31,20 @@ public class Brown_State : Monster_State
                 monsterMove.TotalMove();
                 break;
             case Unit_state.Attack:
-
-                return;
+            case Unit_state.Grab:
+                IsGrab();
+                break;                
             case Unit_state.Hit:
                 break;
             default:
                 break;
         }
-        Monster_HealthCheck();
+
         RayDetectionAttack();
+        if (state.Equals(Unit_state.Default))
+        {
+            Monster_HealthCheck();
+        }
     }
     public override void Monster_HealthCheck()
     {
@@ -49,6 +54,8 @@ public class Brown_State : Monster_State
         }
     }
 
+
+    #region//곰 던지기 로직
     private void RayDetectionAttack()
     {
         LayerMask PlayerMask = LayerMask.GetMask("Player");        
@@ -83,4 +90,5 @@ public class Brown_State : Monster_State
         state = Unit_state.Move;
         yield return null;
     }
+    #endregion
 }
