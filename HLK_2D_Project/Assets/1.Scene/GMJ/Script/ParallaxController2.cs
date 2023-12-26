@@ -58,7 +58,8 @@ public class ParallaxController2 : MonoBehaviour
         distanceX = cam.position.x - camStartPos.x;
         distanceY = cam.position.y - camStartPos.y;
 
-        transform.position = new Vector3(cam.position.x, 0, 0);
+
+        transform.position = new Vector3(cam.position.x, cam.position.y, 0);
 
         //for (int i = 0; i < backgrounds.Length; i++)
         //{
