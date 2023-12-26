@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class ParallaxController : MonoBehaviour
 {
     Transform cam; // 메인 카메라
     Vector3 camStartPos;
     float distance; // 카메라 시작위치, 현재 위치 사이의 거리
-
+    
     GameObject[] backgrounds;
     Material[] mat;
     float[] backSpeed;
@@ -17,9 +18,12 @@ public class ParallaxController : MonoBehaviour
     [Range(0.01f, 0.05f)]
     public float parallaxSpeed;
 
+    [SerializeField] private GameObject cine_Camera;
+
     void Start()
     {
-        cam = Camera.main.transform;
+        //cam = Camera.main.transform;
+        cam = cine_Camera.transform;
         camStartPos = cam.position;
 
         int backCount = transform.childCount;

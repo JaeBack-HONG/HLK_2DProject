@@ -18,9 +18,10 @@ public class ParallaxController2 : MonoBehaviour
     [Range(0.01f, 0.05f)]
     public float parallaxSpeed;
 
+    [SerializeField] private GameObject cine_Camera;
     void Start()
     {
-        cam = Camera.main.transform;
+        cam = cine_Camera.transform;
         camStartPos = cam.position;
 
         int backCount = transform.childCount;
