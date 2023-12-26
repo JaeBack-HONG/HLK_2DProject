@@ -23,7 +23,7 @@ public class MonsterMove : MonoBehaviour
     private int FlipDirection = 1;
     public bool isGrab = false;
 
-    [SerializeField] private Transform targetPlayer;
+    public Transform targetPlayer;
 
     
 
