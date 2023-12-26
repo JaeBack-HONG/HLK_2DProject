@@ -19,6 +19,7 @@ public abstract class Monster_State : MonoBehaviour
     public int Strength;
     public bool isAttack = false;
 
+    public bool Dash = false;
 
     public Player_State Player;
 
@@ -62,6 +63,12 @@ public abstract class Monster_State : MonoBehaviour
             {
                 Attack(Player);
             }
+        }
+
+        if (collision.gameObject.layer.Equals((int)Layer_Index.Player) ||
+            collision.gameObject.layer.Equals((int)Layer_Index.Ground))
+        {
+            Dash = false;
         }
     }
     #endregion
