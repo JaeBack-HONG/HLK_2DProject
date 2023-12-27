@@ -20,12 +20,10 @@ public class Player_Blackwolf_Mod : Ability
 
         yield return new WaitForSeconds(0.1f);
 
-        Vector2 direction = (transform.rotation.y.Equals(0)) ? Vector2.right : Vector2.left;
-
         while (currenttime < 0.2f)
         {
             currenttime += Time.deltaTime;
-            rigidbody.velocity = direction * 30f;
+            rigidbody.velocity = P_state.direction * 30f;
             yield return null;
         }
 

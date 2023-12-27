@@ -25,6 +25,7 @@ public class Player_Move : MonoBehaviour
         {
             mon = collision.gameObject.transform.root.GetComponent<Monster_State>();
             Jump();
+            jumpCount++;
             if (mon != null)
             {
                 P_State.Attack(mon);
