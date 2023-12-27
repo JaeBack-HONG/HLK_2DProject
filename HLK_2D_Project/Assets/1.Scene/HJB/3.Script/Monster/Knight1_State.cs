@@ -77,6 +77,7 @@ public class Knight1_State : Monster_State
         if (Health <= 0)
         {
             base.Die();
+            
         }
     }
 }
