@@ -26,11 +26,8 @@ public enum Ability_List
 }
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
-
-    [SerializeField] private Button screenSetting_All_btn;
-    [SerializeField] private Button screenSetting_Window_btn;
-
+    public static GameManager instance = null;    
+    
     private void Awake()
     {
         if (instance = null)
