@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public enum Layer_Index
 {
     Ground =6,
@@ -24,11 +24,12 @@ public enum Ability_List
     Hope,
     BlackWolf,
 }
-
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+
+    [SerializeField] private Button screenSetting_All_btn;
+    [SerializeField] private Button screenSetting_Window_btn;
 
     private void Awake()
     {
@@ -42,5 +43,22 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+    }
+
+    public void ScreenSet_All()
+    {
+
+    }
+    public void ScreenSet_Window()
+    {
+
+    }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }
