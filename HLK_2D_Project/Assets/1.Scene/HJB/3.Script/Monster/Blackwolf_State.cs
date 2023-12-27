@@ -139,7 +139,7 @@ public class Blackwolf_State : Monster_State
     #endregion
     public override void Monster_HealthCheck()
     {
-        if (data.HP <= 0)
+        if (Health <= 0)
         {
             base.Die();
         }
