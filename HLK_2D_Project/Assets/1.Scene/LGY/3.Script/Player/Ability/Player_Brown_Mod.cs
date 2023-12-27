@@ -35,13 +35,11 @@ public class Player_Brown_Mod : Ability
         {
             rigidbody.velocity = Vector2.zero;
 
-            Vector2 direction = (transform.rotation.y == 0) ? Vector2.right : Vector2.left;
-
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 M_state.state = Unit_state.Idle;
                 otherRigid.gravityScale = 4f;
-                otherRigid.AddRelativeForce(direction * 20f, ForceMode2D.Impulse);
+                otherRigid.AddRelativeForce(P_state.direction * 20f, ForceMode2D.Impulse);
                 animator.SetTrigger("Idle");
                 transform.position = new Vector2(transform.position.x, transform.position.y - 1f);
                 rigidbody.isKinematic = false;

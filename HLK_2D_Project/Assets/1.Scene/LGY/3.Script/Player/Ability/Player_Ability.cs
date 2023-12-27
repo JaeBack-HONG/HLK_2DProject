@@ -31,7 +31,7 @@ public class Player_Ability : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            current_Ab = abilities[3];
+            current_Ab = abilities[2];
         }
     }
 

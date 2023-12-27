@@ -24,6 +24,8 @@ public class Player_State : MonoBehaviour
     private Player_Ability P_Ability;
     private Player_Move P_Move;
 
+    public Vector2 direction;
+
     private void Start()
     {
         TryGetComponent<Player_Move>(out P_Move);
@@ -45,6 +47,8 @@ public class Player_State : MonoBehaviour
         State_Check();
 
         Player_HealthCheck();
+
+        direction = (transform.rotation.y.Equals(0)) ? Vector2.right : Vector2.left;
     }
 
     private void PlayerDataSetting()
@@ -119,7 +123,7 @@ public class Player_State : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject, 1f);
+        gameObject.SetActive(false);
     }
 
     public void Attack(Monster_State other)
