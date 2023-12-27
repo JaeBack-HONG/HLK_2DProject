@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public enum Jump_State
 {
     Idle = 0,
     Jumping = 1,
     Falling,
 }
-
 
 public class Player_State : MonoBehaviour
 {
@@ -93,16 +91,11 @@ public class Player_State : MonoBehaviour
         Debug.DrawRay(transform.position, Vector2.down, Color.red, 0.5f);
         if (hit.collider != null)
         {
-           
-            P_Move.jumpCount = P_Move.maxJumps;
-            if (JumState == Jump_State.Falling)
-            {
-                JumState = Jump_State.Idle;
-            }
-            if(actState != Unit_state.Idle)
-            {
-                actState = Unit_state.Idle;
-            }
+            if (JumState.Equals(Jump_State.Idle)) P_Move.jumpCount = P_Move.maxJumps;
+
+            if (JumState.Equals(Jump_State.Falling)) JumState = Jump_State.Idle;
+
+            if (!actState.Equals(Unit_state.Idle)) actState = Unit_state.Idle;
         }
 
     }
@@ -110,7 +103,9 @@ public class Player_State : MonoBehaviour
     {
         if (P_Move.rigidbody.velocity.y < -0.01f)
         {
-            JumState = Jump_State.Falling;
+            if(P_Move.jumpCount.Equals(P_Move.maxJumps)) P_Move.jumpCount--;
+            
+            if(!JumState.Equals(Jump_State.Falling)) JumState = Jump_State.Falling;
         }
     }
 
@@ -132,6 +127,4 @@ public class Player_State : MonoBehaviour
         other.Health -= data.Strength;
         other.UnitHit.Hit(other.gameObject.layer);
     }
-
-
 }

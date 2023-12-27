@@ -11,7 +11,7 @@ public class Player_Move : MonoBehaviour
     private Player_State P_State;
 
     public int jumpCount;
-    public int maxJumps = 1;
+    public int maxJumps = 2;
 
     private void Awake()
     {
@@ -36,9 +36,11 @@ public class Player_Move : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
-        
+
         if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0)) Jump();
+
         if (rigidbody.velocity.x.Equals(0)) return;
+
         transform.rotation = rigidbody.velocity.x <= 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
     }
 
