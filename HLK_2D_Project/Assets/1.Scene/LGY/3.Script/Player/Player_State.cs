@@ -91,11 +91,14 @@ public class Player_State : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
         Debug.DrawRay(transform.position, Vector2.down, Color.red, 0.5f);
-        if (hit.collider != null)//&& JumState.Equals(Junmp_State.Idle))
+        if (hit.collider != null)
         {
+           
             P_Move.jumpCount = P_Move.maxJumps;
-            JumState = Jump_State.Idle;
-
+            if (JumState == Jump_State.Falling)
+            {
+                JumState = Jump_State.Idle;
+            }
             if(actState != Unit_state.Idle)
             {
                 actState = Unit_state.Idle;
