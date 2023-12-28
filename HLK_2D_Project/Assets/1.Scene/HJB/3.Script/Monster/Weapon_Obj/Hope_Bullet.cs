@@ -32,7 +32,9 @@ public class Hope_Bullet : MonoBehaviour
             yield return null;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -40,7 +42,8 @@ public class Hope_Bullet : MonoBehaviour
             playerState.Health -= damage;
             playerState.unithit.Hit(playerState.gameObject.layer);
         }
-        if (!collision.gameObject.layer.Equals((int)Layer_Index.Enemy))
+        if (collision.gameObject.layer.Equals((int)Layer_Index.Player) || 
+            collision.gameObject.layer.Equals((int)Layer_Index.Ground))
         {
             Destroy(this.gameObject);
         }
