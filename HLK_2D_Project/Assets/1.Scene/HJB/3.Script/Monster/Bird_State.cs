@@ -76,8 +76,18 @@ public class Bird_State : Monster_State
 
         state = Unit_state.Default;
         animator.SetTrigger("Attack");
+        Vector3 currentTrans = transform.position;        
+        while (currentTime < 0.5f)
+        {
+            currentTime += Time.deltaTime;
+            float randomX = Random.Range(-0.5f, 0.5f);
+            float randomY = Random.Range(-0.5f, 0.5f);
+            transform.position = new Vector3(currentTrans.x + randomX, currentTrans.y + randomY);
 
-        yield return new WaitForSeconds(0.5f);
+            yield return null;
+        }
+
+        currentTime = 0f;
 
         direction = ( monsterMove.targetPlayer.localPosition.x - transform.localPosition.x);
         direction = (direction >= 0) ? 1 : -1;        
@@ -91,26 +101,43 @@ public class Bird_State : Monster_State
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        Vector2 targetDirection = (monsterMove.targetPlayer.transform.localPosition - transform.localPosition).normalized;        
 
         Dash = true;
         animator.SetTrigger("Default");
+        while (Dash && currentTime <0.5f)
+        {
+            currentTime += Time.deltaTime;
+            rigidbody.velocity = (monsterMove.targetPlayer.transform.localPosition - transform.localPosition).normalized * 16f;
+            yield return null;
+        }
+
+        Vector2 targetDirection = (monsterMove.targetPlayer.transform.localPosition - transform.localPosition).normalized;        
+
         while (Dash&&currentTime<attackTime)
         {
             currentTime += Time.deltaTime;
-            rigidbody.velocity = targetDirection * 8f;
-            yield return null;
-            Debug.Log(currentTime);
-            
+            rigidbody.velocity = targetDirection * 10f;
+            yield return null;            
         }
+        
         rigidbody.velocity = Vector2.zero;
 
         currentTime = 0f;
 
-        while (currentTime < 1f)
+        while (currentTime < 1f&&transform.position.y<10f)
         {
+            
             currentTime += Time.deltaTime;
             rigidbody.velocity = Vector2.up * 2f;
+            yield return null;
+
+        }
+                
+        while (transform.position.y > 6f)
+        {
+            
+            
+            rigidbody.velocity = Vector2.down * 5f;
             yield return null;
 
         }

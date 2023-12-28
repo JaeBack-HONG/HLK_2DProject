@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public enum Layer_Index
 {
     Ground =6,
@@ -41,7 +42,10 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
+    public void MainGame_1()
+    {
+        SceneManager.LoadScene("HJB_Scene");
+    }
     public void ScreenSet_All()
     {
 
