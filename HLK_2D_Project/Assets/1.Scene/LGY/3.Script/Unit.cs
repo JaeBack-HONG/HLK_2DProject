@@ -34,7 +34,7 @@ public enum Ability_Item
     Hope,
     Knight,
     BlackWolf,
-    Handick,
+    Handrick,
     Bird,    
     BabyBoss,
     
