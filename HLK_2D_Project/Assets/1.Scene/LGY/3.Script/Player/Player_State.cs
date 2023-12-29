@@ -43,7 +43,7 @@ public class Player_State : MonoBehaviour
         {
             actState = Unit_state.Attack;
         }
-        P_Ability.AbilitySetting();
+        P_Ability.Choice_Ab();
         State_Check();
 
         Player_HealthCheck();
