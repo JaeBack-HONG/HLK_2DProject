@@ -5,7 +5,10 @@ using UnityEngine;
 public class Hope1_State : Monster_State
 {
     WaitForSeconds cool = new WaitForSeconds(2.5f);
+    WaitForSeconds WaitCool = new WaitForSeconds(1f);
     [SerializeField] private GameObject hope_Bullet;
+    [SerializeField] private GameObject shotPosi;
+
     private void Start()
     {
         MonsterDataSetting();
@@ -27,7 +30,10 @@ public class Hope1_State : Monster_State
     {
 
         switch (state)
-        {           
+        {
+            case Unit_state.Default:
+                break;
+        
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
@@ -48,15 +54,29 @@ public class Hope1_State : Monster_State
                 break;
         }
 
-        Monster_HealthCheck();
+        if (!state.Equals(Unit_state.Default))
+        {
+            Monster_HealthCheck();
+        }
+        //monsterMove.direction = (monsterMove.targetPlayer.localPosition.x - transform.localPosition.x);
+        //monsterMove.direction = (monsterMove.direction >= 0) ? 1 : -1;
+        //if (monsterMove.direction < 1)
+        //{
+        //    transform.rotation = Quaternion.Euler(0, 180, 0);
+        //}
+        //else
+        //{
+        //    transform.rotation = Quaternion.Euler(0, 0, 0);
+        //}
     }
 
     private IEnumerator HopeAttack_co()
     {
         state = Unit_state.Idle;
+        animator.SetTrigger("Shot");
+        yield return WaitCool;
         rigidbody.velocity = Vector2.zero;
         CreateBullet();
-        //animator.SetTrigger("Attack");
         yield return cool;
         //animator.SetTrigger("Default");
         state = Unit_state.Move;
@@ -66,7 +86,7 @@ public class Hope1_State : Monster_State
     private void CreateBullet()
     {
         GameObject bullet = 
-            GameObject.Instantiate(hope_Bullet, transform.position, Quaternion.identity);
+            GameObject.Instantiate(hope_Bullet,shotPosi.transform.position, Quaternion.identity);
         bullet.SetActive(true);
     }
 

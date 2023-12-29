@@ -24,6 +24,7 @@ public class Bird_State : Monster_State
         Strength = data.Strength;
         state = Unit_state.Idle;
         ability_Item = Ability_Item.Bird;
+
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
