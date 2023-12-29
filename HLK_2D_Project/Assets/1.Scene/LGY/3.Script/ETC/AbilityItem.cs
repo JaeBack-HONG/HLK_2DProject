@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class AbilityItem : MonoBehaviour
 {
-    public Monster_State monstate;
+    [SerializeField] private Ability[] abilities;
+    [SerializeField] private Sprite[] sprites;
 
+    private SpriteRenderer spriterenderer;
+    public Ability ability;
+
+    public Ability_Item itemidx;
+
+    private void Start()
+    {
+        TryGetComponent<SpriteRenderer>(out spriterenderer);
+
+        spriterenderer.sprite = sprites[(int)itemidx];
+        ability = abilities[(int)itemidx];
+    }
 }
