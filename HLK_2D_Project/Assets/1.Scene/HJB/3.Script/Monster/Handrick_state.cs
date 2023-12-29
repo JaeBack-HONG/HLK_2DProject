@@ -109,6 +109,8 @@ public class Handrick_state : Monster_State
         if (Health <= 0)
         {
             base.Die();
+            GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
+            ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
         }
     }
 }

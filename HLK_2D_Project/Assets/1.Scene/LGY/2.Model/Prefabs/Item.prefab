@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 2797919914270543869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.82, y: -2.34, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   - {fileID: 2797919914270543863}
   - {fileID: 2797919914270543862}
   sprites:
-  - {fileID: 21300000, guid: 799059183f013a04e95d4065360bccd1, type: 3}
+  - {fileID: 21300000, guid: 216f0af13a81dc8438eb3f483848aeb2, type: 3}
   - {fileID: 21300000, guid: a5ac13b3f12fd4d499c168becace529b, type: 3}
   - {fileID: 21300000, guid: efb4277f53a1f284cb4f774b4c2042c5, type: 3}
   - {fileID: 21300000, guid: cc0e0acdbae65d74685fa7d3f3d89995, type: 3}

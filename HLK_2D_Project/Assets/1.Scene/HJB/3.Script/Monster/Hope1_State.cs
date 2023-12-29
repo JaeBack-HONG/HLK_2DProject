@@ -8,7 +8,7 @@ public class Hope1_State : Monster_State
     WaitForSeconds WaitCool = new WaitForSeconds(1f);
     [SerializeField] private GameObject hope_Bullet;
     [SerializeField] private GameObject shotPosi;
-
+    
     private void Start()
     {
         MonsterDataSetting();
@@ -18,7 +18,7 @@ public class Hope1_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Hope1", hp: 3, detection: 7, range: 5, attackSpeed: 0.5f,
+            (name: "Hope1", hp: 2, detection: 7, range: 5, attackSpeed: 0.5f,
                 strength: 1, moveSpeed: 2, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
@@ -87,7 +87,7 @@ public class Hope1_State : Monster_State
     {
         GameObject bullet = 
             GameObject.Instantiate(hope_Bullet,shotPosi.transform.position, Quaternion.identity);
-        bullet.SetActive(true);
+        //bullet.SetActive(true);
     }
 
     private void Hope_PlayerCheck()
@@ -99,17 +99,15 @@ public class Hope1_State : Monster_State
             state = Unit_state.Attack;
         }
     }
-
+   
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)
-        {
-            //GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
-            //ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
-            Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
-
-            //Instantiate(Ability_Item_obj, this.gameObject.transform);
+        {            
             base.Die();
+            GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
+            ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
+
         }
     }
 }

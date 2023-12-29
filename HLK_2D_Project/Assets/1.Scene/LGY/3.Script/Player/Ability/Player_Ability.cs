@@ -39,7 +39,6 @@ public class Player_Ability : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Item"))
         {
-            Destroy(collision.gameObject);
         }
 
     }

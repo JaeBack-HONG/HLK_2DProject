@@ -183,6 +183,7 @@ MonoBehaviour:
   firstTime: 0
   lastTime: 3
   target: 0
+  direction: 0
   isGrab: 0
   targetPlayer: {fileID: 0}
 --- !u!50 &8686670126318745243
@@ -255,11 +256,14 @@ MonoBehaviour:
   monsterMove: {fileID: 0}
   animator: {fileID: 0}
   rigidbody: {fileID: 0}
+  abilityItem: {fileID: 0}
   Health: 0
   Strength: 0
   isAttack: 0
   Dash: 0
   Player: {fileID: 0}
+  ability_Item: 0
+  Ability_Item_obj: {fileID: 2797919914270543869, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
 --- !u!1 &8686670127058431728
 GameObject:
   m_ObjectHideFlags: 0

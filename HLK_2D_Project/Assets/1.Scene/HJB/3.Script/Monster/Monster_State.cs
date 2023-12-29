@@ -43,7 +43,6 @@ public abstract class Monster_State : MonoBehaviour
 
     public virtual void Die()
     {
-
         renderer.color = Color.white;
         Debug.Log("Á×À½");
         state = Unit_state.Default;
