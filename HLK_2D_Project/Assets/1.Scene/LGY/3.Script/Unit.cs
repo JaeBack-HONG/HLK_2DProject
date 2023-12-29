@@ -26,7 +26,18 @@ public enum Condition_state
     GroggyCool,
     PoisonCool,
     WeaknessCool,
+}
 
+public enum Ability_Item
+{
+    Brown,
+    Hope,
+    Knight,
+    BlackWolf,
+    Handick,
+    Bird,    
+    BabyBoss,
+    
 }
 public class UnitData
 {
@@ -38,6 +49,7 @@ public class UnitData
     private int _Strength;
     private float _MoveSpeed;
     private float _JumpForce;
+    
 
     //Ä¸½¶È­µÈ ÇÁ·ÎÆÛÆ¼µé
     public string Name => _Name;

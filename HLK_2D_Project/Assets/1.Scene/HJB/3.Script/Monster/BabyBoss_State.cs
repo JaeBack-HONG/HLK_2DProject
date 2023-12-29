@@ -28,7 +28,9 @@ public class BabyBoss_State : Monster_State
                 strength: 2, moveSpeed: 5, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
-        state = Unit_state.Default;
+        state = Unit_state.Default; 
+        ability_Item = Ability_Item.BabyBoss;
+
         base.MonsterDataSetting();
         animator.SetTrigger("Default");
     }

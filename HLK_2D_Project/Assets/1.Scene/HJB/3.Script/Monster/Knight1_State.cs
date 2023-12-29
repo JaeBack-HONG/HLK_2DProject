@@ -18,6 +18,7 @@ public class Knight1_State : Monster_State
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
+        ability_Item = Ability_Item.Knight;
         base.MonsterDataSetting();
     }
     private void FixedUpdate()

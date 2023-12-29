@@ -22,6 +22,8 @@ public abstract class Monster_State : MonoBehaviour
 
     public Player_State Player;
 
+    public Ability_Item ability_Item;
+
     public virtual void MonsterDataSetting()
     {
         renderer = GetComponent<SpriteRenderer>();
@@ -30,7 +32,7 @@ public abstract class Monster_State : MonoBehaviour
         animator = GetComponent<Animator>();
         UnitHit = GetComponent<Unit_Hit>();
         monsterMove.MoveSpeed = data.MoveSpeed;
-        monsterMove.Detection = data.Detection;
+        monsterMove.Detection = data.Detection;        
     }
 
 

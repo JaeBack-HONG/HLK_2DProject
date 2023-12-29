@@ -23,6 +23,7 @@ public class Handrick_state : Monster_State
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
+        ability_Item = Ability_Item.Handick;
         base.MonsterDataSetting();
     }
     private void FixedUpdate()

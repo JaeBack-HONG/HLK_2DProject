@@ -20,6 +20,7 @@ public class Hope1_State : Monster_State
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
+        ability_Item = Ability_Item.Hope;
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
