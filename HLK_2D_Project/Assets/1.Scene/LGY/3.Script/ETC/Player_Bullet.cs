@@ -13,6 +13,7 @@ public class Player_Bullet : MonoBehaviour
     private void Start()
     {
         transform.parent.gameObject.TryGetComponent<Player_Hope_Mod>(out Player_Hope_Mod hopemod);
+        
         Direction = hopemod.P_state.direction;
         transform.parent = null;
     }
