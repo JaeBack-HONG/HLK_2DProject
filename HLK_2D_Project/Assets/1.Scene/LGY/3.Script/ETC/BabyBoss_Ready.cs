@@ -34,11 +34,11 @@ public class BabyBoss_Ready : MonoBehaviour
         babyboss_anime.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         yield return new WaitForSeconds(1.5f);
         babyboss_anime.SetTrigger("Trans");
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(2.25f);
         babyboss_anime.SetTrigger("Walk");
         monstate.state = Unit_state.Move;
         rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
-
+        Destroy(gameObject);
         yield return null;
     }
 

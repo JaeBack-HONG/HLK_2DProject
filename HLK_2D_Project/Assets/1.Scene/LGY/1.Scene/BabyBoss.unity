@@ -263,7 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinevir: {fileID: 1228563202}
   priority: 3
-  remove: 1
+  remove: 0
 --- !u!114 &128155226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8032,7 +8032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinevir: {fileID: 1228563202}
   priority: 1
-  remove: 1
+  remove: 0
 --- !u!61 &502804304
 BoxCollider2D:
   m_ObjectHideFlags: 0

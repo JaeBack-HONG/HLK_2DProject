@@ -120,14 +120,14 @@ public class BabyBoss_State : Monster_State
         yield return new WaitForSeconds(0.1f);
         animator.SetTrigger("Walk");
         animator.SetTrigger("Gimmick");
-        yield return new WaitForSeconds(0.95f);
+        yield return new WaitForSeconds(0.9f);
         effect.SetActive(false);
         effect.SetActive(true);
         noise.m_AmplitudeGain = 23;
         yield return new WaitForSeconds(0.35f);
 
         noise.m_AmplitudeGain = 0;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.35f);
         animator.SetTrigger("Walk");
         state = Unit_state.Move;
         gimmickcount = 0;
