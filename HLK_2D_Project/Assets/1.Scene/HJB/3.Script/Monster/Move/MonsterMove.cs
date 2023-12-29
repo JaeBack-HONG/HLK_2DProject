@@ -16,7 +16,7 @@ public class MonsterMove : MonoBehaviour
 
     public bool target = false;
     
-    private float direction;
+    public float direction;
     private float distance;
 
     private bool Flip;
@@ -65,6 +65,8 @@ public class MonsterMove : MonoBehaviour
             //정지면 방향그대로 한 후 리턴
             if (nextMove == 0)
             {
+                Debug.Log(nextMove);
+                monster_State.animator.SetBool("Move", false);
                 return;
             }
 
@@ -81,7 +83,7 @@ public class MonsterMove : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 FlipDirection = 1;
             }
-                   
+            monster_State.animator.SetBool("Move", true);
         }
     }
     private void WallCheck()

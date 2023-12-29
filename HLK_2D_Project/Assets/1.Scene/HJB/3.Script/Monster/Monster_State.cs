@@ -43,7 +43,7 @@ public abstract class Monster_State : MonoBehaviour
         renderer.color = Color.white;
         Debug.Log("죽음");
         state = Unit_state.Default;
-        //animator.SetTrigger("Death");
+        animator.SetTrigger("Death");
         Destroy(gameObject, 0.7f);
     }
     #region//플레이어에게 데미지주는 메서드(Player_State other)
