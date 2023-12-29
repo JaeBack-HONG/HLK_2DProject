@@ -11,6 +11,7 @@ public abstract class Monster_State : MonoBehaviour
     public MonsterMove monsterMove;    
     public Animator animator;
     public Rigidbody2D rigidbody;
+    public AbilityItem abilityItem;
 
     private SpriteRenderer renderer;
 
@@ -23,6 +24,8 @@ public abstract class Monster_State : MonoBehaviour
     public Player_State Player;
 
     public Ability_Item ability_Item;
+
+    public GameObject Ability_Item_obj;
 
     public virtual void MonsterDataSetting()
     {
@@ -40,6 +43,7 @@ public abstract class Monster_State : MonoBehaviour
 
     public virtual void Die()
     {
+
         renderer.color = Color.white;
         Debug.Log("Á×À½");
         state = Unit_state.Default;

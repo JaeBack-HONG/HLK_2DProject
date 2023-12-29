@@ -13548,7 +13548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 452995729531822489, guid: 73f9866e607245a4bba935eb2f468437, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.6
+      value: -10.93
       objectReference: {fileID: 0}
     - target: {fileID: 452995729531822489, guid: 73f9866e607245a4bba935eb2f468437, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13598,6 +13598,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 452995729531822503, guid: 73f9866e607245a4bba935eb2f468437, type: 3}
+      propertyPath: Ability_Item_obj
+      value: 
+      objectReference: {fileID: 2797919914270543869, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73f9866e607245a4bba935eb2f468437, type: 3}
 --- !u!1001 &537116068624464117

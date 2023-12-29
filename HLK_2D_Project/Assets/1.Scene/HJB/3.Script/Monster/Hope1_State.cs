@@ -104,6 +104,11 @@ public class Hope1_State : Monster_State
     {
         if (Health <= 0)
         {
+            //GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
+            //ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
+            Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
+
+            //Instantiate(Ability_Item_obj, this.gameObject.transform);
             base.Die();
         }
     }

@@ -64,8 +64,7 @@ public class MonsterMove : MonoBehaviour
                 
             //정지면 방향그대로 한 후 리턴
             if (nextMove == 0)
-            {
-                Debug.Log(nextMove);
+            {                
                 monster_State.animator.SetBool("Move", false);
                 return;
             }
