@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Unit_Hit : MonoBehaviour
 {
-    SpriteRenderer sprite;
+    private SpriteRenderer sprite;
+
+    private void Awake()
+    {
+        TryGetComponent<SpriteRenderer>(out sprite);
+    }
 
     public void Hit(int mylayer)
     {
-        TryGetComponent<SpriteRenderer>(out sprite);
         StartCoroutine(OnDamage(mylayer));
-    
     }
 
     private IEnumerator OnDamage(int mylayer)
