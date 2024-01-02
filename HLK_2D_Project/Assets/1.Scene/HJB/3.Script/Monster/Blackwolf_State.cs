@@ -46,8 +46,12 @@ public class Blackwolf_State : Monster_State
                 break;
             case Unit_state.Jump:
                 break;
+            case Unit_state.Stun:
+                break;
             case Unit_state.Dash:
                 StartCoroutine(BlackWolfDash());
+                break;
+            case Unit_state.Die:
                 break;
             default:
                 break;

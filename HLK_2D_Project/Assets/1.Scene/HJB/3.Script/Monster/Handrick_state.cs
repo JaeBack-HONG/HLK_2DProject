@@ -55,6 +55,8 @@ public class Handrick_state : Monster_State
             case Unit_state.Dash:
                 RushGroundCheck();
                 break;
+            case Unit_state.Stun:
+                break;
             case Unit_state.Die:
                 break;
             default:

@@ -101,7 +101,7 @@ public abstract class Monster_State : MonoBehaviour
         }
     }
     #endregion
-
+        
     public void IsGrab()
     {
         rigidbody.velocity = Vector2.zero;

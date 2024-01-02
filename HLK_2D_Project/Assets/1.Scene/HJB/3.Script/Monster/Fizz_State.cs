@@ -8,11 +8,8 @@ public class Fizz_State : Monster_State
     
     private void Start()
     {
-        MonsterDataSetting();
-        
-    }
-
-    
+        MonsterDataSetting();        
+    }    
     
     public override void MonsterDataSetting()
     {
@@ -26,10 +23,8 @@ public class Fizz_State : Monster_State
     }
     private void FixedUpdate()
     {
-
         switch (state)
         {
-
             case Unit_state.Default:
                 break;
             case Unit_state.Idle:
@@ -42,7 +37,11 @@ public class Fizz_State : Monster_State
             case Unit_state.Grab:
                 IsGrab();
                 break;
+            case Unit_state.Stun:
+                break;
             case Unit_state.Hit:
+                break;
+            case Unit_state.Die:
                 break;
             default:
                 break;
