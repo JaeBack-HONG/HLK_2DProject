@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Brown_State : Monster_State
 {
-
     private void Start()
     {
         MonsterDataSetting();
     }
-
 
     public override void MonsterDataSetting()
     {
@@ -34,10 +32,15 @@ public class Brown_State : Monster_State
                 monsterMove.TotalMove();
                 break;
             case Unit_state.Attack:
+                break;
             case Unit_state.Grab:
                 IsGrab();
-                break;                
+                break;
+            case Unit_state.Stun:
+                break;
             case Unit_state.Hit:
+                break;
+            case Unit_state.Die:
                 break;
             default:
                 break;
@@ -60,7 +63,7 @@ public class Brown_State : Monster_State
     }
 
 
-    #region//곰 던지기 로직
+    #region//곰 던지기 로직(CO)
     private void RayDetectionAttack()
     {
         LayerMask PlayerMask = LayerMask.GetMask("Player");        

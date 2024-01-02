@@ -16,7 +16,8 @@ public enum Unit_state
     Hit,
     Jump,
     Die,
-    Dash = 8
+    Stun,
+    Dash = 9
 }
 public enum Condition_state
 {

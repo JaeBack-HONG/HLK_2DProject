@@ -49,7 +49,11 @@ public class Bird_State : Monster_State
                 break;
             case Unit_state.Hit:
                 break;
+            case Unit_state.Stun:
+                break;
             case Unit_state.Dash:                
+                break;
+            case Unit_state.Die:
                 break;
             default:
                 break;

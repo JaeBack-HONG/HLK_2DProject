@@ -49,7 +49,9 @@ public class Knight1_State : Monster_State
                 break;
             case Unit_state.Hit:
                 break;
-            case Unit_state.Jump:
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Die:
                 break;
             default:
                 break;

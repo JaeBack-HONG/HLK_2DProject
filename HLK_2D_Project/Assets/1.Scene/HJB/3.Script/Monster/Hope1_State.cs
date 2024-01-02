@@ -50,9 +50,11 @@ public class Hope1_State : Monster_State
                 StopCoroutine(hopeAttack_co);
                 IsGrab();
                 break;
-            case Unit_state.Hit:
+            case Unit_state.Stun:
                 break;
-            case Unit_state.Jump:
+            case Unit_state.Hit:
+                break;            
+            case Unit_state.Die:
                 break;
             default:
                 break;
@@ -61,17 +63,7 @@ public class Hope1_State : Monster_State
         if (!state.Equals(Unit_state.Default))
         {
             Monster_HealthCheck();
-        }
-        //monsterMove.direction = (monsterMove.targetPlayer.localPosition.x - transform.localPosition.x);
-        //monsterMove.direction = (monsterMove.direction >= 0) ? 1 : -1;
-        //if (monsterMove.direction < 1)
-        //{
-        //    transform.rotation = Quaternion.Euler(0, 180, 0);
-        //}
-        //else
-        //{
-        //    transform.rotation = Quaternion.Euler(0, 0, 0);
-        //}
+        }        
     }
 
     private IEnumerator HopeAttack_co()
@@ -82,16 +74,14 @@ public class Hope1_State : Monster_State
         rigidbody.velocity = Vector2.zero;
         CreateBullet();
         yield return cool;
-        //animator.SetTrigger("Default");
+        animator.SetTrigger("Default");
         state = Unit_state.Move;
         yield return null;
     }
 
     private void CreateBullet()
     {
-        GameObject bullet = 
-            GameObject.Instantiate(hope_Bullet,shotPosi.transform.position, Quaternion.identity);
-        //bullet.SetActive(true);
+        Instantiate(hope_Bullet,shotPosi.transform.position, Quaternion.identity);        
     }
 
     private void Hope_PlayerCheck()
@@ -107,12 +97,10 @@ public class Hope1_State : Monster_State
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)
-        {
-            
+        {            
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
-
         }
     }
 }
