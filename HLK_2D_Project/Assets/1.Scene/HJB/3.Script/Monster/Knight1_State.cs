@@ -5,10 +5,13 @@ using UnityEngine;
 public class Knight1_State : Monster_State
 {
     WaitForSeconds cool = new WaitForSeconds(0.9f);
+    private bool isAttacking = false;
+    IEnumerator coroutine;
     
     private void Start()
     {
         MonsterDataSetting();
+        coroutine = SwordAttack_co();
     }    
     public override void MonsterDataSetting()
     {
@@ -30,12 +33,16 @@ public class Knight1_State : Monster_State
                 break;
             case Unit_state.Idle:
                 break;
-            case Unit_state.Move:
-                monsterMove.TotalMove();
-                Knight_PlayerCheck();
+            case Unit_state.Move:                
+                    Knight_PlayerCheck();
+                    monsterMove.TotalMove();                
                 break;
             case Unit_state.Attack:
-                StartCoroutine(SwordAttack_co());
+                if (!isAttacking)
+                {
+                    coroutine = SwordAttack_co();
+                    StartCoroutine(coroutine);
+                }
                 break;
             case Unit_state.Grab:
                 IsGrab();
@@ -63,14 +70,17 @@ public class Knight1_State : Monster_State
             state = Unit_state.Attack;
         }
     }
+    
     private IEnumerator SwordAttack_co()
-    {
+    {        
+        isAttacking = true;
         animator.SetTrigger("Attack");
         rigidbody.velocity = Vector2.zero;
-        state = Unit_state.Idle;        
+        state = Unit_state.Idle;                
         yield return cool;
         animator.SetTrigger("Default");
         state = Unit_state.Move;        
+        isAttacking = false;
         yield return null;
     }
     public override void Monster_HealthCheck()

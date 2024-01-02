@@ -18,7 +18,7 @@ public class Hope1_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Hope1", hp: 2, detection: 7, range: 5, attackSpeed: 0.5f,
+            (name: "Hope1", hp: 4, detection: 7, range: 5, attackSpeed: 0.5f,
                 strength: 1, moveSpeed: 2, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
@@ -49,7 +49,7 @@ public class Hope1_State : Monster_State
             case Unit_state.Hit:
                 break;
             case Unit_state.Jump:
-                break;
+                break;            
             default:
                 break;
         }
@@ -103,7 +103,8 @@ public class Hope1_State : Monster_State
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)
-        {            
+        {
+            
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;

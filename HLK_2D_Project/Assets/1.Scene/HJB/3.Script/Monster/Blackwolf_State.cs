@@ -134,6 +134,7 @@ public class Blackwolf_State : Monster_State
         state = Unit_state.Idle;
         yield return cool;
         animator.SetTrigger("Default");
+        yield return new WaitForSeconds(1f);
         state = Unit_state.Move;
         yield return null;
     }

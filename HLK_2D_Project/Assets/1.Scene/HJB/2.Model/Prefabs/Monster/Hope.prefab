@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 1053160521650337497}
   m_Layer: 7
   m_Name: Hope
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,7 +270,6 @@ MonoBehaviour:
   Ability_Item_obj: {fileID: 2797919914270543869, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
   hope_Bullet: {fileID: 601019318901146435, guid: 4920567ad137ca04993937c0d9478780, type: 3}
   shotPosi: {fileID: 6896891456679307172}
-  ability_Item_obj: {fileID: 2797919914270543869, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
 --- !u!114 &452995729531822488
 MonoBehaviour:
   m_ObjectHideFlags: 0
