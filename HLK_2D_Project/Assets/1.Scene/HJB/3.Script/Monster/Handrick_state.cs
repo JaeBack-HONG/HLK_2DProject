@@ -11,19 +11,23 @@ public class Handrick_state : Monster_State
     private float direction;
 
     private GameObject targetPlayer;
+
+    IEnumerator rushAttack_co;
     private void Start()
     {
         MonsterDataSetting();
+        
     }
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Knight1", hp: 5, detection: 5, range: 2, attackSpeed: 1,
+            (name: "Knight1", hp:5, detection: 5, range: 2, attackSpeed: 1,
                 strength: 2, moveSpeed: 3, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
         ability_Item = Ability_Item.Handrick;
+        rushAttack_co = HandrickAttack_co();
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
@@ -40,17 +44,18 @@ public class Handrick_state : Monster_State
                 HandrickAttack_PlayerCheck();
                 break;
             case Unit_state.Attack:
-               StartCoroutine(HandrickAttack_co());
+                rushAttack_co = HandrickAttack_co();
+                StartCoroutine(rushAttack_co);
                 break;
             case Unit_state.Grab:
                 IsGrab();
                 break;
             case Unit_state.Hit:
-                break;
-            case Unit_state.Jump:
-                break;
+                break;            
             case Unit_state.Dash:
                 RushGroundCheck();
+                break;
+            case Unit_state.Die:
                 break;
             default:
                 break;
@@ -108,6 +113,7 @@ public class Handrick_state : Monster_State
     {
         if (Health <= 0)
         {
+            StopCoroutine(rushAttack_co);            
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;

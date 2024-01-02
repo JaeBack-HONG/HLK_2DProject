@@ -36,8 +36,7 @@ public class Player_Ability : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Item"))
-        {
-            
+        {            
             my_Abilities[current_idx] = abilities[(int)collision.gameObject.GetComponent<AbilityItem>().itemidx];
             current_Ab = my_Abilities[current_idx];
             Destroy(collision.gameObject);

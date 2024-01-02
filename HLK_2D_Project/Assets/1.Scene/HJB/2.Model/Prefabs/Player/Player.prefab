@@ -17,6 +17,11 @@ GameObject:
   - component: {fileID: 6217987538067908164}
   - component: {fileID: 6217987538067908219}
   - component: {fileID: 6217987538067908222}
+  - component: {fileID: 2107172787490203904}
+  - component: {fileID: 7344767014664612065}
+  - component: {fileID: 8049827206335590126}
+  - component: {fileID: 5466223152465020228}
+  - component: {fileID: 3099821730208170976}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -204,10 +209,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a23510ee7e4c2c49897a00dbe2208c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability_Temp:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  abilities: []
+  abilities:
+  - {fileID: 7344767014664612065}
+  - {fileID: 5466223152465020228}
+  - {fileID: 3099821730208170976}
+  - {fileID: 2107172787490203904}
+  - {fileID: 8049827206335590126}
+  my_Abilities: []
   current_Ab: {fileID: 0}
+  current_idx: 0
+--- !u!114 &2107172787490203904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217987538067908221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb6faa5ef4c4df44bd6c87dbc5f448a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+--- !u!114 &7344767014664612065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217987538067908221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641c2ffdf3efd944ea37a4e7f9fd7e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+--- !u!114 &8049827206335590126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217987538067908221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc5ea2deb1d646469de14921fa914d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  gauge: 0
+  rushSpeed: 10
+--- !u!114 &5466223152465020228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217987538067908221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 214c7d3a209a7104bad31333364b49d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  player_Bullet: {fileID: 0}
+--- !u!114 &3099821730208170976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217987538067908221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571e434fa974c1046b8ac11de1b98dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}

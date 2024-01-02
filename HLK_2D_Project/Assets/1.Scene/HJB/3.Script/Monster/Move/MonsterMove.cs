@@ -55,7 +55,8 @@ public class MonsterMove : MonoBehaviour
             {                    
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-                
+            monster_State.animator.SetBool("Move", true);
+
         }
         else
         {

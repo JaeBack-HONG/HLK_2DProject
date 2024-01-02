@@ -23,7 +23,7 @@ public class Ant_State : Monster_State
     {
         data = new UnitData
             (name: "Ant", hp: 1, detection: 4, range: 1, attackSpeed: 1,
-                strength: 1, moveSpeed: 1, jumpForce: 0);
+                strength: 1, moveSpeed: 2, jumpForce: 0);
         Health = data.HP;
         state = Unit_state.Move;
         base.MonsterDataSetting();
