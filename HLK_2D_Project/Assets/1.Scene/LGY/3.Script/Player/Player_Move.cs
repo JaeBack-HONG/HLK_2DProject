@@ -15,6 +15,7 @@ public class Player_Move : MonoBehaviour
 
     private void Awake()
     {
+        jumpCount = maxJumps;
         TryGetComponent<Rigidbody2D>(out rigidbody);
         TryGetComponent<Player_State>(out P_State);
     }

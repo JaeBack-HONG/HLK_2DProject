@@ -40,7 +40,7 @@ public class Hope_Bullet : MonoBehaviour
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
-            playerState.unithit.Hit(playerState.gameObject.layer);
+            playerState.unithit.Hit(playerState.gameObject.layer,transform.position);
         }
         if (collision.gameObject.layer.Equals((int)Layer_Index.Player) || 
             collision.gameObject.layer.Equals((int)Layer_Index.Ground))

@@ -29,7 +29,7 @@ public class Player_Bullet : MonoBehaviour
         {
             Monster_State mon_state = collision.gameObject.GetComponent<Monster_State>();
             mon_state.Health -= damage;
-            mon_state.UnitHit.Hit(mon_state.gameObject.layer);
+            mon_state.UnitHit.Hit(mon_state.gameObject.layer,transform.position);
         }
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.layer.Equals((int)Layer_Index.Ground))
         {
