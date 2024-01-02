@@ -126,8 +126,7 @@ public class InvisibleTiles : MonoBehaviour
             //또는 로직 메서드 만들기
             
             if (multiple)
-            {
-                Debug.Log("진입");
+            {                
                 StartCoroutine(InvisibleTileSet_M());
             }
             else

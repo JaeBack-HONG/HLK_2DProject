@@ -8,6 +8,7 @@ public class Hope1_State : Monster_State
     WaitForSeconds WaitCool = new WaitForSeconds(1f);
     [SerializeField] private GameObject hope_Bullet;
     [SerializeField] private GameObject shotPosi;
+    IEnumerator hopeAttack_co;
     
     private void Start()
     {
@@ -24,6 +25,7 @@ public class Hope1_State : Monster_State
         Strength = data.Strength;
         state = Unit_state.Move;
         ability_Item = Ability_Item.Hope;
+        hopeAttack_co = HopeAttack_co();
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
@@ -41,15 +43,17 @@ public class Hope1_State : Monster_State
                 Hope_PlayerCheck();
                 break;
             case Unit_state.Attack:
-                StartCoroutine(HopeAttack_co());
+                hopeAttack_co = HopeAttack_co();
+                StartCoroutine(hopeAttack_co);
                 break;
             case Unit_state.Grab:
+                StopCoroutine(hopeAttack_co);
                 IsGrab();
                 break;
             case Unit_state.Hit:
                 break;
             case Unit_state.Jump:
-                break;            
+                break;
             default:
                 break;
         }
