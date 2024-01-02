@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class BabyBoss_AttackBox : MonoBehaviour
 {
-    [SerializeField] Monster_State bb_state;
+    [SerializeField] private BabyBoss_State bb_state;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.gameObject.CompareTag("Player"))
         {
-            Player_State Player = collision.gameObject.GetComponent<Player_State>();
-            if (Player != null)
-            {
-                bb_state.Attack(Player);
-            }
+            Player_State player = collision.gameObject.GetComponent<Player_State>();
+            
+             bb_state.Attack(player);
+            
         }
-
-
     }
 }

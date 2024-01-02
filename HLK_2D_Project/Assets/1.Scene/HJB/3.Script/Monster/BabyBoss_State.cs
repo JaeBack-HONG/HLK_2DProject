@@ -9,7 +9,8 @@ public class BabyBoss_State : Monster_State
 
     [SerializeField] private GameObject effect;
 
-    [SerializeField] private GameObject attackbox;
+    [SerializeField] private GameObject attackboxobj;
+    [SerializeField] private BoxCollider2D attackboxcol;
 
     [SerializeField] private CinemachineVirtualCamera cinemachinevir;
     private CinemachineBasicMultiChannelPerlin noise;
@@ -21,7 +22,6 @@ public class BabyBoss_State : Monster_State
     {
         MonsterDataSetting();
         noise = cinemachinevir.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
     }
 
     public override void MonsterDataSetting()
@@ -87,10 +87,10 @@ public class BabyBoss_State : Monster_State
         rigidbody.velocity = Vector2.zero;
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.6f);
-        attackbox.SetActive(true);
+        attackboxobj.SetActive(true);
         noise.m_AmplitudeGain = 10;
         yield return new WaitForSeconds(0.2f);
-        attackbox.SetActive(false);
+        attackboxobj.SetActive(false);
         noise.m_AmplitudeGain = 0;
         animator.SetTrigger("Walk");
         yield return new WaitForSeconds(0.5f);
@@ -106,28 +106,32 @@ public class BabyBoss_State : Monster_State
         rigidbody.velocity = Vector2.zero;
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.6f);
-        attackbox.SetActive(true);
+        attackboxobj.SetActive(true);
         noise.m_AmplitudeGain = 10;
         yield return new WaitForSeconds(0.2f);
-        attackbox.SetActive(false);
+        attackboxobj.SetActive(false);
         noise.m_AmplitudeGain = 0;
         yield return new WaitForSeconds(0.2f);
         animator.SetTrigger("Walk");
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.65f);
-        attackbox.SetActive(true);
+        attackboxobj.SetActive(true);
         noise.m_AmplitudeGain = 12;
         yield return new WaitForSeconds(0.25f);
-        attackbox.SetActive(false);
+        attackboxobj.SetActive(false);
         noise.m_AmplitudeGain = 0;
         yield return new WaitForSeconds(0.1f);
         animator.SetTrigger("Walk");
         animator.SetTrigger("Gimmick");
         yield return new WaitForSeconds(0.95f);
+        attackboxobj.SetActive(true);
+        attackboxcol.size = new Vector2(5f, attackboxcol.size.y);
         effect.SetActive(true);
         noise.m_AmplitudeGain = 23;
-        yield return new WaitForSeconds(0.3f);
-
+        yield return new WaitForSeconds(0.15f);
+        attackboxobj.SetActive(false);
+        attackboxcol.size = new Vector2(1.4f, attackboxcol.size.y);
+        yield return new WaitForSeconds(0.15f);
         noise.m_AmplitudeGain = 0;
         yield return new WaitForSeconds(0.35f);
         animator.SetTrigger("Walk");
