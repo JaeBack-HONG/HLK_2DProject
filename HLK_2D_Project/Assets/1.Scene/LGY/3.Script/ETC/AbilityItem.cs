@@ -13,11 +13,12 @@ public class AbilityItem : MonoBehaviour
     private void Awake()
     {
         transform.parent = null;
+        TryGetComponent<SpriteRenderer>(out spriterenderer);
+
+        spriterenderer.sprite = sprites[(int)itemidx];
     }
     private void Start()
     {
-        TryGetComponent<SpriteRenderer>(out spriterenderer);
-         
-        spriterenderer.sprite = sprites[(int)itemidx];
+
     }
 }

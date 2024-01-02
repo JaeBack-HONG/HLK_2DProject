@@ -70,7 +70,10 @@ public class Player_State : MonoBehaviour
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Attack:
-                P_Ability.current_Ab.UseAbility();
+                if (P_Ability.current_Ab != null) P_Ability.current_Ab.UseAbility();
+
+                else actState = Unit_state.Idle;
+
                 break;
             case Unit_state.Grab:
                 IsGrab();
