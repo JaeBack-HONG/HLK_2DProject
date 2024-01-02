@@ -5,22 +5,34 @@ using UnityEngine;
 public class Unit_Hit : MonoBehaviour
 {
     private SpriteRenderer sprite;
+    private Player_State p_state;
+    private Rigidbody2D rigidbody;
 
     private void Awake()
     {
+        TryGetComponent<Player_State>(out p_state);
         TryGetComponent<SpriteRenderer>(out sprite);
+        TryGetComponent<Rigidbody2D>(out rigidbody);
     }
 
-    public void Hit(int mylayer)
+    public void Hit(int mylayer, Vector3 hitpos)
     {
-        StartCoroutine(OnDamage(mylayer));
+        StartCoroutine(OnDamage(mylayer,hitpos));
     }
 
-    private IEnumerator OnDamage(int mylayer)
+    private IEnumerator OnDamage(int mylayer, Vector3 hitpos)
     {
-        gameObject.layer = (int)Layer_Index.Hit;
         sprite.color = Color.red;
+        if(gameObject.CompareTag("Player"))
+        {
+            p_state.actState = Unit_state.Default;
+            Vector2 direction = transform.position.x < hitpos.x ? Vector2.left : Vector2.right;
+            Vector2 knockbackdir = new Vector2(direction.x, 2f).normalized;
+            rigidbody.velocity = Vector2.zero;
+            rigidbody.AddForce(knockbackdir*10f, ForceMode2D.Impulse);
+        }
 
+        gameObject.layer = (int)Layer_Index.Hit;
         yield return new WaitForSeconds(1f);
         sprite.color = Color.white;
         gameObject.layer = mylayer;

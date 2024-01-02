@@ -6,15 +6,16 @@ using Cinemachine;
 public class BabyBoss_State : Monster_State
 {
     private bool ChangeCheck = false;
-
+    
+    [Header("직접참조")]
     [SerializeField] private GameObject effect;
-
     [SerializeField] private GameObject attackboxobj;
     [SerializeField] private BoxCollider2D attackboxcol;
-
     [SerializeField] private CinemachineVirtualCamera cinemachinevir;
     private CinemachineBasicMultiChannelPerlin noise;
 
+    [Header("수치조정")]
+    [SerializeField] private int noiseScale = 10;
     [SerializeField] private int gimmickcount = 0;
     [SerializeField] private int maxcount = 5;
 
@@ -52,7 +53,7 @@ public class BabyBoss_State : Monster_State
                 BabyBossAttack_PlayerCheck();
                 break;
             case Unit_state.Attack:
-                if (!gimmickcount.Equals(maxcount)) StartCoroutine(BabyBossAttack_co());
+                if (!gimmickcount.Equals(maxcount)) StartCoroutine(BabyBossAttack_co(noiseScale));
                 else StartCoroutine(SpecialAttack_co());
                 break;
             case Unit_state.Grab:
@@ -81,14 +82,14 @@ public class BabyBoss_State : Monster_State
     }
 
     #region //베이비 공격(Co)
-    private IEnumerator BabyBossAttack_co()
+    private IEnumerator BabyBossAttack_co(int noisescale)
     {
         state = Unit_state.Default;
         rigidbody.velocity = Vector2.zero;
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.6f);
         attackboxobj.SetActive(true);
-        noise.m_AmplitudeGain = 10;
+        noise.m_AmplitudeGain = noisescale;
         yield return new WaitForSeconds(0.2f);
         attackboxobj.SetActive(false);
         noise.m_AmplitudeGain = 0;
@@ -144,7 +145,6 @@ public class BabyBoss_State : Monster_State
     #region// 베이비 변신(Co)
     private IEnumerator Transformation_co()
     {
-
         state = Unit_state.Default;
         animator.SetTrigger("Transformation");
         yield return new WaitForSeconds(2f);

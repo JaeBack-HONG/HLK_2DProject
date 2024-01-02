@@ -53,7 +53,7 @@ public abstract class Monster_State : MonoBehaviour
     public void Attack(Player_State other)
     {
         other.Health -= data.Strength;
-        other.unithit.Hit(other.gameObject.layer);
+        other.unithit.Hit(other.gameObject.layer,transform.position);
     }
     #endregion
 

@@ -76,7 +76,7 @@ public class Player_State : MonoBehaviour
                 IsGrab();
                 break;
             case Unit_state.Hit:
-                unithit.Hit(gameObject.layer);
+                unithit.Hit(gameObject.layer,transform.position);
                 break;
         }
         IsFalling();
@@ -91,25 +91,27 @@ public class Player_State : MonoBehaviour
 
     public void GroundRayCheck()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
-        Debug.DrawRay(transform.position, Vector2.down, Color.red, 0.5f);
-        if (hit.collider != null)
+        if (JumState.Equals(Jump_State.Falling))
         {
-            if (JumState.Equals(Jump_State.Idle)) P_Move.jumpCount = P_Move.maxJumps;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
 
-            if (JumState.Equals(Jump_State.Falling)) JumState = Jump_State.Idle;
+            if (hit.collider != null)
+            {
+                P_Move.jumpCount = P_Move.maxJumps;
+                JumState = Jump_State.Idle;
 
-            if (!actState.Equals(Unit_state.Idle)) actState = Unit_state.Idle;
+                if (!actState.Equals(Unit_state.Idle)) actState = Unit_state.Idle;
+            }
         }
-
     }
+
     public void IsFalling()
     {
         if (P_Move.rigidbody.velocity.y < -0.01f)
         {
-            if(P_Move.jumpCount.Equals(P_Move.maxJumps)) P_Move.jumpCount--;
-            
-            if(!JumState.Equals(Jump_State.Falling)) JumState = Jump_State.Falling;
+            if (P_Move.jumpCount.Equals(P_Move.maxJumps)) P_Move.jumpCount--;
+
+            if (!JumState.Equals(Jump_State.Falling)) JumState = Jump_State.Falling;
         }
     }
 
@@ -129,6 +131,6 @@ public class Player_State : MonoBehaviour
     public void Attack(Monster_State other)
     {
         other.Health -= data.Strength;
-        other.UnitHit.Hit(other.gameObject.layer);
+        other.UnitHit.Hit(other.gameObject.layer,transform.position);
     }
 }
