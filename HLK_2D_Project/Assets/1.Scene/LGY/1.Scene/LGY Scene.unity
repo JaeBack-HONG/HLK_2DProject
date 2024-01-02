@@ -16264,7 +16264,15 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityHUD.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: AbilityImgs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityImgs.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
@@ -16288,6 +16296,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1981919248}
     - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilitycount.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: AbilityHUD.Array.data[0]
       value: 
       objectReference: {fileID: 331520346}
@@ -16297,6 +16313,18 @@ PrefabInstance:
       objectReference: {fileID: 2133149225}
     - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: AbilityHUD.Array.data[2]
+      value: 
+      objectReference: {fileID: 121640640}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityHUD.Array.data[0]
+      value: 
+      objectReference: {fileID: 331520346}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityHUD.Array.data[1]
+      value: 
+      objectReference: {fileID: 2133149225}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityHUD.Array.data[2]
       value: 
       objectReference: {fileID: 121640640}
     - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
@@ -16311,6 +16339,102 @@ PrefabInstance:
       propertyPath: AbilityImgs.Array.data[2]
       value: 
       objectReference: {fileID: 1303252370}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGuageUI.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityImgs.Array.data[0]
+      value: 
+      objectReference: {fileID: 276916650}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityImgs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1868497073}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityImgs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1303252370}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[0]
+      value: 
+      objectReference: {fileID: -2944243802849166431, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[1]
+      value: 
+      objectReference: {fileID: -3196215182155280146, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[2]
+      value: 
+      objectReference: {fileID: -2159092337048555947, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[3]
+      value: 
+      objectReference: {fileID: -1558173570600255707, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[4]
+      value: 
+      objectReference: {fileID: 547354065027947891, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[5]
+      value: 
+      objectReference: {fileID: -7822857916801055162, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[6]
+      value: 
+      objectReference: {fileID: 3006025174615210104, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[7]
+      value: 
+      objectReference: {fileID: -2506030588037272182, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[8]
+      value: 
+      objectReference: {fileID: 2242342727613759153, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[9]
+      value: 
+      objectReference: {fileID: -4592832757819843095, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilitycount.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilitycount.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[10]
+      value: 
+      objectReference: {fileID: 2967124502552339141, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[11]
+      value: 
+      objectReference: {fileID: 2741956415766260738, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[12]
+      value: 
+      objectReference: {fileID: -946184459887860389, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[13]
+      value: 
+      objectReference: {fileID: -3213609745909556679, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGauge.Array.data[14]
+      value: 
+      objectReference: {fileID: 7526069927036187072, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGuageUI.Array.data[0]
+      value: 
+      objectReference: {fileID: 1492152403}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGuageUI.Array.data[1]
+      value: 
+      objectReference: {fileID: 74948627}
+    - target: {fileID: 6217987538067908222, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: abilityGuageUI.Array.data[2]
+      value: 
+      objectReference: {fileID: 1488500014}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
 --- !u!1001 &7190379719154744317

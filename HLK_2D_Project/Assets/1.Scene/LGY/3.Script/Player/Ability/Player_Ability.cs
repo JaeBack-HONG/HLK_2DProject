@@ -6,19 +6,34 @@ using UnityEngine.UI;
 public class Player_Ability : MonoBehaviour
 {
     [Header("직접참조")]
-    [SerializeField] private GameObject[] AbilityHUD;
-    [SerializeField] private Image[] AbilityImgs;
+    [SerializeField] private GameObject[] abilityHUD;
+    [SerializeField] private Image[] abilityImgs;
+    public Image[] abilityGuageUI;
+    public Sprite[] abilityGauge;
     [SerializeField] private Ability[] abilities;
 
     private Ability[] my_Abilities;
     [HideInInspector] public Ability current_Ab;
 
+    public int[] abilitycount;
     public int current_idx = 0;
+    private int maxcount = 4;
 
     private void Awake()
     {
+        for (int i = 0; i < abilityGuageUI.Length; i++)
+        {
+            abilityGuageUI[i].sprite = abilityGauge[i * 5];
+
+        }
+        abilitycount = new int[3];
         my_Abilities = new Ability[3];
         current_Ab = my_Abilities[current_idx];
+    }
+
+    private void FixedUpdate()
+    {
+        abilityGuageUI[current_idx].sprite = abilityGauge[current_idx * 5 + abilitycount[current_idx]];
     }
 
     public void Choice_Ab()
@@ -34,11 +49,11 @@ public class Player_Ability : MonoBehaviour
     private void Ab_Set(int idx)
     {
         AbilitySet(idx);
-        for (int i = 0; i < AbilityHUD.Length; i++)
+        for (int i = 0; i < abilityHUD.Length; i++)
         {
-            AbilityHUD[i].SetActive(false);
+            abilityHUD[i].SetActive(false);
         }
-        AbilityHUD[idx].SetActive(true);
+        abilityHUD[idx].SetActive(true);
     }
 
     private void AbilitySet(int idx)
@@ -60,8 +75,10 @@ public class Player_Ability : MonoBehaviour
                 }
             }
             my_Abilities[current_idx] = abilities[(int)collision.gameObject.GetComponent<AbilityItem>().itemidx];
-            AbilityImgs[current_idx].sprite = collision.gameObject.GetComponent<SpriteRenderer>().sprite;
+            abilityImgs[current_idx].sprite = collision.gameObject.GetComponent<SpriteRenderer>().sprite;
             current_Ab = my_Abilities[current_idx];
+            abilitycount[current_idx] = maxcount;
+            abilityGuageUI[current_idx].sprite = abilityGauge[current_idx * 5 + 4];
             Destroy(collision.gameObject);
         }
 
