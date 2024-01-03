@@ -34,6 +34,20 @@ public class MonsterMove : MonoBehaviour
         
         rigidbody = GetComponent<Rigidbody2D>();        
         monster_State = GetComponent<Monster_State>();
+        if (targetPlayer == null)
+        {
+            try
+            {
+                targetPlayer = GameObject.FindWithTag("Player").GetComponent<Transform>();
+
+            }
+            catch
+            {
+                Debug.LogError("현재 씬에 Player 없습니다");
+
+            }
+            
+        }
     }
 
     public void TotalMove()
@@ -57,7 +71,7 @@ public class MonsterMove : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             monster_State.animator.SetBool("Move", true);
-
+            
         }
         else
         {
@@ -99,7 +113,7 @@ public class MonsterMove : MonoBehaviour
 
         //이동 결정
         SelectMove();
-        GroundCheck_Ray();
+        //GroundCheck_Ray();
         //벽에 닿았을 경우 전환
         if (right_hit.collider != null || left_hit.collider != null)
         {
@@ -122,12 +136,12 @@ public class MonsterMove : MonoBehaviour
         Vector2 rayTrans;
         if (nextMove>0)
         {
-            rayTrans = new Vector2(transform.position.x + 1f, transform.position.y -1f);
+            rayTrans = new Vector2(transform.position.x + 1f, transform.position.y);
             Debug.DrawRay(rayTrans, Vector2.down * 2f, Color.red);
         }
         else 
         {
-            rayTrans = new Vector2(transform.position.x - 1f, transform.position.y -1f);
+            rayTrans = new Vector2(transform.position.x - 1f, transform.position.y);
             Debug.DrawRay(rayTrans, Vector2.down * 2f, Color.red);
         }
 
