@@ -8,93 +8,18 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance = null;
 
     [Header("직접참조")]
-    [SerializeField] private GameObject[] abilityHUD;
-    [SerializeField] private Image[] abilityImgs;
-    public Image[] abilityGuageUI;
-    public Sprite[] abilityGauge;
-    [SerializeField] private Ability[] abilities;
+    public GameObject[] icon_Border;
+    public Image[] icon_Image;
+    public Image[] icon_Bar;
+    public Sprite[] icon_Bar_All;
 
-    private Ability[] my_Abilities;
-    [HideInInspector] public Ability current_Ab;
-
-    public int[] abilitycount;
-    public int current_idx = 0;
-    private int maxcount = 4;
-
-    //private void Awake()
-    //{
-    //    for (int i = 0; i < abilityGuageUI.Length; i++)
-    //    {
-    //        abilityGuageUI[i].sprite = abilityGauge[i * 5];
-
-    //    }
-    //    abilitycount = new int[3];
-    //    my_Abilities = new Ability[3];
-    //    current_Ab = my_Abilities[current_idx];
-    //}
-
-    private void FixedUpdate()
-    {
-        abilityGuageUI[current_idx].sprite = abilityGauge[current_idx * 5 + abilitycount[current_idx]];
-    }
-
-    public void Choice_Ab()
-    {
-        if (Input.GetKeyDown(KeyCode.Q)) Ab_Set(0);
-
-        if (Input.GetKeyDown(KeyCode.W)) Ab_Set(1);
-
-        if (Input.GetKeyDown(KeyCode.E)) Ab_Set(2);
-
-    }
-
-    private void Ab_Set(int idx)
-    {
-        AbilitySet(idx);
-        for (int i = 0; i < abilityHUD.Length; i++)
-        {
-            abilityHUD[i].SetActive(false);
-        }
-        abilityHUD[idx].SetActive(true);
-    }
-
-    private void AbilitySet(int idx)
-    {
-        current_idx = idx;
-        current_Ab = my_Abilities[current_idx];
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Item"))
-        {
-            for (int i = 0; i < my_Abilities.Length; i++)
-            {
-                if (my_Abilities[i] == null)
-                {
-                    current_idx = i;
-                    break;
-                }
-            }
-            {
-                my_Abilities[current_idx] = abilities[(int)collision.gameObject.GetComponent<AbilityItem>().itemidx];
-                abilityImgs[current_idx].sprite = collision.gameObject.GetComponent<SpriteRenderer>().sprite;
-                current_Ab = my_Abilities[current_idx];
-                abilitycount[current_idx] = maxcount;
-                abilityGuageUI[current_idx].sprite = abilityGauge[current_idx * 5 + 4];
-                Destroy(collision.gameObject);
-            }
-
-        }
-
-
-
-
-    }
+    public int[] count_List;
+    public int current_Count = 0;
+    public int max_Count = 4;
 
     private void Awake()
     {
-        if(instance==null)
+        if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
@@ -104,7 +29,34 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        count_List = new int[3];
+        for (int i = 0; i < icon_Bar.Length; i++)
+        {
+            icon_Bar[i].sprite = icon_Bar_All[i * 5];
+            count_List[i] = 0;
+        }
+
     }
 
+    private void FixedUpdate()
+    {
+        // 실시간으로 능력 쓸 때마다 UI연동
+        icon_Bar[current_Count].sprite = icon_Bar_All[current_Count * 5 + count_List[current_Count]];
+
+    }
+
+    public void Border_Link(int idx)
+    {
+        for (int i = 0; i < icon_Border.Length; i++)
+        {
+            icon_Border[i].SetActive(false);
+        }
+        icon_Border[idx].SetActive(true);
+    }
+
+    public void UsedAb()
+    {
+        count_List[current_Count]--;
+    }
 
 }

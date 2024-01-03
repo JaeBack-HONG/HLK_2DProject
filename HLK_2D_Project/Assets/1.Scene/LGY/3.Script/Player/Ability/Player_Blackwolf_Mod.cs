@@ -17,6 +17,7 @@ public class Player_Blackwolf_Mod : Ability
 
         P_state.actState = Unit_state.Default;
         rigidbody.gravityScale = 0f;
+        PlayerManager.instance.UsedAb();
 
         yield return new WaitForSeconds(0.1f);
 

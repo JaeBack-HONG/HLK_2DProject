@@ -13,7 +13,7 @@ public class Player_Hope_Mod : Ability
 
     IEnumerator Shot()
     {
-
+        PlayerManager.instance.UsedAb();
         P_state.actState = Unit_state.Default;
         rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
         animator.SetTrigger("HopeMod");
