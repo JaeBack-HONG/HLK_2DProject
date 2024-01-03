@@ -19,17 +19,17 @@ public class Player_Ability : MonoBehaviour
     public int current_idx = 0;
     private int maxcount = 4;
 
-    private void Awake()
-    {
-        for (int i = 0; i < abilityGuageUI.Length; i++)
-        {
-            abilityGuageUI[i].sprite = abilityGauge[i * 5];
+    //private void Awake()
+    //{
+    //    for (int i = 0; i < abilityGuageUI.Length; i++)
+    //    {
+    //        abilityGuageUI[i].sprite = abilityGauge[i * 5];
 
-        }
-        abilitycount = new int[3];
-        my_Abilities = new Ability[3];
-        current_Ab = my_Abilities[current_idx];
-    }
+    //    }
+    //    abilitycount = new int[3];
+    //    my_Abilities = new Ability[3];
+    //    current_Ab = my_Abilities[current_idx];
+    //}
 
     private void FixedUpdate()
     {
