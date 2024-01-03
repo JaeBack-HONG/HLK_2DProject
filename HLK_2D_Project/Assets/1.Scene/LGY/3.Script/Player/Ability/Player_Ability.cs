@@ -34,7 +34,7 @@ public class Player_Ability : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Item") && Input.GetKeyDown(KeyCode.R))
+        if (collision.gameObject.CompareTag("Item") && Input.GetKey(KeyCode.R))
         {
             
             for (int i = 0; i < my_Abilities.Length; i++)

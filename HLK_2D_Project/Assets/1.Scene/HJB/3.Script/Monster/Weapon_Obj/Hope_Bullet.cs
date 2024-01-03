@@ -18,7 +18,6 @@ public class Hope_Bullet : MonoBehaviour
 
     private void Start()
     {
-
         Vector3 targetDirection = (target.transform.position - transform.position ).normalized;
        
         StartCoroutine(Shot(targetDirection));
@@ -42,8 +41,7 @@ public class Hope_Bullet : MonoBehaviour
             playerState.Health -= damage;
             playerState.unithit.Hit(playerState.gameObject.layer,transform.position);
         }
-        if (collision.gameObject.layer.Equals((int)Layer_Index.Player) || 
-            collision.gameObject.layer.Equals((int)Layer_Index.Ground))
+        if (collision.gameObject.layer.Equals((int)Layer_Index.Player))
         {
             Destroy(this.gameObject);
         }

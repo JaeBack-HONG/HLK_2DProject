@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -14,6 +16,9 @@ public abstract class Monster_State : MonoBehaviour
     public AbilityItem abilityItem;
 
     private SpriteRenderer renderer;
+
+    [Header("스턴지속시간")]
+    [SerializeField] private float stunTime = 0f;
 
     public int Health;
     public int Strength;
@@ -102,6 +107,17 @@ public abstract class Monster_State : MonoBehaviour
     }
     #endregion
         
+
+    public IEnumerator Stun_co()
+    {
+        float currentTime = 0f;
+        while(currentTime<stunTime)
+        {            
+            currentTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        state = Unit_state.Move;
+    }
     public void IsGrab()
     {
         rigidbody.velocity = Vector2.zero;

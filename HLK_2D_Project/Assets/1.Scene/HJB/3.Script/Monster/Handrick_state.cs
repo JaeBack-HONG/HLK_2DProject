@@ -56,6 +56,7 @@ public class Handrick_state : Monster_State
                 RushGroundCheck();
                 break;
             case Unit_state.Stun:
+                StartCoroutine(Stun_co());
                 break;
             case Unit_state.Die:
                 break;
