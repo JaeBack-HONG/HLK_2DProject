@@ -47,12 +47,11 @@ public abstract class Monster_State : MonoBehaviour
     public abstract void Monster_HealthCheck();
 
     public virtual void Die()
-    {
-        state = Unit_state.Hit;
+    {        
+        state = Unit_state.Default;
         rigidbody.velocity = Vector2.zero;
         renderer.color = Color.white;
         Debug.Log("Á×À½");
-        state = Unit_state.Default;
         animator.SetTrigger("Death");
         Destroy(gameObject, 0.7f);
     }

@@ -18,7 +18,7 @@ public class Blackwolf_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Blackwolf", hp: 15, detection: 10, range: 2, attackSpeed: 1,
+            (name: "Blackwolf", hp: 1, detection: 10, range: 2, attackSpeed: 1,
                 strength: 2, moveSpeed: 5, jumpForce: 1);
         Health = data.HP;
         Strength = data.Strength;
@@ -30,6 +30,7 @@ public class Blackwolf_State : Monster_State
     {
         switch (state)
         {         
+            
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
@@ -57,8 +58,11 @@ public class Blackwolf_State : Monster_State
             default:
                 break;
         }
-        BlackWolf_PlayerCheck();        
-        Monster_HealthCheck();
+        if (!state.Equals(Unit_state.Default))
+        {
+            BlackWolf_PlayerCheck();
+            Monster_HealthCheck();
+        }
     }
 
     #region //BlackWolf 플레이어 체력확인 및 탐지
