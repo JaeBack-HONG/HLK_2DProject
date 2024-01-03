@@ -68,6 +68,7 @@ public abstract class Monster_State : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Debug.Log("´ê¾Ò´Ù");
             Player_State Player = collision.gameObject.GetComponent<Player_State>();
             if (Player != null)
             {

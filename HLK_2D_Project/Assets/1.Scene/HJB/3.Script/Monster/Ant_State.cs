@@ -9,15 +9,7 @@ public class Ant_State : Monster_State
     {
         MonsterDataSetting();
     }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.layer.Equals((int)Layer_Index.Player))
-        {
-            Player_State P_state =col.gameObject.GetComponent<Player_State>();
-            //1219
-        }
-    }
+    
 
     public override void MonsterDataSetting()
     {
