@@ -93,7 +93,6 @@ public class Handrick_state : Monster_State
             rigidbody.velocity = new Vector2(direction * 10f, rigidbody.velocity.y);
             yield return null;
         }
-
         state = Unit_state.Default;
         animator.SetTrigger("Default");
         yield return new WaitForSeconds(0.5f);
