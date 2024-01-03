@@ -9,6 +9,9 @@ public class Hope_Bullet : MonoBehaviour
 
     [SerializeField] private int damage = 2;
 
+    [Range(30f, 100f)]
+    [SerializeField] private float removeDistanceSet = 35;
+
     private GameObject target;    
 
     private void Awake()
@@ -24,9 +27,15 @@ public class Hope_Bullet : MonoBehaviour
     }
 
     private IEnumerator Shot(Vector3 target)
-    {        
+    {
+        Vector3 defaultDistance = transform.position;
         while (true)
         {
+            Vector3 currentDistance = (transform.position - defaultDistance);
+            if (Vector3.Magnitude(currentDistance)>removeDistanceSet)
+            {
+                Destroy(this.gameObject);                
+            }
             transform.position += target * Time.deltaTime * Speed;
             yield return null;
         }
@@ -35,15 +44,14 @@ public class Hope_Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")&&
+            collision.gameObject.layer.Equals((int)Layer_Index.Player))
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
             playerState.unithit.Hit(playerState.gameObject.layer,transform.position);
-        }
-        if (collision.gameObject.layer.Equals((int)Layer_Index.Player))
-        {
             Destroy(this.gameObject);
         }
+        
     }
 }
