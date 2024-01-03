@@ -7,6 +7,7 @@ public class Player_Handrick_Mod : Ability
     public float gauge = 0f;
     [SerializeField] float rushSpeed = 10f;
     private bool isRush = false;
+    [SerializeField] CircleCollider2D spearcol;
 
     public override void UseAbility()
     {
@@ -31,6 +32,8 @@ public class Player_Handrick_Mod : Ability
         {
             yield return new WaitForFixedUpdate();
         }
+        transform.gameObject.layer = (int)Layer_Index.Hit;
+        spearcol.enabled = true;
         PlayerManager.instance.UsedAb();
         P_state.actState = Unit_state.Idle;
 
@@ -42,6 +45,8 @@ public class Player_Handrick_Mod : Ability
             yield return null;
         }
 
+        transform.gameObject.layer = (int)Layer_Index.Player;
+        spearcol.enabled = false;
         animator.SetTrigger("Idle");
         isRush = false;
         yield return null;
