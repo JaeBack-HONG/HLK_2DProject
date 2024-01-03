@@ -113,7 +113,7 @@ public class MonsterMove : MonoBehaviour
 
         //이동 결정
         SelectMove();
-        //GroundCheck_Ray();
+        GroundCheck_Ray();
         //벽에 닿았을 경우 전환
         if (right_hit.collider != null || left_hit.collider != null)
         {

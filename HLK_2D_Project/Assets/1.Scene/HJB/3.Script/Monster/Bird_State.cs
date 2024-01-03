@@ -22,7 +22,7 @@ public class Bird_State : Monster_State
                 strength: 2, moveSpeed: 3, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
-        state = Unit_state.Idle;
+        state = Unit_state.Move;
         ability_Item = Ability_Item.Bird;
         attack_co = BirdkAttack_co();
 
@@ -152,7 +152,7 @@ public class Bird_State : Monster_State
         Dash = false;
         rigidbody.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.5f);
-        state = Unit_state.Idle;
+        state = Unit_state.Move;
         yield return null;
     }
     #endregion
