@@ -33,9 +33,7 @@ public class GameManager : MonoBehaviour
     
 
     private void Awake()
-    {
-        
-        
+    {        
         if (instance == null )
         {
             instance = this;
@@ -48,6 +46,22 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    private void Update()
+    {
+        OptionKeyDown_Set();
+    }
+
+    private void OptionKeyDown_Set()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
+
+            Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;            
+        }
+    }
+
     public void MainGame_1()
     {
         SceneManager.LoadScene("HJB_Scene");
@@ -57,13 +71,12 @@ public class GameManager : MonoBehaviour
         OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
         SceneManager.LoadScene("MainMenu");        
     }
-    
-
-
+        
 
     public void OnClickOption_Btn()
     {
         OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
+        Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;
     }
     public void ExitGame()
     {

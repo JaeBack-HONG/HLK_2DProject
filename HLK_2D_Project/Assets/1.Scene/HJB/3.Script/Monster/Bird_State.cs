@@ -36,9 +36,9 @@ public class Bird_State : Monster_State
             case Unit_state.Default:
                 break;
             case Unit_state.Idle:
-                BirdAttack_PlayerCheck();
                 break;
             case Unit_state.Move:                
+                BirdAttack_PlayerCheck();
                 break;
             case Unit_state.Attack:
                 attack_co = BirdkAttack_co();
