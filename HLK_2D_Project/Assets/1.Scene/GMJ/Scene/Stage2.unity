@@ -16563,6 +16563,7 @@ GameObject:
   - component: {fileID: 1389992278}
   - component: {fileID: 1389992277}
   - component: {fileID: 1389992276}
+  - component: {fileID: 1389992279}
   m_Layer: 0
   m_Name: trap tile
   m_TagString: Untagged
@@ -16594,7 +16595,7 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -17032,6 +17033,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1389992279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389992274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68888be201c7bb419057b0de638c061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
 --- !u!4 &1498935440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6217987538067908162, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
