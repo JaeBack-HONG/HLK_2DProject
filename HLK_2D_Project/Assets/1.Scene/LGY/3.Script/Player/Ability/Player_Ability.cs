@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Player_Ability : MonoBehaviour
 {
-    [Header("��������")]
+    [Header("직접참조")]
     [SerializeField] private GameObject[] abilityHUD;
     [SerializeField] private Image[] abilityImgs;
     public Image[] abilityGuageUI;
@@ -74,19 +74,19 @@ public class Player_Ability : MonoBehaviour
                     break;
                 }
             }
-        {            
-            my_Abilities[current_idx] = abilities[(int)collision.gameObject.GetComponent<AbilityItem>().itemidx];
-            abilityImgs[current_idx].sprite = collision.gameObject.GetComponent<SpriteRenderer>().sprite;
-            current_Ab = my_Abilities[current_idx];
-            abilitycount[current_idx] = maxcount;
-            abilityGuageUI[current_idx].sprite = abilityGauge[current_idx * 5 + 4];
-            Destroy(collision.gameObject);
+            {
+                my_Abilities[current_idx] = abilities[(int)collision.gameObject.GetComponent<AbilityItem>().itemidx];
+                abilityImgs[current_idx].sprite = collision.gameObject.GetComponent<SpriteRenderer>().sprite;
+                current_Ab = my_Abilities[current_idx];
+                abilitycount[current_idx] = maxcount;
+                abilityGuageUI[current_idx].sprite = abilityGauge[current_idx * 5 + 4];
+                Destroy(collision.gameObject);
+            }
+
         }
 
+
+
+
     }
-
-
-
-
-
 }
