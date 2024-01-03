@@ -17,19 +17,20 @@ public class Unit_Hit : MonoBehaviour
 
     public void Hit(int mylayer, Vector3 hitpos)
     {
-        StartCoroutine(OnDamage(mylayer,hitpos));
+        StartCoroutine(OnDamage(mylayer, hitpos));
     }
 
     private IEnumerator OnDamage(int mylayer, Vector3 hitpos)
     {
         sprite.color = Color.red;
-        if(gameObject.CompareTag("Player"))
+        if (gameObject.CompareTag("Player"))
         {
+            PlayerManager.instance.HeartCheck(p_state.Health);
             p_state.actState = Unit_state.Default;
             Vector2 direction = transform.position.x < hitpos.x ? Vector2.left : Vector2.right;
             Vector2 knockbackdir = new Vector2(direction.x, 2f).normalized;
             rigidbody.velocity = Vector2.zero;
-            rigidbody.AddForce(knockbackdir*10f, ForceMode2D.Impulse);
+            rigidbody.AddForce(knockbackdir * 10f, ForceMode2D.Impulse);
         }
 
         gameObject.layer = (int)Layer_Index.Hit;

@@ -7,12 +7,17 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance = null;
 
-    [Header("직접참조")]
+    [Header("능력UI")]
     public GameObject[] icon_Border;
     public Image[] icon_Image;
     public Image[] icon_Bar;
     public Sprite[] icon_Bar_All;
 
+    [Header("체력UI")]
+    public Image[] heart_Panels;
+    public Sprite[] heart_All;
+
+    [Header("능력카운트")]
     public int[] count_List;
     public int current_Count = 0;
     public int max_Count = 4;
@@ -40,9 +45,36 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // 실시간으로 능력 쓸 때마다 UI연동
         icon_Bar[current_Count].sprite = icon_Bar_All[current_Count * 5 + count_List[current_Count]];
+        if(count_List[current_Count].Equals(0))
+        {
+            int idx = current_Count;
+            icon_Image[current_Count].sprite = null;
+            for (int i = 0; i < icon_Border.Length; i++)
+            {
+                if (!count_List[i].Equals(0))
+                {
+                    current_Count = i;
+                    break;
+                }
+            }
+            Border_Link(current_Count);
+            if (current_Count.Equals(idx)) icon_Border[idx].SetActive(false);
+        }
+    }
 
+    public void HeartCheck(int Health)
+    {
+        int currentHealth = Health;
+        currentHealth = (int)(currentHealth * 0.5f) - 1;
+        Health = Health % 2;
+
+        for (int i = 0; i < heart_Panels.Length; i++)
+        {
+            if (i <= currentHealth) heart_Panels[i].sprite = heart_All[2];
+            else if (i.Equals(currentHealth + 1) && Health.Equals(1)) heart_Panels[i].sprite = heart_All[1];
+            else heart_Panels[i].sprite = heart_All[0];
+        }
     }
 
     public void Border_Link(int idx)
@@ -58,5 +90,4 @@ public class PlayerManager : MonoBehaviour
     {
         count_List[current_Count]--;
     }
-
 }
