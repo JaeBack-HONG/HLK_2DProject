@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bird_State : Monster_State
 {
     WaitForSeconds cool = new WaitForSeconds(0.9f);
-
+    IEnumerator attack_co;
     
 
     private float direction;
@@ -24,6 +24,7 @@ public class Bird_State : Monster_State
         Strength = data.Strength;
         state = Unit_state.Idle;
         ability_Item = Ability_Item.Bird;
+        attack_co = BirdkAttack_co();
 
         base.MonsterDataSetting();
     }
@@ -35,22 +36,24 @@ public class Bird_State : Monster_State
             case Unit_state.Default:
                 break;
             case Unit_state.Idle:
-                BirdAttack_PlayerCheck();
                 break;
             case Unit_state.Move:                
+                BirdAttack_PlayerCheck();
                 break;
             case Unit_state.Attack:
-                StartCoroutine(BirdkAttack_co());
+                attack_co = BirdkAttack_co();
+                StartCoroutine(attack_co);
                 break;
             case Unit_state.Grab:
                 IsGrab();
                 break;
             case Unit_state.Hit:
                 break;
-            case Unit_state.Jump:
+            case Unit_state.Stun:
                 break;
-            case Unit_state.Dash:
-                
+            case Unit_state.Dash:                
+                break;
+            case Unit_state.Die:
                 break;
             default:
                 break;
@@ -70,13 +73,14 @@ public class Bird_State : Monster_State
         }
     }
 
+    #region// Bird 공격_코루틴
     private IEnumerator BirdkAttack_co()
     {
 
         float currentTime = 0f;
         float attackTime = 2f;
 
-        state = Unit_state.Default;
+        state = Unit_state.Dash;
         animator.SetTrigger("Attack");
         Vector3 currentTrans = transform.position;        
         while (currentTime < 0.5f)
@@ -150,14 +154,15 @@ public class Bird_State : Monster_State
         state = Unit_state.Idle;
         yield return null;
     }
-
-
-    
+    #endregion
 
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)
         {
+            StopCoroutine(attack_co);
+            state = Unit_state.Hit;
+            rigidbody.velocity = Vector2.zero;
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;

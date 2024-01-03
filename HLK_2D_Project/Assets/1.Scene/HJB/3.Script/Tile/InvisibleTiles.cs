@@ -11,16 +11,27 @@ public class InvisibleTiles : MonoBehaviour
 
     [SerializeField] private float L_timeSet;
 
+    [SerializeField] private bool multiple;
+
+    [SerializeField] private bool destroy;
+
     [SerializeField] private bool check = false;
 
     Collider2D collider;
 
-    SpriteRenderer sprite;
+    SpriteRenderer sprite;    
+
+    [SerializeField] private Collider2D[] collider_m;
+    [SerializeField] private SpriteRenderer[] sprite_m;
 
     private void Awake()
     {
-        collider = GetComponent<Collider2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        if (!multiple)
+        {                    
+            collider = GetComponent<Collider2D>();
+            sprite = GetComponent<SpriteRenderer>();
+        }
+
     }
     private IEnumerator InvisibleTileSet()
     {
@@ -54,15 +65,74 @@ public class InvisibleTiles : MonoBehaviour
         yield return null;
     }
 
+    private IEnumerator InvisibleTileSet_M()
+    {
+        check = true;
+        float currentTime = 0f;
+        while (currentTime <= F_timeSet)
+        {
+            float alpha = Mathf.Lerp(1f, 0, currentTime / F_timeSet);
+            for (int i = 0; i < sprite_m.Length; i++)
+            {
+                sprite_m[i].color = new Color(sprite_m[i].color.r, sprite_m[i].color.g, sprite_m[i].color.b, alpha);
+            }
+            currentTime += Time.fixedDeltaTime / 2;
+
+            yield return null;
+        }
+
+        currentTime = 0f;
+        
+        for (int i = 0; i < collider_m.Length; i++)
+        {
+            collider_m[i].enabled = false;
+        }
+        
+        if (destroy)
+        {
+            Destroy(gameObject);
+        }
+
+        yield return new WaitForSeconds(M_timeSet);
+
+
+        while (currentTime <= L_timeSet)
+        {
+            float alpha = Mathf.Lerp(0, 1f, currentTime / L_timeSet);
+            for (int i = 0; i < sprite_m.Length; i++)
+            {
+                sprite_m[i].color = new Color(sprite_m[i].color.r, sprite_m[i].color.g, sprite_m[i].color.b, alpha);
+
+            }
+            currentTime += Time.fixedDeltaTime / 2;
+
+            yield return null;
+        }
+        for (int i = 0; i < collider_m.Length; i++)
+        {
+            collider_m[i].enabled = true;
+            sprite_m[i].color = new Color(sprite_m[i].color.r, sprite_m[i].color.g, sprite_m[i].color.b, 255f);
+        }
+        check = false;
+        yield return null;
+    }
+
 
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("진입");
+    {        
         if (collision.gameObject.layer.Equals((int)Layer_Index.Player)&&!check)
-        {            
+        {
             //또는 로직 메서드 만들기
-            StartCoroutine(InvisibleTileSet());
+            
+            if (multiple)
+            {                
+                StartCoroutine(InvisibleTileSet_M());
+            }
+            else
+            {
+                StartCoroutine(InvisibleTileSet());
+            }
         }
     }
 }

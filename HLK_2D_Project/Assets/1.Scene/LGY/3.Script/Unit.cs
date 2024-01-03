@@ -15,7 +15,9 @@ public enum Unit_state
     Grab,
     Hit,
     Jump,
-    Dash = 7
+    Die,
+    Stun,
+    Dash = 9
 }
 public enum Condition_state
 {

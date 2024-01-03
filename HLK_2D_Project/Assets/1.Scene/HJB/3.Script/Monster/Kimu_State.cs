@@ -44,8 +44,11 @@ public class Kimu_State : Monster_State
             case Unit_state.Grab:
                 IsGrab();
                 break;
-            case Unit_state.Jump:
-                
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Jump:                
+                break;
+            case Unit_state.Die:
                 break;
             default:
                 break;

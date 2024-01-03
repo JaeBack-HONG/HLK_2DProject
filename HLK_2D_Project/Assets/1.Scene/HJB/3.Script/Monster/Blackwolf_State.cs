@@ -46,8 +46,12 @@ public class Blackwolf_State : Monster_State
                 break;
             case Unit_state.Jump:
                 break;
+            case Unit_state.Stun:
+                break;
             case Unit_state.Dash:
                 StartCoroutine(BlackWolfDash());
+                break;
+            case Unit_state.Die:
                 break;
             default:
                 break;
@@ -134,6 +138,7 @@ public class Blackwolf_State : Monster_State
         state = Unit_state.Idle;
         yield return cool;
         animator.SetTrigger("Default");
+        yield return new WaitForSeconds(1f);
         state = Unit_state.Move;
         yield return null;
     }

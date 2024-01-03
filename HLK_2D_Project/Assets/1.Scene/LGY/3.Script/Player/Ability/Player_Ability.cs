@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Player_Ability : MonoBehaviour
 {
-    [Header("Á÷Á¢ÂüÁ¶")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private GameObject[] abilityHUD;
     [SerializeField] private Image[] abilityImgs;
     public Image[] abilityGuageUI;
@@ -74,6 +74,7 @@ public class Player_Ability : MonoBehaviour
                     break;
                 }
             }
+        {            
             my_Abilities[current_idx] = abilities[(int)collision.gameObject.GetComponent<AbilityItem>().itemidx];
             abilityImgs[current_idx].sprite = collision.gameObject.GetComponent<SpriteRenderer>().sprite;
             current_Ab = my_Abilities[current_idx];

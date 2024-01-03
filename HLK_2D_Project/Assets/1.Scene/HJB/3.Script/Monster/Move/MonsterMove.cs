@@ -40,6 +40,7 @@ public class MonsterMove : MonoBehaviour
     {
         //FollowPlayer();        
         
+        
         if (target)
         {
             direction = (targetPlayer.localPosition.x - transform.localPosition.x);
@@ -55,11 +56,13 @@ public class MonsterMove : MonoBehaviour
             {                    
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-                
+            monster_State.animator.SetBool("Move", true);
+
         }
         else
         {
             WallCheck();
+            
             rigidbody.velocity = new Vector2(nextMove * MoveSpeed, rigidbody.velocity.y);
                 
             //정지면 방향그대로 한 후 리턴
@@ -96,7 +99,7 @@ public class MonsterMove : MonoBehaviour
 
         //이동 결정
         SelectMove();
-
+        GroundCheck_Ray();
         //벽에 닿았을 경우 전환
         if (right_hit.collider != null || left_hit.collider != null)
         {
@@ -113,6 +116,29 @@ public class MonsterMove : MonoBehaviour
         }
     }
    
+    private void GroundCheck_Ray()
+    {
+        LayerMask groundMarsk = LayerMask.GetMask("Ground");
+        Vector2 rayTrans;
+        if (nextMove>0)
+        {
+            rayTrans = new Vector2(transform.position.x + 1f, transform.position.y -1f);
+            Debug.DrawRay(rayTrans, Vector2.down * 2f, Color.red);
+        }
+        else 
+        {
+            rayTrans = new Vector2(transform.position.x - 1f, transform.position.y -1f);
+            Debug.DrawRay(rayTrans, Vector2.down * 2f, Color.red);
+        }
+
+
+        RaycastHit2D hit = Physics2D.Raycast(rayTrans, Vector2.down, 2f, groundMarsk);
+        if (!hit)
+        {
+            nextMove = -nextMove;
+        }
+    }
+
     public float DistanceAndDirection()
     {
         distance = Vector2.Distance(transform.position, targetPlayer.position);

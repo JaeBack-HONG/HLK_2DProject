@@ -16,7 +16,8 @@ public class Player_Handrick_Mod : Ability
     private IEnumerator HandrickAttack_co()
     {
         isRush = true;
-        P_state.actState = Unit_state.Default;
+        //P_state.actState = Unit_state.Default;
+        rigidbody.velocity=Vector2.zero;
         animator.SetTrigger("Charge");
         
 
@@ -30,6 +31,7 @@ public class Player_Handrick_Mod : Ability
         {
             yield return new WaitForFixedUpdate();
         }
+        P_state.actState = Unit_state.Idle;
 
         animator.SetTrigger("Rush");
         while (gauge >= 0)
@@ -39,7 +41,6 @@ public class Player_Handrick_Mod : Ability
             yield return null;
         }
 
-        P_state.actState = Unit_state.Idle;
         animator.SetTrigger("Idle");
         isRush = false;
         yield return null;
