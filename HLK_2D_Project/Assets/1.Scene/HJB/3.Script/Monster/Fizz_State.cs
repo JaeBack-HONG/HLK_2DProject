@@ -38,6 +38,7 @@ public class Fizz_State : Monster_State
                 IsGrab();
                 break;
             case Unit_state.Stun:
+                StartCoroutine(Stun_co());
                 break;
             case Unit_state.Hit:
                 break;

@@ -47,7 +47,10 @@ public class Ant_State : Monster_State
                 IsGrab();
                 break;
             case Unit_state.Hit:
-                break;            
+                break;
+            case Unit_state.Stun:
+                StartCoroutine(Stun_co());
+                break;
             default:
                 break;
         }
