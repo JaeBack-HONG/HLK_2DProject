@@ -31,6 +31,7 @@ public class Player_Handrick_Mod : Ability
         {
             yield return new WaitForFixedUpdate();
         }
+        PlayerManager.instance.UsedAb();
         P_state.actState = Unit_state.Idle;
 
         animator.SetTrigger("Rush");

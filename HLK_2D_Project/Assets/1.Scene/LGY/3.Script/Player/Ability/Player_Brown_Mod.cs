@@ -16,6 +16,8 @@ public class Player_Brown_Mod : Ability
         Debug.DrawRay(transform.position, Vector2.right * 3f, Color.red);
         if (hit.collider != null)
         {
+            P_state.actState = Unit_state.Default;
+            PlayerManager.instance.UsedAb();
             hit.collider.transform.position = new Vector2(transform.position.x, transform.position.y + 3f);
             transform.position = new Vector2(transform.position.x, transform.position.y + 1f);
             animator.SetTrigger("BrownMod");
@@ -25,6 +27,7 @@ public class Player_Brown_Mod : Ability
             M_state.state = Unit_state.Grab;
             StartCoroutine(Brown_Ab(otherRigid, M_state));
         }
+        else P_state.actState = Unit_state.Idle;
     }
 
 
@@ -37,7 +40,8 @@ public class Player_Brown_Mod : Ability
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                M_state.state = Unit_state.Idle;
+                P_state.actState = Unit_state.Idle;
+                M_state.state = Unit_state.Default;
                 otherRigid.gravityScale = 4f;
                 otherRigid.AddRelativeForce(P_state.direction * 20f, ForceMode2D.Impulse);
                 animator.SetTrigger("Idle");
@@ -47,6 +51,8 @@ public class Player_Brown_Mod : Ability
             }
             yield return null;
         }
+        yield return new WaitForSeconds(1f);
+        M_state.state = Unit_state.Move;
 
         yield return null;
     }

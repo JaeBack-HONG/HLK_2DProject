@@ -16,7 +16,7 @@ public class Player_Knight_Mod : Ability
     {
         rigidbody.isKinematic = true;
         transform.position = new Vector2(transform.position.x, transform.position.y + 1f);
-
+        PlayerManager.instance.UsedAb();
         animator.SetTrigger("KnightMod");
         rigidbody.velocity = Vector2.zero;
         P_state.actState = Unit_state.Default;
