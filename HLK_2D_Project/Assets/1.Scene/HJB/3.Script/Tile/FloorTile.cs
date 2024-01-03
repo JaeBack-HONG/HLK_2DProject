@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FloorTile : MonoBehaviour
 {
+    [SerializeField] private Vector2 teleportPosition;
+
     [SerializeField] private int damage = 2;
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -12,6 +14,9 @@ public class FloorTile : MonoBehaviour
             Player_State playerState = col.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
             playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
+
+            playerState.transform.position = teleportPosition;            
+            
         }
 
         if (col.gameObject.layer.Equals((int)Layer_Index.Enemy))
@@ -22,4 +27,6 @@ public class FloorTile : MonoBehaviour
             monsterState.Health -= 100;
         }
     }
+
+    
 }
