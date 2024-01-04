@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Ability_List
+{
+    Brown = 0,
+    Knight,
+    Hope,
+    BlackWolf,
+    Handrick,
+    BabyBoss,
+}
+
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance = null;

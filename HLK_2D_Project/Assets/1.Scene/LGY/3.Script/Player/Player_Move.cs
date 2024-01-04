@@ -46,7 +46,7 @@ public class Player_Move : MonoBehaviour
     public void Jump()
     {
         rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
-        rigidbody.AddForce(Vector2.up * 15f, ForceMode2D.Impulse);
+        rigidbody.AddForce(Vector2.up * P_State.JumpForce, ForceMode2D.Impulse);
         if (P_State.JumState.Equals(Jump_State.Idle))
         {
             P_State.JumState = Jump_State.Jumping;

@@ -15,7 +15,7 @@ public class Player_Hope_Mod : Ability
     {
         PlayerManager.instance.UsedAb();
         P_state.actState = Unit_state.Default;
-        rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+        rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionX;
         animator.SetTrigger("HopeMod");
         yield return new WaitForSeconds(0.55f);
         Vector3 start = transform.position + new Vector3(P_state.direction.x * 2f, 0.5f, 0);

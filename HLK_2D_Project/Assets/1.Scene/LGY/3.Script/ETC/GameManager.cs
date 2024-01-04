@@ -18,13 +18,7 @@ public enum Animator_List
     Knight1,
     BlackWolf,
 }
-public enum Ability_List
-{
-    Brown = 0,
-    Knight,
-    Hope,
-    BlackWolf,
-}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;

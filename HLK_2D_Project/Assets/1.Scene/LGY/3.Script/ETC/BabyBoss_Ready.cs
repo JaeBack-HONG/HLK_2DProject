@@ -6,12 +6,14 @@ public class BabyBoss_Ready : MonoBehaviour
 {
     [SerializeField] private Animator babyboss_anime;
     [SerializeField] private Monster_State monstate;
+    [SerializeField] private GameObject maplimit_left;
     private Rigidbody2D rigid;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.layer.Equals((int)Layer_Index.Player))
         {
+            maplimit_left.SetActive(true);
             collision.gameObject.TryGetComponent<Rigidbody2D>(out rigid);
 
             rigid.constraints = RigidbodyConstraints2D.FreezeAll;
