@@ -12,7 +12,6 @@ public class AbilityItem : MonoBehaviour
 
     private void Start()
     {
-        transform.parent = null;
         TryGetComponent<SpriteRenderer>(out spriterenderer);
 
         spriterenderer.sprite = sprites[(int)itemidx];
