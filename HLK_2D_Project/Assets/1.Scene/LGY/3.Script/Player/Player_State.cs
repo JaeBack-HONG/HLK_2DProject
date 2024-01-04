@@ -20,6 +20,7 @@ public class Player_State : MonoBehaviour
     public Unit_Hit unithit;
 
     public int Health;
+    public float JumpForce;
 
     private Player_Ability P_Ability;
     private Player_Move P_Move;
@@ -39,10 +40,7 @@ public class Player_State : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            actState = Unit_state.Attack;
-        }
+
         P_Ability.Choice_Ab();
         State_Check();
 
@@ -53,8 +51,9 @@ public class Player_State : MonoBehaviour
 
     private void PlayerDataSetting()
     {
-        data = new UnitData(name: "Player", hp: 10, detection: 5, range: 1, attackSpeed: 1, strength: 2, moveSpeed: 2, jumpForce: 100);
+        data = new UnitData(name: "Player", hp: 10, detection: 5, range: 1, attackSpeed: 1, strength: 2, moveSpeed: 2, jumpForce: 18);
         Health = data.HP;
+        JumpForce = data.JumpForce;
     }
 
     private void State_Check()
@@ -65,12 +64,14 @@ public class Player_State : MonoBehaviour
                 break;
             case Unit_state.Idle:
                 P_Move.MoveCheck();
+                if (Input.GetKeyDown(KeyCode.Z)) actState = Unit_state.Attack;
                 break;
             case Unit_state.Move:
                 P_Move.MoveCheck();
+                if (Input.GetKeyDown(KeyCode.Z)) actState = Unit_state.Attack;
                 break;
             case Unit_state.Attack:
-                if (P_Ability.current_Ab != null && P_Ability && 
+                if (P_Ability.current_Ab != null && P_Ability &&
                     !PlayerManager.instance.count_List[PlayerManager.instance.current_Count].Equals(0))
                 {
                     P_Ability.current_Ab.UseAbility();
@@ -82,7 +83,7 @@ public class Player_State : MonoBehaviour
                 IsGrab();
                 break;
             case Unit_state.Hit:
-                unithit.Hit(gameObject.layer,transform.position);
+                unithit.Hit(gameObject.layer, transform.position);
                 break;
         }
         IsFalling();
@@ -137,6 +138,6 @@ public class Player_State : MonoBehaviour
     public void Attack(Monster_State other)
     {
         other.Health -= data.Strength;
-        other.UnitHit.Hit(other.gameObject.layer,transform.position);
+        other.UnitHit.Hit(other.gameObject.layer, transform.position);
     }
 }

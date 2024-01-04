@@ -6,12 +6,13 @@ using Cinemachine;
 public class BabyBoss_State : Monster_State
 {
     private bool ChangeCheck = false;
-    
+
     [Header("직접참조")]
     [SerializeField] private GameObject effect;
     [SerializeField] private GameObject attackboxobj;
     [SerializeField] private BoxCollider2D attackboxcol;
     [SerializeField] private CinemachineVirtualCamera cinemachinevir;
+    [SerializeField] private GameObject maplimit;
     private CinemachineBasicMultiChannelPerlin noise;
 
     [Header("수치조정")]
@@ -23,6 +24,7 @@ public class BabyBoss_State : Monster_State
     {
         MonsterDataSetting();
         noise = cinemachinevir.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        ability_Item = Ability_Item.BabyBoss;
     }
 
     public override void MonsterDataSetting()
@@ -60,6 +62,9 @@ public class BabyBoss_State : Monster_State
                 IsGrab();
                 break;
             case Unit_state.Hit:
+                break;
+            case Unit_state.Stun:
+                StartCoroutine(Stun_co());
                 break;
             case Unit_state.Jump://변신상태로 일단 
                 StartCoroutine(Transformation_co());
@@ -159,6 +164,9 @@ public class BabyBoss_State : Monster_State
         if (Health <= 0)
         {
             base.Die();
+            GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
+            ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
+            maplimit.SetActive(false);
         }
     }
 }

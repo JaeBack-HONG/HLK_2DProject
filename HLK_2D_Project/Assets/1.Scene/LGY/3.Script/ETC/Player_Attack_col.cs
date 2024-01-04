@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon_Spear : MonoBehaviour
+public class Player_Attack_col : MonoBehaviour
 {
     private Player_State P_state;
 

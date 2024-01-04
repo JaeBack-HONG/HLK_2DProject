@@ -37,7 +37,6 @@ public enum Ability_Item
     Knight,
     BlackWolf,
     Handrick,
-    Bird,    
     BabyBoss,
     
 }

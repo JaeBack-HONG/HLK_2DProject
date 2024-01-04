@@ -23,7 +23,6 @@ public class Bird_State : Monster_State
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
-        ability_Item = Ability_Item.Bird;
         attack_co = BirdkAttack_co();
 
         base.MonsterDataSetting();
