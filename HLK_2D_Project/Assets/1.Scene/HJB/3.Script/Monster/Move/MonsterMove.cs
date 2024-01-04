@@ -137,16 +137,16 @@ public class MonsterMove : MonoBehaviour
         if (nextMove>0)
         {
             rayTrans = new Vector2(transform.position.x + 1f, transform.position.y);
-            Debug.DrawRay(rayTrans, Vector2.down * 2f, Color.red);
+            Debug.DrawRay(rayTrans, Vector2.down * 2.5f, Color.red);
         }
         else 
         {
             rayTrans = new Vector2(transform.position.x - 1f, transform.position.y);
-            Debug.DrawRay(rayTrans, Vector2.down * 2f, Color.red);
+            Debug.DrawRay(rayTrans, Vector2.down * 2.5f, Color.red);
         }
 
 
-        RaycastHit2D hit = Physics2D.Raycast(rayTrans, Vector2.down, 2f, groundMarsk);
+        RaycastHit2D hit = Physics2D.Raycast(rayTrans, Vector2.down, 2.5f, groundMarsk);
         if (!hit)
         {
             nextMove = -nextMove;

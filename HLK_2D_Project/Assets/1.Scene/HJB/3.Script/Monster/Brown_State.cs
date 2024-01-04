@@ -68,9 +68,9 @@ public class Brown_State : Monster_State
     private void RayDetectionAttack()
     {
         LayerMask PlayerMask = LayerMask.GetMask("Player");        
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x - 2f, transform.position.y - 0.75f), Vector2.right, 4f, PlayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x - 3f, transform.position.y - 1.5f), Vector2.right, 6f, PlayerMask);
 
-        Debug.DrawRay(new Vector2(transform.position.x - 2f, transform.position.y - 0.75f), Vector2.right * 4f, Color.red);
+        Debug.DrawRay(new Vector2(transform.position.x - 3f, transform.position.y - 1.5f), Vector2.right * 6f, Color.red);
         if (hit.collider != null)
         {   
             state = Unit_state.Attack;
@@ -92,7 +92,7 @@ public class Brown_State : Monster_State
     {
         animator.SetTrigger("Attack");
         float random = Random.Range(0, 2).Equals(0) ? -1f : 1f;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         Vector2 randomvec = new Vector2(random, 1f).normalized;
         otherRigid.gravityScale = 4f;
         playerState.actState = Unit_state.Default;
