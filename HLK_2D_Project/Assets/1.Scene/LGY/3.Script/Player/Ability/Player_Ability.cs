@@ -23,7 +23,7 @@ public class Player_Ability : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) AbilitySet(2);
     }
 
-    private void AbilitySet(int idx)
+    public void AbilitySet(int idx)
     {
         PlayerManager.instance.current_Count = idx;
         current_Ab = my_Abilities[PlayerManager.instance.current_Count];

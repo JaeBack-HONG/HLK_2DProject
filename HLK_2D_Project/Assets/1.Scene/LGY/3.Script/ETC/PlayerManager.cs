@@ -32,6 +32,10 @@ public class PlayerManager : MonoBehaviour
     public int current_Count = 0;
     public int max_Count = 4;
 
+
+    [SerializeField] private Player_Ability P_Ab;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -56,7 +60,7 @@ public class PlayerManager : MonoBehaviour
     private void FixedUpdate()
     {
         icon_Bar[current_Count].sprite = icon_Bar_All[current_Count * 5 + count_List[current_Count]];
-        if(count_List[current_Count].Equals(0))
+        if (count_List[current_Count].Equals(0))
         {
             int idx = current_Count;
             icon_Image[current_Count].sprite = null;
@@ -64,11 +68,10 @@ public class PlayerManager : MonoBehaviour
             {
                 if (!count_List[i].Equals(0))
                 {
-                    current_Count = i;
+                    P_Ab.AbilitySet(current_Count);
                     break;
                 }
             }
-            Border_Link(current_Count);
             if (current_Count.Equals(idx)) icon_Border[idx].SetActive(false);
         }
     }
