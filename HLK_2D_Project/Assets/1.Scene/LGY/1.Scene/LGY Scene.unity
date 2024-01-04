@@ -996,8 +996,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_LookAt: {fileID: 2494437877791312918}
+  m_Follow: {fileID: 2494437877791312918}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 8
@@ -11430,6 +11430,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6751178284195358312, guid: b5061776784981a46aa2a95df7375fee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5061776784981a46aa2a95df7375fee, type: 3}
 --- !u!1 &1079453424
@@ -12399,7 +12403,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2797919914270543858, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: itemidx
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2797919914270543865, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: m_RootOrder
@@ -15362,6 +15366,7 @@ MonoBehaviour:
   count_List: 
   current_Count: 0
   max_Count: 4
+  P_Ab: {fileID: 0}
 --- !u!4 &2035099258
 Transform:
   m_ObjectHideFlags: 0
@@ -15781,6 +15786,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7620759949310346187, guid: b646f1fb477e630438119677ba4d0804, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b646f1fb477e630438119677ba4d0804, type: 3}
 --- !u!114 &1241135458319532725
@@ -15955,6 +15964,7 @@ MonoBehaviour:
   JumState: 0
   unithit: {fileID: 0}
   Health: 0
+  JumpForce: 0
   direction: {x: 0, y: 0}
 --- !u!114 &2494437877791312913
 MonoBehaviour:

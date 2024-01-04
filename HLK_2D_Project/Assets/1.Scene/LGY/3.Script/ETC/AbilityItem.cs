@@ -10,15 +10,11 @@ public class AbilityItem : MonoBehaviour
 
     public Ability_Item itemidx;
 
-    private void Awake()
+    private void Start()
     {
         transform.parent = null;
         TryGetComponent<SpriteRenderer>(out spriterenderer);
 
         spriterenderer.sprite = sprites[(int)itemidx];
-    }
-    private void Start()
-    {
-
     }
 }

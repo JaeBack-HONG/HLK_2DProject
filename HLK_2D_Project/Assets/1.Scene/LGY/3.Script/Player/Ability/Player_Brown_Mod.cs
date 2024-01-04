@@ -19,9 +19,7 @@ public class Player_Brown_Mod : Ability
             P_state.actState = Unit_state.Default;
             PlayerManager.instance.UsedAb();
             hit.collider.transform.position = new Vector2(transform.position.x, transform.position.y + 3f);
-            transform.position = new Vector2(transform.position.x, transform.position.y + 1f);
             animator.SetTrigger("BrownMod");
-            rigidbody.isKinematic = true;
             hit.collider.TryGetComponent<Monster_State>(out Monster_State M_state);
             hit.collider.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);
             M_state.state = Unit_state.Grab;
@@ -33,24 +31,17 @@ public class Player_Brown_Mod : Ability
 
     IEnumerator Brown_Ab(Rigidbody2D otherRigid, Monster_State M_state)
     {
-        Input.ResetInputAxes();
-        while (true)
-        {
-            rigidbody.velocity = Vector2.zero;
 
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                P_state.actState = Unit_state.Idle;
-                M_state.state = Unit_state.Default;
-                otherRigid.gravityScale = 4f;
-                otherRigid.AddRelativeForce(P_state.direction * 20f, ForceMode2D.Impulse);
-                animator.SetTrigger("Idle");
-                transform.position = new Vector2(transform.position.x, transform.position.y - 1f);
-                rigidbody.isKinematic = false;
-                break;
-            }
-            yield return null;
-        }
+        rigidbody.velocity = Vector2.zero;
+
+
+        yield return new WaitForSeconds(0.2f);
+        otherRigid.gravityScale = 4f;
+        M_state.state = Unit_state.Default;
+        otherRigid.AddRelativeForce(-P_state.direction * 20f, ForceMode2D.Impulse);
+        animator.SetTrigger("Idle");
+        yield return new WaitForSeconds(0.2f);
+        P_state.actState = Unit_state.Idle;
         yield return new WaitForSeconds(1f);
         M_state.state = Unit_state.Move;
 
