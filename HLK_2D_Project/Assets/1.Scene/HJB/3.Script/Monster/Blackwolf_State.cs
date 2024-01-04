@@ -10,6 +10,8 @@ public class Blackwolf_State : Monster_State
 
     private int P_DefaultHP = 0;
 
+    private bool skeletonAttack = false;
+
     private void Start()
     {
         MonsterDataSetting();
@@ -38,7 +40,10 @@ public class Blackwolf_State : Monster_State
                 monsterMove.TotalMove();
                 break;
             case Unit_state.Attack:
-                StartCoroutine(WolfAttack_co());
+                if (!skeletonAttack)
+                {
+                    StartCoroutine(WolfAttack_co());
+                }
                 break;
             case Unit_state.Grab:
                 IsGrab();
@@ -100,11 +105,11 @@ public class Blackwolf_State : Monster_State
     }
     #endregion
 
+    #region //BlackWolf 플레이어 공격사거리 탐지
     private void BlackWolf_PlayerCheck()
     {
         if (state != Unit_state.Grab)
         {
-
             float targetDistance = monsterMove.DistanceAndDirection();        
             if (targetDistance < 3f)
             {
@@ -112,6 +117,7 @@ public class Blackwolf_State : Monster_State
             }
         }
     }
+    #endregion
 
     #region //BlackWolf 대쉬_코루틴
     private IEnumerator BlackWolfDash()
@@ -139,12 +145,14 @@ public class Blackwolf_State : Monster_State
     private IEnumerator WolfAttack_co()
     {
         animator.SetTrigger("Attack");
+        skeletonAttack = true;
         rigidbody.velocity = Vector2.zero;
         state = Unit_state.Idle;
         yield return cool;
         animator.SetTrigger("Default");
         yield return new WaitForSeconds(1f);
         state = Unit_state.Move;
+        skeletonAttack = false;
         yield return null;
     }
     #endregion

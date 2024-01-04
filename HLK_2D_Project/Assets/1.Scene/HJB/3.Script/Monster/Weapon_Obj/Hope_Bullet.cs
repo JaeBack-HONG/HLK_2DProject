@@ -10,48 +10,45 @@ public class Hope_Bullet : MonoBehaviour
     [SerializeField] private int damage = 2;
 
     [Range(30f, 100f)]
-    [SerializeField] private float removeDistanceSet = 35;
+    [SerializeField] private float removeDistanceSet = 35f;
 
-    private GameObject target;    
+    public IEnumerator shot_co;
 
-    private void Awake()
+    public void Start_Co(Vector3 directiono)
     {
-        target = GameObject.FindWithTag("Player");
+        shot_co = Shot(directiono);
+        StartCoroutine(shot_co);
     }
 
-    private void Start()
+    public IEnumerator Shot(Vector3 target)
     {
-        Vector3 targetDirection = (target.transform.position - transform.position ).normalized;
-       
-        StartCoroutine(Shot(targetDirection));
-    }
 
-    private IEnumerator Shot(Vector3 target)
-    {
         Vector3 defaultDistance = transform.position;
         while (true)
         {
             Vector3 currentDistance = (transform.position - defaultDistance);
-            if (Vector3.Magnitude(currentDistance)>removeDistanceSet)
+            if (Vector3.Magnitude(currentDistance) > removeDistanceSet)
             {
-                Destroy(this.gameObject);                
+                break;
             }
             transform.position += target * Time.deltaTime * Speed;
             yield return null;
         }
+        Destroy(this.gameObject);
     }
-    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")&&
+        if (collision.gameObject.CompareTag("Player") &&
             collision.gameObject.layer.Equals((int)Layer_Index.Player))
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
-            playerState.unithit.Hit(playerState.gameObject.layer,transform.position);
+            playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
+            StopCoroutine(shot_co);
             Destroy(this.gameObject);
         }
-        
+
     }
 }
