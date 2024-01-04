@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3498174658314050483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.26, y: -0.35, z: 0}
+  m_LocalPosition: {x: 1.26, y: -0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7598681270362414478}
@@ -242,7 +242,7 @@ MonoBehaviour:
   Player: {fileID: 2720004892734596863, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
   ability_Item: 1
   Ability_Item_obj: {fileID: 2797919914270543869, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
-  hope_Bullet: {fileID: 601019318901146435, guid: 4920567ad137ca04993937c0d9478780, type: 3}
+  hope_Bullet_obj: {fileID: 601019318901146435, guid: 4920567ad137ca04993937c0d9478780, type: 3}
   shotPosi: {fileID: 3498174658314050483}
 --- !u!114 &7598681270362414479
 MonoBehaviour:

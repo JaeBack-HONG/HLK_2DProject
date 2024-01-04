@@ -6,7 +6,7 @@ public class Hope1_State : Monster_State
 {
     WaitForSeconds cool = new WaitForSeconds(2.5f);
     WaitForSeconds WaitCool = new WaitForSeconds(1f);
-    [SerializeField] private GameObject hope_Bullet;
+    [SerializeField] private GameObject hope_Bullet_obj;
     [SerializeField] private GameObject shotPosi;
     IEnumerator hopeAttack_co;
     
@@ -70,22 +70,30 @@ public class Hope1_State : Monster_State
     private IEnumerator HopeAttack_co()
     {
         state = Unit_state.Idle;
-
+        monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Shot");
-        
+
         yield return WaitCool;
+
+        Vector3 direction = (monsterMove.direction < 1) ? Vector3.left : Vector3.right;
+
         rigidbody.velocity = Vector2.zero;
-        CreateBullet();
-        
+
+        CreateBullet(direction);
+
         yield return cool;
+
         animator.SetTrigger("Default");
         state = Unit_state.Move;
+
         yield return null;
     }
 
-    private void CreateBullet()
+    private void CreateBullet(Vector3 direction)
     {
-        Instantiate(hope_Bullet,shotPosi.transform.position, Quaternion.identity);        
+        GameObject bullet = Instantiate(hope_Bullet_obj, shotPosi.transform.position, Quaternion.identity);
+        Hope_Bullet bullet_C = bullet.GetComponent<Hope_Bullet>();
+        bullet_C.Start_Co(direction);
     }
 
     private void Hope_PlayerCheck()

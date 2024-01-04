@@ -56,20 +56,9 @@ public class MonsterMove : MonoBehaviour
         
         
         if (target)
-        {
-            direction = (targetPlayer.localPosition.x - transform.localPosition.x);
-            direction = (direction >= 0) ? 1 : -1;
-                
-            //*FlipDirection 
+        {            
+            PlayerDirectionCheck();
             rigidbody.velocity = new Vector2(direction* MoveSpeed, rigidbody.velocity.y);
-            if (direction<1)
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);                    
-            }
-            else
-            {                    
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
             monster_State.animator.SetBool("Move", true);
             
         }
@@ -100,6 +89,19 @@ public class MonsterMove : MonoBehaviour
                 FlipDirection = 1;
             }
             monster_State.animator.SetBool("Move", true);
+        }
+    }
+    public void PlayerDirectionCheck()
+    {
+        direction = (targetPlayer.localPosition.x - transform.localPosition.x);
+        direction = (direction >= 0) ? 1 : -1;
+        if (direction < 1)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
     private void WallCheck()
@@ -136,12 +138,12 @@ public class MonsterMove : MonoBehaviour
         Vector2 rayTrans;
         if (nextMove>0)
         {
-            rayTrans = new Vector2(transform.position.x + 1f, transform.position.y);
+            rayTrans = new Vector2(transform.position.x + 1f, transform.position.y-0.5f);
             Debug.DrawRay(rayTrans, Vector2.down * 2.5f, Color.red);
         }
         else 
         {
-            rayTrans = new Vector2(transform.position.x - 1f, transform.position.y);
+            rayTrans = new Vector2(transform.position.x - 1f, transform.position.y - 0.5f);
             Debug.DrawRay(rayTrans, Vector2.down * 2.5f, Color.red);
         }
 
