@@ -70,10 +70,13 @@ public class Hope1_State : Monster_State
     private IEnumerator HopeAttack_co()
     {
         state = Unit_state.Idle;
+
         animator.SetTrigger("Shot");
+        
         yield return WaitCool;
         rigidbody.velocity = Vector2.zero;
         CreateBullet();
+        
         yield return cool;
         animator.SetTrigger("Default");
         state = Unit_state.Move;
