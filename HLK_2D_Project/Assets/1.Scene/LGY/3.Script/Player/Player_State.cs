@@ -28,6 +28,7 @@ public class Player_State : MonoBehaviour
     public Vector2 direction;
 
     private IEnumerator Slow_Co;
+    private IEnumerator Stun_Co;
 
     private void Start()
     {
@@ -83,6 +84,9 @@ public class Player_State : MonoBehaviour
                 break;
             case Unit_state.Grab:
                 IsGrab();
+                break;
+            case Unit_state.Stun:
+                //여기에 모든 행동 스탑 ex)실행중인 코루틴 등 정지
                 break;
             case Unit_state.Hit:
                 unithit.Hit(gameObject.layer, transform.position);
@@ -161,5 +165,21 @@ public class Player_State : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         P_Move.moveSpeed = data.MoveSpeed;
+    }
+    public void Stun(float cool)
+    {
+        Stun_Co = Stun_co(cool);
+        StartCoroutine(Stun_Co);
+    }
+    private IEnumerator Stun_co(float cool)
+    {
+        actState = Unit_state.Stun;
+        float currentTime = 0f;
+        while (currentTime < cool)
+        {
+            currentTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        actState = Unit_state.Move;
     }
 }
