@@ -33,6 +33,7 @@ public abstract class Monster_State : MonoBehaviour
     public GameObject Ability_Item_obj;
 
     IEnumerator Slow_co;
+    IEnumerator Stun_co;
 
     public virtual void MonsterDataSetting()
     {
@@ -109,16 +110,6 @@ public abstract class Monster_State : MonoBehaviour
     #endregion
         
 
-    public IEnumerator Stun_co()
-    {
-        float currentTime = 0f;
-        while(currentTime<stunTime)
-        {            
-            currentTime += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-        state = Unit_state.Move;
-    }
     public void IsGrab()
     {
         rigidbody.velocity = Vector2.zero;
@@ -145,4 +136,21 @@ public abstract class Monster_State : MonoBehaviour
         monsterMove.MoveSpeed = data.MoveSpeed;
     }
     #endregion
+
+    public void Stun(float speed, float cool)
+    {
+        Stun_co = Stun_Co(cool);
+        StartCoroutine(Stun_co);
+    }
+    private IEnumerator Stun_Co(float cool)
+    {
+        state = Unit_state.Stun;
+        float currentTime = 0f;
+        while(currentTime<cool)
+        {            
+            currentTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        state = Unit_state.Move;
+    }
 }

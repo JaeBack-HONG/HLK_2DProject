@@ -42,7 +42,7 @@ public class Blankey_State : Monster_State
                 IsGrab();
                 break;
             case Unit_state.Stun:
-                StartCoroutine(Stun_co());
+                //여기서 모든 행동 및 코루틴 중지
                 break;
             case Unit_state.Hit:
                 break;
@@ -66,10 +66,12 @@ public class Blankey_State : Monster_State
         {
             if (player.eulerAngles.y.Equals(180))
             {                
+                animator.enabled = true;
                 rigidbody.velocity = playerDirection * data.MoveSpeed;
             }
             else
             {
+                animator.enabled = false;
                 rigidbody.velocity = Vector2.zero;
             }
         }
@@ -78,9 +80,11 @@ public class Blankey_State : Monster_State
             if (player.eulerAngles.y.Equals(0))
             {
                 rigidbody.velocity = playerDirection * data.MoveSpeed;
+                animator.enabled = true;
             }
             else
             {
+                animator.enabled = false;
                 rigidbody.velocity = Vector2.zero;
             }
         }

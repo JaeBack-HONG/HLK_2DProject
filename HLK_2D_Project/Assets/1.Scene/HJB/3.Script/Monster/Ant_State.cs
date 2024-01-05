@@ -41,7 +41,7 @@ public class Ant_State : Monster_State
             case Unit_state.Hit:
                 break;
             case Unit_state.Stun:
-                StartCoroutine(Stun_co());
+                
                 break;
             default:
                 break;

@@ -3413,6 +3413,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lil_Wiz
       objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355110, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
 --- !u!1 &794804325
