@@ -61,7 +61,6 @@ public class Diego_State : Monster_State
             default:
                 break;
         }
-
         if (!state.Equals(Unit_state.Default))
         {
             Monster_HealthCheck();
@@ -74,7 +73,6 @@ public class Diego_State : Monster_State
         monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Shot");
 
-
         Vector3 direction = (monsterMove.direction < 1) ? Vector3.left : Vector3.right;
 
         rigidbody.velocity = Vector2.zero;
@@ -84,7 +82,6 @@ public class Diego_State : Monster_State
         CreateBullet(direction);
         yield return tripleTime;
         CreateBullet(direction);
-
 
         yield return cool;
 

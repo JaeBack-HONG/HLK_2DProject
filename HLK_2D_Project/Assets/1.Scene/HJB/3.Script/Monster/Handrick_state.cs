@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Handrick_state : Monster_State
-{
-    WaitForSeconds cool = new WaitForSeconds(0.9f);
+{    
 
     private bool rush = false;
 

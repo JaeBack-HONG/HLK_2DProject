@@ -13,12 +13,10 @@ public class Lil_Wiz_State : Monster_State
 
     private bool isCasting = false;
     
-
     private void Start()
     {
         MonsterDataSetting();
     }
-
 
     public override void MonsterDataSetting()
     {

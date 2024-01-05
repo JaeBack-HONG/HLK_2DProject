@@ -24,6 +24,7 @@ public abstract class Monster_State : MonoBehaviour
     public int Strength;
     public bool isAttack = false;
     public bool isStun = false;
+    public bool rolling = false;
 
     public bool Dash = false;
 
@@ -72,9 +73,16 @@ public abstract class Monster_State : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("닿았다");
+        {            
             Player_State Player = collision.gameObject.GetComponent<Player_State>();
+            Player_Move Player_M = collision.gameObject.GetComponent<Player_Move>();
+            //여기 말고 레이로 한번 해볼 것
+            //if (rolling)
+            //{
+            //    rolling = false;
+            //    Player_M.rigidbody.AddRelativeForce(-Player.direction * 20f, ForceMode2D.Impulse);
+            //    
+            //}
             if (Player != null)
             {
                 Attack(Player);
@@ -83,7 +91,7 @@ public abstract class Monster_State : MonoBehaviour
 
         if (collision.gameObject.layer.Equals((int)Layer_Index.Player) ||
             collision.gameObject.layer.Equals((int)Layer_Index.Ground))
-        {
+        { 
             Dash = false;
         }
     }
@@ -139,6 +147,7 @@ public abstract class Monster_State : MonoBehaviour
     }
     #endregion
 
+    #region //스턴 상태 로직
     public void Stun(float cool)
     {
         Stun_co = Stun_Co(cool);
@@ -162,4 +171,5 @@ public abstract class Monster_State : MonoBehaviour
         animator.SetTrigger("Default");
         state = Unit_state.Move;
     }
+    #endregion
 }
