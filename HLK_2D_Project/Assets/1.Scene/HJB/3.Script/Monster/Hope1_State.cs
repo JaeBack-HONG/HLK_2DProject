@@ -80,7 +80,7 @@ public class Hope1_State : Monster_State
         rigidbody.velocity = Vector2.zero;
 
         CreateBullet(direction);
-
+        animator.SetBool("Move", false);
         yield return cool;
 
         animator.SetTrigger("Default");

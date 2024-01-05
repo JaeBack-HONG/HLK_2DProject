@@ -84,6 +84,7 @@ public class MovingTiles : MonoBehaviour
             return;
         }
         transform.position += direction * speed * Time.fixedDeltaTime;
+        
     }
 
     private void Horizontal_MovigTiles()
@@ -160,10 +161,25 @@ public class MovingTiles : MonoBehaviour
         stop = false;
         yield return null;
     }
-        
+    
     private void Corss_MovingTiles()
     {
         transform.position += direction * speed * Time.fixedDeltaTime;
     }
+    
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer.Equals((int)Layer_Index.Player) )
+        {
+            collision.transform.SetParent(transform);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer.Equals((int)Layer_Index.Player) )
+        {
+            collision.transform.SetParent(null);
+        }
+    }
 }
