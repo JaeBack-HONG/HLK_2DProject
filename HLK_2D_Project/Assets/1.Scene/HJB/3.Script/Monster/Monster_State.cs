@@ -137,7 +137,7 @@ public abstract class Monster_State : MonoBehaviour
     }
     #endregion
 
-    public void Stun(float speed, float cool)
+    public void Stun(float cool)
     {
         Stun_co = Stun_Co(cool);
         StartCoroutine(Stun_co);
