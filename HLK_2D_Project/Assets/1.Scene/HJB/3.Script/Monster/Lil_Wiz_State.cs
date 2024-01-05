@@ -59,7 +59,7 @@ public class Lil_Wiz_State : Monster_State
                     IsGrab();
                 break;
             case Unit_state.Stun:
-                    
+                
                 break;
             case Unit_state.Hit:
                 break;
