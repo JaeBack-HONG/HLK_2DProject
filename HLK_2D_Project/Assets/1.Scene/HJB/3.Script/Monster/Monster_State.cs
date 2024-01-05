@@ -23,6 +23,7 @@ public abstract class Monster_State : MonoBehaviour
     public int Health;
     public int Strength;
     public bool isAttack = false;
+    public bool isStun = false;
 
     public bool Dash = false;
 
@@ -31,6 +32,7 @@ public abstract class Monster_State : MonoBehaviour
     public Ability_Item ability_Item;
 
     public GameObject Ability_Item_obj;
+    public GameObject Stun_obj;
 
     IEnumerator Slow_co;
     IEnumerator Stun_co;
@@ -145,12 +147,19 @@ public abstract class Monster_State : MonoBehaviour
     private IEnumerator Stun_Co(float cool)
     {
         state = Unit_state.Stun;
+        isStun = true;
+        //오브젝트 키기
+        Stun_obj.SetActive(true);
+        animator.SetBool("Move", false);
         float currentTime = 0f;
         while(currentTime<cool)
         {            
             currentTime += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+        //오브젝트 끄기
+        Stun_obj.SetActive(false);
+        animator.SetTrigger("Default");
         state = Unit_state.Move;
     }
 }

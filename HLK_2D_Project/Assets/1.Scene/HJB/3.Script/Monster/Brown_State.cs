@@ -30,6 +30,7 @@ public class Brown_State : Monster_State
                 return;
             case Unit_state.Move:
                 monsterMove.TotalMove();
+                RayDetectionAttack();
                 break;
             case Unit_state.Attack:
                 break;
@@ -47,7 +48,6 @@ public class Brown_State : Monster_State
                 break;
         }
 
-        RayDetectionAttack();
         if (!state.Equals(Unit_state.Default))
         {
             Monster_HealthCheck();

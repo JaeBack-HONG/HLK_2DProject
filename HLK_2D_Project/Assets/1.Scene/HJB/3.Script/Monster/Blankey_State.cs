@@ -33,7 +33,10 @@ public class Blankey_State : Monster_State
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
-                Blankey_PlayerDetection();
+                if (monsterMove.target)
+                {                    
+                    Blankey_PlayerDetection();
+                }
                 break;
             case Unit_state.Attack:
                 
@@ -43,6 +46,7 @@ public class Blankey_State : Monster_State
                 break;
             case Unit_state.Stun:
                 //여기서 모든 행동 및 코루틴 중지
+                
                 break;
             case Unit_state.Hit:
                 break;
