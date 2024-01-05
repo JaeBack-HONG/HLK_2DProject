@@ -41,12 +41,12 @@ public class ProjectileShot : MonoBehaviour
             direction = Vector3.up;
             transform.rotation = Quaternion.Euler(0, 0, 45);
         }
-        else if(down)
+        else if (down)
         {
             direction = Vector3.down;
             transform.rotation = Quaternion.Euler(0, 0, 225);
         }
-        else if(left)
+        else if (left)
         {
             direction = Vector3.left;
             transform.rotation = Quaternion.Euler(0, 0, 135);
@@ -84,19 +84,19 @@ public class ProjectileShot : MonoBehaviour
         Debug.DrawRay(transform.position, direction * 10f, Color.red);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 10f, playerMarsk);
 
-        if (hit.collider != null &&!isMove)
+        if (hit.collider != null && !isMove)
         {
             Shot = true;
         }
-    }       
-    
+    }
+
     private IEnumerator Arrow_Shot()
     {
         isMove = true;
         Shot = false;
         while (true)
-        {            
-            transform.position += direction * Time.fixedDeltaTime* Speed;
+        {
+            transform.position += direction * Time.fixedDeltaTime * Speed;
             yield return new WaitForFixedUpdate();
         }
     }
@@ -114,9 +114,9 @@ public class ProjectileShot : MonoBehaviour
 
     private void DistanceCheck()
     {
-        Vector3 distance = startPoint - transform.position;       
-        
-        if (distanceSet<Vector3.Magnitude(distance))
+        Vector3 distance = startPoint - transform.position;
+
+        if (distanceSet < Vector3.Magnitude(distance))
         {
             corutine_w = Arrow_Wait();
             StopCoroutine(corutine);
@@ -132,16 +132,15 @@ public class ProjectileShot : MonoBehaviour
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
-            playerState.unithit.Hit(playerState.gameObject.layer,transform.position);
+            playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
 
             corutine_w = Arrow_Wait();
             StopCoroutine(corutine);
             corutine = Arrow_Shot();
             transform.position = startPoint;
             StartCoroutine(corutine_w);
-
         }
-        
-        
+
+
     }
 }

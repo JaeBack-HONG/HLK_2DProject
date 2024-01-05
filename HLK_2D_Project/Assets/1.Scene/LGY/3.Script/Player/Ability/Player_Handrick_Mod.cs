@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Player_Handrick_Mod : Ability
 {
-    public float gauge = 0f;
-    [SerializeField] float rushSpeed = 10f;
+    [SerializeField] private float gauge = 0f;
+    [SerializeField] private float rushSpeed = 13f;
+    [SerializeField] private CircleCollider2D spearcol;
+    [SerializeField] private float gaugecor = 2f;
     private bool isRush = false;
-    [SerializeField] CircleCollider2D spearcol;
 
     public override void UseAbility()
     {
@@ -17,14 +18,11 @@ public class Player_Handrick_Mod : Ability
     private IEnumerator HandrickAttack_co()
     {
         isRush = true;
-        //P_state.actState = Unit_state.Default;
-        rigidbody.velocity=Vector2.zero;
-        animator.SetTrigger("Charge");
-        
+        P_state.actState = Unit_state.Idle;
 
         while (Input.GetKey(KeyCode.Z) && gauge <= 3f)
         {
-            gauge += Time.fixedDeltaTime;
+            gauge += Time.fixedDeltaTime * gaugecor;
             yield return new WaitForFixedUpdate();
         }
 
@@ -35,9 +33,8 @@ public class Player_Handrick_Mod : Ability
         transform.gameObject.layer = (int)Layer_Index.Hit;
         spearcol.enabled = true;
         PlayerManager.instance.UsedAb();
-        P_state.actState = Unit_state.Idle;
 
-        animator.SetTrigger("Rush");
+        animator.SetTrigger("HandrickMod");
         while (gauge >= 0)
         {
             gauge -= Time.deltaTime;
