@@ -32,6 +32,8 @@ public abstract class Monster_State : MonoBehaviour
 
     public GameObject Ability_Item_obj;
 
+    IEnumerator Slow_co;
+
     public virtual void MonsterDataSetting()
     {
         renderer = GetComponent<SpriteRenderer>();
@@ -93,8 +95,7 @@ public abstract class Monster_State : MonoBehaviour
         {
             Player = collision.gameObject.transform.GetComponent<Player_State>();
             monsterMove.target = true;
-        }
-        
+        }        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -123,4 +124,23 @@ public abstract class Monster_State : MonoBehaviour
         rigidbody.velocity = Vector2.zero;
         rigidbody.gravityScale = 0f;
     }
+
+    #region // 슬로우 상태 로직
+    public void Slow(float speed,float cool)
+    {
+        Slow_co = Slow_Co(speed, cool);
+        StartCoroutine(Slow_co);
+    }
+    private IEnumerator Slow_Co(float speed , float cool)
+    {
+        float currentTime = 0;
+        while (currentTime<cool)
+        {
+            currentTime += Time.fixedDeltaTime;
+            monsterMove.MoveSpeed *= speed;
+            yield return new WaitForFixedUpdate();
+        }
+        monsterMove.MoveSpeed = data.MoveSpeed;
+    }
+    #endregion
 }
