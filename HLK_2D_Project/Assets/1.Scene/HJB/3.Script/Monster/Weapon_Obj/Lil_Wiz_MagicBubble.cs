@@ -51,7 +51,7 @@ public class Lil_Wiz_MagicBubble : MonoBehaviour
             playerState.Health -= damage;
             playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
             //여기에 플레이어 슬로우 메서드 실행시키기
-            
+            playerState.Slow(slowSpeedSet, slowCoolSet);
             StopCoroutine(shot_co);
             Destroy(this.gameObject);
         }

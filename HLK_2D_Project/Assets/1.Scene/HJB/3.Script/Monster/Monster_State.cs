@@ -134,10 +134,12 @@ public abstract class Monster_State : MonoBehaviour
     private IEnumerator Slow_Co(float speed , float cool)
     {
         float currentTime = 0;
+        monsterMove.MoveSpeed *= speed;
+
         while (currentTime<cool)
         {
-            currentTime += Time.fixedDeltaTime;
-            monsterMove.MoveSpeed *= speed;
+            currentTime += Time.fixedDeltaTime;           
+
             yield return new WaitForFixedUpdate();
         }
         monsterMove.MoveSpeed = data.MoveSpeed;

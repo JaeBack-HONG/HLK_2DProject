@@ -116,8 +116,8 @@ MonoBehaviour:
   Speed: 7
   damage: 2
   removeDistanceSet: 35
-  slowSet: 1
-  downDamage: 2
+  slowCoolSet: 2
+  slowSpeedSet: 0.6
 --- !u!95 &2330487049637630042
 Animator:
   serializedVersion: 3

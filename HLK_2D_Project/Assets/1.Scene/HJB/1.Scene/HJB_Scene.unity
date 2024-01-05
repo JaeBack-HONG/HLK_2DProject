@@ -3358,6 +3358,63 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &725835207
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_RootOrder
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355106, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355110, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_Name
+      value: Lil_Wiz
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
 --- !u!1 &794804325
 GameObject:
   m_ObjectHideFlags: 0
@@ -46872,7 +46929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &3353598550904510724
 MonoBehaviour:
   m_ObjectHideFlags: 0

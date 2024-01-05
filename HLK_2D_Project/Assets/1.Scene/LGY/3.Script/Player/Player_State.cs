@@ -153,14 +153,13 @@ public class Player_State : MonoBehaviour
     private IEnumerator Slow_co(float speed, float cool)
     {
         float currentTime = 0;
+        P_Move.moveSpeed *= speed;
         while (currentTime < cool)
         {
             currentTime += Time.fixedDeltaTime;
-            P_Move.moveSpeed *= speed;
 
             yield return new WaitForFixedUpdate();
         }
         P_Move.moveSpeed = data.MoveSpeed;
-
     }
 }
