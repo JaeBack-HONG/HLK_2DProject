@@ -59,7 +59,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1, y: 0}
+  m_Offset: {x: 0.4, y: -0.15}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &1874003419837650095
@@ -375,8 +375,9 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   gauge: 0
-  rushSpeed: 10
+  rushSpeed: 13
   spearcol: {fileID: 1874003419837650092}
+  gaugecor: 2
 --- !u!114 &8305806322938161891
 MonoBehaviour:
   m_ObjectHideFlags: 0
