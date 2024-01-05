@@ -32,9 +32,14 @@ public class Lil_Wiz_State : Monster_State
         lil_WizAttack_co = Lil_WizAttack_co();
         base.MonsterDataSetting();
     }
+    private void StateReset()
+    {
+        isCasting = false;        
+        //animator.SetTrigger("Default");
+    }
     private void FixedUpdate()
     {
-
+        
         switch (state)
         {
             case Unit_state.Default:
@@ -49,7 +54,7 @@ public class Lil_Wiz_State : Monster_State
                     if (isCasting)
                     {
                         state = Unit_state.Move;
-                        return;
+                        break;
                     }
                     lil_WizAttack_co = Lil_WizAttack_co();
                     StartCoroutine(lil_WizAttack_co);
@@ -59,7 +64,8 @@ public class Lil_Wiz_State : Monster_State
                     IsGrab();
                 break;
             case Unit_state.Stun:
-                
+                StopCoroutine(lil_WizAttack_co);
+                StateReset();
                 break;
             case Unit_state.Hit:
                 break;
@@ -90,9 +96,9 @@ public class Lil_Wiz_State : Monster_State
 
         CreateBubble(direction);        
 
-        animator.SetTrigger("Default");
-        state = Unit_state.Idle;
         animator.SetBool("Move", false);
+        animator.SetTrigger("Default");
+        
         yield return cool;
 
         

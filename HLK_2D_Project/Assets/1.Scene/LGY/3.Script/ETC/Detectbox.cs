@@ -6,6 +6,7 @@ public class Detectbox : MonoBehaviour
 {
     public List<Monster_State> monstates;
     [SerializeField] private float stuncool = 5f;
+    [SerializeField] private Player_State P_state;
 
     private void OnEnable()
     {
@@ -20,7 +21,10 @@ public class Detectbox : MonoBehaviour
 
             for (int i = 0; i < monstates.Count; i++)
             {
-                monstates[i].Stun(stuncool);
+                if (!transform.root.rotation.y.Equals(monstates[i].transform.rotation.y))
+                {
+                    monstates[i].Stun(stuncool);
+                }
             }
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 601019318901146432}
   - component: {fileID: -279263260065238505}
   - component: {fileID: -4412912750351655182}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HopeBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

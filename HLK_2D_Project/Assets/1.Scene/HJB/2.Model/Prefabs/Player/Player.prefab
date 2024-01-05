@@ -203,6 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monstates: []
   stuncool: 2
+  P_state: {fileID: 7986413340031863267}
 --- !u!1 &7986413340031863258
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +226,6 @@ GameObject:
   - component: {fileID: 8305806322938161891}
   - component: {fileID: 7986413340031863259}
   - component: {fileID: 458341760136839768}
-  - component: {fileID: 6239014247684840297}
   - component: {fileID: 684274193832687664}
   m_Layer: 8
   m_Name: Player
@@ -509,22 +509,6 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   lil_WizMagic_obj: {fileID: 441592109503060589, guid: 9f719ed3fb3fbf34591e2f5cdd086d36, type: 3}
---- !u!114 &6239014247684840297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7986413340031863258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 682a2106615deba4b95a7a05f2a902e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  P_state: {fileID: 0}
-  rigidbody: {fileID: 0}
-  animator: {fileID: 0}
-  detectbox: {fileID: 0}
 --- !u!114 &684274193832687664
 MonoBehaviour:
   m_ObjectHideFlags: 0
