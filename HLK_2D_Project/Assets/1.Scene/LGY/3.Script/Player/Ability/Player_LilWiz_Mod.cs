@@ -13,11 +13,12 @@ public class Player_LilWiz_Mod : Ability
 
     private IEnumerator Lil_WizAttack_co()
     {
+        PlayerManager.instance.UsedAb();
         rigidbody.velocity = Vector2.zero;
         P_state.actState= Unit_state.Default;
         animator.SetTrigger("LilWizMod");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
 
         CreateBubble(P_state.direction);

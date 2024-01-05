@@ -37,6 +37,8 @@ public enum Ability_Item
     Handrick,
     BabyBoss,
     LilWiz,
+    Blankey,
+
 }
 
 public class UnitData
