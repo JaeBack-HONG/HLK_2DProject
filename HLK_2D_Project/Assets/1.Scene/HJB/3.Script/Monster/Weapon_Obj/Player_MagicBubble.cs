@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lil_Wiz_MagicBubble : MonoBehaviour
+public class Player_MagicBubble : MonoBehaviour
 {
     [Range(1f, 100f)]
     public float Speed = 2f;
@@ -12,7 +12,8 @@ public class Lil_Wiz_MagicBubble : MonoBehaviour
     [Range(30f, 100f)]
     [SerializeField] private float removeDistanceSet = 35f;
 
-    [SerializeField] private float slowSet = 1f;
+    [SerializeField] private float slowSpeedSet = 0.6f;
+    [SerializeField] private float slowCoolSet = 1.5f;
 
     [SerializeField] private float downDamage = 2f;
 
@@ -44,11 +45,12 @@ public class Lil_Wiz_MagicBubble : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer.Equals((int)Layer_Index.Player))
+        if (collision.gameObject.layer.Equals((int)Layer_Index.Enemy))
         {
-            Player_State playerState = collision.gameObject.GetComponent<Player_State>();
-            playerState.Health -= damage;
-            playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
+            Monster_State monsterState = collision.gameObject.GetComponent<Monster_State>();
+            monsterState.Health -= damage;
+            monsterState.UnitHit.Hit(monsterState.gameObject.layer, transform.position);
+            monsterState.Slow(slowSpeedSet, slowSpeedSet);
             //여기에 플레이어 슬로우 메서드 실행시키기
 
             StopCoroutine(shot_co);

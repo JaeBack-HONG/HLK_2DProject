@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: 5fea93a6add6ab443b1ba2da8b525695
+guid: d814fcbbd2e26304c82cc50e35f685d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1210769377489148873
-    second: Player_Handrick_Mod_0
+      213: 8068117855707449096
+    second: Player_Lil Wiz_Mod_0
   - first:
-      213: 2571459160272827136
-    second: Player_Handrick_Mod_1
+      213: -3271710161231222796
+    second: Player_Lil Wiz_Mod_1
   - first:
-      213: 6650862115286435930
-    second: Player_Handrick_Mod_2
+      213: -6013000409556425821
+    second: Player_Lil Wiz_Mod_2
   - first:
-      213: 3618900421172347496
-    second: Player_Handrick_Mod_3
-  - first:
-      213: -6564630322485270561
-    second: Player_Handrick_Mod_4
-  - first:
-      213: -5893757051449665304
-    second: Player_Handrick_Mod_5
+      213: 7458516564753959577
+    second: Player_Lil Wiz_Mod_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -64,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,127 +115,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Handrick_Mod_0
+      name: Player_Lil Wiz_Mod_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 734a6d58aab723fe0800000000000000
-      internalID: -1210769377489148873
+      spriteID: 807cd6b6176b7ff60800000000000000
+      internalID: 8068117855707449096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Handrick_Mod_1
+      name: Player_Lil Wiz_Mod_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f7e6cf41fc8892d0800000000000000
+      internalID: -3271710161231222796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Lil Wiz_Mod_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 64
+        width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0037c7a6b78afa320800000000000000
-      internalID: 2571459160272827136
+      spriteID: 3a36c1a5cf78d8ca0800000000000000
+      internalID: -6013000409556425821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Handrick_Mod_2
+      name: Player_Lil Wiz_Mod_3
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 0
-        width: 64
+        width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5840c72bdb9c4c50800000000000000
-      internalID: 6650862115286435930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Handrick_Mod_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8624d7162cae83230800000000000000
-      internalID: 3618900421172347496
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Handrick_Mod_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd7e18aa08fb5e4a0800000000000000
-      internalID: -6564630322485270561
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Handrick_Mod_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8e893eb203b253ea0800000000000000
-      internalID: -5893757051449665304
+      spriteID: 99ac6897c49f18760800000000000000
+      internalID: 7458516564753959577
       vertices: []
       indices: 
       edges: []

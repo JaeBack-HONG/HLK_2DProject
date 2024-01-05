@@ -34,12 +34,11 @@ public enum Ability_Item
 {
     Brown,
     Hope,
-    Knight,
-    BlackWolf,
     Handrick,
     BabyBoss,
-    
+    LilWiz,
 }
+
 public class UnitData
 {
     private string _Name;

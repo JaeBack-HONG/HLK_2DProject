@@ -27,6 +27,8 @@ public class Player_State : MonoBehaviour
 
     public Vector2 direction;
 
+    private IEnumerator Slow_Co;
+
     private void Start()
     {
         TryGetComponent<Player_Move>(out P_Move);
@@ -51,7 +53,7 @@ public class Player_State : MonoBehaviour
 
     private void PlayerDataSetting()
     {
-        data = new UnitData(name: "Player", hp: 10, detection: 5, range: 1, attackSpeed: 1, strength: 2, moveSpeed: 2, jumpForce: 18);
+        data = new UnitData(name: "Player", hp: 10, detection: 5, range: 1, attackSpeed: 1, strength: 2, moveSpeed: 10, jumpForce: 18);
         Health = data.HP;
         JumpForce = data.JumpForce;
     }
@@ -139,5 +141,26 @@ public class Player_State : MonoBehaviour
     {
         other.Health -= data.Strength;
         other.UnitHit.Hit(other.gameObject.layer, transform.position);
+    }
+
+    public void Slow(float speed, float cool)
+    {
+        Slow_Co = Slow_co(speed, cool);
+        StartCoroutine(Slow_Co);
+    }
+
+
+    private IEnumerator Slow_co(float speed, float cool)
+    {
+        float currentTime = 0;
+        while (currentTime < cool)
+        {
+            currentTime += Time.fixedDeltaTime;
+            P_Move.moveSpeed *= speed;
+
+            yield return new WaitForFixedUpdate();
+        }
+        P_Move.moveSpeed = data.MoveSpeed;
+
     }
 }

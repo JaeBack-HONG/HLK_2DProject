@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Move : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    public float moveSpeed = 5f;
     public Rigidbody2D rigidbody;
 
     public Monster_State mon;

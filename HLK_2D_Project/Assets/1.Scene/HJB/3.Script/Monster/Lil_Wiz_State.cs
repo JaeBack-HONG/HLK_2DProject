@@ -28,7 +28,7 @@ public class Lil_Wiz_State : Monster_State
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
-        ability_Item = Ability_Item.Hope;
+        ability_Item = Ability_Item.LilWiz;
         lil_WizAttack_co = Lil_WizAttack_co();
         base.MonsterDataSetting();
     }
