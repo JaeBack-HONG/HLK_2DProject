@@ -75,7 +75,7 @@ public class Brown_State : Monster_State
         {   
             state = Unit_state.Attack;
             rigidbody.velocity = Vector2.zero;
-            hit.transform.position = new Vector2(transform.position.x, transform.position.y + 2f);
+            hit.transform.position = new Vector2(transform.position.x-0.1f, transform.position.y + 1.5f);
 
             hit.transform.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRigid);
             hit.transform.gameObject.TryGetComponent<Player_State>(out Player_State playerstate);

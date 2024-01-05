@@ -24,7 +24,7 @@ public class Blankey_State : Monster_State
     }
     private void FixedUpdate()
     {
-
+        
         switch (state)
         {
             case Unit_state.Default:

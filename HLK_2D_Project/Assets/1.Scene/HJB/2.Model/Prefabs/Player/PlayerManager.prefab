@@ -71,6 +71,9 @@ MonoBehaviour:
   - {fileID: -946184459887860389, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
   - {fileID: -3213609745909556679, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
   - {fileID: 7526069927036187072, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+  heart_Panels: []
+  heart_All: []
   count_List: 
   current_Count: 0
   max_Count: 4
+  P_Ab: {fileID: 7986413340031863257, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
