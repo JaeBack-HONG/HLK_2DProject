@@ -126,12 +126,11 @@ GameObject:
   - component: {fileID: 7986413340031863267}
   - component: {fileID: 7986413340031863260}
   - component: {fileID: 7986413340031863257}
-  - component: {fileID: 2711699528752596647}
   - component: {fileID: 6733462574698497862}
   - component: {fileID: 6280675499122737481}
   - component: {fileID: 8305806322938161891}
-  - component: {fileID: 1412737572777880647}
   - component: {fileID: 7986413340031863259}
+  - component: {fileID: 458341760136839768}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -324,26 +323,10 @@ MonoBehaviour:
   abilities:
   - {fileID: 6733462574698497862}
   - {fileID: 8305806322938161891}
-  - {fileID: 1412737572777880647}
-  - {fileID: 2711699528752596647}
   - {fileID: 6280675499122737481}
   - {fileID: 7986413340031863259}
+  - {fileID: 458341760136839768}
   current_Ab: {fileID: 0}
---- !u!114 &2711699528752596647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7986413340031863258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb6faa5ef4c4df44bd6c87dbc5f448a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  P_state: {fileID: 0}
-  rigidbody: {fileID: 0}
-  animator: {fileID: 0}
 --- !u!114 &6733462574698497862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,21 +377,6 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   player_Bullet: {fileID: 601019318901146435, guid: eee847dde09051f4fbb36ca86ffb9700, type: 3}
---- !u!114 &1412737572777880647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7986413340031863258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571e434fa974c1046b8ac11de1b98dea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  P_state: {fileID: 0}
-  rigidbody: {fileID: 0}
-  animator: {fileID: 0}
 --- !u!114 &7986413340031863259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,3 +395,19 @@ MonoBehaviour:
   noisescale: 10
   attackbox: {fileID: 1874003419837650090}
   cinemachinevir: {fileID: 0}
+--- !u!114 &458341760136839768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986413340031863258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54550655f7c87564c8805fe0dfa1974a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  lil_WizMagic_obj: {fileID: 441592109503060589, guid: 9f719ed3fb3fbf34591e2f5cdd086d36, type: 3}

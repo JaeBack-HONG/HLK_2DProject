@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 441592109503060591}
   - component: {fileID: 441592109503060590}
   - component: {fileID: 5527545627295401948}
-  - component: {fileID: -6199138137016469646}
   - component: {fileID: 2330487049637630042}
+  - component: {fileID: -7493581644046234179}
   m_Layer: 0
-  m_Name: Lil_Wiz_MagicBubble
+  m_Name: Player_MagicBubble 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,23 +101,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.039557695, y: 0.013185978}
   m_Size: {x: 1.6747489, y: 1.7802353}
   m_Direction: 0
---- !u!114 &-6199138137016469646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 441592109503060589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0cf8274db69d664bb0c1f4df4a6b959, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 7
-  damage: 2
-  removeDistanceSet: 35
-  slowSet: 1
-  downDamage: 2
 --- !u!95 &2330487049637630042
 Animator:
   serializedVersion: 3
@@ -137,3 +120,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-7493581644046234179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441592109503060589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0248499ea3a8754da8a3de85d7d0d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 7
+  damage: 2
+  removeDistanceSet: 35
+  slowSet: 1
+  downDamage: 2
