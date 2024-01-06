@@ -18,7 +18,7 @@ public class Blankey_State : Monster_State
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
-        ability_Item = Ability_Item.Hope;
+        ability_Item = Ability_Item.Blankey;
         
         base.MonsterDataSetting();
     }

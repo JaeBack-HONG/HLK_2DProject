@@ -25,7 +25,7 @@ public class Blackwolf_State : Monster_State
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
-        //ability_Item = Ability_Item.BlackWolf;
+        ability_Item = Ability_Item.Skeleton;
         base.MonsterDataSetting();
     }
     private void FixedUpdate()

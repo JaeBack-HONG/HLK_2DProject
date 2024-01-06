@@ -53,8 +53,6 @@ public class MonsterMove : MonoBehaviour
     public void TotalMove()
     {
         //FollowPlayer();        
-        
-        
         if (target)
         {            
             PlayerDirectionCheck();
