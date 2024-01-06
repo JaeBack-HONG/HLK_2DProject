@@ -8912,6 +8912,7 @@ MonoBehaviour:
   count_List: 
   current_Count: 0
   max_Count: 4
+  P_Ab: {fileID: 0}
 --- !u!4 &696845654
 Transform:
   m_ObjectHideFlags: 0
@@ -10540,6 +10541,10 @@ PrefabInstance:
       propertyPath: targetPlayer
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4842970087066523826, guid: 98082553e7126524cbd8dfbeec627f28, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4842970087066523829, guid: 98082553e7126524cbd8dfbeec627f28, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10592,6 +10597,10 @@ PrefabInstance:
       propertyPath: maplimit
       value: 
       objectReference: {fileID: 1583515761}
+    - target: {fileID: 6906855276555683625, guid: 98082553e7126524cbd8dfbeec627f28, type: 3}
+      propertyPath: abilityItem
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6906855276555683625, guid: 98082553e7126524cbd8dfbeec627f28, type: 3}
       propertyPath: cinemachinevir
       value: 

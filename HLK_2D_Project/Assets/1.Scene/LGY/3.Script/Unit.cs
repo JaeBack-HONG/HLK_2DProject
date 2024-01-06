@@ -38,7 +38,23 @@ public enum Ability_Item
     BabyBoss,
     LilWiz,
     Blankey,
-
+    Holly,
+    Orange,
+    Bird,
+    Skeleton,
+    Mr_Chomps,
+    Diego,
+    Gordon,
+    Tracy,
+    Vessa,
+    MoeScotty,
+    Percy,
+    Angie,
+    Fairy,
+    Armand,
+    BigRed,
+    Penguin,
+    Warrior,
 }
 
 public class UnitData
