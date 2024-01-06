@@ -24,7 +24,6 @@ public class BabyBoss_State : Monster_State
     {
         MonsterDataSetting();
         noise = cinemachinevir.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        ability_Item = Ability_Item.BabyBoss;
     }
 
     public override void MonsterDataSetting()
