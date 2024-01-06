@@ -31,7 +31,7 @@ public class Orange_State : Monster_State
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
-        ability_Item = Ability_Item.Blankey;
+        ability_Item = Ability_Item.Orange;
         base.MonsterDataSetting();
     }
     private void FixedUpdate()

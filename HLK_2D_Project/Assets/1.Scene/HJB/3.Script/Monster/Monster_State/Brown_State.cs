@@ -37,8 +37,7 @@ public class Brown_State : Monster_State
             case Unit_state.Grab:
                 IsGrab();
                 break;
-            case Unit_state.Stun:
-                
+            case Unit_state.Stun:                
                 break;
             case Unit_state.Hit:
                 break;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Diego_Bullet : MonoBehaviour
+public class Tracy_Arrow : MonoBehaviour
 {
     [Range(1f, 100f)]
     public float Speed = 2f;
@@ -21,7 +21,7 @@ public class Diego_Bullet : MonoBehaviour
         StartCoroutine(shot_co);
     }
 
-    public IEnumerator Shot(Vector3 direction)
+    public IEnumerator Shot(Vector3 target)
     {
 
         Vector3 defaultDistance = transform.position;
@@ -32,7 +32,7 @@ public class Diego_Bullet : MonoBehaviour
             {
                 break;
             }
-            transform.position += direction * Time.deltaTime * Speed;
+            transform.position += target * Time.deltaTime * Speed;
             yield return null;
         }
         Destroy(this.gameObject);
@@ -45,8 +45,8 @@ public class Diego_Bullet : MonoBehaviour
             collision.gameObject.layer.Equals((int)Layer_Index.Player))
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
-            playerState.Health -= damage;
-            playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
+            //여기에 플레이어 독 데미지 불러오기
+
             StopCoroutine(shot_co);
             Destroy(this.gameObject);
         }
