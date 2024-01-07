@@ -14,8 +14,8 @@ public abstract class Monster_State : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rigidbody;
     public AbilityItem abilityItem;
+    public SpriteRenderer renderer;
 
-    private SpriteRenderer renderer;
 
     [Header("스턴지속시간")]
     [SerializeField] private float stunTime = 0f;

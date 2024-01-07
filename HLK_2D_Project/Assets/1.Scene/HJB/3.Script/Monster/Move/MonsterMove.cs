@@ -55,9 +55,9 @@ public class MonsterMove : MonoBehaviour
         //FollowPlayer();        
         if (target)
         {            
+            monster_State.animator.SetBool("Move", true);
             PlayerDirectionCheck();
             rigidbody.velocity = new Vector2(direction* MoveSpeed, rigidbody.velocity.y);
-            monster_State.animator.SetBool("Move", true);
             
         }
         else
@@ -75,6 +75,7 @@ public class MonsterMove : MonoBehaviour
 
             //정지가 아니라면 방향에 맞춰 축변경
             Flip = (nextMove < 0) ? true : false;
+            monster_State.animator.SetBool("Move", true);
 
             if (Flip)
             {
@@ -86,7 +87,6 @@ public class MonsterMove : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 FlipDirection = 1;
             }
-            monster_State.animator.SetBool("Move", true);
         }
     }
     public void PlayerDirectionCheck()
