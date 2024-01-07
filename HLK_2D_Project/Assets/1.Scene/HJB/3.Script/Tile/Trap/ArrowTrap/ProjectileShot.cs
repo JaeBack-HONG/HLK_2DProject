@@ -81,8 +81,8 @@ public class ProjectileShot : MonoBehaviour
     private void Player_Check()
     {
         LayerMask playerMarsk = LayerMask.GetMask("Player");
-        Debug.DrawRay(transform.position, direction * 10f, Color.red);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 10f, playerMarsk);
+        Debug.DrawRay(transform.position, direction * detection, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detection, playerMarsk);
 
         if (hit.collider != null && !isMove)
         {
