@@ -104,11 +104,16 @@ public class Player_State : MonoBehaviour
 
     public void GroundRayCheck()
     {
+        Debug.DrawRay(new Vector3(transform.position.x + 0.45f, transform.position.y), Vector2.down * 0.75f, Color.red);
+        Debug.DrawRay(new Vector3(transform.position.x - 0.45f, transform.position.y), Vector2.down * 0.75f, Color.red);
         if (JumState.Equals(Jump_State.Falling))
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit1 = Physics2D.Raycast(new Vector3(transform.position.x + 0.45f, transform.position.y),
+                Vector2.down, 0.75f, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit2 = Physics2D.Raycast(new Vector3(transform.position.x - 0.45f, transform.position.y),
+                Vector2.down, 0.75f, LayerMask.GetMask("Ground"));
 
-            if (hit.collider != null)
+            if (hit1.collider != null || hit2.collider != null)
             {
                 P_Move.jumpCount = P_Move.maxJumps;
                 JumState = Jump_State.Idle;
