@@ -85,7 +85,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 3}
+  m_Size: {x: 5, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &7518587219685839807
 GameObject:
@@ -288,6 +288,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   rigidbody: {fileID: 0}
   abilityItem: {fileID: 0}
+  renderer: {fileID: 0}
   stunTime: 0
   Health: 0
   Strength: 0
