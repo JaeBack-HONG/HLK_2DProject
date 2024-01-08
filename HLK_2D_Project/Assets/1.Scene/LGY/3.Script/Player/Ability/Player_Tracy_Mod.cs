@@ -13,6 +13,8 @@ public class Player_Tracy_Mod : Ability
 
     private IEnumerator TracyAttack_Co()
     {
+        P_state.isAttack = true;
+        
         rigidbody.velocity = Vector2.zero;
         P_state.actState = Unit_state.Default;
         animator.SetTrigger("TracyMod");
@@ -28,7 +30,7 @@ public class Player_Tracy_Mod : Ability
         animator.SetTrigger("Idle");
         animator.speed = 1f;
         P_state.actState = Unit_state.Idle;
-
+        P_state.isAttack = false;
         yield return null;
     }
 

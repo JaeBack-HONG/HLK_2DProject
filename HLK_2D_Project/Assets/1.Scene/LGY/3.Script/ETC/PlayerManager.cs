@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour
 
 
     [SerializeField] private Player_Ability P_Ab;
-
+    [SerializeField] private float RemoveGuage = 0;
 
     private void Awake()
     {
@@ -59,6 +59,13 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        RemoveItem();
+        ResetAbList();
+    }
+
+    #region Ability Reset
+    private void ResetAbList()
+    {
         icon_Bar[current_Count].sprite = icon_Bar_All[current_Count * 5 + count_List[current_Count]];
         if (count_List[current_Count].Equals(0))
         {
@@ -75,7 +82,22 @@ public class PlayerManager : MonoBehaviour
             if (current_Count.Equals(idx)) icon_Border[idx].SetActive(false);
         }
     }
+    #endregion
 
+    private void RemoveItem()
+    {
+        if (Input.GetKey(KeyCode.T))
+        {
+            RemoveGuage += Time.fixedDeltaTime;
+            if (RemoveGuage >= 2)
+            {
+                count_List[current_Count] = 0;
+            }
+        }
+        else RemoveGuage = 0;
+    }
+
+    #region PlayerHPCheck
     public void HeartCheck(int Health)
     {
         int currentHealth = Health;
@@ -89,6 +111,7 @@ public class PlayerManager : MonoBehaviour
             else heart_Panels[i].sprite = heart_All[0];
         }
     }
+    #endregion
 
     public void Border_Link(int idx)
     {

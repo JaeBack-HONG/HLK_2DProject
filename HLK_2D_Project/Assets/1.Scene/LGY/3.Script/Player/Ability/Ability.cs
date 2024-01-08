@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public abstract class Ability : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public abstract class Ability : MonoBehaviour
     [HideInInspector] public Rigidbody2D rigidbody;
     [HideInInspector] public Animator animator;
     public float anispeed = 1f;
+    public CinemachineVirtualCamera cinemachinevir;
+    public CinemachineBasicMultiChannelPerlin noise;
 
     private void Start()
     {
+        noise = cinemachinevir.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         TryGetComponent<Player_State>(out P_state);
         TryGetComponent<Rigidbody2D>(out rigidbody);
         TryGetComponent<Animator>(out animator);

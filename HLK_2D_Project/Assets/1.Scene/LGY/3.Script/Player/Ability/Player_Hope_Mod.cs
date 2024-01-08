@@ -13,6 +13,7 @@ public class Player_Hope_Mod : Ability
 
     IEnumerator Shot()
     {
+        P_state.isAttack = true;
         PlayerManager.instance.UsedAb();
         P_state.actState = Unit_state.Default;
         rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionX;
@@ -24,8 +25,7 @@ public class Player_Hope_Mod : Ability
         P_state.actState = Unit_state.Idle;
         animator.SetTrigger("Idle");
         rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        yield return new WaitForSeconds(0.2f);
-
+        P_state.isAttack = false;
         yield return null;
     }
     private void CreateBullet()

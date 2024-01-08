@@ -11,6 +11,7 @@ public class Player_Blackwolf_Mod : Ability
 
     IEnumerator Dash_Co()
     {
+        P_state.isAttack = true;
         float currenttime = 0f;
 
         animator.SetTrigger("WolfMod");
@@ -31,7 +32,7 @@ public class Player_Blackwolf_Mod : Ability
         animator.SetTrigger("Idle");
         P_state.actState = Unit_state.Idle;
         rigidbody.gravityScale = 4f;
-
+        P_state.isAttack = false;
         yield return null;
     }
 }

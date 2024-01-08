@@ -216,7 +216,6 @@ GameObject:
   - component: {fileID: 7986413340031863270}
   - component: {fileID: 7986413340031863271}
   - component: {fileID: 7986413340031863264}
-  - component: {fileID: 7986413340031863265}
   - component: {fileID: 7986413340031863266}
   - component: {fileID: 7986413340031863267}
   - component: {fileID: 7986413340031863260}
@@ -345,22 +344,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &7986413340031863265
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7986413340031863258}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.02336396, y: -0.04964716}
-  m_Size: {x: 1.1647536, y: 0.8902362}
-  m_Direction: 1
 --- !u!114 &7986413340031863266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +380,7 @@ MonoBehaviour:
   Health: 0
   JumpForce: 0
   direction: {x: 0, y: 0}
+  isAttack: 0
 --- !u!114 &7986413340031863260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +432,8 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   anispeed: 0.9
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
 --- !u!114 &6280675499122737481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +450,8 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   gauge: 0
   rushSpeed: 13
   spearcol: {fileID: 1874003419837650092}
@@ -484,6 +472,8 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   anispeed: 0.8
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   player_Bullet: {fileID: 601019318901146435, guid: eee847dde09051f4fbb36ca86ffb9700, type: 3}
 --- !u!114 &7986413340031863259
 MonoBehaviour:
@@ -501,9 +491,10 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   anispeed: 0.8
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   noisescale: 10
   attackbox: {fileID: 1874003419837650090}
-  cinemachinevir: {fileID: 0}
 --- !u!114 &458341760136839768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +511,8 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   lil_WizMagic_obj: {fileID: 441592109503060589, guid: 9f719ed3fb3fbf34591e2f5cdd086d36, type: 3}
 --- !u!114 &684274193832687664
 MonoBehaviour:
@@ -537,6 +530,8 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   detectbox: {fileID: 3568800101787277851}
 --- !u!114 &5294653931156444604
 MonoBehaviour:
@@ -554,7 +549,10 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   rollingSpeed: 5
+  attackDmg: 3
 --- !u!114 &3329743050120156444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,6 +569,8 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   anispeed: 1.5
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   Tracy_Bow_obj: {fileID: 2206870464302611375, guid: c90cf2d8d7f62884ba42bbc9cdd9269e, type: 3}
 --- !u!114 &821563398283158581
 MonoBehaviour:
@@ -588,6 +588,8 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   Percy_FireBall_obj: {fileID: 2206870464302611375, guid: 7495ead7b93efdc4ab3a304106d5950e, type: 3}
 --- !u!61 &32073067274010230
 BoxCollider2D:

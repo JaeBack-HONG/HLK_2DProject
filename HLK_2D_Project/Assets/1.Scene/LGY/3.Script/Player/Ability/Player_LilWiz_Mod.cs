@@ -13,9 +13,10 @@ public class Player_LilWiz_Mod : Ability
 
     private IEnumerator Lil_WizAttack_co()
     {
+        P_state.isAttack = true;
         PlayerManager.instance.UsedAb();
         rigidbody.velocity = Vector2.zero;
-        P_state.actState= Unit_state.Default;
+        P_state.actState = Unit_state.Default;
         animator.SetTrigger("LilWizMod");
         PlayerManager.instance.UsedAb();
 
@@ -26,8 +27,8 @@ public class Player_LilWiz_Mod : Ability
 
         animator.SetTrigger("Idle");
         P_state.actState = Unit_state.Idle;
+        P_state.isAttack = false;
         yield return null;
-        
     }
 
     private void CreateBubble()

@@ -13,6 +13,7 @@ public class Player_Brown_Mod : Ability
 
     private void Brown_Ability()
     {
+        P_state.isAttack = true;
         float ho = Input.GetAxis("Horizontal");
         RaycastHit2D hit = Physics2D.Raycast(transform.position, ho * Vector2.right, 3f, LayerMask.GetMask("Enemy"));
         Debug.DrawRay(transform.position, Vector2.right * 3f, Color.red);
@@ -28,7 +29,11 @@ public class Player_Brown_Mod : Ability
             M_state.state = Unit_state.Grab;
             StartCoroutine(Brown_Ab(otherRigid, M_state));
         }
-        else P_state.actState = Unit_state.Idle;
+        else
+        {
+            P_state.actState = Unit_state.Idle;
+            P_state.isAttack = false;
+        }
     }
 
 
@@ -47,7 +52,7 @@ public class Player_Brown_Mod : Ability
         P_state.actState = Unit_state.Idle;
         yield return new WaitForSeconds(1f);
         M_state.state = Unit_state.Move;
-
+        P_state.isAttack = false;
         yield return null;
     }
 }

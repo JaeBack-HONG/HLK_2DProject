@@ -14,6 +14,7 @@ public class Player_Blankey_Mod : Ability
     
     IEnumerator OnOffDetect()
     {
+        P_state.isAttack = true;
         rigidbody.velocity = Vector2.zero;
         rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
         P_state.actState = Unit_state.Default;
@@ -29,6 +30,7 @@ public class Player_Blankey_Mod : Ability
         detectbox.SetActive(false);
         animator.SetTrigger("Idle");
         rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        P_state.isAttack = false;
         yield return null;
     }
 
