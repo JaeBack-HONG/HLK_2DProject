@@ -20,7 +20,7 @@ public class Unit_Hit : MonoBehaviour
     {           
         TryGetComponent<SpriteRenderer>(out sprite);
         defaultColor = sprite.color;
-        Debug.Log(defaultColor);
+        
         StartCoroutine(OnDamage(mylayer, hitpos));
     }
 
