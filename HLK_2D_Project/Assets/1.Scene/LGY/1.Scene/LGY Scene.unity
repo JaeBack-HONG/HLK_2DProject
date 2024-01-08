@@ -402,6 +402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Percy
       objectReference: {fileID: 0}
+    - target: {fileID: 2002543979632202889, guid: 38638d175d514c94685c1fff363ca4f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2002543979632202893, guid: 38638d175d514c94685c1fff363ca4f3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -959,7 +963,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2797919914270543858, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: itemidx
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2797919914270543865, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: m_RootOrder
@@ -1496,6 +1500,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7997788500012064030, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: cinemachinevir
+      value: 
+      objectReference: {fileID: 548989552}
     - target: {fileID: 8305806322938161891, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: cinemachinevir
       value: 

@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 3329743050120156444}
   - component: {fileID: 821563398283158581}
   - component: {fileID: 32073067274010230}
+  - component: {fileID: 7997788500012064030}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -415,6 +416,7 @@ MonoBehaviour:
   - {fileID: 5294653931156444604}
   - {fileID: 3329743050120156444}
   - {fileID: 821563398283158581}
+  - {fileID: 7997788500012064030}
   current_Ab: {fileID: 0}
 --- !u!114 &6733462574698497862
 MonoBehaviour:
@@ -617,3 +619,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3, y: 0.85}
   m_EdgeRadius: 0
+--- !u!114 &7997788500012064030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986413340031863258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42b8bd703669db146897201a687bebad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
