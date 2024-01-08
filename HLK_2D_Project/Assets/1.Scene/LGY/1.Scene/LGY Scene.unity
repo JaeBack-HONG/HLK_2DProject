@@ -959,7 +959,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2797919914270543858, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: itemidx
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2797919914270543865, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: m_RootOrder
@@ -1368,6 +1368,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 32073067274010230, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 6.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 32073067274010230, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 6.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 458341760136839768, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: cinemachinevir
+      value: 
+      objectReference: {fileID: 548989552}
+    - target: {fileID: 684274193832687664, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: cinemachinevir
+      value: 
+      objectReference: {fileID: 548989552}
+    - target: {fileID: 821563398283158581, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: cinemachinevir
+      value: 
+      objectReference: {fileID: 548989552}
     - target: {fileID: 1874003419837650081, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -1384,10 +1404,34 @@ PrefabInstance:
       propertyPath: anispeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3329743050120156444, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: cinemachinevir
+      value: 
+      objectReference: {fileID: 548989552}
+    - target: {fileID: 5294653931156444604, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: anispeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294653931156444604, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: attackDmg
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5294653931156444604, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: rollingSpeed
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 5294653931156444604, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: cinemachinevir
+      value: 
+      objectReference: {fileID: 548989552}
+    - target: {fileID: 6280675499122737481, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: cinemachinevir
+      value: 
+      objectReference: {fileID: 548989552}
+    - target: {fileID: 6733462574698497862, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: cinemachinevir
+      value: 
+      objectReference: {fileID: 548989552}
     - target: {fileID: 7986413340031863258, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1452,7 +1496,12 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8305806322938161891, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: cinemachinevir
+      value: 
+      objectReference: {fileID: 548989552}
+    m_RemovedComponents:
+    - {fileID: 7986413340031863265, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
 --- !u!1 &591698507
 GameObject:
@@ -11603,6 +11652,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &923715055 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7986413340031863257, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+  m_PrefabInstance: {fileID: 552729209}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a23510ee7e4c2c49897a00dbe2208c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &996980168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15532,7 +15592,8 @@ MonoBehaviour:
   count_List: 
   current_Count: 0
   max_Count: 4
-  P_Ab: {fileID: 0}
+  P_Ab: {fileID: 923715055}
+  RemoveGuage: 0
 --- !u!4 &2035099258
 Transform:
   m_ObjectHideFlags: 0

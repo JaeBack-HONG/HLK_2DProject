@@ -14,6 +14,7 @@ public class Player_Knight_Mod : Ability
 
     private IEnumerator SwordAttack_co()
     {
+        P_state.isAttack = true;
         rigidbody.isKinematic = true;
         transform.position = new Vector2(transform.position.x, transform.position.y + 1f);
         PlayerManager.instance.UsedAb();
@@ -25,6 +26,7 @@ public class Player_Knight_Mod : Ability
         transform.position = new Vector2(transform.position.x, transform.position.y -1f);
         rigidbody.isKinematic = false;
         P_state.actState = Unit_state.Idle;
+        P_state.isAttack = false;
         yield return null;
     }
 }

@@ -26,6 +26,7 @@ public class Player_State : MonoBehaviour
     private Player_Move P_Move;
 
     public Vector2 direction;
+    public bool isAttack = false;
 
     private IEnumerator Slow_Co;
     private IEnumerator Stun_Co;
@@ -104,8 +105,6 @@ public class Player_State : MonoBehaviour
 
     public void GroundRayCheck()
     {
-        Debug.DrawRay(new Vector3(transform.position.x + 0.45f, transform.position.y), Vector2.down * 0.75f, Color.red);
-        Debug.DrawRay(new Vector3(transform.position.x - 0.45f, transform.position.y), Vector2.down * 0.75f, Color.red);
         if (JumState.Equals(Jump_State.Falling))
         {
             RaycastHit2D hit1 = Physics2D.Raycast(new Vector3(transform.position.x + 0.45f, transform.position.y),
@@ -129,7 +128,7 @@ public class Player_State : MonoBehaviour
         {
             if (P_Move.jumpCount.Equals(P_Move.maxJumps)) P_Move.jumpCount--;
 
-            if (!JumState.Equals(Jump_State.Falling)) JumState = Jump_State.Falling;
+            if (!JumState.Equals(Jump_State.Falling) && !isAttack) JumState = Jump_State.Falling;
         }
     }
 

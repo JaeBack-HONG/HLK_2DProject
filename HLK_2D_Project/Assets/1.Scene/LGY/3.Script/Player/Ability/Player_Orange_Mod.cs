@@ -7,6 +7,7 @@ public class Player_Orange_Mod : Ability
     [Header("구르기 속도")]
     [SerializeField] private float rollingSpeed = 15f;
     private bool ishit;
+    [SerializeField] private int attackDmg = 3;
 
     public override void UseAbility()
     {
@@ -15,6 +16,7 @@ public class Player_Orange_Mod : Ability
 
     private IEnumerator Orange_Attack_Co()
     {
+        P_state.isAttack = true;
         ishit = false;
         gameObject.layer = (int)Layer_Index.Hit;
 
@@ -36,20 +38,26 @@ public class Player_Orange_Mod : Ability
 
         PlayerManager.instance.UsedAb();
 
-        while (Gauge >= 0)
+        while (Gauge >= 0 && !ishit)
         {
             Gauge -= Time.fixedDeltaTime;
-            OrangeRollingStopCheck();
             rigidbody.velocity = new Vector2(P_state.direction.x * rollingSpeed, rigidbody.velocity.y);
-            if (ishit) break;
+            OrangeRollingStopCheck();
             yield return new WaitForFixedUpdate();
         }
-        if (P_state.JumState.Equals(Jump_State.Falling))
+        noise.m_AmplitudeGain = 10;
+        yield return new WaitForSeconds(0.2f);
+        noise.m_AmplitudeGain = 0;
+        while (!P_state.JumState.Equals(Jump_State.Falling))
         {
-            P_state.actState = Unit_state.Idle;
-            gameObject.layer = (int)Layer_Index.Player;
-            animator.SetTrigger("Idle");
+            yield return new WaitForFixedUpdate();
         }
+
+        P_state.actState = Unit_state.Idle;
+        gameObject.layer = (int)Layer_Index.Player;
+        animator.SetTrigger("Idle");
+        P_state.isAttack = false;
+
     }
 
     private void OrangeRollingStopCheck()
@@ -61,13 +69,16 @@ public class Player_Orange_Mod : Ability
         if (hit.collider != null)
         {
             ishit = true;
+            P_state.isAttack = false;
             if (hit.collider.gameObject.layer.Equals((int)Layer_Index.Enemy))
             {
                 Monster_State monstate = hit.collider.gameObject.GetComponent<Monster_State>();
-                monstate.rigidbody.AddForce((P_state.direction + Vector2.up) * 2f, ForceMode2D.Impulse);
+                monstate.rigidbody.AddForce(P_state.direction * 13f, ForceMode2D.Impulse);
+                monstate.Health -= attackDmg;
+                monstate.UnitHit.Hit((int)Layer_Index.Enemy, transform.position);
             }
             rigidbody.velocity = Vector2.zero;
-            rigidbody.AddForce((-P_state.direction + Vector2.up * 2f).normalized * 15f, ForceMode2D.Impulse);
+            rigidbody.AddForce((-P_state.direction + Vector2.up * 2f).normalized * 20f, ForceMode2D.Impulse);
         }
 
 

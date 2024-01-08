@@ -17,6 +17,7 @@ public class Player_Handrick_Mod : Ability
 
     private IEnumerator HandrickAttack_co()
     {
+        P_state.isAttack = true;
         isRush = true;
         P_state.actState = Unit_state.Idle;
 
@@ -46,6 +47,7 @@ public class Player_Handrick_Mod : Ability
         spearcol.enabled = false;
         animator.SetTrigger("Idle");
         isRush = false;
+        P_state.isAttack = false;
         yield return null;
     }
 

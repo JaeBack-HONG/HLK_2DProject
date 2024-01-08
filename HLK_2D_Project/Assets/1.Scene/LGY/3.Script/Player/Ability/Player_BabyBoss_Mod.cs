@@ -7,17 +7,15 @@ public class Player_BabyBoss_Mod : Ability
 {
     [SerializeField] private int noisescale = 10;
     [SerializeField] private BoxCollider2D attackbox;
-    [SerializeField] private CinemachineVirtualCamera cinemachinevir;
-    private CinemachineBasicMultiChannelPerlin noise;
 
     public override void UseAbility()
     {
-        noise = cinemachinevir.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         StartCoroutine(BabyBossAttack_co(noisescale));
     }
 
     private IEnumerator BabyBossAttack_co(int noisescale)
     {
+        P_state.isAttack = true;
         gameObject.layer = (int)Layer_Index.Hit;
         P_state.actState = Unit_state.Default;
         rigidbody.velocity = Vector2.zero;
@@ -33,6 +31,7 @@ public class Player_BabyBoss_Mod : Ability
         yield return new WaitForSeconds(0.5f);
         gameObject.layer = (int)Layer_Index.Player;
         P_state.actState = Unit_state.Move;
+        P_state.isAttack = false;
     }
 
 }

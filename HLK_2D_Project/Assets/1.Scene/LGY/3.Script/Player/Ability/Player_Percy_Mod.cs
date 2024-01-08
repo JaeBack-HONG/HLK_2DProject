@@ -13,6 +13,7 @@ public class Player_Percy_Mod : Ability
 
     private IEnumerator PercyAttack_Co()
     {
+        P_state.isAttack = true;
         rigidbody.velocity = Vector2.zero;
         P_state.actState = Unit_state.Default;
         animator.SetTrigger("PercyMod");
@@ -28,7 +29,7 @@ public class Player_Percy_Mod : Ability
         animator.SetTrigger("Idle");
         animator.speed = 1;
         P_state.actState = Unit_state.Idle;
-
+        P_state.isAttack = false;
         yield return null;
     }
 
