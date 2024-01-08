@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Percy_State : Monster_State
 {
-    WaitForSeconds cool = new WaitForSeconds(1.2f);
+    WaitForSeconds cool = new WaitForSeconds(2.4f);
     WaitForSeconds WaitCool = new WaitForSeconds(1f);
     [SerializeField] private GameObject Percy_FireBall_obj;
     [SerializeField] private GameObject shotPosi;
@@ -29,7 +29,9 @@ public class Percy_State : Monster_State
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
-    {                
+    {
+        
+        
         switch (state)
         {
             case Unit_state.Default:
@@ -39,7 +41,6 @@ public class Percy_State : Monster_State
                 break;
             case Unit_state.Move:
                 Tracy_PlayerCheck();
-
                 break;
             case Unit_state.Attack:
                 PercyAttack_co = PercyAttack_Co();
@@ -59,9 +60,14 @@ public class Percy_State : Monster_State
             default:
                 break;
         }
+        
         if (!berserk)
         {
             BerserkCheck();
+        }
+        else
+        {
+            renderer.color = new Color(1f, 0.7f, 0.7f);
         }
         
         if (!state.Equals(Unit_state.Default))
@@ -82,9 +88,10 @@ public class Percy_State : Monster_State
         }
     }
     private void BerserkMod()
-    {
-        renderer.color = new Color(255f, 155f, 155);
+    {        
         Health += 2;
+        renderer.color = new Color(1f, 0.5f, 0.5f);
+        monsterMove.MoveSpeed += 2f;
     }
 
     private IEnumerator PercyAttack_Co()
@@ -102,10 +109,6 @@ public class Percy_State : Monster_State
         rigidbody.velocity = Vector2.zero;
 
         CreateBullet(direction);
-
-
-        yield return cool;
-        
         yield return cool;
         state = Unit_state.Move;
 

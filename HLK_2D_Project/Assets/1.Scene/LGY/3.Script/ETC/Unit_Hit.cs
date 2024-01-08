@@ -8,17 +8,23 @@ public class Unit_Hit : MonoBehaviour
     private Player_State p_state;
     private Rigidbody2D rigidbody;
 
+    Color defaultColor;
     private void Awake()
     {
         TryGetComponent<Player_State>(out p_state);
-        TryGetComponent<SpriteRenderer>(out sprite);
         TryGetComponent<Rigidbody2D>(out rigidbody);
     }
+    
 
     public void Hit(int mylayer, Vector3 hitpos)
-    {
+    {           
+        TryGetComponent<SpriteRenderer>(out sprite);
+        defaultColor = sprite.color;
+        Debug.Log(defaultColor);
         StartCoroutine(OnDamage(mylayer, hitpos));
     }
+
+    
 
     private IEnumerator OnDamage(int mylayer, Vector3 hitpos)
     {
@@ -35,7 +41,8 @@ public class Unit_Hit : MonoBehaviour
 
         gameObject.layer = (int)Layer_Index.Hit;
         yield return new WaitForSeconds(1f);
-        sprite.color = Color.white;
+        sprite.color = defaultColor;
+                
         gameObject.layer = mylayer;
 
         yield return null;
