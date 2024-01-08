@@ -21,7 +21,11 @@ public class AttackBox : MonoBehaviour
             {
                 case Unit_state.Default:
                     mon_state.Attack(player);
-                    break;                
+                    break;
+                case Unit_state.Hit:
+                    //넉백 추가 해줄 것.
+                    mon_state.Attack(player);
+                    break;
                 case Unit_state.Stun:
                     mon_state.Attack(player);
                     player.Stun(2f);
