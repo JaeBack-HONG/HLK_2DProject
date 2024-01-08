@@ -90,6 +90,7 @@ public class MonsterMove : MonoBehaviour
                 FlipDirection = 1;
             }
         }
+        
     }
     public void PlayerDirectionCheck()
     {
@@ -107,21 +108,22 @@ public class MonsterMove : MonoBehaviour
     private void WallCheck()
     {
         //벽 체크후 벽이면 전환
-        int groundLayerMask = LayerMask.GetMask("Ground");
-        RaycastHit2D left_hit = Physics2D.Raycast(transform.position, Vector2.left, 1f, groundLayerMask);
-        RaycastHit2D right_hit = Physics2D.Raycast(transform.position, Vector2.right, 1f, groundLayerMask);
-        Debug.DrawRay(transform.position, Vector2.left * 1f);
-        Debug.DrawRay(transform.position, Vector2.right * 1f);
+        //int groundLayerMask = LayerMask.GetMask("Ground");
+        //RaycastHit2D left_hit = Physics2D.Raycast(transform.position, Vector2.left, 1f, groundLayerMask);
+        //RaycastHit2D right_hit = Physics2D.Raycast(transform.position, Vector2.right, 1f, groundLayerMask);
+        //Debug.DrawRay(transform.position, Vector2.left * 1f,Color.black);
+        //Debug.DrawRay(transform.position, Vector2.right * 1f, Color.black);
 
         //이동 결정
         SelectMove();
         //낭떨어지면
         GroundCheck_Ray();
         //벽에 닿았을 경우 전환
-        if (right_hit.collider != null || left_hit.collider != null)
-        {
-            nextMove = -nextMove;
-        }
+        //if (right_hit.collider != null || left_hit.collider != null)
+        //{
+        //    Debug.Log(nextMove);
+        //    nextMove = -nextMove;
+        //}
     }
     private void SelectMove()
     {
