@@ -22,7 +22,7 @@ public class Player_LilWiz_Mod : Ability
         yield return new WaitForSeconds(0.25f);
 
 
-        CreateBubble(P_state.direction);
+        CreateBubble();
 
         animator.SetTrigger("Idle");
         P_state.actState = Unit_state.Idle;
@@ -30,12 +30,12 @@ public class Player_LilWiz_Mod : Ability
         
     }
 
-    private void CreateBubble(Vector3 direction)
+    private void CreateBubble()
     {
-        Vector3 startPos = transform.position + new Vector3(direction.x, 0.5f, 0);
-        GameObject bubble = Instantiate(lil_WizMagic_obj, startPos, Quaternion.identity);
-        Player_MagicBubble bubble_C = bubble.GetComponent<Player_MagicBubble>();
-        bubble_C.Start_Co(direction);
+        GameObject bubble = Instantiate(lil_WizMagic_obj,
+            new Vector3(transform.position.x + P_state.direction.x, transform.position.y + 0.2f), Quaternion.identity);
+        Player_Projectile bubble_C = bubble.GetComponent<Player_Projectile>();
+        bubble_C.StartCoroutine(bubble_C.Shot(P_state.direction));
 
 
     }

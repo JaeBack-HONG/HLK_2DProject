@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 684274193832687664}
   - component: {fileID: 5294653931156444604}
   - component: {fileID: 3329743050120156444}
+  - component: {fileID: 821563398283158581}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -428,6 +429,7 @@ MonoBehaviour:
   - {fileID: 684274193832687664}
   - {fileID: 5294653931156444604}
   - {fileID: 3329743050120156444}
+  - {fileID: 821563398283158581}
   current_Ab: {fileID: 0}
 --- !u!114 &6733462574698497862
 MonoBehaviour:
@@ -569,3 +571,20 @@ MonoBehaviour:
   animator: {fileID: 0}
   anispeed: 1.5
   Tracy_Bow_obj: {fileID: 2206870464302611375, guid: c90cf2d8d7f62884ba42bbc9cdd9269e, type: 3}
+--- !u!114 &821563398283158581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986413340031863258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497b80f60eb1abe40ae6b535a8212c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  anispeed: 1
+  Percy_FireBall_obj: {fileID: 2206870464302611375, guid: 7495ead7b93efdc4ab3a304106d5950e, type: 3}

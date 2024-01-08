@@ -2,31 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Tracy_Mod : Ability
+public class Player_Percy_Mod : Ability
 {
-    [SerializeField] private GameObject Tracy_Bow_obj;
+    [SerializeField] private GameObject Percy_FireBall_obj;
 
     public override void UseAbility()
     {
-        StartCoroutine(TracyAttack_Co());
+        StartCoroutine(PercyAttack_Co());
     }
 
-    private IEnumerator TracyAttack_Co()
+    private IEnumerator PercyAttack_Co()
     {
         rigidbody.velocity = Vector2.zero;
         P_state.actState = Unit_state.Default;
-        animator.SetTrigger("TracyMod");
+        animator.SetTrigger("PercyMod");
         animator.speed = anispeed;
-        PlayerManager.instance.UsedAb();
-        yield return new WaitForSeconds(1.5f / anispeed);
+        yield return new WaitForSeconds(0.35f / anispeed);
 
 
 
         CreateBullet();
-        yield return new WaitForSeconds(0.1f / anispeed);
 
+        yield return new WaitForSeconds(0.25f / anispeed);
+        
         animator.SetTrigger("Idle");
-        animator.speed = 1f;
+        animator.speed = 1;
         P_state.actState = Unit_state.Idle;
 
         yield return null;
@@ -34,10 +34,9 @@ public class Player_Tracy_Mod : Ability
 
     private void CreateBullet()
     {
-        GameObject bullet = Instantiate(Tracy_Bow_obj,
+        GameObject bullet = Instantiate(Percy_FireBall_obj,
             new Vector3(transform.position.x + P_state.direction.x, transform.position.y + 0.2f), Quaternion.identity);
         Player_Projectile bullet_C = bullet.GetComponent<Player_Projectile>();
         bullet_C.StartCoroutine(bullet_C.Shot(P_state.direction));
-
     }
 }

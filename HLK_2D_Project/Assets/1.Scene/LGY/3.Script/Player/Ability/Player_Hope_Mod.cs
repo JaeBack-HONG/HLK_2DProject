@@ -18,8 +18,7 @@ public class Player_Hope_Mod : Ability
         rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionX;
         animator.SetTrigger("HopeMod");
         yield return new WaitForSeconds(0.55f);
-        Vector3 start = transform.position + new Vector3(P_state.direction.x * 2f, 0.5f, 0);
-        Instantiate(player_Bullet, start, Quaternion.identity, transform);
+        CreateBullet();
 
 
         P_state.actState = Unit_state.Idle;
@@ -28,5 +27,13 @@ public class Player_Hope_Mod : Ability
         yield return new WaitForSeconds(0.2f);
 
         yield return null;
+    }
+    private void CreateBullet()
+    {
+        GameObject bullet = Instantiate(player_Bullet,
+            new Vector3(transform.position.x + P_state.direction.x, transform.position.y + 0.2f), Quaternion.identity);
+        Player_Projectile bullet_C = bullet.GetComponent<Player_Projectile>();
+        bullet_C.StartCoroutine(bullet_C.Shot(P_state.direction));
+
     }
 }
