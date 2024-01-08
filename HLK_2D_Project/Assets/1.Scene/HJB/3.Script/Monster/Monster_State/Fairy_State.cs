@@ -2,8 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blankey_State : Monster_State
+public class Fairy_State : Monster_State
 {
+
+    [Header("탐지 시간")]
+    [SerializeField] private float detectionSet= 0;
+
+    [SerializeField] float currentTime = 0f;
+
+    [SerializeField] private Collider2D collider2; 
+
+
+
+    private bool targetPlayer = false;
     private void Start()
     {
         MonsterDataSetting();
@@ -17,39 +28,39 @@ public class Blankey_State : Monster_State
                 strength: 1, moveSpeed: 4, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
-        state = Unit_state.Move;
-        ability_Item = Ability_Item.Blankey;
-        
+        state = Unit_state.Idle;
+        ability_Item = Ability_Item.Fairy;
+
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
     {
-        
+
         switch (state)
         {
             case Unit_state.Default:
                 break;
+
             case Unit_state.Idle:
+                TargetPlayerCheck();
                 break;
-            case Unit_state.Move:
-                if (monsterMove.target)
-                {                    
-                    Blankey_PlayerDetection();
-                }
+            case Unit_state.Move:                
+                Blankey_PlayerDetection();
                 break;
             case Unit_state.Attack:
-                
+
                 break;
-            case Unit_state.Grab:                
+            case Unit_state.Grab:
                 IsGrab();
                 break;
             case Unit_state.Stun:
                 //여기서 모든 행동 및 코루틴 중지
-                
+
                 break;
             case Unit_state.Hit:
                 break;
             case Unit_state.Die:
+                StartCoroutine(FairyDie());
                 break;
             default:
                 break;
@@ -60,40 +71,45 @@ public class Blankey_State : Monster_State
             Monster_HealthCheck();
         }
     }
+    private void TargetPlayerCheck()
+    {
+        if (monsterMove.target)
+        {
+            state = Unit_state.Move;
+        }
+    }
     private void Blankey_PlayerDetection()
     {
         Transform player = monsterMove.targetPlayer;
         monsterMove.PlayerDirectionCheck();
-        Vector2 playerDirection = (player.position - transform.position).normalized;        
-        if (monsterMove.direction.Equals(-1))
-        {
-            if (player.eulerAngles.y.Equals(180))
-            {                
-                animator.enabled = true;
-                rigidbody.velocity = playerDirection * data.MoveSpeed;
-            }
-            else
-            {
-                animator.enabled = false;
-                rigidbody.velocity = Vector2.zero;
-            }
-        }
-        else
-        {
-            if (player.eulerAngles.y.Equals(0))
-            {
-                rigidbody.velocity = playerDirection * data.MoveSpeed;
-                animator.enabled = true;
-            }
-            else
-            {
-                animator.enabled = false;
-                rigidbody.velocity = Vector2.zero;
-            }
-        }
-        
-    }
+        Vector2 playerDirection = (player.position - transform.position).normalized;
+                                
+        rigidbody.velocity = playerDirection * data.MoveSpeed;
 
+        currentTime += Time.deltaTime;
+
+        if (currentTime >= 30f)
+        {
+            state = Unit_state.Die;
+        }
+    }
+    private IEnumerator FairyDie()
+    {
+        state = Unit_state.Dash;
+        collider2.enabled = false;
+        currentTime = 0f;
+        rigidbody.velocity = Vector2.zero;
+        Color fairyColor = renderer.color;//
+        while (currentTime<3f)
+        {
+            currentTime += Time.fixedDeltaTime;
+            
+            fairyColor.a = Mathf.Lerp(1f, 0, currentTime/3f);
+            renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b,fairyColor.a);
+            yield return new WaitForFixedUpdate();
+        }
+        Health = 0;
+    }
 
     public override void Monster_HealthCheck()
     {

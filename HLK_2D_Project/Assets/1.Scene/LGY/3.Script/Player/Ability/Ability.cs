@@ -14,6 +14,7 @@ public abstract class Ability : MonoBehaviour
 
     private void Start()
     {
+        cinemachinevir = FindObjectOfType<CinemachineVirtualCamera>();
         noise = cinemachinevir.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         TryGetComponent<Player_State>(out P_state);
         TryGetComponent<Rigidbody2D>(out rigidbody);
