@@ -3,14 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Kimu_State : Monster_State
-{
-    WaitForSeconds cool = new WaitForSeconds(0.9f);
-
-    private bool rush = false;
-
-    private float direction;
-
-    private GameObject targetPlayer;
+{  
 
     private float currentTime = 0f;
     

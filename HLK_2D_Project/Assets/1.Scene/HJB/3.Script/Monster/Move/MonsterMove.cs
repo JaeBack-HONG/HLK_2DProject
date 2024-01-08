@@ -23,6 +23,8 @@ public class MonsterMove : MonoBehaviour
     private int FlipDirection = 1;
     public bool isGrab = false;
 
+    public bool groundCheck = false;
+
     public Transform targetPlayer;
 
     
@@ -58,7 +60,7 @@ public class MonsterMove : MonoBehaviour
             monster_State.animator.SetBool("Move", true);
             PlayerDirectionCheck();
             rigidbody.velocity = new Vector2(direction* MoveSpeed, rigidbody.velocity.y);
-            
+            return;
         }
         else
         {
@@ -133,6 +135,11 @@ public class MonsterMove : MonoBehaviour
    
     private void GroundCheck_Ray()
     {
+        if (!groundCheck)
+        {
+            //¹Ù´Ú¿¡ ´ê¾ÆÀÖÁö ¾Ê´Ù¸é
+            return;
+        }
         LayerMask groundMarsk = LayerMask.GetMask("Ground");
         Vector2 rayTrans;
         if (nextMove>0)
@@ -151,6 +158,22 @@ public class MonsterMove : MonoBehaviour
         if (!hit)
         {
             nextMove = -nextMove;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer.Equals((int)Layer_Index.Ground))
+        {
+            groundCheck = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer.Equals((int)Layer_Index.Ground))
+        {
+            groundCheck = false;
         }
     }
 
