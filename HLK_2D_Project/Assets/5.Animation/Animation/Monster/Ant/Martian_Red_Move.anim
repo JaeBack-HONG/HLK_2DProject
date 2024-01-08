@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ant_Idle
+  m_Name: Martian_Red_Move
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,9 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: a8cf90304ff20e84c8437048e5b8082e, type: 3}
+      value: {fileID: 4828959255747550918, guid: 3c68b112c1dde1e40aa31737a0765aa1, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 1c80eff9c2bce57449973b532f4c7cbe, type: 3}
+      value: {fileID: 3773910021628415695, guid: 3c68b112c1dde1e40aa31737a0765aa1, type: 3}
+    - time: 0.16666667
+      value: {fileID: 301768936301407214, guid: 3c68b112c1dde1e40aa31737a0765aa1, type: 3}
+    - time: 0.25
+      value: {fileID: 1407479312440406946, guid: 3c68b112c1dde1e40aa31737a0765aa1, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,14 +46,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: a8cf90304ff20e84c8437048e5b8082e, type: 3}
-    - {fileID: 21300000, guid: 1c80eff9c2bce57449973b532f4c7cbe, type: 3}
+    - {fileID: 4828959255747550918, guid: 3c68b112c1dde1e40aa31737a0765aa1, type: 3}
+    - {fileID: 3773910021628415695, guid: 3c68b112c1dde1e40aa31737a0765aa1, type: 3}
+    - {fileID: 301768936301407214, guid: 3c68b112c1dde1e40aa31737a0765aa1, type: 3}
+    - {fileID: 1407479312440406946, guid: 3c68b112c1dde1e40aa31737a0765aa1, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.16666667
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

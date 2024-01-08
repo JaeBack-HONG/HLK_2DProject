@@ -34,6 +34,13 @@ public class ProjectileShot : MonoBehaviour
 
     IEnumerator corutine;
     IEnumerator corutine_w;
+
+    SpriteRenderer renderer;
+
+    private void Awake()
+    {
+        renderer = GetComponent<SpriteRenderer>();   
+    }
     private void Start()
     {
         if (up)
@@ -95,19 +102,21 @@ public class ProjectileShot : MonoBehaviour
         isMove = true;
         Shot = false;
         while (true)
-        {
+        {            
             transform.position += direction * Time.fixedDeltaTime * Speed;
             yield return new WaitForFixedUpdate();
-        }
+        }        
     }
 
     private IEnumerator Arrow_Wait()
     {
         while (currentTime <= timeSet)
         {
+            renderer.color = new Color(255, 255, 255, 0);
             currentTime += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+        renderer.color = new Color(255, 255, 255, 255);
         currentTime = 0;
         isMove = false;
     }
