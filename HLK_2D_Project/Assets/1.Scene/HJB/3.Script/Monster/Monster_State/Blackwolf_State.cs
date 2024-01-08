@@ -126,14 +126,14 @@ public class Blackwolf_State : Monster_State
         animator.SetTrigger("Dash");
         
         float elapsedTime = 0f;
-        float attackDuration = 1f; // 이동이 완료되기를 원하는 시간
+        float attackDuration = 1f; 
 
         while (elapsedTime < attackDuration)
         {
             float step = 10f * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, step);
             elapsedTime += Time.deltaTime;
-            yield return null; // 다음 프레임까지 기다림
+            yield return null; 
         }
         animator.SetTrigger("Default");
         P_DefaultHP = 0;
