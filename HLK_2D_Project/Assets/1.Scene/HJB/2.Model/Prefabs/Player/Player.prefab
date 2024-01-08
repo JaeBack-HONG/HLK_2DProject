@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 458341760136839768}
   - component: {fileID: 684274193832687664}
   - component: {fileID: 5294653931156444604}
+  - component: {fileID: 3329743050120156444}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -425,8 +426,8 @@ MonoBehaviour:
   - {fileID: 7986413340031863259}
   - {fileID: 458341760136839768}
   - {fileID: 684274193832687664}
-  - {fileID: 684274193832687664}
   - {fileID: 5294653931156444604}
+  - {fileID: 3329743050120156444}
   current_Ab: {fileID: 0}
 --- !u!114 &6733462574698497862
 MonoBehaviour:
@@ -443,6 +444,7 @@ MonoBehaviour:
   P_state: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
+  anispeed: 0.9
 --- !u!114 &6280675499122737481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +460,7 @@ MonoBehaviour:
   P_state: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
+  anispeed: 1
   gauge: 0
   rushSpeed: 13
   spearcol: {fileID: 1874003419837650092}
@@ -477,6 +480,7 @@ MonoBehaviour:
   P_state: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
+  anispeed: 0.8
   player_Bullet: {fileID: 601019318901146435, guid: eee847dde09051f4fbb36ca86ffb9700, type: 3}
 --- !u!114 &7986413340031863259
 MonoBehaviour:
@@ -493,6 +497,7 @@ MonoBehaviour:
   P_state: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
+  anispeed: 0.8
   noisescale: 10
   attackbox: {fileID: 1874003419837650090}
   cinemachinevir: {fileID: 0}
@@ -511,6 +516,7 @@ MonoBehaviour:
   P_state: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
+  anispeed: 1
   lil_WizMagic_obj: {fileID: 441592109503060589, guid: 9f719ed3fb3fbf34591e2f5cdd086d36, type: 3}
 --- !u!114 &684274193832687664
 MonoBehaviour:
@@ -527,6 +533,7 @@ MonoBehaviour:
   P_state: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
+  anispeed: 1
   detectbox: {fileID: 3568800101787277851}
 --- !u!114 &5294653931156444604
 MonoBehaviour:
@@ -543,6 +550,22 @@ MonoBehaviour:
   P_state: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
+  anispeed: 1
   rollingSpeed: 5
-  startTimeSet: 0
-  stopTimeSet: 0
+--- !u!114 &3329743050120156444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986413340031863258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4024f671273ded141923b012e6b63816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  anispeed: 1.5
+  Tracy_Bow_obj: {fileID: 2206870464302611375, guid: c90cf2d8d7f62884ba42bbc9cdd9269e, type: 3}

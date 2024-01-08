@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tracy_Arrow : MonoBehaviour
+public class Player_Tracy_Arrow : MonoBehaviour
 {
     [Range(1f, 100f)]
     public float Speed = 2f;
@@ -12,16 +12,7 @@ public class Tracy_Arrow : MonoBehaviour
     [Range(30f, 100f)]
     [SerializeField] private float removeDistanceSet = 35f;
 
-    public IEnumerator shot_co;
-
-    public void Start_Co(Vector3 direction)
-    {
-        transform.rotation = direction.x.Equals(1) ? new Quaternion(0, 0, 0, 0) : new Quaternion(0, 180, 0, 0);
-        shot_co = Shot(direction);
-        StartCoroutine(shot_co);
-    }
-
-    public IEnumerator Shot(Vector3 target)
+    public IEnumerator Shot(Vector3 direction)
     {
 
         Vector3 defaultDistance = transform.position;
@@ -32,22 +23,21 @@ public class Tracy_Arrow : MonoBehaviour
             {
                 break;
             }
-            transform.position += target * Time.deltaTime * Speed;
+            transform.position += direction * Time.deltaTime * Speed;
             yield return null;
         }
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") &&
-            collision.gameObject.layer.Equals((int)Layer_Index.Player))
+        if (collision.gameObject.CompareTag("Enemy") &&
+            collision.gameObject.layer.Equals((int)Layer_Index.Enemy))
         {
-            Player_State playerState = collision.gameObject.GetComponent<Player_State>();
+            Monster_State playerState = collision.gameObject.GetComponent<Monster_State>();
             //여기에 플레이어 독 데미지 불러오기
 
-            StopCoroutine(shot_co);
             Destroy(this.gameObject);
         }
 

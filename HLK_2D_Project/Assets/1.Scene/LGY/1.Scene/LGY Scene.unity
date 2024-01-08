@@ -515,6 +515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lil_Wiz
       objectReference: {fileID: 0}
+    - target: {fileID: 8280456633431355110, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b1461f13247f2740aa5ad9205f0a298, type: 3}
 --- !u!1 &207755636
@@ -1293,7 +1297,7 @@ RectTransform:
   - {fileID: 207755637}
   - {fileID: 1079453425}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12292,7 +12296,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1563732924
 GameObject:
@@ -15480,7 +15484,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061762666
 GameObject:

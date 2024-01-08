@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6067879388009047582}
   - component: {fileID: -1998990445216460336}
   m_Layer: 0
-  m_Name: TracyArrow
+  m_Name: MonTracyArrow 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

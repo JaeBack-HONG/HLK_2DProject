@@ -93,7 +93,7 @@ public class Tracy_State : Monster_State
     private void CreateBullet(Vector3 direction)
     {
         GameObject bullet = Instantiate(Tracy_Bow_obj, shotPosi.transform.position, Quaternion.identity);
-        Tracy_Arrow bullet_C = bullet.GetComponent<Tracy_Arrow>();
+        Mon_Tracy_Arrow bullet_C = bullet.GetComponent<Mon_Tracy_Arrow>();
         bullet_C.Start_Co(direction);
     }
 

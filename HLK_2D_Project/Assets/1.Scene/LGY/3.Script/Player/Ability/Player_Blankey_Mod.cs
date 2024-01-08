@@ -18,6 +18,7 @@ public class Player_Blankey_Mod : Ability
         rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
         P_state.actState = Unit_state.Default;
         detectbox.SetActive(true);
+        PlayerManager.instance.UsedAb();
         animator.SetTrigger("BlankeyMod");
         Time.timeScale = 0.5f;
         yield return new WaitForSeconds(0.3f);

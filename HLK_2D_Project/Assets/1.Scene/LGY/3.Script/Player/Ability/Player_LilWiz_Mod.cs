@@ -17,6 +17,7 @@ public class Player_LilWiz_Mod : Ability
         rigidbody.velocity = Vector2.zero;
         P_state.actState= Unit_state.Default;
         animator.SetTrigger("LilWizMod");
+        PlayerManager.instance.UsedAb();
 
         yield return new WaitForSeconds(0.25f);
 
@@ -26,6 +27,7 @@ public class Player_LilWiz_Mod : Ability
         animator.SetTrigger("Idle");
         P_state.actState = Unit_state.Idle;
         yield return null;
+        
     }
 
     private void CreateBubble(Vector3 direction)

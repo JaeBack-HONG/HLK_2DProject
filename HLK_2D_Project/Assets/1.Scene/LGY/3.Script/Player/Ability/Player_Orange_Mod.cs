@@ -6,7 +6,6 @@ public class Player_Orange_Mod : Ability
 {
     [Header("구르기 속도")]
     [SerializeField] private float rollingSpeed = 15f;
-    public float Gauge;
     private bool ishit;
 
     public override void UseAbility()
@@ -21,7 +20,7 @@ public class Player_Orange_Mod : Ability
 
         rigidbody.velocity = Vector2.zero;
         P_state.actState = Unit_state.Default;
-        Gauge = 0f;
+        float Gauge = 0f;
 
         animator.SetTrigger("OrangeMod");
         while (Gauge <= 3f && Input.GetKey(KeyCode.Z))
@@ -34,6 +33,8 @@ public class Player_Orange_Mod : Ability
         {
             yield return new WaitForFixedUpdate();
         }
+
+        PlayerManager.instance.UsedAb();
 
         while (Gauge >= 0)
         {
