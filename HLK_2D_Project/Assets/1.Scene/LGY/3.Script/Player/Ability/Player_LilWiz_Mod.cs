@@ -27,6 +27,13 @@ public class Player_LilWiz_Mod : Ability
         animator.SetTrigger("Idle");
         P_state.actState = Unit_state.Idle;
         P_state.isAttack = false;
+
+        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
+        {
+            P_state.isFairy = false;
+            P_state.actState = Unit_state.Attack;
+        }
+
         yield return null;
     }
 
@@ -38,5 +45,6 @@ public class Player_LilWiz_Mod : Ability
         bubble_C.StartCoroutine(bubble_C.Shot(P_state.direction));
 
 
-    }
+ 
+}
 }

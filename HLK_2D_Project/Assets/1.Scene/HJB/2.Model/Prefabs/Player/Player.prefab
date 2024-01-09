@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 851391039751932251}
   - component: {fileID: 6920031988189846070}
   - component: {fileID: 1845878268536882986}
+  - component: {fileID: 3056226531259936753}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -622,6 +623,7 @@ MonoBehaviour:
   - {fileID: 851391039751932251}
   - {fileID: 6920031988189846070}
   - {fileID: 1845878268536882986}
+  - {fileID: 3056226531259936753}
   current_Ab: {fileID: 0}
 --- !u!114 &6733462574698497862
 MonoBehaviour:
@@ -918,6 +920,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63656a63339b63248bb69436263df441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  P_Move: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
+--- !u!114 &3056226531259936753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986413340031863258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b6b30b17fea44a99b13c500058465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   P_state: {fileID: 0}

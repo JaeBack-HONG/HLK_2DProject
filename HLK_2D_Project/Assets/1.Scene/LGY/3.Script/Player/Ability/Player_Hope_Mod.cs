@@ -26,6 +26,13 @@ public class Player_Hope_Mod : Ability
         animator.SetTrigger("Idle");
         rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         P_state.isAttack = false;
+
+        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
+        {
+            P_state.isFairy = false;
+            P_state.actState = Unit_state.Attack;
+        }
+
         yield return null;
     }
     private void CreateBullet()

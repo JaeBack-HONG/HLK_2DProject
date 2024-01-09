@@ -27,6 +27,12 @@ public class Player_BabyBoss_Mod : Ability
         yield return new WaitForSeconds(0.5f);
         gameObject.layer = (int)Layer_Index.Player;
         P_state.actState = Unit_state.Move;
+
+        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
+        {
+            P_state.isFairy = false;
+            P_state.actState = Unit_state.Attack;
+        }
     }
 
 }

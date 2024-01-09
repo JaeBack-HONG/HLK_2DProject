@@ -25,6 +25,13 @@ public class Player_BigRed_Mod : Ability
         animator.SetTrigger("Idle");
         animator.speed = 1;
         P_state.actState= Unit_state.Idle;
+
+        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
+        {
+            P_state.isFairy = false;
+            P_state.actState = Unit_state.Attack;
+        }
+
         yield return null;
     }
 }
