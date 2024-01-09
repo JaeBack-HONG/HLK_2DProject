@@ -5,9 +5,7 @@ using UnityEngine;
 public class BigRed_State : Monster_State
 {
     WaitForSeconds cool = new WaitForSeconds(0.25f);
-
-    private bool bigRedisAttack = false;
-
+    
     IEnumerator bigRedAttack_co;
     IEnumerator specialAttack_co;
 
@@ -22,24 +20,22 @@ public class BigRed_State : Monster_State
             (name: "Blackwolf", hp: 1, detection: 10, range: 2, attackSpeed: 1,
                 strength: 2, moveSpeed: 5, jumpForce: 1);
         Health = data.HP;
-        Strength = data.Strength;
-        state = Unit_state.Move;
+        Strength = data.Strength;        
         ability_Item = Ability_Item.BigRed;
         bigRedAttack_co = BigRedAttack_Co();
         specialAttack_co = SpecialAttack_Co();
         base.MonsterDataSetting();
+        ChangeState(Unit_state.Move);
     }
     private void FixedUpdate()
     {
-        if (!state.Equals(Unit_state.Default))
+        if (!state.Equals(Unit_state.Die))
         {
             Monster_HealthCheck();
         }
 
-
         switch (state)
         {
-
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
@@ -47,16 +43,40 @@ public class BigRed_State : Monster_State
                 BigRed_PlayerCheck();
                 break;
             case Unit_state.Attack:
-                                   
-                BigRedSelectAttack();                    
-                
                 break;
             case Unit_state.Grab:
-                IsGrab();
-                StopCoroutine();
                 break;
             case Unit_state.Stun:
-                StopCoroutine();
+                break;
+            case Unit_state.Die:
+                break;
+        }
+    }
+    private void ChangeState(Unit_state newState)
+    {        
+        if (state.Equals(newState)&& !newState.Equals(Unit_state.Move))
+        {
+            return;
+        }        
+
+        StopCoroutine();
+
+        state = newState;
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:                
+                break;
+            case Unit_state.Attack:                                   
+                BigRedSelectAttack();                                    
+                break;
+            case Unit_state.Grab:
+                IsGrab();                
+                break;
+            case Unit_state.Stun:                
                 break;
             case Unit_state.Die:
                 break;
@@ -67,24 +87,24 @@ public class BigRed_State : Monster_State
     {
         StopCoroutine(bigRedAttack_co);
         StopCoroutine(specialAttack_co);
+        specialAttack_co = SpecialAttack_Co();
+        bigRedAttack_co = BigRedAttack_Co();
     }
     private void BigRedSelectAttack()
     {
-        if (!bigRedisAttack)
-        {
-            int randomAttack = Random.Range(0, 100);
-            rigidbody.velocity = Vector2.zero;            
-            if (randomAttack.Equals(5))
-            {
-                bigRedAttack_co = BigRedAttack_Co();
-                StartCoroutine(specialAttack_co);
-            }
-            else
-            {
-                specialAttack_co = SpecialAttack_Co();
-                StartCoroutine(bigRedAttack_co);
-            }
+        
+        int randomAttack = Random.Range(0,6);
+        rigidbody.velocity = Vector2.zero;
+        Debug.Log(randomAttack);
+        if (randomAttack.Equals(5))
+        {            
+            StartCoroutine(specialAttack_co);
         }
+        else
+        {            
+            StartCoroutine(bigRedAttack_co);
+        }
+        
     }
 
     #region //Mr.Chopms 플레이어 공격사거리 탐지
@@ -92,8 +112,8 @@ public class BigRed_State : Monster_State
     {
         float targetDistance = monsterMove.DistanceAndDirection();
         if (targetDistance < 2.5f)
-        {
-            state = Unit_state.Attack;
+        {            
+            ChangeState(Unit_state.Attack);
         }
     }
     #endregion
@@ -102,30 +122,24 @@ public class BigRed_State : Monster_State
 
     #region //BigRed Attack 공격_코루틴
     private IEnumerator BigRedAttack_Co()
-    {
-        bigRedisAttack = true;
-        animator.SetTrigger("Attack");        
-        state = Unit_state.Idle;
+    {        
+        animator.SetTrigger("Attack");                
         yield return cool;
         animator.SetTrigger("Default");
-        yield return new WaitForSeconds(1f);
-        state = Unit_state.Move;
-        bigRedisAttack = false;
+        yield return new WaitForSeconds(1f);        
+        ChangeState(Unit_state.Move);
         yield return null;
     }
     #endregion
 
     #region //BigRed Special 공격_코루틴
     private IEnumerator SpecialAttack_Co()
-    {
-        bigRedisAttack = true;
-        animator.SetTrigger("Special");        
-        state = Unit_state.Idle;
+    {        
+        animator.SetTrigger("Special");                
         yield return cool;
         animator.SetTrigger("Default");
-        yield return new WaitForSeconds(1f);
-        state = Unit_state.Move;
-        bigRedisAttack = false;
+        yield return new WaitForSeconds(1f);                
+        ChangeState(Unit_state.Move);
         yield return null;
     }
     #endregion
@@ -133,6 +147,9 @@ public class BigRed_State : Monster_State
     {
         if (Health <= 0)
         {
+            ChangeState(Unit_state.Die);
+            GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
+            ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
             base.Die();
         }
     }

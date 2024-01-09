@@ -6,6 +6,8 @@ using UnityEngine;
 public abstract class Monster_State : MonoBehaviour
 {
     public Unit_state state;
+    public Unit_state currentState;
+
     public Condition_state C_State;
 
     public UnitData data;
@@ -53,7 +55,7 @@ public abstract class Monster_State : MonoBehaviour
 
     public virtual void Die()
     {        
-        state = Unit_state.Default;
+        //state = Unit_state.Default;
         rigidbody.velocity = Vector2.zero;
         renderer.color = Color.white;
         Debug.Log("Á×À½");
