@@ -31,6 +31,12 @@ public class BigRed_State : Monster_State
     }
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Default))
+        {
+            Monster_HealthCheck();
+        }
+
+
         switch (state)
         {
 
@@ -41,10 +47,9 @@ public class BigRed_State : Monster_State
                 BigRed_PlayerCheck();
                 break;
             case Unit_state.Attack:
-                if (!bigRedisAttack)
-                {                    
-                    BigRedSelectAttack();                    
-                }
+                                   
+                BigRedSelectAttack();                    
+                
                 break;
             case Unit_state.Grab:
                 IsGrab();
@@ -56,10 +61,6 @@ public class BigRed_State : Monster_State
             case Unit_state.Die:
                 break;
         }
-        if (!state.Equals(Unit_state.Default))
-        {
-            Monster_HealthCheck();
-        }
     }
 
     private void StopCoroutine()
@@ -69,18 +70,20 @@ public class BigRed_State : Monster_State
     }
     private void BigRedSelectAttack()
     {
-        int randomAttack = Random.Range(0, 100);
-        rigidbody.velocity = Vector2.zero;
-        Debug.Log(randomAttack);
-        if (randomAttack.Equals(5))
+        if (!bigRedisAttack)
         {
-            bigRedAttack_co = BigRedAttack_Co();
-            StartCoroutine(specialAttack_co);
-        }
-        else
-        {
-            specialAttack_co = SpecialAttack_Co();
-            StartCoroutine(bigRedAttack_co);
+            int randomAttack = Random.Range(0, 100);
+            rigidbody.velocity = Vector2.zero;            
+            if (randomAttack.Equals(5))
+            {
+                bigRedAttack_co = BigRedAttack_Co();
+                StartCoroutine(specialAttack_co);
+            }
+            else
+            {
+                specialAttack_co = SpecialAttack_Co();
+                StartCoroutine(bigRedAttack_co);
+            }
         }
     }
 

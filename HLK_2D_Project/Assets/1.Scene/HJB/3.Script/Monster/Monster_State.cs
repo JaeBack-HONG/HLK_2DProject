@@ -49,7 +49,6 @@ public abstract class Monster_State : MonoBehaviour
         monsterMove.Detection = data.Detection;        
     }
 
-
     public abstract void Monster_HealthCheck();
 
     public virtual void Die()
@@ -61,11 +60,12 @@ public abstract class Monster_State : MonoBehaviour
         animator.SetTrigger("Death");
         Destroy(gameObject, 0.7f);
     }
+
     #region//플레이어에게 데미지주는 메서드(Player_State other)
     public void Attack(Player_State other)
     {
         other.Health -= data.Strength;
-        other.unithit.Hit(other.gameObject.layer,transform.position);
+        other.unithit.Hit((int)Layer_Index.Player,transform.position);
     }
     #endregion
 
@@ -74,15 +74,8 @@ public abstract class Monster_State : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {            
-            Player_State Player = collision.gameObject.GetComponent<Player_State>();
-            Player_Move Player_M = collision.gameObject.GetComponent<Player_Move>();
-            //여기 말고 레이로 한번 해볼 것
-            //if (rolling)
-            //{
-            //    rolling = false;
-            //    Player_M.rigidbody.AddRelativeForce(-Player.direction * 20f, ForceMode2D.Impulse);
-            //    
-            //}
+            Player_State Player = collision.gameObject.GetComponent<Player_State>();            
+            
             if (Player != null)
             {
                 Attack(Player);
@@ -113,8 +106,7 @@ public abstract class Monster_State : MonoBehaviour
         //플레이어 레이어이면
         if (collision.gameObject.layer.Equals((int)Layer_Index.Player) || collision.gameObject.CompareTag("Player"))
         {
-            monsterMove.target = false;
-            
+            monsterMove.target = false;            
         }
     }
     #endregion
