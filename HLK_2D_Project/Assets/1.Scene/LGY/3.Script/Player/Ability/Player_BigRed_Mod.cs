@@ -16,11 +16,13 @@ public class Player_BigRed_Mod : Ability
         rigidbody.velocity = Vector2.zero;
         P_state.actState= Unit_state.Default;
         animator.SetTrigger("BigRedMod");
+        animator.speed = anispeed;
         punchCol.enabled=true;
-        yield return new WaitForSeconds(0.55f);
+        yield return new WaitForSeconds(0.55f / anispeed);
         punchCol.enabled = false;
 
         animator.SetTrigger("Idle");
+        animator.speed = 1;
         P_state.actState= Unit_state.Idle;
         yield return null;
     }
