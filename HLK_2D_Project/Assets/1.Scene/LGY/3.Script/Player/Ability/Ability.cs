@@ -9,6 +9,7 @@ public abstract class Ability : MonoBehaviour
     [HideInInspector] public Player_Move P_Move;
     [HideInInspector] public Rigidbody2D rigidbody;
     [HideInInspector] public Animator animator;
+    [HideInInspector] public IEnumerator Double_co;
     public float anispeed = 1f;
     public CinemachineVirtualCamera cinemachinevir;
     public CinemachineBasicMultiChannelPerlin noise;
@@ -23,5 +24,4 @@ public abstract class Ability : MonoBehaviour
         TryGetComponent<Animator>(out animator);
     }
     public abstract void UseAbility();
-
 }

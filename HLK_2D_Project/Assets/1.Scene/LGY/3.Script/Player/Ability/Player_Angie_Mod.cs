@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_Angie_Mod : Ability
 {
+
     public override void UseAbility()
     {
         P_state.actState = Unit_state.Idle;
@@ -13,8 +14,6 @@ public class Player_Angie_Mod : Ability
         if (havingAbCount.Equals(0)) return;
 
         StartCoroutine(AddAbCount());
-
-
     }
 
     private void AbCheck(ref int idx)
@@ -41,6 +40,13 @@ public class Player_Angie_Mod : Ability
         PlayerManager.instance.count_List[randomidx]++;
         P_state.Health--;
         PlayerManager.instance.HeartCheck(P_state.Health);
+
+        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
+        {
+            P_state.isFairy = false;
+            P_state.actState = Unit_state.Attack;
+        }
+
         yield return null;
     }
 }

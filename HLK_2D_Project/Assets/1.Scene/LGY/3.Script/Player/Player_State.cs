@@ -31,6 +31,8 @@ public class Player_State : MonoBehaviour
     private IEnumerator Slow_Co;
     private IEnumerator Stun_Co;
 
+    public bool isFairy = false;    
+
     private void Start()
     {
         TryGetComponent<Player_Move>(out P_Move);
