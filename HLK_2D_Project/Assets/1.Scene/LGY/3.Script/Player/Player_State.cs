@@ -47,7 +47,8 @@ public class Player_State : MonoBehaviour
 
         P_Ability.Choice_Ab();
         State_Check();
-
+        IsFalling();
+        GroundRayCheck();
         Player_HealthCheck();
 
         direction = (transform.rotation.y.Equals(0)) ? Vector2.right : Vector2.left;
@@ -68,14 +69,12 @@ public class Player_State : MonoBehaviour
                 break;
             case Unit_state.Idle:
                 P_Move.MoveCheck();
-                if (Input.GetKeyDown(KeyCode.Z)) actState = Unit_state.Attack;
                 break;
             case Unit_state.Move:
                 P_Move.MoveCheck();
-                if (Input.GetKeyDown(KeyCode.Z)) actState = Unit_state.Attack;
                 break;
             case Unit_state.Attack:
-                if (P_Ability.current_Ab != null && P_Ability &&
+                if (P_Ability.current_Ab != null &&
                     !PlayerManager.instance.count_List[PlayerManager.instance.current_Count].Equals(0))
                 {
                     P_Ability.current_Ab.UseAbility();
@@ -93,8 +92,6 @@ public class Player_State : MonoBehaviour
                 unithit.Hit(gameObject.layer, transform.position);
                 break;
         }
-        IsFalling();
-        GroundRayCheck();
     }
 
     public void IsGrab()

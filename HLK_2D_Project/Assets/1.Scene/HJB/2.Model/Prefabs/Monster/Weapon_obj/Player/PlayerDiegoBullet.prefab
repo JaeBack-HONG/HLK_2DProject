@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4412912750351655182}
   - component: {fileID: -8756430062173591043}
   m_Layer: 0
-  m_Name: PlayerBullet
+  m_Name: PlayerDiegoBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,6 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca8ad42a6abf3e49899dadd8555fbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 15
+  Speed: 18
   damage: 2
   removeDistanceSet: 35
