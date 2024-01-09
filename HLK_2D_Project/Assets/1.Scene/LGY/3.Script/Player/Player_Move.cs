@@ -22,7 +22,7 @@ public class Player_Move : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Top"))
+        if (collision.gameObject.CompareTag("Top") && gameObject.layer.Equals((int)Layer_Index.Player))
         {
             mon = collision.gameObject.transform.root.GetComponent<Monster_State>();
             Jump();

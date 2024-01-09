@@ -10,6 +10,7 @@ public class Stun_Attack_col : HitBox
         {
             Monster_State monstate = collision.gameObject.GetComponent<Monster_State>();
             monstate.state = Unit_state.Stun;
+            StartCoroutine(WindowNoise());
             HitDmg(monstate);
         }
 
