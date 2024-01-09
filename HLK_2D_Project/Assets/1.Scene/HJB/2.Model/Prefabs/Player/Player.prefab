@@ -82,8 +82,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5fd6721c15c6714990ccc3c30675d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   P_state: {fileID: 0}
   dmg: 2
+  noiseTime: 0.15
+  noiseScale: 3
 --- !u!1 &2238243751032125920
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,8 +159,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5fd6721c15c6714990ccc3c30675d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   P_state: {fileID: 0}
   dmg: 3
+  noiseTime: 0.15
+  noiseScale: 3
 --- !u!50 &5818709561506914088
 Rigidbody2D:
   serializedVersion: 4
@@ -355,8 +363,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d528d4bffea0c48a9183b6d263f6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
   P_state: {fileID: 0}
   dmg: 2
+  noiseTime: 0.15
+  noiseScale: 3
   knockbackValue: 10
 --- !u!1 &7986413340031863258
 GameObject:
@@ -389,6 +401,7 @@ GameObject:
   - component: {fileID: 7325355895843320442}
   - component: {fileID: 851391039751932251}
   - component: {fileID: 6920031988189846070}
+  - component: {fileID: 1845878268536882986}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -608,6 +621,7 @@ MonoBehaviour:
   - {fileID: 7325355895843320442}
   - {fileID: 851391039751932251}
   - {fileID: 6920031988189846070}
+  - {fileID: 1845878268536882986}
   current_Ab: {fileID: 0}
 --- !u!114 &6733462574698497862
 MonoBehaviour:
@@ -690,7 +704,6 @@ MonoBehaviour:
   anispeed: 0.8
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
-  noisescale: 10
   attackbox: {fileID: 8122092032702504612}
 --- !u!114 &458341760136839768
 MonoBehaviour:
@@ -895,6 +908,25 @@ MonoBehaviour:
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
   Attackcol: {fileID: 2239020812752703830}
+--- !u!114 &1845878268536882986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986413340031863258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63656a63339b63248bb69436263df441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  P_Move: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
 --- !u!1 &9147761030394907054
 GameObject:
   m_ObjectHideFlags: 0
