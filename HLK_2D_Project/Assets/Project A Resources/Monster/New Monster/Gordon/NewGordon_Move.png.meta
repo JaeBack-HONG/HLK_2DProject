@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: ae6e89b15e29376448ead98231e2f8d1
+guid: a4e26d9ba17125c4493e64a5ab0c7fab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3866377598497591766
-    second: Up_swing (80 x 64)_0
+      213: -8635228909874267886
+    second: NewGordon_Move_0
   - first:
-      213: 3523234654887074644
-    second: Up_swing (80 x 64)_1
+      213: 8113311280268967705
+    second: NewGordon_Move_1
   - first:
-      213: -8857513317955009311
-    second: Up_swing (80 x 64)_2
+      213: -7353832544217432688
+    second: NewGordon_Move_2
   - first:
-      213: 243554080902057617
-    second: Up_swing (80 x 64)_3
+      213: -5260483569012935021
+    second: NewGordon_Move_3
   - first:
-      213: -3680198819649022267
-    second: Up_swing (80 x 64)_4
+      213: -5088602498174877251
+    second: NewGordon_Move_4
   - first:
-      213: -7213508861297290641
-    second: Up_swing (80 x 64)_5
-  - first:
-      213: 3488124777421536958
-    second: Up_swing (80 x 64)_6
+      213: 3994471050091699254
+    second: NewGordon_Move_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -53,7 +50,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -124,12 +121,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Up_swing (80 x 64)_0
+      name: NewGordon_Move_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
+        width: 48
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -138,19 +135,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d11afdd0f128a530800000000000000
-      internalID: 3866377598497591766
+      spriteID: 219b2c0de01892880800000000000000
+      internalID: -8635228909874267886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Up_swing (80 x 64)_1
+      name: NewGordon_Move_1
       rect:
         serializedVersion: 2
-        x: 80
+        x: 48
         y: 0
-        width: 80
+        width: 48
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -159,19 +156,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45bd3e0704b05e030800000000000000
-      internalID: 3523234654887074644
+      spriteID: 91ff99c8f95489070800000000000000
+      internalID: 8113311280268967705
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Up_swing (80 x 64)_2
+      name: NewGordon_Move_2
       rect:
         serializedVersion: 2
-        x: 160
+        x: 96
         y: 0
-        width: 80
+        width: 48
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -180,19 +177,61 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e40002019ac31580800000000000000
-      internalID: -8857513317955009311
+      spriteID: 09d76386340f1f990800000000000000
+      internalID: -7353832544217432688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Up_swing (80 x 64)_3
+      name: NewGordon_Move_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3967432b0120ff6b0800000000000000
+      internalID: -5260483569012935021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGordon_Move_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db10f1d0df6a169b0800000000000000
+      internalID: -5088602498174877251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGordon_Move_5
       rect:
         serializedVersion: 2
         x: 240
         y: 0
-        width: 80
+        width: 48
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -201,71 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19e83cb6527416300800000000000000
-      internalID: 243554080902057617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Up_swing (80 x 64)_4
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 80
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c6120c0cae4decc0800000000000000
-      internalID: -3680198819649022267
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Up_swing (80 x 64)_5
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 80
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f621e32d8e774eb90800000000000000
-      internalID: -7213508861297290641
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Up_swing (80 x 64)_6
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 80
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ebef272110f486030800000000000000
-      internalID: 3488124777421536958
+      spriteID: 63c1c46a1463f6730800000000000000
+      internalID: 3994471050091699254
       vertices: []
       indices: 
       edges: []

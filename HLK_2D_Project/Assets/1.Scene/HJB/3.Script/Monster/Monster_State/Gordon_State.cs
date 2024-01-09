@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BigRed_State : Monster_State
+public class Gordon_State : Monster_State
 {
-    WaitForSeconds cool = new WaitForSeconds(0.25f);
-    
+
+    WaitForSeconds cool = new WaitForSeconds(0.4f);
+
     IEnumerator bigRedAttack_co;
     IEnumerator specialAttack_co;
 
@@ -17,11 +17,11 @@ public class BigRed_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "BigRed", hp: 1, detection: 10, range: 2, attackSpeed: 1,
+            (name: "Gordon", hp: 1, detection: 10, range: 2, attackSpeed: 1,
                 strength: 2, moveSpeed: 5, jumpForce: 1);
         Health = data.HP;
-        Strength = data.Strength;        
-        ability_Item = Ability_Item.BigRed;
+        Strength = data.Strength;
+        ability_Item = Ability_Item.Gordon;
         bigRedAttack_co = BigRedAttack_Co();
         specialAttack_co = SpecialAttack_Co();
         base.MonsterDataSetting();
@@ -57,7 +57,7 @@ public class BigRed_State : Monster_State
         if (state.Equals(newState))
         {
             return;
-        }        
+        }
 
         StopCoroutine();
 
@@ -65,18 +65,17 @@ public class BigRed_State : Monster_State
 
         switch (state)
         {
-
             case Unit_state.Idle:
                 break;
-            case Unit_state.Move:                
+            case Unit_state.Move:
                 break;
-            case Unit_state.Attack:                                   
-                BigRedSelectAttack();                                    
+            case Unit_state.Attack:
+                BigRedSelectAttack();
                 break;
             case Unit_state.Grab:
-                IsGrab();                
+                IsGrab();
                 break;
-            case Unit_state.Stun:                
+            case Unit_state.Stun:
                 break;
             case Unit_state.Die:
                 break;
@@ -92,19 +91,20 @@ public class BigRed_State : Monster_State
     }
     private void BigRedSelectAttack()
     {
-        
-        int randomAttack = Random.Range(0,6);
+
+        int randomAttack = Random.Range(0, 6);
         rigidbody.velocity = Vector2.zero;
-        Debug.Log(randomAttack);
+        Debug.Log(state);
+        animator.SetBool("Move", false);
         if (randomAttack.Equals(5))
-        {            
+        {
             StartCoroutine(specialAttack_co);
         }
         else
-        {            
+        {
             StartCoroutine(bigRedAttack_co);
         }
-        
+
     }
 
     #region //Mr.Chopms 플레이어 공격사거리 탐지
@@ -112,7 +112,7 @@ public class BigRed_State : Monster_State
     {
         float targetDistance = monsterMove.DistanceAndDirection();
         if (targetDistance < 2.5f)
-        {            
+        {
             ChangeState(Unit_state.Attack);
         }
     }
@@ -122,11 +122,18 @@ public class BigRed_State : Monster_State
 
     #region //BigRed Attack 공격_코루틴
     private IEnumerator BigRedAttack_Co()
-    {        
-        animator.SetTrigger("Attack");                
+    {
+        float currentTime = 0f;
+        while (currentTime < 0.2f)
+        {            
+            currentTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        int randomAttack = Random.Range(0,3);
+        animator.SetTrigger($"Attack{randomAttack}");
         yield return cool;
         animator.SetTrigger("Default");
-        yield return new WaitForSeconds(1f);        
+        yield return new WaitForSeconds(1f);
         ChangeState(Unit_state.Move);
         yield return null;
     }
@@ -134,11 +141,17 @@ public class BigRed_State : Monster_State
 
     #region //BigRed Special 공격_코루틴
     private IEnumerator SpecialAttack_Co()
-    {        
-        animator.SetTrigger("Special");                
-        yield return cool;
+    {
+        float currentTime = 0f;
+        animator.SetTrigger("Combo");
+        while (currentTime<1f)
+        {            
+            rigidbody.velocity = new Vector2(monsterMove.direction * 3f, rigidbody.velocity.y);            
+            currentTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
         animator.SetTrigger("Default");
-        yield return new WaitForSeconds(1f);                
+        yield return new WaitForSeconds(1f);
         ChangeState(Unit_state.Move);
         yield return null;
     }
@@ -154,3 +167,4 @@ public class BigRed_State : Monster_State
         }
     }
 }
+
