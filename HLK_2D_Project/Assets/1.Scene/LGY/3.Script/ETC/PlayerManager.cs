@@ -64,9 +64,13 @@ public class PlayerManager : MonoBehaviour
     }
 
     #region Ability Reset
-    private void ResetAbList()
+    public void ResetAbList()
     {
-        icon_Bar[current_Count].sprite = icon_Bar_All[current_Count * 5 + count_List[current_Count]];
+        for (int i = 0; i < count_List.Length; i++)
+        {
+            icon_Bar[i].sprite = icon_Bar_All[i * 5 + count_List[i]];
+
+        }
         if (count_List[current_Count].Equals(0))
         {
             int idx = current_Count;

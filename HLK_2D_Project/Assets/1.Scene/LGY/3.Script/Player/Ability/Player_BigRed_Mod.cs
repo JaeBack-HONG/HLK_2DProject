@@ -15,6 +15,7 @@ public class Player_BigRed_Mod : Ability
     {
         rigidbody.velocity = Vector2.zero;
         P_state.actState= Unit_state.Default;
+        PlayerManager.instance.UsedAb();
         animator.SetTrigger("BigRedMod");
         animator.speed = anispeed;
         punchCol.enabled=true;
