@@ -25,7 +25,7 @@ public class Mr_Chomps_State : Monster_State
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
-    {
+    {        
         switch (state)
         {
 
@@ -88,6 +88,8 @@ public class Mr_Chomps_State : Monster_State
     {
         if (Health <= 0)
         {
+            GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
+            ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
             base.Die();            
         }
     }

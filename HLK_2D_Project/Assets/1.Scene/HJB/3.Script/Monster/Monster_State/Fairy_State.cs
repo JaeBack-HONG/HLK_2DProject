@@ -88,7 +88,7 @@ public class Fairy_State : Monster_State
 
         currentTime += Time.deltaTime;
 
-        if (currentTime >= 30f)
+        if (currentTime >= detectionSet)
         {
             state = Unit_state.Die;
         }
