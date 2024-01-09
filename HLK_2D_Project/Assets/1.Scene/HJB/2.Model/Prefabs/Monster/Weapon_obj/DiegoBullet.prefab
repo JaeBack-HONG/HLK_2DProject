@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2206870464302611370}
   m_Layer: 0
   m_Name: DiegoBullet
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
