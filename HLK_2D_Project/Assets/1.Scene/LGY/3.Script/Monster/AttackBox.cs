@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
  
-public class AttackBox : MonoBehaviour
+public class HitCollider : MonoBehaviour
 {
     
     [SerializeField] private Monster_State mon_state;
