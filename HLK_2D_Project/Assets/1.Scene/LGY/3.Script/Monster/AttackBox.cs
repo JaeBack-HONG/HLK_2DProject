@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
  
-public class HitCollider : MonoBehaviour
+public class AttackBox : MonoBehaviour
 {
     
     [SerializeField] private Monster_State mon_state;
     [SerializeField] private Unit_state state;
-    
+
+    private void Awake()
+    {
+        mon_state = transform.root.GetComponent<Monster_State>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

@@ -51,7 +51,7 @@ public class Angie_State : Monster_State
                 break;
             case Unit_state.Grab:
                 break;
-            case Unit_state.Stun:
+            case Unit_state.Stun:                
                 break;
             case Unit_state.Dash:
                 break;
@@ -84,6 +84,7 @@ public class Angie_State : Monster_State
                 IsGrab();
                 break;
             case Unit_state.Stun:
+                
                 break;
             case Unit_state.Dash:
                 StartCoroutine(AngieRun_co);
@@ -130,7 +131,19 @@ public class Angie_State : Monster_State
             rigidbody.velocity = new Vector2(monsterMove.direction*data.MoveSpeed-1f, rigidbody.velocity.y);
             yield return new WaitForFixedUpdate();
         }
-        Angie_PlayerCheck();
+        float targetDistance = monsterMove.DistanceAndDirection();
+
+
+        Debug.Log(targetDistance);
+        if (targetDistance > 4f)
+        {
+            ChangeState(Unit_state.Attack);
+        }
+        else
+        {
+            ChangeState(Unit_state.Move);
+        }
+        //Angie_PlayerCheck();
         yield return new WaitForFixedUpdate();
     }
 
