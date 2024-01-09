@@ -16,6 +16,7 @@ public class Player_Percy_Mod : Ability
         P_state.isAttack = true;
         rigidbody.velocity = Vector2.zero;
         P_state.actState = Unit_state.Default;
+        PlayerManager.instance.UsedAb();
         animator.SetTrigger("PercyMod");
         animator.speed = anispeed;
         yield return new WaitForSeconds(0.35f / anispeed);
