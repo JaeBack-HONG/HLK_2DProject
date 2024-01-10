@@ -11,7 +11,8 @@ public class Blackwolf_State : Monster_State
     private int P_DefaultHP = 0;
 
     private bool skeletonAttack = false;
-
+    IEnumerator skeletonDash_co;
+    IEnumerator skeletonAttack_co;
     private void Start()
     {
         MonsterDataSetting();
@@ -26,10 +27,17 @@ public class Blackwolf_State : Monster_State
         Strength = data.Strength;
         state = Unit_state.Move;
         ability_Item = Ability_Item.Skeleton;
+        skeletonDash_co = SkeletonDash_Co();
+        skeletonAttack_co = SkeletonAttack_Co();
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();            
+        }
+
         switch (state)
         {         
             
@@ -38,38 +46,71 @@ public class Blackwolf_State : Monster_State
             case Unit_state.Move:
                 DetectPlayer();
                 monsterMove.TotalMove();
+                Skeleton_PlayerCheck();
                 break;
-            case Unit_state.Attack:
-                if (!skeletonAttack)
-                {
-                    StartCoroutine(WolfAttack_co());
-                }
+            case Unit_state.Attack:                                    
                 break;
             case Unit_state.Grab:
                 IsGrab();
+                StopCoroutine();
                 break;
             case Unit_state.Hit:
                 break;
             case Unit_state.Jump:
                 break;
             case Unit_state.Stun:
-                
+                StopCoroutine();
                 break;
             case Unit_state.Dash:
-                StartCoroutine(BlackWolfDash());
                 break;
             case Unit_state.Die:
                 break;
             default:
                 break;
         }
-        if (!state.Equals(Unit_state.Default))
+        
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
         {
-            BlackWolf_PlayerCheck();
-            Monster_HealthCheck();
+            return;
+        }
+
+        state = newState;
+
+        StopCoroutine();
+
+        switch (state)
+        {
+            
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                StartCoroutine(skeletonAttack_co);
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                StartCoroutine(skeletonDash_co);
+                break;
+            case Unit_state.Die:
+                break;
         }
     }
 
+    private void StopCoroutine()
+    {
+        StopCoroutine(skeletonDash_co);
+        StopCoroutine(skeletonAttack_co);
+        skeletonDash_co = SkeletonDash_Co();
+        skeletonAttack_co= SkeletonAttack_Co();
+    }
     #region //BlackWolf 플레이어 체력확인 및 탐지
     public void DetectPlayer()
     {
@@ -94,10 +135,9 @@ public class Blackwolf_State : Monster_State
             {
                 if (P_CurrentHP.Equals(P_DefaultHP))
                 {
-                    state = Unit_state.Dash;
+                    ChangeState(Unit_state.Dash);
                 }
                 //10초간 유지 후 탐지 되면 울프를 공격상태로 변경
-
                 currentTime = 0;
                 P_DefaultHP = 0;
             }
@@ -106,23 +146,20 @@ public class Blackwolf_State : Monster_State
     #endregion
 
     #region //BlackWolf 플레이어 공격사거리 탐지
-    private void BlackWolf_PlayerCheck()
-    {
-        if (state != Unit_state.Grab)
+    private void Skeleton_PlayerCheck()
+    {        
+        float targetDistance = monsterMove.DistanceAndDirection();        
+        if (targetDistance < 3f)
         {
-            float targetDistance = monsterMove.DistanceAndDirection();        
-            if (targetDistance < 3f)
-            {
-                state = Unit_state.Attack;
-            }
+            ChangeState(Unit_state.Attack);
         }
+     
     }
     #endregion
 
     #region //BlackWolf 대쉬_코루틴
-    private IEnumerator BlackWolfDash()
-    {
-        state = Unit_state.Idle;
+    private IEnumerator SkeletonDash_Co()
+    {        
         animator.SetTrigger("Dash");
         
         float elapsedTime = 0f;
@@ -137,22 +174,19 @@ public class Blackwolf_State : Monster_State
         }
         animator.SetTrigger("Default");
         P_DefaultHP = 0;
-        state = Unit_state.Move;
+        ChangeState(Unit_state.Move);
     }
     #endregion
 
     #region //BlackWolf 깨물기공격_코루틴
-    private IEnumerator WolfAttack_co()
+    private IEnumerator SkeletonAttack_Co()
     {
-        animator.SetTrigger("Attack");
-        skeletonAttack = true;
-        rigidbody.velocity = Vector2.zero;
-        state = Unit_state.Idle;
+        animator.SetTrigger("Attack");        
+        rigidbody.velocity = Vector2.zero;        
         yield return cool;
         animator.SetTrigger("Default");
         yield return new WaitForSeconds(1f);
-        state = Unit_state.Move;
-        skeletonAttack = false;
+        ChangeState(Unit_state.Move);
         yield return null;
     }
     #endregion
@@ -160,6 +194,7 @@ public class Blackwolf_State : Monster_State
     {
         if (Health <= 0)
         {
+            ChangeState(Unit_state.Die);
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;

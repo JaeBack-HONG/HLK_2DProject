@@ -30,28 +30,29 @@ public class Tracy_State : Monster_State
     }
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }
 
         switch (state)
         {
             case Unit_state.Default:
                 break;
-
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
                 Tracy_PlayerCheck();
-                
+                monsterMove.TotalMove();
                 break;
-            case Unit_state.Attack:
-                TracyAttack_co = TracyAttack_Co();
-                StartCoroutine(TracyAttack_co);
+            case Unit_state.Attack:                
                 break;
-            case Unit_state.Grab:
-                StopCoroutine(TracyAttack_co);
+            case Unit_state.Grab:                
                 IsGrab();
+                StopCoroutine();
                 break;
             case Unit_state.Stun:
-                StopCoroutine(TracyAttack_co);
+                StopCoroutine();
                 break;
             case Unit_state.Hit:
                 break;
@@ -61,15 +62,49 @@ public class Tracy_State : Monster_State
                 break;
         }
 
-        if (!state.Equals(Unit_state.Default))
+        
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
         {
-            Monster_HealthCheck();
+            return;
+        }
+        state = newState;
+
+        StopCoroutine();
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                StartCoroutine(TracyAttack_co);
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                break;
+            case Unit_state.Die:
+                break;
         }
     }
-
-    private IEnumerator TracyAttack_Co()
+    
+    private void StopCoroutine()
     {
-        state = Unit_state.Idle;
+        StopCoroutine(TracyAttack_co);
+        TracyAttack_co = TracyAttack_Co();
+    }
+
+private IEnumerator TracyAttack_Co()
+    {        
+        rigidbody.velocity = Vector2.zero;
         monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Shot");
 
@@ -77,7 +112,6 @@ public class Tracy_State : Monster_State
 
         Vector3 direction = (monsterMove.direction < 1) ? Vector3.left : Vector3.right;
 
-        rigidbody.velocity = Vector2.zero;
 
         CreateBullet(direction);
         
@@ -85,7 +119,7 @@ public class Tracy_State : Monster_State
         yield return cool;
 
         animator.SetTrigger("Default");
-        state = Unit_state.Move;
+        ChangeState(Unit_state.Move);
 
         yield return null;
     }
@@ -103,19 +137,19 @@ public class Tracy_State : Monster_State
 
         if (targetDistance < 10f)
         {
-            state = Unit_state.Attack;
+            ChangeState(Unit_state.Attack);
             return;
-        }
-        monsterMove.TotalMove();
+        }        
     }
 
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)
         {
-            base.Die();
+            ChangeState(Unit_state.Die);
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
+            base.Die();
         }
     }
 }

@@ -32,46 +32,79 @@ public class Orange_State : Monster_State
         Strength = data.Strength;
         state = Unit_state.Move;
         ability_Item = Ability_Item.Orange;
+        orangeAttack_co = Orange_Attack_Co();
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
     {
-        switch (state)
+        if (!state.Equals(Unit_state.Die))
         {
-
-            case Unit_state.Default:
-                break;
+            Monster_HealthCheck();
+        }
+        switch (state)
+        {            
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:                
                 monsterMove.TotalMove();
                 OrangeAttack_PlayerCheck();
                 break;
+            case Unit_state.Attack:                
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                StopCoroutine();
+                break;            
+            case Unit_state.Hit:
+                break;
+            case Unit_state.Stun:
+                StopCoroutine();
+                rigidbody.velocity = Vector2.zero;
+                animator.SetTrigger("Stop");
+                animator.SetTrigger("Default");
+                break;
+            case Unit_state.Die:
+                break;            
+        }
+
+        
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
+        {
+            return;
+        }
+
+        state = newState;
+
+        StopCoroutine();
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
             case Unit_state.Attack:
-                orangeAttack_co = Orange_Attack_Co();
                 StartCoroutine(orangeAttack_co);
                 break;
             case Unit_state.Grab:
                 IsGrab();
                 break;
-            case Unit_state.Dash:
-                break;
-            case Unit_state.Hit:
-                break;
             case Unit_state.Stun:
-                StopCoroutine(orangeAttack_co);
-                animator.SetTrigger("Default");
+                break;
+            case Unit_state.Dash:
                 break;
             case Unit_state.Die:
                 break;
-            default:
-                break;
         }
-
-        if (!state.Equals(Unit_state.Default))
-        {
-            Monster_HealthCheck();
-        }
+    }
+    private void StopCoroutine()
+    {
+        StopCoroutine(orangeAttack_co);
+        orangeAttack_co = Orange_Attack_Co();
     }
     private void OrangeAttack_PlayerCheck()
     {
@@ -80,12 +113,11 @@ public class Orange_State : Monster_State
             targetPlayer = Player.gameObject;
             direction = (transform.localPosition.x - targetPlayer.transform.localPosition.x);
             direction = (direction < 0) ? 1 : -1;
-            state = Unit_state.Attack;
+            ChangeState(Unit_state.Attack);
         }
     }
     private IEnumerator Orange_Attack_Co()
-    {
-        state = Unit_state.Dash;
+    {        
         float currentTime = 0f;
         rolling = true;
         animator.SetTrigger("Start");
@@ -100,12 +132,10 @@ public class Orange_State : Monster_State
         animator.SetTrigger("Attack");
         while (rolling)
         {
-
             OrangeRollingStopCheck();
             rigidbody.velocity = new Vector2(direction * rollingSpeed, rigidbody.velocity.y);
             yield return new WaitForFixedUpdate();
-        }
-        state = Unit_state.Idle;
+        }        
         animator.SetTrigger("Stop");
         while (currentTime < stopTimeSet)
         {
@@ -120,7 +150,7 @@ public class Orange_State : Monster_State
             currentTime += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-        state = Unit_state.Move;
+        ChangeState(Unit_state.Move);
         yield return new WaitForFixedUpdate();
     }
     
@@ -150,6 +180,7 @@ public class Orange_State : Monster_State
     {
         if (Health <= 0)
         {
+            ChangeState(Unit_state.Die);
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;

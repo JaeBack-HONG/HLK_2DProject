@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7, y: 2}
+  m_Size: {x: 13, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &1354169763983996260
 GameObject:
@@ -82,7 +82,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354169763983996260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.045, y: 0.081, z: 0}
+  m_LocalPosition: {x: 0.045, y: 0.191, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1354169764436817912}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.022737324}
+  m_Size: {x: 1, y: 0.022737324}
   m_EdgeRadius: 0
 --- !u!1 &1354169764436817862
 GameObject:
@@ -218,8 +218,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004462431, y: -0.41959974}
-  m_Size: {x: 0.78790706, y: 0.78790706}
+  m_Offset: {x: 0.0044623963, y: -0.7123527}
+  m_Size: {x: 1.3734139, y: 1.3734139}
   m_Direction: 1
 --- !u!95 &1354169764436817917
 Animator:
@@ -274,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  currentState: 0
   C_State: 0
   UnitHit: {fileID: 0}
   monsterMove: {fileID: 0}

@@ -10,9 +10,7 @@ public class Lil_Wiz_State : Monster_State
     [SerializeField] private GameObject shotPosi;
 
     IEnumerator lil_WizAttack_co;
-
-    private bool isCasting = false;
-    
+        
     private void Start()
     {
         MonsterDataSetting();
@@ -29,14 +27,13 @@ public class Lil_Wiz_State : Monster_State
         ability_Item = Ability_Item.LilWiz;
         lil_WizAttack_co = Lil_WizAttack_co();
         base.MonsterDataSetting();
-    }
-    private void StateReset()
-    {
-        isCasting = false;        
-        //animator.SetTrigger("Default");
-    }
+    }    
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }
         
         switch (state)
         {
@@ -48,22 +45,13 @@ public class Lil_Wiz_State : Monster_State
                     monsterMove.TotalMove();
                     Hope_PlayerCheck();
                 break;
-            case Unit_state.Attack:
-                    if (isCasting)
-                    {
-                        state = Unit_state.Move;
-                        break;
-                    }
-                    lil_WizAttack_co = Lil_WizAttack_co();
-                    StartCoroutine(lil_WizAttack_co);
+            case Unit_state.Attack:                                       
                 break;
-            case Unit_state.Grab:
-                    StopCoroutine(lil_WizAttack_co);
+            case Unit_state.Grab:                    
                     IsGrab();
                 break;
             case Unit_state.Stun:
-                StopCoroutine(lil_WizAttack_co);
-                StateReset();
+                StopCoroutine();
                 break;
             case Unit_state.Hit:
                 break;
@@ -73,16 +61,44 @@ public class Lil_Wiz_State : Monster_State
                 break;
         }
 
-        if (!state.Equals(Unit_state.Default))
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
         {
-            Monster_HealthCheck();
+            return;
+        }
+
+        StopCoroutine();
+
+        state = newState;
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                StartCoroutine(lil_WizAttack_co);
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Die:
+                break;
         }
     }
-
-    private IEnumerator Lil_WizAttack_co()
+    private void StopCoroutine()
     {
-        isCasting = true;
-        state = Unit_state.Idle;
+        StopCoroutine(lil_WizAttack_co);
+        lil_WizAttack_co = Lil_WizAttack_co();
+    }
+    private IEnumerator Lil_WizAttack_co()
+    {              
         monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Shot");
 
@@ -98,10 +114,7 @@ public class Lil_Wiz_State : Monster_State
         animator.SetTrigger("Default");
         
         yield return cool;
-
-        
-        state = Unit_state.Move;
-        isCasting = false;
+        ChangeState(Unit_state.Move);        
         yield return null;
     }
 
@@ -109,9 +122,7 @@ public class Lil_Wiz_State : Monster_State
     {
         GameObject bubble = Instantiate(lil_WizMagic_obj, shotPosi.transform.position, Quaternion.identity);
         Lil_Wiz_MagicBubble bubble_C = bubble.GetComponent<Lil_Wiz_MagicBubble>();
-        bubble_C.Start_Co(direction);
-        
-        
+        bubble_C.Start_Co(direction);        
     }
 
     private void Hope_PlayerCheck()
@@ -120,7 +131,7 @@ public class Lil_Wiz_State : Monster_State
 
         if (targetDistance < 10f)
         {
-            state = Unit_state.Attack;
+            ChangeState(Unit_state.Attack);
         }
     }
 
@@ -128,9 +139,10 @@ public class Lil_Wiz_State : Monster_State
     {
         if (Health <= 0)
         {
-            base.Die();
+            ChangeState(Unit_state.Die);
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
+            base.Die();
         }
     }
 }

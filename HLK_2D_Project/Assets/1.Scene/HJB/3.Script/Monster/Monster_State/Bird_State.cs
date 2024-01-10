@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Bird_State : Monster_State
 {
-    WaitForSeconds cool = new WaitForSeconds(0.9f);
-    IEnumerator attack_co;
-    
+    IEnumerator attack_co;   
 
     private float direction;
 
@@ -29,27 +27,28 @@ public class Bird_State : Monster_State
     }
     private void FixedUpdate()
     {
-        switch (state)
+        if (!state.Equals(Unit_state.Die))
         {
+            Monster_HealthCheck();
 
-            case Unit_state.Default:
-                break;
+        }
+        switch (state)
+        {            
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:                
                 BirdAttack_PlayerCheck();
                 break;
-            case Unit_state.Attack:
-                attack_co = BirdkAttack_co();
-                StartCoroutine(attack_co);
+            case Unit_state.Attack:                                
                 break;
             case Unit_state.Grab:
                 IsGrab();
+                StopCoroutine();
                 break;
             case Unit_state.Hit:
                 break;
             case Unit_state.Stun:
-                StopCoroutine(attack_co);
+                StopCoroutine();
                 break;
             case Unit_state.Dash:                
                 break;
@@ -59,17 +58,51 @@ public class Bird_State : Monster_State
                 break;
         }
 
-        if (!state.Equals(Unit_state.Default))
+        
+    }
+    
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
         {
-            Monster_HealthCheck();
-
+            return;
         }
+
+        state = newState;
+
+        StopCoroutine();
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                StartCoroutine(attack_co);
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                break;
+            case Unit_state.Die:
+                break;
+        }
+    }
+    private void StopCoroutine()
+    {
+        StopCoroutine(attack_co);
+        attack_co = BirdkAttack_co();
     }
     private void BirdAttack_PlayerCheck()
     {
         if (monsterMove.target)
         {            
-            state = Unit_state.Attack;
+            ChangeState(Unit_state.Attack);
         }
     }
 
@@ -79,8 +112,7 @@ public class Bird_State : Monster_State
 
         float currentTime = 0f;
         float attackTime = 2f;
-
-        state = Unit_state.Dash;
+                
         animator.SetTrigger("Attack");
         Vector3 currentTrans = transform.position;        
         while (currentTime < 0.5f)
@@ -151,7 +183,7 @@ public class Bird_State : Monster_State
         Dash = false;
         rigidbody.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.5f);
-        state = Unit_state.Move;
+        ChangeState(Unit_state.Move);
         yield return null;
     }
     #endregion
@@ -159,9 +191,8 @@ public class Bird_State : Monster_State
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)
-        {
-            StopCoroutine(attack_co);
-            state = Unit_state.Hit;
+        {            
+            ChangeState(Unit_state.Die);
             rigidbody.velocity = Vector2.zero;
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);

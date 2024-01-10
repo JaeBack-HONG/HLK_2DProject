@@ -7,6 +7,7 @@ public class Vessa_State : Monster_State
     RaycastHit2D hit;
 
     private int revivalCount = 2;
+
     private void Start()
     {
         MonsterDataSetting();
@@ -25,19 +26,18 @@ public class Vessa_State : Monster_State
     }
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }
 
         switch (state)
-        {
-            case Unit_state.Default:
-                monsterMove.TotalMove();
-                break;
-
+        {            
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
-                monsterMove.TotalMove();
                 Vessa_GroundCheck();
-                VessaJump_Check();                
+                monsterMove.TotalMove();
                 break;
             case Unit_state.Attack:
                 
@@ -49,9 +49,9 @@ public class Vessa_State : Monster_State
                 break;
             case Unit_state.Hit:
                 break;
-            case Unit_state.Jump:
+            case Unit_state.Jump:                
                 monsterMove.TotalMove();
-                Vessa_GroundCheck();
+                ChangeState(Unit_state.Move);
                 break;
             default:
                 break;
@@ -59,11 +59,36 @@ public class Vessa_State : Monster_State
 
         
 
-        if (!state.Equals(Unit_state.Default))
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
         {
-            Monster_HealthCheck();
+            return;
         }
-    }    
+        state = newState;
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:                
+                break;
+            case Unit_state.Attack:
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;            
+            case Unit_state.Jump:
+                VessaJump_Check();                
+                break;                
+            case Unit_state.Die:
+                break;
+        }
+    }
 
     private void Vessa_GroundCheck()
     {
@@ -71,19 +96,26 @@ public class Vessa_State : Monster_State
 
         Debug.DrawRay(transform.position, Vector2.down * 1.5f, Color.black);
         hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, groundMask);
-        if (hit.collider != null)
-        {
-            state = Unit_state.Move;
-        }
+        if (monsterMove.target && hit.collider != null)
+        {            
+            ChangeState(Unit_state.Jump);         
+        }        
     }
     private void VessaJump_Check()
     {        
-        if (monsterMove.target && hit.collider != null)
+                
+        float jumpforce = 1f;
+        if (revivalCount.Equals(1))
         {
-            state = Unit_state.Jump;
-            int randomJump = Random.Range(6, 8);
-            rigidbody.AddForce(Vector2.up * randomJump, ForceMode2D.Impulse);            
+            jumpforce = 1.5f;
+        }
+        else if (revivalCount.Equals(0))
+        {
+            jumpforce = 2f;
         }        
+        int randomJump = Random.Range(6, 8);
+        rigidbody.AddForce(Vector2.up * randomJump * jumpforce, ForceMode2D.Impulse);            
+                
     }
         
 
@@ -91,6 +123,7 @@ public class Vessa_State : Monster_State
     {
         if (Health <= 0 && revivalCount > 0 )
         {
+            ChangeState(Unit_state.Die);
             Health = 4;
 
             switch (revivalCount)
@@ -105,10 +138,12 @@ public class Vessa_State : Monster_State
                     break;                
             }
             revivalCount--;
+            ChangeState(Unit_state.Move);
         }
 
         if (Health <= 0 && revivalCount.Equals(0))
         {
+            ChangeState(Unit_state.Die);
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;

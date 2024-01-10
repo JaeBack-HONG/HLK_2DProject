@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Mr_Chomps_State : Monster_State
 {
-    WaitForSeconds cool = new WaitForSeconds(0.25f);    
+    WaitForSeconds cool = new WaitForSeconds(0.25f);
 
-    private bool skeletonAttack = false;
+    IEnumerator Mr_ChompsAttack_co;
 
     private void Start()
     {
@@ -22,10 +22,15 @@ public class Mr_Chomps_State : Monster_State
         Strength = data.Strength;
         state = Unit_state.Move;
         ability_Item = Ability_Item.Mr_Chomps;
+        Mr_ChompsAttack_co = Mr_Chomps_co();
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
-    {        
+    {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }
         switch (state)
         {
 
@@ -33,36 +38,67 @@ public class Mr_Chomps_State : Monster_State
                 break;
             case Unit_state.Move:                
                 monsterMove.TotalMove();
-                BlackWolf_PlayerCheck();
+                Mr_Chomps_PlayerCheck();
                 break;
-            case Unit_state.Attack:
-                if (!skeletonAttack)
-                {
-                    StartCoroutine(WolfAttack_co());
-                }
+            case Unit_state.Attack:                
                 break;
             case Unit_state.Grab:
                 IsGrab();
+                StopCoroutine();
                 break;                       
             case Unit_state.Stun:
+                StopCoroutine();
                 break;            
             case Unit_state.Die:
                 break;            
         }
-        if (!state.Equals(Unit_state.Default))
+        
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
         {
-            Monster_HealthCheck();
+            return;
         }
-    }    
-    
+        state = newState;
+
+        StopCoroutine();
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                StartCoroutine(Mr_ChompsAttack_co);
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                break;
+            case Unit_state.Die:
+                break;
+        }
+    }
+
+    private void StopCoroutine()
+    {
+        StopCoroutine(Mr_ChompsAttack_co);
+        Mr_ChompsAttack_co = Mr_Chomps_co();
+    }
 
     #region //Mr.Chopms 플레이어 공격사거리 탐지
-    private void BlackWolf_PlayerCheck()
+    private void Mr_Chomps_PlayerCheck()
     {        
         float targetDistance = monsterMove.DistanceAndDirection();
         if (targetDistance <2.5f)
         {
-            state = Unit_state.Attack;
+            ChangeState(Unit_state.Attack);
         }
     }
     #endregion
@@ -70,17 +106,16 @@ public class Mr_Chomps_State : Monster_State
 
 
     #region //Mr.Chopms 깨물기공격_코루틴
-    private IEnumerator WolfAttack_co()
+    private IEnumerator Mr_Chomps_co()
     {
         animator.SetTrigger("Attack");
-        skeletonAttack = true;
+        
         rigidbody.velocity = Vector2.zero;
-        state = Unit_state.Idle;
+        
         yield return cool;
         animator.SetTrigger("Default");
         yield return new WaitForSeconds(1f);
-        state = Unit_state.Move;
-        skeletonAttack = false;
+        ChangeState(Unit_state.Move);        
         yield return null;
     }
     #endregion
@@ -88,6 +123,7 @@ public class Mr_Chomps_State : Monster_State
     {
         if (Health <= 0)
         {
+            ChangeState(Unit_state.Die);
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
             base.Die();            

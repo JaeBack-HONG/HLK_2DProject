@@ -107,7 +107,7 @@ public class BigRed_State : Monster_State
         
     }
 
-    #region //Mr.Chopms 플레이어 공격사거리 탐지
+    #region //BigRed 플레이어 공격사거리 탐지
     private void BigRed_PlayerCheck()
     {
         float targetDistance = monsterMove.DistanceAndDirection();

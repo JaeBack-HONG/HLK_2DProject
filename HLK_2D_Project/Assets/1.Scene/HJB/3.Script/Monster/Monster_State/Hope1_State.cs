@@ -31,6 +31,11 @@ public class Hope1_State : Monster_State
     private void FixedUpdate()
     {
 
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }        
+
         switch (state)
         {
             case Unit_state.Default:
@@ -42,16 +47,14 @@ public class Hope1_State : Monster_State
                 monsterMove.TotalMove();
                 Hope_PlayerCheck();
                 break;
-            case Unit_state.Attack:
-                hopeAttack_co = HopeAttack_co();
-                StartCoroutine(hopeAttack_co);
+            case Unit_state.Attack:                
                 break;
             case Unit_state.Grab:
-                StopCoroutine(hopeAttack_co);
+                StopCoroutine();
                 IsGrab();
                 break;
             case Unit_state.Stun:
-                StopCoroutine(hopeAttack_co);
+                StopCoroutine();
                 break;
             case Unit_state.Hit:
                 break;            
@@ -61,15 +64,45 @@ public class Hope1_State : Monster_State
                 break;
         }
 
-        if (!state.Equals(Unit_state.Default))
-        {
-            Monster_HealthCheck();
-        }        
     }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
+        {
+            return;
+        }
 
+        StopCoroutine();
+
+        state = newState;
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                StartCoroutine(hopeAttack_co);
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Die:
+                break;
+        }
+    }
+    private void StopCoroutine()
+    {
+        StopCoroutine(hopeAttack_co);
+        hopeAttack_co = HopeAttack_co();
+    }
     private IEnumerator HopeAttack_co()
     {
-        state = Unit_state.Idle;
+        
         monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Shot");
 
@@ -84,7 +117,7 @@ public class Hope1_State : Monster_State
         yield return cool;
 
         animator.SetTrigger("Default");
-        state = Unit_state.Move;
+        ChangeState(Unit_state.Move);
 
         yield return null;
     }
@@ -103,14 +136,15 @@ public class Hope1_State : Monster_State
 
         if (targetDistance < 10f)
         {
-            state = Unit_state.Attack;
+            ChangeState(Unit_state.Attack);
         }
     }
    
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)
-        {            
+        {
+            ChangeState(Unit_state.Die);
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;

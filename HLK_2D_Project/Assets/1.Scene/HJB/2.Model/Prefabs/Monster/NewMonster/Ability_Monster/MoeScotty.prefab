@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 4376403218334234098}
   - component: {fileID: 4376403218334234104}
   - component: {fileID: 4449992923812996636}
-  - component: {fileID: 4376403218334234100}
+  - component: {fileID: 6835243069956466653}
   m_Layer: 7
   m_Name: MoeScotty
   m_TagString: Enemy
@@ -175,6 +175,7 @@ MonoBehaviour:
   target: 0
   direction: 0
   isGrab: 0
+  groundCheck: 0
   targetPlayer: {fileID: 0}
 --- !u!50 &4376403218334234098
 Rigidbody2D:
@@ -228,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18d146450eb4bd4d8ef85736d06a999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4376403218334234100
+--- !u!114 &6835243069956466653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,26 +238,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 4376403218334234099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a58a7038860e4a46b00e6d1e38b67d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 69a6a3d07d7fec144bb8fb732f6420a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  currentState: 0
   C_State: 0
   UnitHit: {fileID: 0}
   monsterMove: {fileID: 0}
   animator: {fileID: 0}
   rigidbody: {fileID: 0}
   abilityItem: {fileID: 0}
+  renderer: {fileID: 0}
   stunTime: 0
   Health: 0
   Strength: 0
   isAttack: 0
   isStun: 0
+  rolling: 0
   Dash: 0
   Player: {fileID: 0}
   ability_Item: 0
   Ability_Item_obj: {fileID: 2797919914270543869, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
   Stun_obj: {fileID: 8354537324705375162}
+  detectionSet: 0
+  currentTime: 0
+  M_position: {x: 0, y: 0}
 --- !u!1 &4376403219209350553
 GameObject:
   m_ObjectHideFlags: 0
