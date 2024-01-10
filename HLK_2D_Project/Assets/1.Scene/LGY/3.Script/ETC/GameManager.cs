@@ -50,13 +50,13 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        
     }
 
     
     private void Start()
     {
         FileDataCheck();
-        
         //씬이동후 현재 씬 저장
         currentSceneName = SceneManager.GetActiveScene().name;
         if (!currentSceneName.Equals(introSceneName))
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         if (!currentSceneName.Equals(introSceneName))
         {
             DataSave();
-        }
+        }        
     }
     private void OptionKeyDown_Set()
     {
@@ -106,70 +106,67 @@ public class GameManager : MonoBehaviour
     }
     public void DataSave()
     {
+        //if (player != null)
+        //{
+        //    
+        //    PlayerData.maxHealth = 0;
+        //    PlayerData.currentHealth = player.Health;
+        //}
         currentSceneName = SceneManager.GetActiveScene().name;
-        PlayerData.maxHealth = 0;
-        PlayerData.currentHealth = player.Health;
         PlayerData.SceneName = currentSceneName;
         string fileName;
 
-        fileName = Application.dataPath + "/Data" + "/PlayerDataJson.json";
+        fileName = Application.dataPath + "/PlayerDataJson.json";
         string toJson = JsonConvert.SerializeObject(PlayerData, Formatting.Indented);
-        File.WriteAllText(fileName, toJson);
-        Debug.Log(toJson);
+        File.WriteAllText(fileName, toJson);        
     }
     public void FileDataCheck()
     {
         string fileName;
 
-        fileName = Application.dataPath + "/Data"+ "/PlayerDataJson.json";       
+        fileName = Application.dataPath + "/PlayerDataJson.json";       
         
         if (!File.Exists(fileName))
         {
             File.Create(fileName);            
+            string toJson = JsonConvert.SerializeObject(PlayerData, Formatting.Indented);
+            File.WriteAllText(fileName, toJson);
 
         }
         else if (File.Exists(fileName))
         {
-            Debug.Log("파일 True요");
-        }      
-        string toJson = JsonConvert.SerializeObject(PlayerData, Formatting.Indented);
-        File.WriteAllText(fileName, toJson);
-        Debug.Log(toJson);
-        
+            DataLoad();            
+        }              
     }
     public PlayerDataJson DataLoad()
     {        
         string fileName;
         try
         {            
-            fileName = Application.dataPath + "/Data" + "/PlayerDataJson.json";
-            Debug.Log(fileName);
-            string readData = File.ReadAllText(fileName);
-            PlayerDataJson playerData = new PlayerDataJson();
-            PlayerData = JsonConvert.DeserializeObject<PlayerDataJson>(readData);
-            PlayerData = playerData;
-            return playerData;
+            fileName = Application.dataPath + "/PlayerDataJson.json";            
+            string readData = File.ReadAllText(fileName);            
+            PlayerData = JsonConvert.DeserializeObject<PlayerDataJson>(readData);            
+            return PlayerData;
         }
         catch (DirectoryNotFoundException e)
         {
             Debug.Log(e);
-            return null;
-            
+            return null;            
         }
     }
-    public void DeletSaveData()
+    private void DefaultDataSet()
     {
-        string fileName;
-        fileName = Application.dataPath + "/Data" + "/PlayerDataJson.json";
-        File.Delete(fileName);
-    }
-
+        PlayerData.maxHealth = 3;
+        PlayerData.currentHealth = 3;
+        PlayerData.SceneName = "";
+    }    
 
     #region //버튼 이벤트 메서드
     public void MainGame_1()
-    {
+    {        
+        DefaultDataSet();
+        DataSave();
         SceneManager.LoadScene("HJB_Scene");
-        GetCompoPlayerCheck();
     }
     public void MainMenu_Btn()
     {           
