@@ -23,6 +23,11 @@ public class Fizz_State : Monster_State
     }
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }
+
         switch (state)
         {
             case Unit_state.Default:
@@ -37,8 +42,7 @@ public class Fizz_State : Monster_State
             case Unit_state.Grab:
                 IsGrab();
                 break;
-            case Unit_state.Stun:
-                
+            case Unit_state.Stun:                
                 break;
             case Unit_state.Hit:
                 break;
@@ -48,15 +52,41 @@ public class Fizz_State : Monster_State
                 break;
         }
 
-        if (!state.Equals(Unit_state.Default))
+        
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
         {
-            Monster_HealthCheck();
+            return;
+        }
+        state = newState;
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                break;
+            case Unit_state.Die:
+                break;
         }
     }
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)
         {
+            ChangeState(Unit_state.Die);
             base.Die();
         }
     }

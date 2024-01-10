@@ -20,9 +20,9 @@ public class Hope_Bullet : MonoBehaviour
         StartCoroutine(shot_co);
     }
 
-    public IEnumerator Shot(Vector3 target)
+    public IEnumerator Shot(Vector3 direction)
     {
-
+        transform.rotation = direction.x.Equals(1) ? new Quaternion(0, 0, 0, 0) : new Quaternion(0, 180, 0, 0);
         Vector3 defaultDistance = transform.position;
         while (true)
         {
@@ -31,7 +31,7 @@ public class Hope_Bullet : MonoBehaviour
             {
                 break;
             }
-            transform.position += target * Time.deltaTime * Speed;
+            transform.position += direction * Time.deltaTime * Speed;
             yield return null;
         }
         Destroy(this.gameObject);

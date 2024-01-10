@@ -31,6 +31,10 @@ public class Handrick_state : Monster_State
     }
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }
         switch (state)
         {
 
@@ -43,31 +47,62 @@ public class Handrick_state : Monster_State
                 HandrickAttack_PlayerCheck();
                 break;
             case Unit_state.Attack:
-                rushAttack_co = HandrickAttack_co();
-                StartCoroutine(rushAttack_co);
+                RushGroundCheck();
                 break;
             case Unit_state.Grab:
                 IsGrab();
+                StopCoroutine();
                 break;
             case Unit_state.Hit:
                 break;            
             case Unit_state.Dash:
-                RushGroundCheck();
                 break;
             case Unit_state.Stun:
-                
+                StopCoroutine();
                 break;
             case Unit_state.Die:
                 break;
             default:
                 break;
         }
-
-        if (!state.Equals(Unit_state.Default))
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
         {
-            Monster_HealthCheck();
-
+            return;
         }
+        state = newState;
+
+        StopCoroutine();
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                StartCoroutine(rushAttack_co);
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                break;
+            case Unit_state.Die:
+                break;
+        }
+    }
+
+    private void StopCoroutine()
+    {
+        StopCoroutine(rushAttack_co);
+        rushAttack_co = HandrickAttack_co();
+        
     }
     private void HandrickAttack_PlayerCheck()
     {
@@ -75,15 +110,15 @@ public class Handrick_state : Monster_State
         {            
             targetPlayer = Player.gameObject;
             direction = (transform.localPosition.x - targetPlayer.transform.localPosition.x);
-            direction = (direction < 0) ? 1 : -1;            
-            state = Unit_state.Attack;
+            direction = (direction < 0) ? 1 : -1;
+            ChangeState(Unit_state.Attack);
         }
     }
 
     private IEnumerator HandrickAttack_co()
     {
         animator.SetTrigger("Charge");
-        state = Unit_state.Dash;
+        //ChangeState(Unit_state.Dash);
         rush = true;
         yield return new WaitForSeconds(0.5f);
         animator.SetTrigger("Rush");
@@ -91,11 +126,10 @@ public class Handrick_state : Monster_State
         {               
             rigidbody.velocity = new Vector2(direction * 10f, rigidbody.velocity.y);
             yield return null;
-        }
-        state = Unit_state.Default;
+        }        
         animator.SetTrigger("Default");
+        ChangeState(Unit_state.Move);
         yield return new WaitForSeconds(0.5f);
-        state = Unit_state.Move;
     }
 
 
@@ -114,10 +148,10 @@ public class Handrick_state : Monster_State
     {
         if (Health <= 0)
         {
-            StopCoroutine(rushAttack_co);            
-            base.Die();
+            ChangeState(Unit_state.Die);  
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
+            base.Die();
         }
     }
 }

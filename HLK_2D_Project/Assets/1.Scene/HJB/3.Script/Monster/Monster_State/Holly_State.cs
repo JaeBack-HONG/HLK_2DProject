@@ -46,6 +46,11 @@ public class Holly_State : Monster_State
 
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }
+
         switch (state)
         {
             case Unit_state.Default:
@@ -55,6 +60,36 @@ public class Holly_State : Monster_State
             case Unit_state.Move:                
                 monsterMove.TotalMove();
                 BabyBossAttack_PlayerCheck();
+                break;
+            case Unit_state.Attack:                
+                break;
+            case Unit_state.Grab:                
+                StopCoroutine();
+                break;
+            case Unit_state.Hit:
+                break;
+            case Unit_state.Stun:
+                StopCoroutine();
+                break;
+        }
+
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
+        {
+            return;
+        }
+        state = newState;
+
+        StopCoroutine();
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
                 break;
             case Unit_state.Attack:
                 if (!gimmickcount.Equals(maxcount))
@@ -70,22 +105,22 @@ public class Holly_State : Monster_State
                 break;
             case Unit_state.Grab:
                 IsGrab();
-                StopCoroutine(holly_Attack_co);
-                StopCoroutine(holly_GimickAttack_co);
-                break;
-            case Unit_state.Hit:
                 break;
             case Unit_state.Stun:
-                StopCoroutine(holly_Attack_co);
-                StopCoroutine(holly_GimickAttack_co);
                 break;
-            case Unit_state.Jump://변신상태로 일단                 
+            case Unit_state.Dash:
                 break;
-            default:
+            case Unit_state.Die:
                 break;
         }
+    }
 
-        if (!state.Equals(Unit_state.Default)) Monster_HealthCheck();
+    private void StopCoroutine()
+    {
+        StopCoroutine(holly_Attack_co);
+        StopCoroutine(holly_GimickAttack_co);
+        holly_Attack_co = HollyAttack_Co(noiseScale);
+        holly_GimickAttack_co = SpecialAttack_Co();
     }
 
     private void BabyBossAttack_PlayerCheck()
@@ -94,14 +129,13 @@ public class Holly_State : Monster_State
 
         if (targetDistance < 2.5f)
         {
-            state = Unit_state.Attack;
+            ChangeState(Unit_state.Attack);
         }
     }
 
     #region //베이비 공격(Co)
     private IEnumerator HollyAttack_Co(int noisescale)
-    {
-        state = Unit_state.Default;
+    {        
         rigidbody.velocity = Vector2.zero;
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.6f/2);
@@ -112,7 +146,7 @@ public class Holly_State : Monster_State
         noise.m_AmplitudeGain = 0;
         animator.SetTrigger("Default");
         yield return new WaitForSeconds(0.5f);
-        state = Unit_state.Move;
+        ChangeState(Unit_state.Move);
         gimmickcount++;
     }
     #endregion
@@ -121,8 +155,7 @@ public class Holly_State : Monster_State
     private IEnumerator SpecialAttack_Co()
     {
         float currentTime = 0f;
-        noise.m_AmplitudeGain = 0;
-        state = Unit_state.Default;
+        noise.m_AmplitudeGain = 0;        
         rigidbody.velocity = Vector2.zero;
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.6f/2);
@@ -165,7 +198,7 @@ public class Holly_State : Monster_State
         yield return new WaitForSeconds(0.35f);
         animator.SetTrigger("Default");
         effect.SetActive(false);
-        state = Unit_state.Move;
+        ChangeState(Unit_state.Move);
         gimmickcount = 0;
     }
     #endregion
@@ -175,6 +208,7 @@ public class Holly_State : Monster_State
     {
         if (Health <= 0)
         {
+            ChangeState(Unit_state.Die);
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;            

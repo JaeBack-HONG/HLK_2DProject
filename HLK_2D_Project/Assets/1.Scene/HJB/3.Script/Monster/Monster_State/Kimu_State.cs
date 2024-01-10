@@ -23,9 +23,13 @@ public class Kimu_State : Monster_State
     }
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }
+
         switch (state)
         {
-
             case Unit_state.Default:
                 break;
             case Unit_state.Idle:
@@ -38,24 +42,43 @@ public class Kimu_State : Monster_State
                 IsGrab();
                 break;
             case Unit_state.Stun:
-                break;
-            case Unit_state.Jump:                
-                break;
+                break;            
             case Unit_state.Die:
                 break;
             default:
                 break;
         }
 
-        if (!state.Equals(Unit_state.Default))
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState))
         {
-            Monster_HealthCheck();
+            return;
+        }
+        state = newState;
 
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                break;
+            case Unit_state.Die:
+                break;
         }
     }
-    
 
-    
     private void KimuJump_PlayerCheck()
     {
         float timeRandom = Random.Range(2f, 4f);
@@ -75,6 +98,7 @@ public class Kimu_State : Monster_State
     {
         if (Health <= 0)
         {
+            ChangeState(Unit_state.Die);
             base.Die();
         }
     }

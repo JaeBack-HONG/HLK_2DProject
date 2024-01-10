@@ -24,12 +24,16 @@ public class Blankey_State : Monster_State
     }
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Default))
+        {
+            Monster_HealthCheck();
+        }
         
         switch (state)
         {
             case Unit_state.Default:
                 break;
-            case Unit_state.Idle:
+            case Unit_state.Idle: 
                 break;
             case Unit_state.Move:
                 if (monsterMove.target)
@@ -55,9 +59,34 @@ public class Blankey_State : Monster_State
                 break;
         }
 
-        if (!state.Equals(Unit_state.Default))
+    }
+
+    private void ChangeState(Unit_state newState)
+    {
+        if (state.Equals(newState) && !newState.Equals(Unit_state.Move))
         {
-            Monster_HealthCheck();
+            return;
+        }
+        state = newState;
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                break;
+            case Unit_state.Die:
+                break;
         }
     }
     private void Blankey_PlayerDetection()
@@ -99,6 +128,7 @@ public class Blankey_State : Monster_State
     {
         if (Health <= 0)
         {
+            ChangeState(Unit_state.Die);
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;

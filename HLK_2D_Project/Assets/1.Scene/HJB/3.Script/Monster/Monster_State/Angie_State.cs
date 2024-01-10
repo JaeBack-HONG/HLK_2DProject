@@ -61,7 +61,7 @@ public class Angie_State : Monster_State
     }
     private void ChangeState(Unit_state newState)
     {
-        if (state.Equals(newState) && !newState.Equals(Unit_state.Move))
+        if (state.Equals(newState))
         {
             return;
         }
@@ -83,8 +83,7 @@ public class Angie_State : Monster_State
             case Unit_state.Grab:
                 IsGrab();
                 break;
-            case Unit_state.Stun:
-                
+            case Unit_state.Stun:                
                 break;
             case Unit_state.Dash:
                 StartCoroutine(AngieRun_co);

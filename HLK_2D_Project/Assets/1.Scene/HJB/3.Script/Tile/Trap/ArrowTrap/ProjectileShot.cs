@@ -9,7 +9,8 @@ public class ProjectileShot : MonoBehaviour
     public float Speed = 2f;
 
     [SerializeField] private int damage = 2;
-
+    [Header("AutoShot")]
+    [SerializeField] private bool autoShot;
     [Header("대기 시간")]
     [SerializeField] private float timeSet = 3f;
     [Header("사거리")]
@@ -75,7 +76,14 @@ public class ProjectileShot : MonoBehaviour
     {
         if (!isMove)
         {
-            Player_Check();
+            if (!autoShot)
+            {
+                Player_Check();
+            }
+            else
+            {
+                Shot = true;
+            }
         }
         if (Shot)
         {

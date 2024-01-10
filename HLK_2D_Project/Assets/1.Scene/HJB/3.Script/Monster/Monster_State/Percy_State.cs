@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Percy_State : Monster_State
 {
-    WaitForSeconds cool = new WaitForSeconds(2.4f);
+    
     WaitForSeconds WaitCool = new WaitForSeconds(1f);
     [SerializeField] private GameObject Percy_FireBall_obj;
     [SerializeField] private GameObject shotPosi;
@@ -29,63 +29,93 @@ public class Percy_State : Monster_State
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
-    {
-        
-        
-        switch (state)
+    {        
+        if (!state.Equals(Unit_state.Die))
         {
-            case Unit_state.Default:
-                break;
+            Monster_HealthCheck();            
+            BerserkCheck();
+        }
 
+        switch (state)
+        {            
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
                 Tracy_PlayerCheck();
+                monsterMove.TotalMove();
                 break;
-            case Unit_state.Attack:
-                PercyAttack_co = PercyAttack_Co();
-                StartCoroutine(PercyAttack_co);
+            case Unit_state.Attack:                                
                 break;
             case Unit_state.Grab:
-                StopCoroutine(PercyAttack_co);
+                StopCoroutine();
                 IsGrab();
                 break;
             case Unit_state.Stun:
-                StopCoroutine(PercyAttack_co);
+                StopCoroutine();
                 break;
             case Unit_state.Hit:
+                break;
+            case Unit_state.Dash:
+                ChangeState(Unit_state.Move);
                 break;
             case Unit_state.Die:
                 break;
             default:
                 break;
+        }        
+    }
+    private void ChangeState(Unit_state newState)
+    {
+        
+        if (state.Equals(newState))
+        {
+            if (berserk)
+            {
+                renderer.color = new Color(1f, 0.5f, 0.5f);
+            }
+            return;
+        }
+
+        state = newState;
+
+        StopCoroutine();
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                StartCoroutine(PercyAttack_co);
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:                
+                BerserkMod();
+                break;
+            case Unit_state.Die:
+                break;
         }
         
-        if (!berserk)
-        {
-            BerserkCheck();
-        }
-        else
-        {
-            renderer.color = new Color(1f, 0.7f, 0.7f);
-        }
-        
-        if (!state.Equals(Unit_state.Default))
-        {
-            Monster_HealthCheck();
-        }
+    }
+    private void StopCoroutine()
+    {
+        StopCoroutine(PercyAttack_co);
+        PercyAttack_co = PercyAttack_Co();
     }
     private void BerserkCheck()
     {
-        if (Health<=2)
+        if (Health<=2&&!berserk)
         {
             berserk = true;
+            ChangeState(Unit_state.Dash);
         }
-
-        if (berserk)
-        {
-            BerserkMod();
-        }
+        
     }
     private void BerserkMod()
     {        
@@ -96,21 +126,33 @@ public class Percy_State : Monster_State
 
     private IEnumerator PercyAttack_Co()
     {
-        animator.SetBool("Move", false);
-        state = Unit_state.Idle;
+        rigidbody.velocity = Vector2.zero;
+        float currentTime = 0f;
         monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Attack");
 
-        yield return WaitCool;
+        while (currentTime < 0.8f)
+        {            
+            currentTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        currentTime = 0f;
+
         animator.SetTrigger("Default");
 
         Vector3 direction = (monsterMove.direction < 1) ? Vector3.left : Vector3.right;
 
-        rigidbody.velocity = Vector2.zero;
-
         CreateBullet(direction);
-        yield return cool;
-        state = Unit_state.Move;
+
+        while (currentTime <2f)
+        {
+            monsterMove.TotalMove();
+            currentTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        rigidbody.velocity = Vector2.zero;
+        ChangeState(Unit_state.Move);
 
         yield return null;
     }
@@ -123,7 +165,6 @@ public class Percy_State : Monster_State
         {
             bullet_C.Speed = bullet_C.Speed * 1.5f;
             bullet_C.damage = bullet_C.damage + 2;
-
         }
         bullet_C.Start_Co(direction);
     }
@@ -134,16 +175,16 @@ public class Percy_State : Monster_State
 
         if (targetDistance < 10f)
         {
-            state = Unit_state.Attack;
+            ChangeState(Unit_state.Attack);
             return;
-        }
-        monsterMove.TotalMove();
+        }        
     }
 
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)
         {
+            ChangeState(Unit_state.Die);
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
