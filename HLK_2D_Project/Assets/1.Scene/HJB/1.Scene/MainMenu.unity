@@ -1588,7 +1588,7 @@ GameObject:
   - component: {fileID: 471926097}
   - component: {fileID: 471926096}
   m_Layer: 5
-  m_Name: Setting_Button
+  m_Name: DataLoad_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1657,7 +1657,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 471926097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1129841679}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SceneLoadData_Btn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &471926097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3065,7 +3077,7 @@ GameObject:
   - component: {fileID: 1026093105}
   - component: {fileID: 1026093104}
   m_Layer: 5
-  m_Name: Setting_Button (1)
+  m_Name: zzz_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4032,10 +4044,12 @@ MonoBehaviour:
   OptionUI_obj: {fileID: 4121577882310431354}
   introSceneName: MainMenu
   currentSceneName: 
+  saveSceneName: 
   PlayerData:
     maxHealth: 3
     currentHealth: 3
     SceneName: 
+  player: {fileID: 0}
 --- !u!4 &1129841680
 Transform:
   m_ObjectHideFlags: 0

@@ -31,14 +31,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject OptionUI_obj;
     [SerializeField] private string introSceneName;
     [SerializeField] private string currentSceneName;
+    [SerializeField] private string saveSceneName;
 
     public PlayerDataJson PlayerData;
 
     public Player_State player;
 
     private void Awake()
-    {        
-     
+    {             
+        
         if (instance == null)
         {
             instance = this;            
@@ -54,6 +55,8 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
+        FileDataCheck();
+        
         //씬이동후 현재 씬 저장
         currentSceneName = SceneManager.GetActiveScene().name;
         if (!currentSceneName.Equals(introSceneName))
@@ -85,15 +88,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;            
         }
     }
-
-
-    //기본 셋팅
-    private void InitSetting()
-    {
-        PlayerData.maxHealth = 3f;
-        PlayerData.currentHealth = 3f;
-        PlayerData.SceneName = "";
-    }
+        
     private void GetCompoPlayerCheck()
     {        
         try
@@ -113,26 +108,35 @@ public class GameManager : MonoBehaviour
     {
         PlayerData.maxHealth = 0;
         PlayerData.currentHealth = player.Health;
-        PlayerData.SceneName = currentSceneName;
-
-        string fileName;
-
-        fileName = Application.dataPath + "PlayerDataJosn.json";
-        if (!File.Exists(fileName))
-        {
-            File.Create(fileName);
-        }
-        string toJson = JsonConvert.SerializeObject(PlayerData, Formatting.Indented);
-
-        File.WriteAllText(fileName, toJson);
-
+        PlayerData.SceneName = currentSceneName;                
     }
-    public PlayerDataJson DataLoad()
+    public void FileDataCheck()
     {
         string fileName;
-        try
+
+        fileName = Application.dataPath + "/Data"+ "/PlayerDataJson.json";       
+        
+        if (!File.Exists(fileName))
         {
-            fileName = Application.dataPath + "/PlayerDataJson.json";
+            File.Create(fileName);            
+
+        }
+        else if (File.Exists(fileName))
+        {
+            Debug.Log("파일 True요");
+        }      
+        string toJson = JsonConvert.SerializeObject(PlayerData, Formatting.Indented);
+        File.WriteAllText(fileName, toJson);
+        Debug.Log(toJson);
+        
+    }
+    public PlayerDataJson DataLoad()
+    {        
+        string fileName;
+        try
+        {            
+            fileName = Application.dataPath + "/Data" + "/PlayerDataJson.json";
+            Debug.Log(fileName);
             string readData = File.ReadAllText(fileName);
             PlayerDataJson playerData = new PlayerDataJson();
             PlayerData = JsonConvert.DeserializeObject<PlayerDataJson>(readData);
@@ -149,7 +153,7 @@ public class GameManager : MonoBehaviour
     public void DeletSaveData()
     {
         string fileName;
-        fileName = Application.dataPath + "/PlayerDataJson.json";
+        fileName = Application.dataPath + "/Data" + "/PlayerDataJson.json";
         File.Delete(fileName);
     }
 
@@ -164,6 +168,7 @@ public class GameManager : MonoBehaviour
     {           
         OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
         Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;
+        PlayerData = DataLoad();
         SceneManager.LoadScene("MainMenu");        
     }        
 
@@ -171,6 +176,12 @@ public class GameManager : MonoBehaviour
     {
         OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
         Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;
+    }
+    public void SceneLoadData_Btn()
+    {
+        PlayerData = DataLoad();
+        Debug.Log(PlayerData.SceneName);
+        SceneManager.LoadScene(PlayerData.SceneName);
     }
     #endregion
     public void ExitGame()
