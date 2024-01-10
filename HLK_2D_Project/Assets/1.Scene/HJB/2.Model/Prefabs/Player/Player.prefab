@@ -496,6 +496,7 @@ GameObject:
   - component: {fileID: 1845878268536882986}
   - component: {fileID: 3056226531259936753}
   - component: {fileID: 2027195425452245173}
+  - component: {fileID: 5301692324299368252}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -678,6 +679,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   isAttack: 0
   isFairy: 0
+  isArmand: 0
 --- !u!114 &7986413340031863260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,6 +722,7 @@ MonoBehaviour:
   - {fileID: 1845878268536882986}
   - {fileID: 3056226531259936753}
   - {fileID: 2027195425452245173}
+  - {fileID: 5301692324299368252}
   current_Ab: {fileID: 0}
 --- !u!114 &6733462574698497862
 MonoBehaviour:
@@ -1064,6 +1067,25 @@ MonoBehaviour:
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
   guardcol: {fileID: 3054572472031966944}
+--- !u!114 &5301692324299368252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986413340031863258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9ff8da1fcd8934c90fe44b0d36717e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  P_Move: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
 --- !u!1 &9147761030394907054
 GameObject:
   m_ObjectHideFlags: 0

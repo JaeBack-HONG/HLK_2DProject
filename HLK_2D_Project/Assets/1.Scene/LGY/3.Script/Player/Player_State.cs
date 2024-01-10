@@ -31,7 +31,8 @@ public class Player_State : MonoBehaviour
     private IEnumerator Slow_Co;
     private IEnumerator Stun_Co;
 
-    public bool isFairy = false;    
+    public bool isFairy = false;
+    public bool isArmand = false;
 
     private void Start()
     {
