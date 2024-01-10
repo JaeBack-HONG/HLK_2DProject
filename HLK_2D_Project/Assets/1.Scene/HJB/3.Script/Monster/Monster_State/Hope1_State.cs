@@ -102,7 +102,7 @@ public class Hope1_State : Monster_State
     }
     private IEnumerator HopeAttack_co()
     {
-        
+        rigidbody.velocity = Vector2.zero;
         monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Shot");
 

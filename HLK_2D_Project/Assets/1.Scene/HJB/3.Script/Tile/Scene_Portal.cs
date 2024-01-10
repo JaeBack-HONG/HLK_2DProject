@@ -1,16 +1,19 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-
-public class Portal : MonoBehaviour
+public class Scene_Portal : MonoBehaviour
 {
     IEnumerator waitSet_co;
 
     private bool able = true;
 
     [SerializeField] GameObject portalArrowImage_obj;
-    [Header("À§Ä¡ ¼³Á¤")]
-    [SerializeField] Vector2 teleportVectorSet;
+
+    [Header("ÀÌµ¿ ¾À ¼³Á¤")]
+    [SerializeField] private string sceneName;
+    
 
 
     private void coroutineSet(Collider2D col)
@@ -51,13 +54,9 @@ public class Portal : MonoBehaviour
             currentTime += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-        col.transform.position = teleportVectorSet;
-        currentTime = 0f;
-        while (currentTime < 0.3f)
-        {
-            currentTime += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-        able = true;
+        //¾À ÀÌµ¿       
+        Debug.Log("¾À ÀÌµ¿");
+        SceneManager.LoadScene(sceneName);
+        
     }
 }
