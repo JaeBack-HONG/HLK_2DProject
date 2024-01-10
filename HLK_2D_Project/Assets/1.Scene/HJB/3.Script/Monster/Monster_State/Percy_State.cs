@@ -66,13 +66,15 @@ public class Percy_State : Monster_State
     }
     private void ChangeState(Unit_state newState)
     {
-        
+        rigidbody.velocity = Vector2.zero;
+
+        if (berserk)
+        {            
+            renderer.color = new Color(1f, 0.5f, 0.5f);
+        }
+
         if (state.Equals(newState))
-        {
-            if (berserk)
-            {
-                renderer.color = new Color(1f, 0.5f, 0.5f);
-            }
+        {            
             return;
         }
 
@@ -151,9 +153,9 @@ public class Percy_State : Monster_State
             currentTime += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-        rigidbody.velocity = Vector2.zero;
+        
         ChangeState(Unit_state.Move);
-
+        rigidbody.velocity = Vector2.zero;
         yield return null;
     }
 
