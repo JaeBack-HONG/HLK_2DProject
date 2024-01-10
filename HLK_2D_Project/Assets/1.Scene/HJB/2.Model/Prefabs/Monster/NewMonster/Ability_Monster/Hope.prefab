@@ -167,7 +167,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 1982130d0e06e4f4d9819b42ced9d28d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -228,18 +228,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7ff5aadd93b0544aa65e29b32c07f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthSet: 4
+  damageSet: 2
+  speedSet: 5
   state: 0
+  currentState: 0
   C_State: 0
   UnitHit: {fileID: 0}
   monsterMove: {fileID: 0}
   animator: {fileID: 0}
   rigidbody: {fileID: 0}
   abilityItem: {fileID: 0}
+  renderer: {fileID: 0}
   stunTime: 0
   Health: 0
   Strength: 0
   isAttack: 0
   isStun: 0
+  rolling: 0
   Dash: 0
   Player: {fileID: 2720004892734596863, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
   ability_Item: 1
@@ -268,6 +274,7 @@ MonoBehaviour:
   target: 0
   direction: 0
   isGrab: 0
+  groundCheck: 0
   targetPlayer: {fileID: 0}
 --- !u!114 &3349721773336433419
 MonoBehaviour:
