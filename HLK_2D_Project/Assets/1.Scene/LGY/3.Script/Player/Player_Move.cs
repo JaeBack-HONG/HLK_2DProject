@@ -38,7 +38,7 @@ public class Player_Move : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0)) Jump();
 
-        if (Input.GetKeyDown(KeyCode.Z)) P_State.actState = Unit_state.Attack;
+        if (Input.GetKeyDown(KeyCode.Z) && !P_State.isArmand) P_State.actState = Unit_state.Attack;
 
         if (rigidbody.velocity.x.Equals(0)) return;
 
