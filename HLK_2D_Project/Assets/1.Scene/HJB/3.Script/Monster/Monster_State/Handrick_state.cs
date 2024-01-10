@@ -20,8 +20,8 @@ public class Handrick_state : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Knight1", hp:5, detection: 5, range: 2, attackSpeed: 1,
-                strength: 2, moveSpeed: 3, jumpForce: 0);
+            (name: "Knight1", hp:healthSet, detection: 5, range: 2, attackSpeed: 1,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;

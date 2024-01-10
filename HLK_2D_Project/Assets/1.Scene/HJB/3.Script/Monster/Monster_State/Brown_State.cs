@@ -12,8 +12,8 @@ public class Brown_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-        (name: "Brown", hp: 5, detection: 3, range: 0.5f,
-            attackSpeed: 2, strength: 2, moveSpeed: 1, jumpForce: 0);
+        (name: "Brown", hp: healthSet, detection: 3, range: 0.5f,
+            attackSpeed: 2, strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;

@@ -29,8 +29,8 @@ public class BabyBoss_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "BabyBoss", hp: 10, detection: 5, range: 2, attackSpeed: 1,
-                strength: 2, moveSpeed: 5, jumpForce: 0);
+            (name: "BabyBoss", hp: healthSet, detection: 5, range: 2, attackSpeed: 1,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Default;

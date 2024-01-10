@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ant_State : Monster_State
-{    
+{
     private void Start()
     {
         MonsterDataSetting();
@@ -11,8 +11,8 @@ public class Ant_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Ant", hp: 1, detection: 4, range: 1, attackSpeed: 1,
-                strength: 1, moveSpeed: 2, jumpForce: 0);
+            (name: "Ant", hp: healthSet, detection: 4, range: 1, attackSpeed: 1,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         state = Unit_state.Move;
         base.MonsterDataSetting();

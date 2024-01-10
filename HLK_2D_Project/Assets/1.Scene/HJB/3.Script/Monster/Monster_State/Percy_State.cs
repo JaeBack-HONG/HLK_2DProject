@@ -19,8 +19,8 @@ public class Percy_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Percy", hp: 4, detection: 7, range: 5, attackSpeed: 0.5f,
-                strength: 1, moveSpeed: 2, jumpForce: 0);
+            (name: "Percy", hp: healthSet, detection: 7, range: 5, attackSpeed: 0.5f,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
@@ -41,8 +41,8 @@ public class Percy_State : Monster_State
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
-                Tracy_PlayerCheck();
                 monsterMove.TotalMove();
+                Tracy_PlayerCheck();
                 break;
             case Unit_state.Attack:                                
                 break;
@@ -89,7 +89,7 @@ public class Percy_State : Monster_State
                 break;
             case Unit_state.Move:
                 break;
-            case Unit_state.Attack:
+            case Unit_state.Attack:                
                 StartCoroutine(PercyAttack_co);
                 break;
             case Unit_state.Grab:
@@ -127,14 +127,14 @@ public class Percy_State : Monster_State
     }
 
     private IEnumerator PercyAttack_Co()
-    {
-        rigidbody.velocity = Vector2.zero;
+    {        
         float currentTime = 0f;
         monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Attack");
 
         while (currentTime < 0.8f)
-        {            
+        {
+            rigidbody.velocity = Vector2.zero;
             currentTime += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
@@ -150,7 +150,7 @@ public class Percy_State : Monster_State
         while (currentTime <2f)
         {
             monsterMove.TotalMove();
-            currentTime += Time.fixedDeltaTime;
+            currentTime += Time.fixedDeltaTime;            
             yield return new WaitForFixedUpdate();
         }
         
@@ -163,6 +163,7 @@ public class Percy_State : Monster_State
     {
         GameObject bullet = Instantiate(Percy_FireBall_obj, shotPosi.transform.position, Quaternion.identity);
         Percy_FireBall bullet_C = bullet.GetComponent<Percy_FireBall>();
+        bullet_C.damage = data.Strength;
         if (berserk)
         {
             bullet_C.Speed = bullet_C.Speed * 1.5f;
@@ -177,8 +178,7 @@ public class Percy_State : Monster_State
 
         if (targetDistance < 10f)
         {
-            ChangeState(Unit_state.Attack);
-            return;
+            ChangeState(Unit_state.Attack);            
         }        
     }
 

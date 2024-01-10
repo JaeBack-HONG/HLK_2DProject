@@ -10,7 +10,7 @@ public class Percy_FireBall : MonoBehaviour
     public int damage = 2;
 
     [Range(30f, 100f)]
-    [SerializeField] private float removeDistanceSet = 35f;
+    [SerializeField] public float removeDistanceSet = 35f;
 
     public IEnumerator shot_co;
 

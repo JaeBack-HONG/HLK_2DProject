@@ -8,7 +8,7 @@ public class Armand_State : Monster_State
 
     IEnumerator armandAttack_co;
     IEnumerator specialAttack_co;
-
+    
     private void Start()
     {
         MonsterDataSetting();
@@ -17,15 +17,15 @@ public class Armand_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Armand", hp: 1, detection: 10, range: 2, attackSpeed: 1,
-                strength: 2, moveSpeed: 5, jumpForce: 1);
+            (name: "Armand", hp: healthSet, detection: 10, range: 2, attackSpeed: 1,
+                strength:damageSet, moveSpeed: speedSet, jumpForce: 1);
         Health = data.HP;
         Strength = data.Strength;
         ability_Item = Ability_Item.Armand;
         armandAttack_co = ArmandAttack_Co();
         specialAttack_co = SpecialAttack_Co();
-        base.MonsterDataSetting();
         ChangeState(Unit_state.Move);
+        base.MonsterDataSetting();
     }
     private void FixedUpdate()
     {
@@ -44,9 +44,11 @@ public class Armand_State : Monster_State
                 break;
             case Unit_state.Attack:
                 break;
-            case Unit_state.Grab:
+            case Unit_state.Grab:                
+                StopCoroutine();
                 break;
             case Unit_state.Stun:
+                StopCoroutine();
                 break;
             case Unit_state.Die:
                 break;
@@ -95,7 +97,7 @@ public class Armand_State : Monster_State
 
         int randomAttack = Random.Range(1, 11);
         rigidbody.velocity = Vector2.zero;
-        Debug.Log(randomAttack);
+        animator.SetBool("Move", false);
         if (randomAttack.Equals(5))
         {
             StartCoroutine(specialAttack_co);

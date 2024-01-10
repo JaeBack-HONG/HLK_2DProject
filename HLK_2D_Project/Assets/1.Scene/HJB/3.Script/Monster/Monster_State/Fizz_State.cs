@@ -14,8 +14,8 @@ public class Fizz_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Fizz", hp: 2, detection: 5, range: 1, attackSpeed: 1,
-                strength: 2, moveSpeed: 2, jumpForce: 0);
+            (name: "Fizz", hp: healthSet, detection: 5, range: 1, attackSpeed: 1,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         state = Unit_state.Move;
         base.MonsterDataSetting();

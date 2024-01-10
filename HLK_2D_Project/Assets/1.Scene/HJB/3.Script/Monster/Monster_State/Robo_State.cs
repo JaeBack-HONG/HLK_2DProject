@@ -18,8 +18,8 @@ public class Robo_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Robo", hp: 1, detection: 10, range: 2, attackSpeed: 1,
-                strength: 2, moveSpeed: 2, jumpForce: 1);
+            (name: "Robo", hp: healthSet, detection: 10, range: 2, attackSpeed: 1,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 1);
         Health = data.HP;
         Strength = data.Strength;
         ability_Item = Ability_Item.BigRed;

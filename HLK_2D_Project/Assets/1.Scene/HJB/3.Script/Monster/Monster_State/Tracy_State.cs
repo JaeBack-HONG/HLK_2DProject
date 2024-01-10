@@ -19,8 +19,8 @@ public class Tracy_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Tracy", hp: 4, detection: 7, range: 5, attackSpeed: 0.5f,
-                strength: 1, moveSpeed: 2, jumpForce: 0);
+            (name: "Tracy", hp: healthSet, detection: 7, range: 5, attackSpeed: 0.5f,
+                strength: damageSet, moveSpeed: damageSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
@@ -128,6 +128,7 @@ private IEnumerator TracyAttack_Co()
     {
         GameObject bullet = Instantiate(Tracy_Bow_obj, shotPosi.transform.position, Quaternion.identity);
         Mon_Tracy_Arrow bullet_C = bullet.GetComponent<Mon_Tracy_Arrow>();
+        bullet_C.damage = data.Strength;
         bullet_C.Start_Co(direction);
     }
 

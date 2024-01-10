@@ -19,8 +19,8 @@ public class Lil_Wiz_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Lil_Wiz", hp: 4, detection: 7, range: 5, attackSpeed: 0.5f,
-                strength: 1, moveSpeed: 2, jumpForce: 0);
+            (name: "Lil_Wiz", hp: healthSet, detection: 7, range: 5, attackSpeed: 0.5f,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
@@ -122,6 +122,7 @@ public class Lil_Wiz_State : Monster_State
     {
         GameObject bubble = Instantiate(lil_WizMagic_obj, shotPosi.transform.position, Quaternion.identity);
         Lil_Wiz_MagicBubble bubble_C = bubble.GetComponent<Lil_Wiz_MagicBubble>();
+        bubble_C.damage = data.Strength;
         bubble_C.Start_Co(direction);        
     }
 

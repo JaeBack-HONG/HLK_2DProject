@@ -19,8 +19,8 @@ public class Hope1_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Hope1", hp: 4, detection: 7, range: 5, attackSpeed: 0.5f,
-                strength: 1, moveSpeed: 2, jumpForce: 0);
+            (name: "Hope1", hp: healthSet, detection: 7, range: 5, attackSpeed: 0.5f,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
@@ -127,6 +127,7 @@ public class Hope1_State : Monster_State
 
         GameObject bullet = Instantiate(hope_Bullet_obj, shotPosi.transform.position, Quaternion.identity);
         Hope_Bullet bullet_C = bullet.GetComponent<Hope_Bullet>();
+        bullet_C.damage = data.Strength;
         bullet_C.Start_Co(direction);
     }
 
