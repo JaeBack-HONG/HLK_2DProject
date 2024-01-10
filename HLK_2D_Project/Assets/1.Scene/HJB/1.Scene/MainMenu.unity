@@ -4030,6 +4030,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OptionUI_obj: {fileID: 4121577882310431354}
+  introSceneName: MainMenu
+  currentSceneName: 
+  PlayerData:
+    maxHealth: 3
+    currentHealth: 3
+    SceneName: 
 --- !u!4 &1129841680
 Transform:
   m_ObjectHideFlags: 0
