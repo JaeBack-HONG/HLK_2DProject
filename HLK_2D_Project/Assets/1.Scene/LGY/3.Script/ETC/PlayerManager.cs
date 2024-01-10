@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (instance == null)
         {
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             instance = this;
         }
         else

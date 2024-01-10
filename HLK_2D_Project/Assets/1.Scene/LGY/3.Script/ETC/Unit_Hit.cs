@@ -7,7 +7,7 @@ public class Unit_Hit : MonoBehaviour
     private SpriteRenderer sprite;
     private Player_State p_state;
     private Rigidbody2D rigidbody;
-
+    private bool hit = false;
     Color defaultColor;
     private void Awake()
     {
@@ -17,17 +17,22 @@ public class Unit_Hit : MonoBehaviour
     
 
     public void Hit(int mylayer, Vector3 hitpos)
-    {           
-        TryGetComponent<SpriteRenderer>(out sprite);
-        defaultColor = sprite.color;
+    {
+        if (!hit)
+        {
+            TryGetComponent<SpriteRenderer>(out sprite);
+            defaultColor = sprite.color;
+
+            StartCoroutine(OnDamage(mylayer, hitpos));
+        }        
         
-        StartCoroutine(OnDamage(mylayer, hitpos));
     }
 
     
 
     private IEnumerator OnDamage(int mylayer, Vector3 hitpos)
     {
+        hit = true;
         sprite.color = Color.red;
         if (gameObject.CompareTag("Player"))
         {
@@ -44,7 +49,7 @@ public class Unit_Hit : MonoBehaviour
         sprite.color = defaultColor;
                 
         gameObject.layer = mylayer;
-
+        hit = false;
         yield return null;
     }
 }

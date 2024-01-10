@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Angie_State : Monster_State
-{
+{    
+
     WaitForSeconds cool = new WaitForSeconds(0.25f);
 
     IEnumerator AngieAttack_co;
@@ -22,8 +23,8 @@ public class Angie_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Angie", hp: 1, detection: 10, range: 2, attackSpeed: 1,
-                strength: 2, moveSpeed: 5, jumpForce: 1);
+            (name: "Angie", hp: healthSet, detection: 10, range: 2, attackSpeed: 1,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 1);
         Health = data.HP;
         Strength = data.Strength;
         ability_Item = Ability_Item.Angie;
@@ -187,6 +188,7 @@ public class Angie_State : Monster_State
 
         GameObject bullet = Instantiate(Angie_Bullet_obj, shotPosi.transform.position, Quaternion.identity);
         Angie_Bullet bullet_C = bullet.GetComponent<Angie_Bullet>();
+        bullet_C.damage = data.Strength;
         bullet_C.Start_Co(direction);
     }
 

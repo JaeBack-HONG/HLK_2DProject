@@ -20,8 +20,8 @@ public class Moescotty_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "MoeScotty", hp: 4, detection: 7, range: 5, attackSpeed: 0.5f,
-                strength: 1, moveSpeed: 4, jumpForce: 0);
+            (name: "MoeScotty", hp: healthSet, detection: 7, range: 5, attackSpeed: 0.5f,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Idle;

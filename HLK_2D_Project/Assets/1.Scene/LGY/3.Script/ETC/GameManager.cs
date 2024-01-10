@@ -58,11 +58,12 @@ public class GameManager : MonoBehaviour
 
     public void MainGame_1()
     {
-        SceneManager.LoadScene("HJB_Scene");
+        SceneManager.LoadScene("HJB_Scene");        
     }
     public void MainMenu_Btn()
     {           
         OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
+        Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;
         SceneManager.LoadScene("MainMenu");        
     }
         

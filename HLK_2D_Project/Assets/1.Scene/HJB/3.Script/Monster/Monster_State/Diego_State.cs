@@ -9,7 +9,7 @@ public class Diego_State : Monster_State
     WaitForSeconds WaitCool = new WaitForSeconds(1.5f);
     [SerializeField] private GameObject diego_Bullet_obj;
     [SerializeField] private GameObject shotPosi;
-    IEnumerator hopeAttack_co;
+    IEnumerator diegoAttack_co;
 
     private void Start()
     {
@@ -20,13 +20,13 @@ public class Diego_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "Hope1", hp: 4, detection: 7, range: 5, attackSpeed: 0.5f,
-                strength: 1, moveSpeed: 2, jumpForce: 0);
+            (name: "Hope1", hp: healthSet, detection: 7, range: 5, attackSpeed: 0.5f,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;
         ability_Item = Ability_Item.Diego;
-        hopeAttack_co = HopeAttack_co();
+        diegoAttack_co = DiegoAttack_co();
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
@@ -41,18 +41,16 @@ public class Diego_State : Monster_State
                 break;
             case Unit_state.Move:
                 monsterMove.TotalMove();
-                Hope_PlayerCheck();
+                Diego_PlayerCheck();
                 break;
-            case Unit_state.Attack:
-                hopeAttack_co = HopeAttack_co();
-                StartCoroutine(hopeAttack_co);
+            case Unit_state.Attack:                
                 break;
             case Unit_state.Grab:
-                StopCoroutine(hopeAttack_co);
                 IsGrab();
+                StopCoroutine();
                 break;
             case Unit_state.Stun:
-                StopCoroutine(hopeAttack_co);
+                StopCoroutine();
                 break;
             case Unit_state.Hit:
                 break;
@@ -66,16 +64,57 @@ public class Diego_State : Monster_State
             Monster_HealthCheck();
         }
     }
-
-    private IEnumerator HopeAttack_co()
+    private void ChangeState(Unit_state newState)
     {
-        state = Unit_state.Idle;
+        if (state.Equals(newState))
+        {
+            return;
+        }
+        state = newState;
+
+        StopCoroutine();
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                StartCoroutine(diegoAttack_co);
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                break;
+            case Unit_state.Die:
+                break;
+        }
+    }
+
+    private void StopCoroutine()
+    {
+        StopCoroutine(diegoAttack_co);
+        diegoAttack_co = DiegoAttack_co();
+    }
+    private IEnumerator DiegoAttack_co()
+    {        
         monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Shot");
-
+        rigidbody.velocity = Vector2.zero;
+        float currentTime =0f;
+        while (currentTime < 0.5f)
+        {
+            currentTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        currentTime = 0f;
         Vector3 direction = (monsterMove.direction < 1) ? Vector3.left : Vector3.right;
 
-        rigidbody.velocity = Vector2.zero;
 
         CreateBullet(direction);
         yield return tripleTime;
@@ -88,7 +127,7 @@ public class Diego_State : Monster_State
         animator.SetTrigger("Reload");
         yield return WaitCool;
         animator.SetTrigger("Default");
-        state = Unit_state.Move;
+        ChangeState(Unit_state.Move);
 
         yield return null;
     }
@@ -97,16 +136,17 @@ public class Diego_State : Monster_State
     {
         GameObject bullet = Instantiate(diego_Bullet_obj, shotPosi.transform.position, Quaternion.identity);
         Diego_Bullet bullet_C = bullet.GetComponent<Diego_Bullet>();
+        bullet_C.damage = data.Strength;
         bullet_C.Start_Co(direction);
     }
 
-    private void Hope_PlayerCheck()
+    private void Diego_PlayerCheck()
     {
         float targetDistance = monsterMove.DistanceAndDirection();
 
         if (targetDistance < 10f)
         {
-            state = Unit_state.Attack;
+            ChangeState(Unit_state.Attack);
         }
     }
 
@@ -114,9 +154,10 @@ public class Diego_State : Monster_State
     {
         if (Health <= 0)
         {
-            base.Die();
+            ChangeState(Unit_state.Die);
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
+            base.Die();
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BigRed_State : Monster_State
 {
+
     WaitForSeconds cool = new WaitForSeconds(0.25f);
     
     IEnumerator bigRedAttack_co;
@@ -17,8 +18,8 @@ public class BigRed_State : Monster_State
     public override void MonsterDataSetting()
     {
         data = new UnitData
-            (name: "BigRed", hp: 1, detection: 10, range: 2, attackSpeed: 1,
-                strength: 2, moveSpeed: 5, jumpForce: 1);
+            (name: "BigRed", hp: healthSet, detection: 10, range: 2, attackSpeed: 1,
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 1);
         Health = data.HP;
         Strength = data.Strength;        
         ability_Item = Ability_Item.BigRed;

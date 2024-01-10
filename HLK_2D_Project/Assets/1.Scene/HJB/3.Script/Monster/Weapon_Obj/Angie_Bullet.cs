@@ -7,7 +7,7 @@ public class Angie_Bullet : MonoBehaviour
     [Range(1f, 100f)]
     public float Speed = 2f;
 
-    [SerializeField] private int damage = 2;
+    [SerializeField] public int damage = 2;
 
     [Range(30f, 100f)]
     [SerializeField] private float removeDistanceSet = 35f;

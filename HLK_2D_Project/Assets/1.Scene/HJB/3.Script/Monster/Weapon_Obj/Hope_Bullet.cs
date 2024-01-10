@@ -7,7 +7,7 @@ public class Hope_Bullet : MonoBehaviour
     [Range(1f, 100f)]
     public float Speed = 2f;
 
-    [SerializeField] private int damage = 2;
+    [SerializeField] public int damage;
 
     [Range(30f, 100f)]
     [SerializeField] private float removeDistanceSet = 35f;

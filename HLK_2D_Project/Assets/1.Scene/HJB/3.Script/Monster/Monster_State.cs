@@ -5,6 +5,12 @@ using UnityEngine;
 
 public abstract class Monster_State : MonoBehaviour
 {
+    [Header("기본 : 체력 / 공격 / 속도 설정")]
+    [SerializeField] public int healthSet = 4;
+    [SerializeField] public int damageSet = 2;
+    [SerializeField] public int speedSet = 5;
+
+    [Header("")]
     public Unit_state state;
     public Unit_state currentState;
 
@@ -60,7 +66,7 @@ public abstract class Monster_State : MonoBehaviour
         renderer.color = Color.white;
         Debug.Log("죽음");
         animator.SetTrigger("Death");
-        Destroy(gameObject, 0.7f);
+        Destroy(gameObject, 0.5f);
     }
 
     #region//플레이어에게 데미지주는 메서드(Player_State other)
