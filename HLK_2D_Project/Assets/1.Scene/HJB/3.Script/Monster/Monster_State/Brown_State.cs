@@ -22,6 +22,10 @@ public class Brown_State : Monster_State
     }
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }
         switch (state)
         {
             case Unit_state.Default:
@@ -45,22 +49,37 @@ public class Brown_State : Monster_State
                 break;
             default:
                 break;
-        }
-
-        if (!state.Equals(Unit_state.Default))
-        {
-            Monster_HealthCheck();
-        }
+        }        
     }
-    public override void Monster_HealthCheck()
+    private void ChangeState(Unit_state newState)
     {
-        if (Health <= 0)
+        if (state.Equals(newState))
         {
-            base.Die();
-            GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
-            ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
+            return;
+        }
+        state = newState;
+
+        switch (state)
+        {
+
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                break;
+            case Unit_state.Grab:
+                IsGrab();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                break;
+            case Unit_state.Die:
+                break;
         }
     }
+    
 
 
     #region//곰 던지기 로직(CO)
@@ -101,4 +120,15 @@ public class Brown_State : Monster_State
         yield return null;
     }
     #endregion
+
+    public override void Monster_HealthCheck()
+    {
+        if (Health <= 0)
+        {
+            ChangeState(Unit_state.Die);
+            base.Die();
+            GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
+            ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
+        }
+    }
 }
