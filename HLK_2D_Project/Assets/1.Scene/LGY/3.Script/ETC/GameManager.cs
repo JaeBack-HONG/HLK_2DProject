@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         //æ¿¿Ãµø»ƒ «ˆ¿Á æ¿ ¿˙¿Â
         currentSceneName = SceneManager.GetActiveScene().name;
         if (!currentSceneName.Equals(introSceneName))
-        {
+        {            
             DataSave();
         }
     }
@@ -106,9 +106,16 @@ public class GameManager : MonoBehaviour
     }
     public void DataSave()
     {
+        currentSceneName = SceneManager.GetActiveScene().name;
         PlayerData.maxHealth = 0;
         PlayerData.currentHealth = player.Health;
-        PlayerData.SceneName = currentSceneName;                
+        PlayerData.SceneName = currentSceneName;
+        string fileName;
+
+        fileName = Application.dataPath + "/Data" + "/PlayerDataJson.json";
+        string toJson = JsonConvert.SerializeObject(PlayerData, Formatting.Indented);
+        File.WriteAllText(fileName, toJson);
+        Debug.Log(toJson);
     }
     public void FileDataCheck()
     {
@@ -168,7 +175,7 @@ public class GameManager : MonoBehaviour
     {           
         OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
         Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;
-        PlayerData = DataLoad();
+        DataSave();
         SceneManager.LoadScene("MainMenu");        
     }        
 
@@ -179,8 +186,7 @@ public class GameManager : MonoBehaviour
     }
     public void SceneLoadData_Btn()
     {
-        PlayerData = DataLoad();
-        Debug.Log(PlayerData.SceneName);
+        PlayerData = DataLoad();        
         SceneManager.LoadScene(PlayerData.SceneName);
     }
     #endregion
