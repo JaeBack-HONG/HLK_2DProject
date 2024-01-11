@@ -26,4 +26,23 @@ public abstract class Ability : MonoBehaviour
         TryGetComponent<Animator>(out animator);
     }
     public abstract void UseAbility();
+
+    public void DefaulutSet(string mod)
+    {
+        P_state.isAttack = true;
+        rigidbody.velocity = Vector2.zero;
+        P_state.actState = Unit_state.Default;
+        animator.SetTrigger(mod);
+        animator.speed = anispeed;
+    }
+
+    public void EndSet()
+    {
+        P_state.actState = Unit_state.Idle;
+        animator.SetTrigger("Idle");
+        animator.speed = 1f;
+        P_state.isAttack = false;
+    }
+
+
 }

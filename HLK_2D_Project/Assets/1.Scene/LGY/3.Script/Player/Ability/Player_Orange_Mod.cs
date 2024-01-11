@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_Orange_Mod : Ability
 {
     [Header("구르기 속도")]
-    [SerializeField] private float rollingSpeed = 15f;
+    [SerializeField] private float rollingSpeed = 30f;
     private bool ishit;
     [SerializeField] private int attackDmg = 3;
 
@@ -16,18 +16,16 @@ public class Player_Orange_Mod : Ability
 
     private IEnumerator Orange_Attack_Co()
     {
-        P_state.isAttack = true;
-        ishit = false;
+        DefaulutSet("OrangeMod");
         gameObject.layer = (int)Layer_Index.Hit;
 
-        rigidbody.velocity = Vector2.zero;
-        P_state.actState = Unit_state.Default;
-        float Gauge = 0f;
+        ishit = false;
 
-        animator.SetTrigger("OrangeMod");
+        float Gauge = 0f;
         while (Gauge <= 3f && Input.GetKey(KeyCode.Z))
         {
             Gauge += Time.fixedDeltaTime * 2f;
+            gaugeUI.fillAmount = Gauge / 3f;
             yield return new WaitForFixedUpdate();
         }
 
@@ -41,26 +39,24 @@ public class Player_Orange_Mod : Ability
         while (Gauge >= 0 && !ishit)
         {
             Gauge -= Time.fixedDeltaTime;
+            gaugeUI.fillAmount = Gauge / 3f;
             rigidbody.velocity = new Vector2(P_state.direction.x * rollingSpeed, rigidbody.velocity.y);
-            OrangeRollingStopCheck();
+            StartCoroutine(OrangeRollingStopCheck());
             yield return new WaitForFixedUpdate();
         }
-        noise.m_AmplitudeGain = 10;
-        yield return new WaitForSeconds(0.2f);
-        noise.m_AmplitudeGain = 0;
-        while (!P_state.JumState.Equals(Jump_State.Falling))
+
+        while (!P_state.JumState.Equals(Jump_State.Falling) && ishit)
         {
             yield return new WaitForFixedUpdate();
         }
 
-        P_state.actState = Unit_state.Idle;
         gameObject.layer = (int)Layer_Index.Player;
-        animator.SetTrigger("Idle");
-        P_state.isAttack = false;
+        EndSet();
+        yield return null;
 
     }
 
-    private void OrangeRollingStopCheck()
+    private IEnumerator OrangeRollingStopCheck()
     {
         LayerMask StopCheckMask = LayerMask.GetMask("Enemy", "Ground");
 
@@ -79,6 +75,13 @@ public class Player_Orange_Mod : Ability
             }
             rigidbody.velocity = Vector2.zero;
             rigidbody.AddForce((-P_state.direction + Vector2.up * 2f).normalized * 20f, ForceMode2D.Impulse);
+
+            gaugeUI.fillAmount = 0;
+            noise.m_AmplitudeGain = 10;
+            yield return new WaitForSeconds(0.2f / anispeed);
+            noise.m_AmplitudeGain = 0;
+            yield return null;
+
         }
 
 

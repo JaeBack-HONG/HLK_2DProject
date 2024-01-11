@@ -29,11 +29,11 @@ public class Player_State : MonoBehaviour
     private Player_Move P_Move;
 
     public Vector2 direction;
-    public bool isAttack = false;
 
     private IEnumerator Slow_Co;
     private IEnumerator Stun_Co;
 
+    public bool isAttack = false;
     public bool isGround = true;
     public bool isFairy = false;
     public bool isArmand = false;
@@ -81,9 +81,11 @@ public class Player_State : MonoBehaviour
             case Unit_state.Default:
                 break;
             case Unit_state.Idle:
+                if (isArmand) actState = Unit_state.Default;
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Move:
+                if (isArmand) actState = Unit_state.Default;
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Attack:
@@ -127,7 +129,7 @@ public class Player_State : MonoBehaviour
                 ChangeState(Jump_State.Idle);
                 P_Move.jumpCount = P_Move.maxJumps;
 
-                if (!actState.Equals(Unit_state.Idle)) actState = Unit_state.Idle;
+                if (!actState.Equals(Unit_state.Idle) && !isAttack) actState = Unit_state.Idle;
             }
         }
     }
