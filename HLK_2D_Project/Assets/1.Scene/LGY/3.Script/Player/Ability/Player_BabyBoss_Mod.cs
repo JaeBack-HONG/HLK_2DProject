@@ -14,19 +14,22 @@ public class Player_BabyBoss_Mod : Ability
 
     private IEnumerator BabyBossAttack_co()
     {
-        gameObject.layer = (int)Layer_Index.Hit;
         P_state.actState = Unit_state.Default;
+        gameObject.layer = (int)Layer_Index.Hit;
         rigidbody.velocity = Vector2.zero;
         PlayerManager.instance.UsedAb();
         animator.SetTrigger("BBMod");
-        yield return new WaitForSeconds(0.6f);
+        animator.speed = anispeed;
+        yield return new WaitForSeconds(0.55f / anispeed);
+        noise.m_AmplitudeGain = 10;
         attackbox.enabled = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.2f / anispeed);
+        noise.m_AmplitudeGain = 0;
+        yield return new WaitForSeconds(0.2f / anispeed);
         attackbox.enabled = false;
         animator.SetTrigger("Idle");
-        yield return new WaitForSeconds(0.5f);
         gameObject.layer = (int)Layer_Index.Player;
-        P_state.actState = Unit_state.Move;
+        P_state.actState = Unit_state.Idle;
 
         if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
         {

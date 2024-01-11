@@ -12,10 +12,10 @@ public abstract class HitBox : MonoBehaviour
     [Range(1, 5)]
     [SerializeField] private int dmg = 2;
 
-    [Range(0.1f, 0.5f)]
+    [Range(0f, 0.5f)]
     [SerializeField] private float noiseTime = 0.15f;   
     
-    [Range(2f, 10f)]
+    [Range(0f, 10f)]
     [SerializeField] private float noiseScale = 3f;
 
 

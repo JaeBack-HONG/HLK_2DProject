@@ -163,8 +163,8 @@ MonoBehaviour:
   noise: {fileID: 0}
   P_state: {fileID: 0}
   dmg: 3
-  noiseTime: 0.15
-  noiseScale: 3
+  noiseTime: 0
+  noiseScale: 0
 --- !u!50 &5818709561506914088
 Rigidbody2D:
   serializedVersion: 4
@@ -897,7 +897,7 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   gaugeUI: {fileID: 0}
-  anispeed: 0.8
+  anispeed: 1.2
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
   attackbox: {fileID: 8122092032702504612}
