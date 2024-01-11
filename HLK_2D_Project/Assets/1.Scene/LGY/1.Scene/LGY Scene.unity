@@ -1046,7 +1046,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2797919914270543858, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: itemidx
-      value: 17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2797919914270543858, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: sprites.Array.data[3]
@@ -1552,6 +1552,10 @@ PrefabInstance:
       propertyPath: cinemachinevir
       value: 
       objectReference: {fileID: 548989552}
+    - target: {fileID: 6733462574698497862, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: anispeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6733462574698497862, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: cinemachinevir
       value: 
@@ -12237,7 +12241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4356293395880262212, guid: 3de1413f229a98b4e9fc40094d7cd35a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3de1413f229a98b4e9fc40094d7cd35a, type: 3}
