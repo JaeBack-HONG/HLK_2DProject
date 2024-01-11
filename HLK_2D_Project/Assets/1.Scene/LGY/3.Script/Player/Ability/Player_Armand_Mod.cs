@@ -27,8 +27,6 @@ public class Player_Armand_Mod : Ability
         {
             duration += Time.deltaTime;
 
-            ChangeState();
-
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 animator.SetTrigger("ArmandAttack");
@@ -48,14 +46,4 @@ public class Player_Armand_Mod : Ability
     }
 
 
-    private void ChangeState()
-    {
-        Jump_State jumpstate = P_state.JumState;
-        if (P_state.JumState.Equals(jumpstate))
-        {
-            return;
-        }
-
-
-    }
 }

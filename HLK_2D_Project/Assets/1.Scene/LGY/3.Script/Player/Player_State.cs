@@ -33,6 +33,7 @@ public class Player_State : MonoBehaviour
     private IEnumerator Slow_Co;
     private IEnumerator Stun_Co;
 
+    public bool isGround = true;
     public bool isFairy = false;
     public bool isArmand = false;
 
@@ -108,7 +109,7 @@ public class Player_State : MonoBehaviour
 
     public void GroundRayCheck()
     {
-        if (JumState.Equals(Jump_State.Falling))
+        if (JumState.Equals(Jump_State.Falling) && !isGround)
         {
             RaycastHit2D hit1 = Physics2D.Raycast(new Vector3(transform.position.x + 0.45f, transform.position.y),
                 Vector2.down, 0.75f, LayerMask.GetMask("Ground"));
@@ -117,8 +118,8 @@ public class Player_State : MonoBehaviour
 
             if (hit1.collider != null || hit2.collider != null)
             {
-                P_Move.jumpCount = P_Move.maxJumps;
                 ChangeState(Jump_State.Idle);
+                P_Move.jumpCount = P_Move.maxJumps;
 
                 if (!actState.Equals(Unit_state.Idle)) actState = Unit_state.Idle;
             }
@@ -154,15 +155,16 @@ public class Player_State : MonoBehaviour
         switch (JumState)
         {
             case Jump_State.Idle:
-
+                isGround = true;
                 if (isArmand) animator.SetTrigger("Idle");
                 break;
             case Jump_State.Jumping:
+                isGround = false;
 
                 if (isArmand) animator.SetTrigger("ArmandJump");
                 break;
             case Jump_State.Falling:
-
+                isGround = false;
                 if (isArmand) animator.SetTrigger("ArmandFall");
                 break;
             default:
