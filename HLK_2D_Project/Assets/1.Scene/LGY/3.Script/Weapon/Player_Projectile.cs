@@ -29,9 +29,6 @@ public abstract class Player_Projectile : MonoBehaviour
         {
             Monster_State monstate = collision.gameObject.GetComponent<Monster_State>();
 
-
-            //여기에 플레이어 독 데미지 불러오기
-
             if (monstate != null)
             {
                 monstate.Health -= damage;

@@ -31,6 +31,10 @@ public class Diego_State : Monster_State
     }
     private void FixedUpdate()
     {
+        if (!state.Equals(Unit_state.Die))
+        {
+            Monster_HealthCheck();
+        }
 
         switch (state)
         {
@@ -58,10 +62,6 @@ public class Diego_State : Monster_State
                 break;
             default:
                 break;
-        }
-        if (!state.Equals(Unit_state.Default))
-        {
-            Monster_HealthCheck();
         }
     }
     private void ChangeState(Unit_state newState)

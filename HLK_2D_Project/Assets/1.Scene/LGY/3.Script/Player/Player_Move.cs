@@ -6,6 +6,7 @@ public class Player_Move : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Rigidbody2D rigidbody;
+    private Animator animator;
 
     public Monster_State mon;
     private Player_State P_State;
@@ -15,6 +16,7 @@ public class Player_Move : MonoBehaviour
 
     private void Awake()
     {
+        TryGetComponent<Animator>(out animator);
         jumpCount = maxJumps;
         TryGetComponent<Rigidbody2D>(out rigidbody);
         TryGetComponent<Player_State>(out P_State);
@@ -30,10 +32,16 @@ public class Player_Move : MonoBehaviour
             if (mon != null) P_State.Attack(mon);
         }
     }
+    private void FixedUpdate()
+    {
+
+
+    }
 
     public void MoveCheck()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
+        animator.SetFloat("XSpeed", Mathf.Abs(horizontalInput));
         rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0)) Jump();
@@ -50,10 +58,11 @@ public class Player_Move : MonoBehaviour
     {
         rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
         rigidbody.AddForce(Vector2.up * P_State.JumpForce, ForceMode2D.Impulse);
-        if (P_State.JumState.Equals(Jump_State.Idle))
+
+        if (!P_State.JumState.Equals(Jump_State.Jumping))
         {
             P_State.ChangeState(Jump_State.Jumping);
-            jumpCount--;
         }
+        jumpCount--;
     }
 }

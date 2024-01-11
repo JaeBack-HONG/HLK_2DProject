@@ -278,6 +278,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a6b391363a0934f8da777d69d62523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3180984450873487988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3347989678561218721}
+  - component: {fileID: 5437182590577296010}
+  - component: {fileID: 833699404910341866}
+  - component: {fileID: 4316794566119992000}
+  m_Layer: 0
+  m_Name: Armandcol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3347989678561218721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180984450873487988}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.8, y: 0.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7986413340031863269}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &5437182590577296010
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180984450873487988}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
+--- !u!50 &833699404910341866
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180984450873487988}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &4316794566119992000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180984450873487988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c7a09258fc9574ab5e871c4e09538d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 4
 --- !u!1 &3568800101787277851
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +604,7 @@ Transform:
   - {fileID: 2175570621292851773}
   - {fileID: 7962470376305533905}
   - {fileID: 2673819181126541974}
+  - {fileID: 3347989678561218721}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -678,6 +762,7 @@ MonoBehaviour:
   JumpForce: 0
   direction: {x: 0, y: 0}
   isAttack: 0
+  isGround: 1
   isFairy: 0
   isArmand: 0
 --- !u!114 &7986413340031863260
@@ -1086,6 +1171,8 @@ MonoBehaviour:
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
+  attackcol: {fileID: 5437182590577296010}
+  duration: 30
 --- !u!1 &9147761030394907054
 GameObject:
   m_ObjectHideFlags: 0

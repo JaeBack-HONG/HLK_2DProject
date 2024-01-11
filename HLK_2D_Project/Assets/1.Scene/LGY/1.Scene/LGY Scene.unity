@@ -1424,6 +1424,18 @@ PrefabInstance:
       propertyPath: cinemachinevir
       value: 
       objectReference: {fileID: 548989552}
+    - target: {fileID: 3347989678561218721, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3347989678561218721, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3347989678561218721, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5294653931156444604, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: anispeed
       value: 1
@@ -1440,6 +1452,10 @@ PrefabInstance:
       propertyPath: cinemachinevir
       value: 
       objectReference: {fileID: 548989552}
+    - target: {fileID: 5437182590577296010, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5802355883082212129, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: noiseTime
       value: 0.1
@@ -12061,7 +12077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4356293395880262212, guid: 3de1413f229a98b4e9fc40094d7cd35a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3de1413f229a98b4e9fc40094d7cd35a, type: 3}

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public enum Jump_State
 {
-    Idle = 0,
-    Jumping = 1,
+    Default = 0,
+    Idle,
+    Jumping,
     Falling,
 }
 
@@ -54,11 +55,16 @@ public class Player_State : MonoBehaviour
 
         P_Ability.Choice_Ab();
         State_Check();
-        IsFalling();
-        GroundRayCheck();
+
         Player_HealthCheck();
 
         direction = (transform.rotation.y.Equals(0)) ? Vector2.right : Vector2.left;
+    }
+    private void FixedUpdate()
+    {
+        animator.SetFloat("YSpeed", P_Move.rigidbody.velocity.y);
+        IsFalling();
+        GroundRayCheck();
     }
 
     private void PlayerDataSetting()
@@ -109,7 +115,7 @@ public class Player_State : MonoBehaviour
 
     public void GroundRayCheck()
     {
-        if (JumState.Equals(Jump_State.Falling) && !isGround)
+        if (JumState.Equals(Jump_State.Falling))
         {
             RaycastHit2D hit1 = Physics2D.Raycast(new Vector3(transform.position.x + 0.45f, transform.position.y),
                 Vector2.down, 0.75f, LayerMask.GetMask("Ground"));
@@ -155,17 +161,23 @@ public class Player_State : MonoBehaviour
         switch (JumState)
         {
             case Jump_State.Idle:
-                isGround = true;
-                if (isArmand) animator.SetTrigger("Idle");
+                if (isArmand)
+                {
+                    animator.SetTrigger("Idle");
+                }
+
                 break;
             case Jump_State.Jumping:
-                isGround = false;
 
-                if (isArmand) animator.SetTrigger("ArmandJump");
+                if (isArmand)
+                {
+                    animator.SetTrigger("ArmandJump");
+                }
                 break;
             case Jump_State.Falling:
-                isGround = false;
-                if (isArmand) animator.SetTrigger("ArmandFall");
+                if (isArmand)
+                {
+                }
                 break;
             default:
                 break;

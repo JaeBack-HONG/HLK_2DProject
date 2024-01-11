@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Player_Armand_Mod : Ability
 {
-
+    private bool isAttack = false;
+    [SerializeField] private CircleCollider2D attackcol;
+    [SerializeField] private float duration = 30f;
     IEnumerator ArmandTemp;
 
     public override void UseAbility()
@@ -16,33 +18,45 @@ public class Player_Armand_Mod : Ability
     IEnumerator ArmandMod_Co()
     {
         P_state.actState = Unit_state.Idle;
-        //animator.SetBool("ArmandMod", true);
         P_state.isArmand = true;
         animator.speed = 0.7f;
-        float duration = 0;
+        float currentTime = 0;
 
         animator.SetLayerWeight(animator.GetLayerIndex("ArmandMod"), 1f);
+        animator.SetTrigger("Idle");
 
-        while (duration < 10)
+        while (currentTime < duration)
         {
-            duration += Time.deltaTime;
+            currentTime += Time.deltaTime;
 
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z) && P_state.JumState.Equals(Jump_State.Idle) && !isAttack)
             {
-                animator.SetTrigger("ArmandAttack");
+                StartCoroutine(ArmandAttack_Co());
             }
-
-
-
             yield return null;
         }
 
         animator.SetLayerWeight(animator.GetLayerIndex("ArmandMod"), 0f);
-
-
         P_state.isArmand = false;
-        animator.SetBool("ArmandMod", false);
+
         yield return null;
+    }
+
+    IEnumerator ArmandAttack_Co()
+    {
+        isAttack = true;
+        rigidbody.velocity = Vector2.zero;
+        P_state.actState = Unit_state.Default;
+        animator.SetTrigger("ArmandAttack");
+
+        yield return new WaitForSeconds(0.15f);
+        attackcol.enabled = true;
+        yield return new WaitForSeconds(0.7f);
+        attackcol.enabled = false;
+        P_state.actState = Unit_state.Idle;
+        isAttack = false;
+        yield return null;
+
     }
 
 
