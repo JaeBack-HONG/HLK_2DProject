@@ -14,16 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scene/GMJ/Scene/Stage1.unity
     guid: 5ff13d41e3644214ba1ff675517b1764
-  - enabled: 0
+  - enabled: 1
     path: Assets/1.Scene/GMJ/Scene/Stage2-1.unity
     guid: e28f9a8a6d05a6e44b05e002a9a90d56
-  - enabled: 0
+  - enabled: 1
     path: Assets/1.Scene/GMJ/Scene/Stage2-2.unity
     guid: e2ef28c7ad62c96489344be4ffdde90a
-  - enabled: 0
+  - enabled: 1
     path: Assets/1.Scene/GMJ/Scene/Stage3.unity
     guid: c8ffeff2b6bff4f4eb72cded8fabb912
-  - enabled: 0
+  - enabled: 1
     path: Assets/1.Scene/GMJ/Scene/tutorial.unity
     guid: 56e72ac22d4a8e147a40868545a88565
   m_configObjects: {}
