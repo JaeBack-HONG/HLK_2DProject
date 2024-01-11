@@ -113,8 +113,6 @@ public class GameManager : MonoBehaviour
             currentSceneName = SceneManager.GetActiveScene().name;
             PlayerData.SceneName = currentSceneName;
 
-
-
             PlayerData.AbilityCheck_1 = PlayerManager.instance.count_List[0];
             PlayerData.AbilityCheck_2 = PlayerManager.instance.count_List[1]; 
             PlayerData.AbilityCheck_3 = PlayerManager.instance.count_List[2]; 
@@ -122,7 +120,7 @@ public class GameManager : MonoBehaviour
             PlayerData.Ability_1 = (int)player_Ability.AbIdx[0];
             PlayerData.Ability_2 = (int)player_Ability.AbIdx[1];
             PlayerData.Ability_3 = (int)player_Ability.AbIdx[2];
-            Debug.Log(PlayerData.Ability_1);
+            
             //현재 능력 사용횟수
             PlayerData.Ability_1_count = PlayerManager.instance.count_List[0];
             PlayerData.Ability_2_count = PlayerManager.instance.count_List[1];
@@ -150,8 +148,8 @@ public class GameManager : MonoBehaviour
 
         }
         else if (File.Exists(fileName))
-        {            
-            DataLoad();            
+        {
+            PlayerData = DataLoad();
         }              
     }
     public PlayerDataJson DataLoad()
@@ -196,7 +194,7 @@ public class GameManager : MonoBehaviour
         DefaultDataSet();
         //DataLoad();
         DataSave();
-        SceneManager.LoadScene("HJB_Scene");
+        SceneManager.LoadScene("tutorial");
     }
     public void MainMenu_Btn()
     {           
@@ -213,7 +211,7 @@ public class GameManager : MonoBehaviour
     }
     public void SceneLoadData_Btn()
     {
-        DataLoad();
+        PlayerData = DataLoad();
         Debug.Log(PlayerData.Ability_1);
         SceneManager.LoadScene(PlayerData.SceneName);
     }

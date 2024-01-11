@@ -67,13 +67,12 @@ public class PlayerManager : MonoBehaviour
         
         AbIdx = new Ability_Item[3]; 
         P_Ab.my_Abilities = new Ability[3];
-                        
+        
+
         P_Ab.my_Abilities[0] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_1];
         P_Ab.my_Abilities[1] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_2];
         P_Ab.my_Abilities[2] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_3];
-        Debug.Log(P_Ab.abilities[GameManager.instance.PlayerData.Ability_1]);
-        Debug.Log(P_Ab.abilities[4]);
-        Debug.Log(P_Ab.my_Abilities[0]);
+        
         
         count_List[0] = GameManager.instance.PlayerData.AbilityCheck_1;
         count_List[1] = GameManager.instance.PlayerData.AbilityCheck_2;
@@ -89,14 +88,12 @@ public class PlayerManager : MonoBehaviour
     {
         
         RemoveItem();
-        ResetAbList();        
+        ResetAbList();      
+        
     }
 
     public void StartSetting()
     {
-        
-        
-
         AbIdx[0] = (Ability_Item)GameManager.instance.PlayerData.Ability_1;
         AbIdx[1] = (Ability_Item)GameManager.instance.PlayerData.Ability_2;
         AbIdx[2] = (Ability_Item)GameManager.instance.PlayerData.Ability_3;
@@ -113,10 +110,7 @@ public class PlayerManager : MonoBehaviour
                 icon_Image[i].sprite = null;
             }
             
-        }        
-        P_Ab.my_Abilities[0] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_1];
-        P_Ab.my_Abilities[1] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_2];
-        P_Ab.my_Abilities[2] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_3];
+        }               
     }
 
     #region Ability Reset
