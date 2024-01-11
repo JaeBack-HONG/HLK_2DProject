@@ -13,18 +13,13 @@ public class Player_BigRed_Mod : Ability
 
     private IEnumerator BigRedAttack_Co()
     {
-        rigidbody.velocity = Vector2.zero;
-        P_state.actState= Unit_state.Default;
+        DefaulutSet("BigRedMod");
         PlayerManager.instance.UsedAb();
-        animator.SetTrigger("BigRedMod");
-        animator.speed = anispeed;
         punchCol.enabled=true;
         yield return new WaitForSeconds(0.55f / anispeed);
         punchCol.enabled = false;
 
-        animator.SetTrigger("Idle");
-        animator.speed = 1;
-        P_state.actState= Unit_state.Idle;
+        EndSet();
 
         if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
         {

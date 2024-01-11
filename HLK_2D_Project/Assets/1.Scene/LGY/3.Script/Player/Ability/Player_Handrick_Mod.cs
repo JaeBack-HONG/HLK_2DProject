@@ -17,7 +17,6 @@ public class Player_Handrick_Mod : Ability
 
     private IEnumerator HandrickAttack_co()
     {
-        P_state.isAttack = true;
         isRush = true;
         P_state.actState = Unit_state.Idle;
 
@@ -33,24 +32,24 @@ public class Player_Handrick_Mod : Ability
             yield return new WaitForFixedUpdate();
         }
         transform.gameObject.layer = (int)Layer_Index.Hit;
-        spearcol.enabled = true;
         PlayerManager.instance.UsedAb();
-        animator.SetTrigger("HandrickMod");
-        animator.speed = anispeed;
-        while (gauge >= 0)
+        DefaulutSet("HandrickMod");
+        P_state.actState = Unit_state.Idle;
+        spearcol.enabled = true;
+
+        while (gauge >= 0 && !Input.GetKeyDown(KeyCode.Z))
         {
             gaugeUI.fillAmount = gauge / 3f;
             gauge -= Time.deltaTime;
             rigidbody.velocity = new Vector2(P_state.direction.x * rushSpeed, rigidbody.velocity.y);
             yield return null;
         }
+        gaugeUI.fillAmount = 0;
 
         transform.gameObject.layer = (int)Layer_Index.Player;
         spearcol.enabled = false;
-        animator.SetTrigger("Idle");
-        animator.speed = 1f;
+        EndSet();
         isRush = false;
-        P_state.isAttack = false;
         yield return null;
     }
 

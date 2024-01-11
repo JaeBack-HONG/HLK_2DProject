@@ -13,24 +13,17 @@ public class Player_Hope_Mod : Ability
 
     IEnumerator Shot()
     {
-        P_state.isAttack = true;
-        PlayerManager.instance.UsedAb();
-        rigidbody.velocity = Vector2.zero;
-        P_state.actState = Unit_state.Default;
-        animator.SetTrigger("HopeMod");
+        DefaulutSet("HopeMod");
 
-        animator.speed = anispeed;
+        PlayerManager.instance.UsedAb();
+
 
         yield return new WaitForSeconds(0.6f / anispeed);
         CreateBullet();
         noise.m_AmplitudeGain = 2;
         yield return new WaitForSeconds(0.05f / anispeed);
         noise.m_AmplitudeGain = 0;
-
-
-        P_state.actState = Unit_state.Idle;
-        animator.SetTrigger("Idle");
-        P_state.isAttack = false;
+        EndSet();
 
         if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
         {

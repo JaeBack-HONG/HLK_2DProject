@@ -13,11 +13,8 @@ public class Player_LilWiz_Mod : Ability
 
     private IEnumerator Lil_WizAttack_co()
     {
-        P_state.isAttack = true;
-        rigidbody.velocity = Vector2.zero;
-        P_state.actState = Unit_state.Default;
-        animator.SetTrigger("LilWizMod");
-        animator.speed = anispeed;
+        DefaulutSet("LilWizMod");
+
         PlayerManager.instance.UsedAb();
 
         yield return new WaitForSeconds(0.3f / anispeed);
@@ -25,9 +22,7 @@ public class Player_LilWiz_Mod : Ability
         CreateBubble();
 
         yield return new WaitForSeconds(0.15f / anispeed);
-        animator.SetTrigger("Idle");
-        P_state.actState = Unit_state.Idle;
-        P_state.isAttack = false;
+        EndSet();
 
         if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
         {

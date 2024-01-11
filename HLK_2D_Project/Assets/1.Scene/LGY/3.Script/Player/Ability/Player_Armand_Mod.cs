@@ -19,7 +19,7 @@ public class Player_Armand_Mod : Ability
     {
         P_state.actState = Unit_state.Idle;
         P_state.isArmand = true;
-        animator.speed = 0.7f;
+        animator.speed = anispeed;
         float currentTime = 0;
 
         animator.SetLayerWeight(animator.GetLayerIndex("ArmandMod"), 1f);
@@ -49,9 +49,9 @@ public class Player_Armand_Mod : Ability
         P_state.actState = Unit_state.Default;
         animator.SetTrigger("ArmandAttack");
 
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.21f);
         attackcol.enabled = true;
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(1f);
         attackcol.enabled = false;
         P_state.actState = Unit_state.Idle;
         isAttack = false;
