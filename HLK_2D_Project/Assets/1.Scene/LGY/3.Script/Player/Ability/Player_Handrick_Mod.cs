@@ -24,6 +24,7 @@ public class Player_Handrick_Mod : Ability
         while (Input.GetKey(KeyCode.Z) && gauge <= 3f)
         {
             gauge += Time.fixedDeltaTime * gaugecor;
+            gaugeUI.fillAmount = gauge / 3f;
             yield return new WaitForFixedUpdate();
         }
 
@@ -34,10 +35,11 @@ public class Player_Handrick_Mod : Ability
         transform.gameObject.layer = (int)Layer_Index.Hit;
         spearcol.enabled = true;
         PlayerManager.instance.UsedAb();
-
         animator.SetTrigger("HandrickMod");
+        animator.speed = anispeed;
         while (gauge >= 0)
         {
+            gaugeUI.fillAmount = gauge / 3f;
             gauge -= Time.deltaTime;
             rigidbody.velocity = new Vector2(P_state.direction.x * rushSpeed, rigidbody.velocity.y);
             yield return null;
@@ -46,6 +48,7 @@ public class Player_Handrick_Mod : Ability
         transform.gameObject.layer = (int)Layer_Index.Player;
         spearcol.enabled = false;
         animator.SetTrigger("Idle");
+        animator.speed = 1f;
         isRush = false;
         P_state.isAttack = false;
         yield return null;
