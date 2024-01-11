@@ -580,6 +580,9 @@ GameObject:
   - component: {fileID: 3056226531259936753}
   - component: {fileID: 2027195425452245173}
   - component: {fileID: 5301692324299368252}
+  - component: {fileID: 5727625204273246691}
+  - component: {fileID: 971698652445191008}
+  - component: {fileID: 326943071668644198}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -799,15 +802,18 @@ MonoBehaviour:
   - {fileID: 5294653931156444604}
   - {fileID: 3329743050120156444}
   - {fileID: 821563398283158581}
-  - {fileID: 7997788500012064030}
-  - {fileID: 7433568508982086788}
-  - {fileID: 7325355895843320442}
-  - {fileID: 851391039751932251}
   - {fileID: 6920031988189846070}
+  - {fileID: 971698652445191008}
+  - {fileID: 5727625204273246691}
+  - {fileID: 7325355895843320442}
+  - {fileID: 7433568508982086788}
+  - {fileID: 2027195425452245173}
+  - {fileID: 7997788500012064030}
+  - {fileID: 326943071668644198}
   - {fileID: 1845878268536882986}
   - {fileID: 3056226531259936753}
-  - {fileID: 2027195425452245173}
   - {fileID: 5301692324299368252}
+  - {fileID: 851391039751932251}
   current_Ab: {fileID: 0}
 --- !u!114 &6733462574698497862
 MonoBehaviour:
@@ -1173,6 +1179,63 @@ MonoBehaviour:
   noise: {fileID: 0}
   attackcol: {fileID: 5437182590577296010}
   duration: 30
+--- !u!114 &5727625204273246691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986413340031863258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c255b7d2ea6a64b4fa95bd6ad8c19549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  P_Move: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
+--- !u!114 &971698652445191008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986413340031863258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92c74e661f3ebd4584743c8b9743d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  P_Move: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
+--- !u!114 &326943071668644198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986413340031863258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2650b87c5d4a34ea820c030b8234ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_state: {fileID: 0}
+  P_Move: {fileID: 0}
+  rigidbody: {fileID: 0}
+  animator: {fileID: 0}
+  anispeed: 1
+  cinemachinevir: {fileID: 0}
+  noise: {fileID: 0}
 --- !u!1 &9147761030394907054
 GameObject:
   m_ObjectHideFlags: 0
