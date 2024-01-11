@@ -22,6 +22,8 @@ public class Player_State : MonoBehaviour
     public int Health;
     public float JumpForce;
 
+    private PlayerDataJson playerdata;
+    private Animator animator;
     private Player_Ability P_Ability;
     private Player_Move P_Move;
 
@@ -36,6 +38,7 @@ public class Player_State : MonoBehaviour
 
     private void Start()
     {
+        TryGetComponent<Animator>(out animator);
         TryGetComponent<Player_Move>(out P_Move);
         PlayerDataSetting();
         actState = Unit_state.Idle;
@@ -115,7 +118,7 @@ public class Player_State : MonoBehaviour
             if (hit1.collider != null || hit2.collider != null)
             {
                 P_Move.jumpCount = P_Move.maxJumps;
-                JumState = Jump_State.Idle;
+                ChangeState(Jump_State.Idle);
 
                 if (!actState.Equals(Unit_state.Idle)) actState = Unit_state.Idle;
             }
@@ -128,7 +131,7 @@ public class Player_State : MonoBehaviour
         {
             if (P_Move.jumpCount.Equals(P_Move.maxJumps)) P_Move.jumpCount--;
 
-            if (!JumState.Equals(Jump_State.Falling) && !isAttack) JumState = Jump_State.Falling;
+            if (!JumState.Equals(Jump_State.Falling) && !isAttack) ChangeState(Jump_State.Falling);
         }
     }
 
@@ -139,6 +142,34 @@ public class Player_State : MonoBehaviour
             Die();
         }
     }
+
+    public void ChangeState(Jump_State jumpstate)
+    {
+        if (JumState.Equals(jumpstate))
+        {
+            return;
+        }
+        JumState = jumpstate;
+
+        switch (JumState)
+        {
+            case Jump_State.Idle:
+
+                if (isArmand) animator.SetTrigger("Idle");
+                break;
+            case Jump_State.Jumping:
+
+                if (isArmand) animator.SetTrigger("ArmandJump");
+                break;
+            case Jump_State.Falling:
+
+                if (isArmand) animator.SetTrigger("ArmandFall");
+                break;
+            default:
+                break;
+        }
+    }
+
 
     public void Die()
     {

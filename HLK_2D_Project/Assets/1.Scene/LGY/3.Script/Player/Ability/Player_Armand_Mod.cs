@@ -56,21 +56,6 @@ public class Player_Armand_Mod : Ability
             return;
         }
 
-        switch (P_state.JumState)
-        {
-            case Jump_State.Idle:
-                animator.SetTrigger("Idle");
-                break;
-            case Jump_State.Jumping:
-                animator.SetBool("ArmandJump", true);
-                break;
-            case Jump_State.Falling:
-                animator.SetBool("ArmandJump", false);
-                break;
-            default:
-                break;
-        }
-
 
     }
 }

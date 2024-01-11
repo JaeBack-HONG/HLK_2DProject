@@ -52,8 +52,8 @@ public class Player_Move : MonoBehaviour
         rigidbody.AddForce(Vector2.up * P_State.JumpForce, ForceMode2D.Impulse);
         if (P_State.JumState.Equals(Jump_State.Idle))
         {
-            P_State.JumState = Jump_State.Jumping;
+            P_State.ChangeState(Jump_State.Jumping);
+            jumpCount--;
         }
-        jumpCount--;
     }
 }
