@@ -17,13 +17,14 @@ public class Player_LilWiz_Mod : Ability
         rigidbody.velocity = Vector2.zero;
         P_state.actState = Unit_state.Default;
         animator.SetTrigger("LilWizMod");
+        animator.speed = anispeed;
         PlayerManager.instance.UsedAb();
 
-        yield return new WaitForSeconds(0.25f);
-
+        yield return new WaitForSeconds(0.3f / anispeed);
 
         CreateBubble();
 
+        yield return new WaitForSeconds(0.15f / anispeed);
         animator.SetTrigger("Idle");
         P_state.actState = Unit_state.Idle;
         P_state.isAttack = false;
@@ -45,6 +46,6 @@ public class Player_LilWiz_Mod : Ability
         bubble_C.StartCoroutine(bubble_C.Shot(P_state.direction));
 
 
- 
-}
+
+    }
 }
