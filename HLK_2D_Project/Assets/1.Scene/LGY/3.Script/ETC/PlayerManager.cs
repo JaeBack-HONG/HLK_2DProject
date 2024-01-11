@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("능력UI")]
     public GameObject[] icon_Border;
+    public Sprite[] AbilityItem_All;
     public Image[] icon_Image;
     public Image[] icon_Bar;
     public Sprite[] icon_Bar_All;
@@ -28,14 +29,15 @@ public class PlayerManager : MonoBehaviour
     public Sprite[] heart_All;
 
     [Header("능력카운트")]
-    public int[] count_List;
-    public int current_Count = 0;
+    public int[] count_List; // 사용 가능 횟수 0~4
+    public int current_Count = 0; // 현재 선택한 능력
     public int max_Count = 4;
 
+    PlayerDataJson playerData;
 
     [SerializeField] private Player_Ability P_Ab;
     [SerializeField] private float RemoveGuage = 0;
-
+    public Ability_Item[] AbIdx;
     private void Awake()
     {
         if (instance == null)
@@ -48,19 +50,73 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        count_List = new int[3];
-        for (int i = 0; i < icon_Bar.Length; i++)
-        {
-            icon_Bar[i].sprite = icon_Bar_All[i * 5];
-            count_List[i] = 0;
-        }
+        
+        
+
 
     }
+    private void Start()
+    {
+        count_List = new int[3];
+        AbilityDataLoad();
 
+    }
+    private void AbilityDataLoad()
+    {
+        Debug.Log("초기화");
+        
+        AbIdx = new Ability_Item[3]; 
+        P_Ab.my_Abilities = new Ability[3];
+                        
+        P_Ab.my_Abilities[0] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_1];
+        P_Ab.my_Abilities[1] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_2];
+        P_Ab.my_Abilities[2] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_3];
+        Debug.Log(P_Ab.abilities[GameManager.instance.PlayerData.Ability_1]);
+        Debug.Log(P_Ab.abilities[4]);
+        Debug.Log(P_Ab.my_Abilities[0]);
+        
+        count_List[0] = GameManager.instance.PlayerData.AbilityCheck_1;
+        count_List[1] = GameManager.instance.PlayerData.AbilityCheck_2;
+        count_List[2] = GameManager.instance.PlayerData.AbilityCheck_3;
+        
+        count_List[0] = GameManager.instance.PlayerData.Ability_1_count;
+        count_List[1] = GameManager.instance.PlayerData.Ability_2_count;
+        count_List[2] = GameManager.instance.PlayerData.Ability_3_count;
+        StartSetting();
+
+    }
     private void FixedUpdate()
     {
+        
         RemoveItem();
-        ResetAbList();
+        ResetAbList();        
+    }
+
+    public void StartSetting()
+    {
+        
+        
+
+        AbIdx[0] = (Ability_Item)GameManager.instance.PlayerData.Ability_1;
+        AbIdx[1] = (Ability_Item)GameManager.instance.PlayerData.Ability_2;
+        AbIdx[2] = (Ability_Item)GameManager.instance.PlayerData.Ability_3;
+        for (int i = 0; i < 3; i++)
+        {
+            icon_Image[i].sprite = AbilityItem_All[(int)AbIdx[i]];
+            icon_Bar[i].sprite = icon_Bar_All[i * 5 + 4];
+            
+        }
+        for (int i = 0; i < icon_Image.Length; i++)
+        {
+            if (count_List[i].Equals(0))
+            {
+                icon_Image[i].sprite = null;
+            }
+            
+        }        
+        P_Ab.my_Abilities[0] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_1];
+        P_Ab.my_Abilities[1] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_2];
+        P_Ab.my_Abilities[2] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_3];
     }
 
     #region Ability Reset

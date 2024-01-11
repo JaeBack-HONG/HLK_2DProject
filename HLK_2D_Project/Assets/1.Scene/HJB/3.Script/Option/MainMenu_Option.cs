@@ -18,7 +18,7 @@ public class MainMenu_Option : MonoBehaviour
 
     public void MainGame_Btn()
     {
-        GameManager.instance.MainGame_1();        
+        GameManager.instance.MainGame_1();
     }
 
     public void MainMenuSceneLoadData_Btn()

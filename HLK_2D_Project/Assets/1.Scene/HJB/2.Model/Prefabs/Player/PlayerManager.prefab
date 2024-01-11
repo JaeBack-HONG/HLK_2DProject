@@ -71,9 +71,33 @@ MonoBehaviour:
   - {fileID: -946184459887860389, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
   - {fileID: -3213609745909556679, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
   - {fileID: 7526069927036187072, guid: bc155573dfeb8574eb35b07217b359eb, type: 3}
+  AbilityItem_All:
+  - {fileID: 21300000, guid: 705ce8c6919a1a74492117c273870ff8, type: 3}
+  - {fileID: 21300000, guid: bafe0b84d70f83a43a391edc7b4cf3ad, type: 3}
+  - {fileID: 21300000, guid: e6791f8ab52474e4db50205aac433fb3, type: 3}
+  - {fileID: 21300000, guid: 2a8e97bee61f87947b6232e8128df777, type: 3}
+  - {fileID: 21300000, guid: bfcfdbe54cbb2bf469d2cbcf1fec73b2, type: 3}
+  - {fileID: 21300000, guid: 488de9b0ed7d3e94db1e120339eec1e6, type: 3}
+  - {fileID: 21300000, guid: 8bdbb2eb945ce73438fd182b4dd2fa0e, type: 3}
+  - {fileID: 21300000, guid: 67dcc24851b3c444a897151c6ff9d996, type: 3}
+  - {fileID: 21300000, guid: 7ada9d41acbc6db4a93cec8336788551, type: 3}
+  - {fileID: 21300000, guid: 0b898091ede41114eb7f9309b8dcc082, type: 3}
+  - {fileID: 21300000, guid: c9b5ea33b63a62d4eabcd84cf4cfac6f, type: 3}
+  - {fileID: 21300000, guid: e18e751c6a43a9a4593836765379eea5, type: 3}
+  - {fileID: 21300000, guid: 5be29c7d095d6074bb5f4e84a97d7135, type: 3}
+  - {fileID: 21300000, guid: c2d55946661e05846bc33d349636f535, type: 3}
+  - {fileID: 21300000, guid: 926a633bf467be14b8e43a81f3c56993, type: 3}
+  - {fileID: 21300000, guid: bb95ae565f33b5e49ba86ed8db6d5d55, type: 3}
+  - {fileID: 21300000, guid: 1445cf31143e85b46baa349a255a6f93, type: 3}
+  - {fileID: 21300000, guid: 1502f7190ac2e7e4990fdf21d61e42bf, type: 3}
+  - {fileID: 21300000, guid: a9afc75146b65404eb25ae2dccec5bb3, type: 3}
+  - {fileID: 21300000, guid: 7f847a4159013df44b797bc76e74866f, type: 3}
+  - {fileID: 21300000, guid: 7fa90ebcff74f4040bf25f9ff08d5735, type: 3}
+  - {fileID: 21300000, guid: c8a44dc9dd2b1e84893b56069d4d620c, type: 3}
   heart_Panels: []
   heart_All: []
   count_List: 
   current_Count: 0
   max_Count: 4
   P_Ab: {fileID: 7986413340031863257, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+  RemoveGuage: 0

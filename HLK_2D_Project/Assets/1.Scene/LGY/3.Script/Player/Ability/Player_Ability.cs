@@ -5,14 +5,11 @@ using UnityEngine;
 public class Player_Ability : MonoBehaviour
 {
 
-    [SerializeField] private Ability[] abilities;
-    private Ability[] my_Abilities;
+    public Ability[] abilities;
+    public Ability[] my_Abilities;
     public Ability current_Ab;
 
-    private void Awake()
-    {
-        my_Abilities = new Ability[3];
-    }
+
 
     public void Choice_Ab()
     {
@@ -20,7 +17,7 @@ public class Player_Ability : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W)) AbilitySet(1);
 
-        if (Input.GetKeyDown(KeyCode.E)) AbilitySet(2);
+        if (Input.GetKeyDown(KeyCode.E)) AbilitySet(2);         
     }
 
     public void AbilitySet(int idx)
@@ -40,7 +37,7 @@ public class Player_Ability : MonoBehaviour
             {
                 if (my_Abilities[i] == null)
                 {
-                    PlayerManager.instance.current_Count = i;
+                    PlayerManager.instance.current_Count = i; 
                     break;
                 }
             }
@@ -48,10 +45,12 @@ public class Player_Ability : MonoBehaviour
 
         }
     }
+    
     private void TriggerEvent(int current_idx, Collider2D collision)
     {
-        my_Abilities[current_idx] = abilities[(int)collision.gameObject.GetComponent<AbilityItem>().itemidx];
-        PlayerManager.instance.icon_Image[current_idx].sprite = collision.gameObject.GetComponent<SpriteRenderer>().sprite;
+        PlayerManager.instance.AbIdx[current_idx] = collision.gameObject.GetComponent<AbilityItem>().itemidx;
+        my_Abilities[current_idx] = abilities[(int)PlayerManager.instance.AbIdx[current_idx]];
+        PlayerManager.instance.icon_Image[current_idx].sprite = PlayerManager.instance.AbilityItem_All[(int)PlayerManager.instance.AbIdx[current_idx]];
         current_Ab = my_Abilities[current_idx];
         PlayerManager.instance.count_List[current_idx] = PlayerManager.instance.max_Count;
         PlayerManager.instance.icon_Bar[current_idx].sprite = PlayerManager.instance.icon_Bar_All[current_idx * 5 + 4];

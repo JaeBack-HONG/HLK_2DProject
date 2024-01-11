@@ -56,6 +56,8 @@ public class Scene_Portal : MonoBehaviour
         }
         //æ¿ ¿Ãµø       
         Debug.Log("æ¿ ¿Ãµø");
+
+        GameManager.instance.DataSave();
         SceneManager.LoadScene(sceneName);
         
     }

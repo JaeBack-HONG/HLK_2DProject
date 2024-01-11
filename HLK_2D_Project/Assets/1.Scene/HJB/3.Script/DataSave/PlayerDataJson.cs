@@ -4,8 +4,19 @@ using UnityEngine;
 
 [System.Serializable]
 public class PlayerDataJson
-{      
-    //능력 종류 및 카운트 저장 변수 만들 것.
+{
+    
+    public int AbilityCheck_1 = 0;
+    public int AbilityCheck_2 = 0;
+    public int AbilityCheck_3 = 0;
+    
+    public int Ability_1 = 0;
+    public int Ability_2 = 0;
+    public int Ability_3 = 0;
+    
+    public int Ability_1_count = 0;
+    public int Ability_2_count = 0;
+    public int Ability_3_count = 0;
 
     public float maxHealth = 3f;
     public float currentHealth = 4f;    
