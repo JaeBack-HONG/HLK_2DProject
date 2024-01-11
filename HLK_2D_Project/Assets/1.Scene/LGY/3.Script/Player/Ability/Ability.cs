@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cinemachine;
 
 public abstract class Ability : MonoBehaviour
@@ -10,6 +11,7 @@ public abstract class Ability : MonoBehaviour
     [HideInInspector] public Rigidbody2D rigidbody;
     [HideInInspector] public Animator animator;
     [HideInInspector] public IEnumerator Double_co;
+    public Image gaugeUI;
     public float anispeed = 1f;
     public CinemachineVirtualCamera cinemachinevir;
     public CinemachineBasicMultiChannelPerlin noise;
