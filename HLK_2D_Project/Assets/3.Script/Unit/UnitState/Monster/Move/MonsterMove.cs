@@ -25,12 +25,11 @@ public class MonsterMove : MonoBehaviour
 
     public bool groundCheck = false;
 
-    public Transform targetPlayer;
+    public Transform targetPlayer;    
 
-    
+    private Monster_State monster_State;
 
-    private Monster_State monster_State;    
-
+    RaycastHit2D groundHit;
     private void Awake()
     {
         
@@ -58,9 +57,33 @@ public class MonsterMove : MonoBehaviour
         if (target)
         {            
             monster_State.animator.SetBool("Move", true);
+            
             PlayerDirectionCheck();
-            rigidbody.velocity = new Vector2(direction* MoveSpeed, rigidbody.velocity.y);
-            return;
+            Vector2 rayTrans;
+            LayerMask groundMarsk = LayerMask.GetMask("Ground");
+            if (transform.eulerAngles.y.Equals(0))
+            {
+                rayTrans = new Vector2(transform.position.x + 1f, transform.position.y - 0.5f);
+                Debug.DrawRay(rayTrans, Vector2.down * 0.5f, Color.black);
+            }
+            else
+            {
+                rayTrans = new Vector2(transform.position.x - 1f, transform.position.y - 0.5f);
+                Debug.DrawRay(rayTrans, Vector2.down * 0.5f, Color.black);
+            }
+
+
+            RaycastHit2D hit = Physics2D.Raycast(rayTrans, Vector2.down, 2.5f, groundMarsk);
+
+            if (hit.collider == null)
+            {
+                rigidbody.velocity = Vector2.zero;
+                return;
+            }
+            
+            Debug.Log("진입");
+            rigidbody.velocity = new Vector2(direction* MoveSpeed, rigidbody.velocity.y);                
+                        
         }
         else
         {
@@ -107,23 +130,11 @@ public class MonsterMove : MonoBehaviour
     }
     private void WallCheck()
     {
-        //벽 체크후 벽이면 전환
-        //int groundLayerMask = LayerMask.GetMask("Ground");
-        //RaycastHit2D left_hit = Physics2D.Raycast(transform.position, Vector2.left, 1f, groundLayerMask);
-        //RaycastHit2D right_hit = Physics2D.Raycast(transform.position, Vector2.right, 1f, groundLayerMask);
-        //Debug.DrawRay(transform.position, Vector2.left * 1f,Color.black);
-        //Debug.DrawRay(transform.position, Vector2.right * 1f, Color.black);
-
         //이동 결정
         SelectMove();
         //낭떨어지면
         GroundCheck_Ray();
-        //벽에 닿았을 경우 전환
-        //if (right_hit.collider != null || left_hit.collider != null)
-        //{
-        //    Debug.Log(nextMove);
-        //    nextMove = -nextMove;
-        //}
+        
     }
     private void SelectMove()
     {
