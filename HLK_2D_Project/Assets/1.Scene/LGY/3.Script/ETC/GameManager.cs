@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     [SerializeField] private GameObject OptionUI_obj;
+    [SerializeField] private GameObject PlayerDieUI_obj;
+
     [SerializeField] private string introSceneName;
     [SerializeField] private string currentSceneName;
     [SerializeField] private string saveSceneName;
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
         
         if (instance == null)
         {
-            instance = this;            
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -52,23 +54,15 @@ public class GameManager : MonoBehaviour
             return;
         }
         
-    }
+    }   
     
     
-    private void Start()
-    {        
-        //씬이동후 현재 씬 저장
-        currentSceneName = SceneManager.GetActiveScene().name;
-        if (!currentSceneName.Equals(introSceneName))
-        {            
-            DataSave();
-        }
-    }
 
     private void Update()
     {
         GetCompoPlayerCheck();
-        OptionKeyDown_Set();
+        OptionKeyDown_Set();       
+
     }
     
     private void OptionKeyDown_Set()
@@ -81,6 +75,7 @@ public class GameManager : MonoBehaviour
         }
     }
         
+    
     private void GetCompoPlayerCheck()
     {        
         try
@@ -192,6 +187,11 @@ public class GameManager : MonoBehaviour
 
     }    
 
+    public void PlayerDieUI()
+    {
+        PlayerDieUI_obj.SetActive(!PlayerDieUI_obj.activeSelf);
+    }
+
     #region //버튼 이벤트 메서드
     public void MainGame_1()
     {        
@@ -201,8 +201,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("tutorial");
     }
     public void MainMenu_Btn()
-    {           
-        OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
+    {
+        if (!player.isDie)
+        {
+            OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
+        }
+        else
+        {
+            PlayerDieUI_obj.SetActive(!PlayerDieUI_obj.activeSelf);
+        }
         Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;
         SceneDataSave();
         SceneManager.LoadScene("MainMenu");        
@@ -214,9 +221,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;
     }
     public void SceneLoadData_Btn()
-    {
-        PlayerData = DataLoad();
-        Debug.Log(PlayerData.Ability_1);
+    {        
+        DataLoad();        
         SceneManager.LoadScene(PlayerData.SceneName);
     }
     #endregion
