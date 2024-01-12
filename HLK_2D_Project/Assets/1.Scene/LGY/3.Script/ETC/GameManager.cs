@@ -100,9 +100,12 @@ public class GameManager : MonoBehaviour
     {
         if (!SceneManager.GetActiveScene().name.Equals(introSceneName))
         {
-            player_Ability = FindObjectOfType<PlayerManager>();            
+            player_Ability = FindObjectOfType<PlayerManager>();        
             currentSceneName = SceneManager.GetActiveScene().name;
             PlayerData.SceneName = currentSceneName;
+
+            PlayerData.currentHealth = player.Health;
+            PlayerData.maxHealth = 3f;
 
             PlayerData.AbilityCheck_1 = PlayerManager.instance.count_List[0];
             PlayerData.AbilityCheck_2 = PlayerManager.instance.count_List[1]; 
@@ -115,15 +118,14 @@ public class GameManager : MonoBehaviour
             //현재 능력 사용횟수
             PlayerData.Ability_1_count = PlayerManager.instance.count_List[0];
             PlayerData.Ability_2_count = PlayerManager.instance.count_List[1];
-            PlayerData.Ability_3_count = PlayerManager.instance.count_List[2];
-            
+            PlayerData.Ability_3_count = PlayerManager.instance.count_List[2];            
         }
 
         string fileName;
 
         fileName = Application.dataPath + "/PlayerDataJson.json";
         string toJson = JsonConvert.SerializeObject(PlayerData, Formatting.Indented);
-        File.WriteAllText(fileName, toJson);        
+        File.WriteAllText(fileName, toJson);
     }
 
     public void SceneDataSave()
@@ -172,8 +174,8 @@ public class GameManager : MonoBehaviour
     }
     private void DefaultDataSet()
     {
-        PlayerData.maxHealth = 3;
-        PlayerData.currentHealth = 3;
+        PlayerData.maxHealth = 6;
+        PlayerData.currentHealth = 6;
         PlayerData.SceneName = "";
 
         PlayerData.AbilityCheck_1 = 0;

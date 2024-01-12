@@ -19,7 +19,7 @@ public class PlayerDataJson
     public int Ability_3_count = 0;
 
     public float maxHealth = 3f;
-    public float currentHealth = 4f;    
+    public float currentHealth = 3f;    
     
     public string SceneName = string.Empty;    
 }

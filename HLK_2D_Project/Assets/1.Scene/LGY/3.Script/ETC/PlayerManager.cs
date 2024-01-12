@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
     public int current_Count = 0; // 현재 선택한 능력
     public int max_Count = 4;
 
-    PlayerDataJson playerData;
+    
 
     [SerializeField] private Player_Ability P_Ab;
     [SerializeField] private float RemoveGuage = 0;
@@ -81,6 +81,8 @@ public class PlayerManager : MonoBehaviour
         count_List[1] = GameManager.instance.PlayerData.Ability_2_count;
         count_List[2] = GameManager.instance.PlayerData.Ability_3_count;
         StartSetting();
+        
+        HeartCheck((int)GameManager.instance.PlayerData.currentHealth);
 
     }
     private void FixedUpdate()

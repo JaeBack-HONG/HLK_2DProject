@@ -38,6 +38,10 @@ public class Player_State : MonoBehaviour
     public bool isFairy = false;
     public bool isArmand = false;
 
+    private void Awake()
+    {
+        
+    }
     private void Start()
     {
         TryGetComponent<Animator>(out animator);
@@ -47,6 +51,7 @@ public class Player_State : MonoBehaviour
         JumState = Jump_State.Idle;
         TryGetComponent<Unit_Hit>(out unithit);
         TryGetComponent<Player_Ability>(out P_Ability);
+        Health = (int)GameManager.instance.PlayerData.currentHealth;
     }
 
 
