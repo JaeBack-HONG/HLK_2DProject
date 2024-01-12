@@ -18,7 +18,7 @@ public class Armand_State : Monster_State
     {
         data = new UnitData
             (name: "Armand", hp: healthSet, detection: 10, range: 2, attackSpeed: 1,
-                strength:damageSet, moveSpeed: speedSet, jumpForce: 1);
+                strength:damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         ability_Item = Ability_Item.Armand;

@@ -17,7 +17,7 @@ public class Mr_Chomps_State : Monster_State
     {
         data = new UnitData
             (name: "Blackwolf", hp: healthSet, detection: 10, range: 2, attackSpeed: 1,
-                strength: damageSet, moveSpeed: speedSet, jumpForce: 1);
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Move;

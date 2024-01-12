@@ -20,16 +20,19 @@ public class MonsterMove : MonoBehaviour
     private float distance;
 
     private bool Flip;
-    private int FlipDirection = 1;
     public bool isGrab = false;
 
     public bool groundCheck = false;
+
+    private int FlipDirection = 1;
 
     public Transform targetPlayer;    
 
     private Monster_State monster_State;
 
     RaycastHit2D groundHit;
+
+    public float jumpUnit;
     private void Awake()
     {
         
@@ -75,13 +78,13 @@ public class MonsterMove : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(rayTrans, Vector2.down, 2.5f, groundMarsk);
 
-            if (hit.collider == null)
+            if (hit.collider == null&&jumpUnit.Equals(0))
             {
                 rigidbody.velocity = Vector2.zero;
                 return;
             }
             
-            Debug.Log("¡¯¿‘");
+            
             rigidbody.velocity = new Vector2(direction* MoveSpeed, rigidbody.velocity.y);                
                         
         }

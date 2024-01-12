@@ -20,7 +20,7 @@ public class Fairy_State : Monster_State
     {
         data = new UnitData
             (name: "Blankey", hp: healthSet, detection: 7, range: 5, attackSpeed: 0.5f,
-                strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
+                strength: damageSet, moveSpeed: speedSet, jumpForce: 1);
         Health = data.HP;
         Strength = data.Strength;
         state = Unit_state.Idle;
