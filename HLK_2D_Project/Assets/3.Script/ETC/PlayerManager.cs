@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("능력UI")]
     public GameObject[] icon_Border;
-    public Sprite[] AbilityItem_All;
+    public Sprite[] icon_Image_All;
     public Image[] icon_Image;
     public Image[] icon_Bar;
     public Sprite[] icon_Bar_All;
@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("능력카운트")]
     public int[] count_List; // 사용 가능 횟수 0~4
-    public int current_Count = 0; // 현재 선택한 능력
+    public int Select_Idx = 0; // 현재 선택한 능력
     public int max_Count = 4;
 
     
@@ -95,14 +95,14 @@ public class PlayerManager : MonoBehaviour
         AbIdx[2] = (Ability_Item)GameManager.instance.PlayerData.Ability_3;
         for (int i = 0; i < 3; i++)
         {
-            icon_Image[i].sprite = AbilityItem_All[(int)AbIdx[i]];
+            icon_Image[i].sprite = icon_Image_All[(int)AbIdx[i]];
             icon_Bar[i].sprite = icon_Bar_All[i * 5 + 4];            
         }
         for (int i = 0; i < icon_Image.Length; i++)
         {
             if (count_List[i].Equals(0))
             {
-                icon_Image[i].sprite = null;
+                icon_Image[i].sprite = icon_Image_All[0];
             }            
         }               
     }
@@ -115,19 +115,19 @@ public class PlayerManager : MonoBehaviour
             icon_Bar[i].sprite = icon_Bar_All[i * 5 + count_List[i]];
 
         }
-        if (count_List[current_Count].Equals(0))
+        if (count_List[Select_Idx].Equals(0))
         {
-            int idx = current_Count;
-            icon_Image[current_Count].sprite = null;
+            int idx = Select_Idx;
+            icon_Image[Select_Idx].sprite = null;
             for (int i = 0; i < icon_Border.Length; i++)
             {
                 if (!count_List[i].Equals(0))
                 {
-                    P_Ab.AbilitySet(current_Count);
+                    P_Ab.AbilitySet(Select_Idx);
                     break;
                 }
             }
-            if (current_Count.Equals(idx)) icon_Border[idx].SetActive(false);
+            if (Select_Idx.Equals(idx)) icon_Border[idx].SetActive(false);
         }
     }
     #endregion
@@ -139,7 +139,7 @@ public class PlayerManager : MonoBehaviour
             RemoveGuage += Time.fixedDeltaTime;
             if (RemoveGuage >= 2)
             {
-                count_List[current_Count] = 0;
+                count_List[Select_Idx] = 0;
             }
         }
         else RemoveGuage = 0;
@@ -197,6 +197,6 @@ public class PlayerManager : MonoBehaviour
 
     public void UsedAb()
     {
-        count_List[current_Count]--;
+        count_List[Select_Idx]--;
     }
 }

@@ -41,7 +41,7 @@ public class Player_Angie_Mod : Ability
         P_state.Health--;
         PlayerManager.instance.HeartCheck(P_state.Health);
 
-        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
+        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.Select_Idx] >= 2)
         {
             P_state.isFairy = false;
             P_state.actState = Unit_state.Attack;

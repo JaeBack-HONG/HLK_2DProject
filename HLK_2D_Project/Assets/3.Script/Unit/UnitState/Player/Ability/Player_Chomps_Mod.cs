@@ -27,7 +27,7 @@ public class Player_Chomps_Mod : Ability
         PlayerManager.instance.HeartCheck(P_state.Health);
         P_state.actState = Unit_state.Idle;
 
-        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
+        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.Select_Idx] >= 2)
         {
             P_state.isFairy = false;
             P_state.actState = Unit_state.Attack;

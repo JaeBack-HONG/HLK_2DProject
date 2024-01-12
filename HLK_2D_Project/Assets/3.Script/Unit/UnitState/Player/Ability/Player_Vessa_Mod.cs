@@ -46,7 +46,7 @@ public class Player_Vessa_Mod : Ability
         P_state.JumpForce = P_state.data.JumpForce;
         P_Move.moveSpeed = P_state.data.MoveSpeed;
 
-        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
+        if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.Select_Idx] >= 2)
         {
             P_state.isFairy = false;
             P_state.actState = Unit_state.Attack;

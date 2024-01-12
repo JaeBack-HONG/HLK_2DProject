@@ -32,6 +32,7 @@ public enum Condition_state
 
 public enum Ability_Item
 {
+    Empty = 0,
     Brown,
     Hope,
     Handrick,
