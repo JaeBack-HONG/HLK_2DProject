@@ -15,7 +15,7 @@ public class AttackBox : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.layer.Equals((int)Layer_Index.Player))
         {
             
             Player_State player = collision.gameObject.GetComponent<Player_State>();
