@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_Chomps_Mod : Ability
 {
     [Range(1, 4)]
-    [SerializeField] private int HealValue = 1;
+    [SerializeField] private int HealValue = 2;
 
     public override void UseAbility()
     {
