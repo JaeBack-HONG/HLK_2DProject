@@ -14,12 +14,10 @@ public class Player_BabyBoss_Mod : Ability
 
     private IEnumerator BabyBossAttack_co()
     {
-        P_state.actState = Unit_state.Default;
+        DefaulutSet("BBMod");
+
         gameObject.layer = (int)Layer_Index.Hit;
-        rigidbody.velocity = Vector2.zero;
         PlayerManager.instance.UsedAb();
-        animator.SetTrigger("BBMod");
-        animator.speed = anispeed;
         yield return new WaitForSeconds(0.55f / anispeed);
         noise.m_AmplitudeGain = 10;
         attackbox.enabled = true;
@@ -27,10 +25,8 @@ public class Player_BabyBoss_Mod : Ability
         noise.m_AmplitudeGain = 0;
         yield return new WaitForSeconds(0.2f / anispeed);
         attackbox.enabled = false;
-        animator.SetTrigger("Idle");
+        EndSet();
         gameObject.layer = (int)Layer_Index.Player;
-        P_state.actState = Unit_state.Idle;
-
         if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
         {
             P_state.isFairy = false;

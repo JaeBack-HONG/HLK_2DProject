@@ -27,15 +27,15 @@ public class Player_Move : MonoBehaviour
         if (collision.gameObject.CompareTag("Top") && gameObject.layer.Equals((int)Layer_Index.Player))
         {
             mon = collision.gameObject.transform.root.GetComponent<Monster_State>();
-            Jump();
+            Jump(P_State.JumpForce);
             jumpCount++;
-            if (mon != null) P_State.Attack(mon);
+            P_State.Attack(mon);
         }
-    }
-    private void FixedUpdate()
-    {
-
-
+        else if (collision.gameObject.CompareTag("DTop") && gameObject.layer.Equals((int)Layer_Index.Player))
+        {
+            Jump(P_State.JumpForce * 0.5f);
+            jumpCount++;
+        }
     }
 
     public void MoveCheck()
@@ -44,7 +44,7 @@ public class Player_Move : MonoBehaviour
         animator.SetFloat("XSpeed", Mathf.Abs(horizontalInput));
         rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0)) Jump();
+        if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0)) Jump(P_State.JumpForce);
 
         if (Input.GetKeyDown(KeyCode.Z) && !P_State.isArmand) P_State.actState = Unit_state.Attack;
 
@@ -54,10 +54,10 @@ public class Player_Move : MonoBehaviour
 
     }
 
-    public void Jump()
+    public void Jump(float jumpforce)
     {
         rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
-        rigidbody.AddForce(Vector2.up * P_State.JumpForce, ForceMode2D.Impulse);
+        rigidbody.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
 
         if (!P_State.JumState.Equals(Jump_State.Jumping))
         {

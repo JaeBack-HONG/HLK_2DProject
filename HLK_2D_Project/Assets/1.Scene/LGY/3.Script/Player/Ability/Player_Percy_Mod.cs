@@ -13,12 +13,10 @@ public class Player_Percy_Mod : Ability
 
     private IEnumerator PercyAttack_Co()
     {
-        P_state.isAttack = true;
-        rigidbody.velocity = Vector2.zero;
-        P_state.actState = Unit_state.Default;
+
+        DefaulutSet("PercyMod");
+
         PlayerManager.instance.UsedAb();
-        animator.SetTrigger("PercyMod");
-        animator.speed = anispeed;
         yield return new WaitForSeconds(0.35f / anispeed);
 
 
@@ -26,11 +24,8 @@ public class Player_Percy_Mod : Ability
         CreateBullet();
 
         yield return new WaitForSeconds(0.25f / anispeed);
-        
-        animator.SetTrigger("Idle");
-        animator.speed = 1;
-        P_state.actState = Unit_state.Idle;
-        P_state.isAttack = false;
+
+        EndSet();
 
         if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
         {

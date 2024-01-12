@@ -22,18 +22,15 @@ public class Player_Vessa_Mod : Ability
 
     private IEnumerator VessaMod_Co()
     {
-        P_state.actState = Unit_state.Default;
-        animator.SetTrigger("VessaMod");
-        rigidbody.velocity = Vector2.zero;
+        DefaulutSet("VessaMod");
+
         rigidbody.AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
-        animator.speed = 0.8f * anispeed;
-        yield return new WaitForSeconds(0.3f * anispeed);
+
+        yield return new WaitForSeconds(0.35f * anispeed);
 
 
 
-        animator.speed = 1f;
-        animator.SetTrigger("Idle");
-        P_state.actState = Unit_state.Idle;
+        EndSet();
         float currentTime = 0;
         P_Move.moveSpeed *= speedBuff;
         P_state.JumpForce *= jumpBuff;
@@ -57,6 +54,7 @@ public class Player_Vessa_Mod : Ability
 
         yield return null;
     }
+
     IEnumerator Buff_Cine(float value)
     {
         while (cinemachinevir.m_Lens.OrthographicSize < value)

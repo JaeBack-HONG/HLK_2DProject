@@ -14,22 +14,17 @@ public class Player_Holly_Mod : Ability
     IEnumerator HollyAttack_co()
     {
         gameObject.layer = (int)Layer_Index.Hit;
-        P_state.actState = Unit_state.Default;
+
+        DefaulutSet("HollyMod");
         PlayerManager.instance.UsedAb();
-        animator.SetTrigger("HollyMod");
-        animator.speed = anispeed;
-        rigidbody.velocity = Vector2.zero;
         rigidbody.AddForce((P_state.direction * 4f + Vector2.up * 5f).normalized * 20f, ForceMode2D.Impulse);
         Attackcol.enabled = true;
 
         yield return new WaitForSeconds(0.7f / anispeed);
 
         Attackcol.enabled = false;
-        animator.SetTrigger("Idle");
-        animator.speed = 1;
         gameObject.layer = (int)Layer_Index.Player;
-        P_state.actState = Unit_state.Idle;
-
+        EndSet();
         if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
         {
             P_state.isFairy = false;

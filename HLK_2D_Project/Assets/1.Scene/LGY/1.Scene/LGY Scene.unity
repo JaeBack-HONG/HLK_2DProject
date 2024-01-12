@@ -1121,7 +1121,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2797919914270543858, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: itemidx
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2797919914270543858, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: sprites.Array.data[3]

@@ -13,19 +13,15 @@ public class Player_Gordon_Mod : Ability
 
     IEnumerator guard_co()
     {
-        rigidbody.velocity = Vector2.zero;
-        P_state.actState = Unit_state.Default;
-        animator.SetTrigger("GordonMod");
+        DefaulutSet("GordonMod");
         PlayerManager.instance.UsedAb();
         guardcol.enabled = true;
         while (Input.GetKey(KeyCode.Z))
         {
-
             yield return new WaitForFixedUpdate();
         }
         guardcol.enabled = false;
-        animator.SetTrigger("Idle");
-        P_state.actState = Unit_state.Idle;
+        EndSet();
 
     }
 }

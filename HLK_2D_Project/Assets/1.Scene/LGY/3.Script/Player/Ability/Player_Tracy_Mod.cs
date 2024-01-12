@@ -13,12 +13,8 @@ public class Player_Tracy_Mod : Ability
 
     private IEnumerator TracyAttack_Co()
     {
-        P_state.isAttack = true;
-        
-        rigidbody.velocity = Vector2.zero;
-        P_state.actState = Unit_state.Default;
-        animator.SetTrigger("TracyMod");
-        animator.speed = anispeed;
+        DefaulutSet("TracyMod");
+
         PlayerManager.instance.UsedAb();
         yield return new WaitForSeconds(1.5f / anispeed);
 
@@ -27,10 +23,7 @@ public class Player_Tracy_Mod : Ability
         CreateBullet();
         yield return new WaitForSeconds(0.1f / anispeed);
 
-        animator.SetTrigger("Idle");
-        animator.speed = 1f;
-        P_state.actState = Unit_state.Idle;
-        P_state.isAttack = false;
+        EndSet();
 
         if (P_state.isFairy && PlayerManager.instance.count_List[PlayerManager.instance.current_Count] >= 2)
         {
