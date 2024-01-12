@@ -37,10 +37,10 @@ public class Player_State : MonoBehaviour
     public bool isGround = true;
     public bool isFairy = false;
     public bool isArmand = false;
-
+    public bool isDie = false;
     private void Awake()
     {
-        
+        GameManager.instance.SceneDataSave();
     }
     private void Start()
     {
@@ -59,7 +59,9 @@ public class Player_State : MonoBehaviour
     {
 
         P_Ability.Choice_Ab();
+
         State_Check();
+
 
         Player_HealthCheck();
 
@@ -151,8 +153,10 @@ public class Player_State : MonoBehaviour
 
     public void Player_HealthCheck()
     {
-        if (Health <= 0)
+        if (Health <= 0 && !isDie)
         {
+            isDie = true;
+            Debug.Log("진입");
             Die();
         }
     }
@@ -194,7 +198,10 @@ public class Player_State : MonoBehaviour
 
     public void Die()
     {
+        //카메라 확대 애니메이션 실행 후 
+        GameManager.instance.PlayerDieUI();        
         gameObject.SetActive(false);
+        
     }
 
     public void Attack(Monster_State other)

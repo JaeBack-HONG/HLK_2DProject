@@ -8,7 +8,7 @@
   "Ability_1_count": 0,
   "Ability_2_count": 0,
   "Ability_3_count": 0,
-  "maxHealth": 6.0,
+  "maxHealth": 3.0,
   "currentHealth": 6.0,
-  "SceneName": ""
+  "SceneName": "Stage1"
 }
