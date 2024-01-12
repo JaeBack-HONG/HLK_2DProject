@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Orange_Mod : Ability
 {
     [Header("구르기 속도")]
     [SerializeField] private float rollingSpeed = 30f;
     private bool ishit;
+
     [SerializeField] private int attackDmg = 3;
+    [SerializeField] private Image gaugeUI;
 
     public override void UseAbility()
     {

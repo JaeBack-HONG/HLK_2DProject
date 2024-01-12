@@ -591,6 +591,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7314710705366918890, guid: b4df186761687794baeac8eb25f799f8, type: 3}
   m_PrefabInstance: {fileID: 52021251}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &52021266 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 420932696698110049, guid: b4df186761687794baeac8eb25f799f8, type: 3}
+  m_PrefabInstance: {fileID: 52021251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &94071820
 GameObject:
   m_ObjectHideFlags: 0
@@ -13069,6 +13080,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5294653931156444604, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: gaugeUI
+      value: 
+      objectReference: {fileID: 52021266}
+    - target: {fileID: 6280675499122737481, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
+      propertyPath: gaugeUI
+      value: 
+      objectReference: {fileID: 52021266}
     - target: {fileID: 7986413340031863269, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: m_RootOrder
       value: 0

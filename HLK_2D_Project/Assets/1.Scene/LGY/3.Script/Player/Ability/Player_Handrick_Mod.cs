@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Handrick_Mod : Ability
 {
@@ -8,6 +9,7 @@ public class Player_Handrick_Mod : Ability
     [SerializeField] private float rushSpeed = 13f;
     [SerializeField] private CircleCollider2D spearcol;
     [SerializeField] private float gaugecor = 2f;
+    [SerializeField] private Image gaugeUI;
     private bool isRush = false;
 
     public override void UseAbility()
