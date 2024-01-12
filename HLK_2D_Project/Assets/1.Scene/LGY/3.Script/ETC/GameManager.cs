@@ -67,18 +67,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        OptionKeyDown_Set();
         GetCompoPlayerCheck();
+        OptionKeyDown_Set();
     }
-    private void OnApplicationQuit()
-    {
-        //게임 종료일 때 저장
-        currentSceneName = SceneManager.GetActiveScene().name;
-        if (!currentSceneName.Equals(introSceneName))
-        {
-            DataSave();
-        }        
-    }
+    
     private void OptionKeyDown_Set()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -108,8 +100,7 @@ public class GameManager : MonoBehaviour
     {
         if (!SceneManager.GetActiveScene().name.Equals(introSceneName))
         {
-            player_Ability = FindObjectOfType<PlayerManager>();
-            
+            player_Ability = FindObjectOfType<PlayerManager>();            
             currentSceneName = SceneManager.GetActiveScene().name;
             PlayerData.SceneName = currentSceneName;
 
@@ -133,6 +124,17 @@ public class GameManager : MonoBehaviour
         fileName = Application.dataPath + "/PlayerDataJson.json";
         string toJson = JsonConvert.SerializeObject(PlayerData, Formatting.Indented);
         File.WriteAllText(fileName, toJson);        
+    }
+
+    public void SceneDataSave()
+    {
+        currentSceneName = SceneManager.GetActiveScene().name;
+        PlayerData.SceneName = currentSceneName;
+        string fileName;
+
+        fileName = Application.dataPath + "/PlayerDataJson.json";
+        string toJson = JsonConvert.SerializeObject(PlayerData, Formatting.Indented);
+        File.WriteAllText(fileName, toJson);
     }
     public void FileDataCheck()
     {
@@ -200,7 +202,7 @@ public class GameManager : MonoBehaviour
     {           
         OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
         Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;
-        DataSave();
+        SceneDataSave();
         SceneManager.LoadScene("MainMenu");        
     }        
 
@@ -219,11 +221,7 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
 #if UNITY_EDITOR
-        currentSceneName = SceneManager.GetActiveScene().name;
-        if (!currentSceneName.Equals(introSceneName))
-        {
-            DataSave();
-        }
+        
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();

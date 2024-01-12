@@ -50,10 +50,11 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
-        
 
 
+        P_Ab.my_Abilities = new Ability[3];
+        count_List = new int[3];
+        AbIdx = new Ability_Item[3];
     }
     private void Start()
     {
@@ -64,9 +65,7 @@ public class PlayerManager : MonoBehaviour
     {
         Debug.Log("√ ±‚»≠");
         
-        P_Ab.my_Abilities = new Ability[3];
-        count_List = new int[3];
-        AbIdx = new Ability_Item[3]; 
+        
         
 
         P_Ab.my_Abilities[0] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_1];
