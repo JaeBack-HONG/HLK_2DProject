@@ -57,7 +57,6 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
-        count_List = new int[3];
         AbilityDataLoad();
 
     }
@@ -65,8 +64,9 @@ public class PlayerManager : MonoBehaviour
     {
         Debug.Log("√ ±‚»≠");
         
-        AbIdx = new Ability_Item[3]; 
         P_Ab.my_Abilities = new Ability[3];
+        count_List = new int[3];
+        AbIdx = new Ability_Item[3]; 
         
 
         P_Ab.my_Abilities[0] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_1];
@@ -108,8 +108,7 @@ public class PlayerManager : MonoBehaviour
             if (count_List[i].Equals(0))
             {
                 icon_Image[i].sprite = null;
-            }
-            
+            }            
         }               
     }
 

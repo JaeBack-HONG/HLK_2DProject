@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Item
   - Projectile
+  - DTop
   layers:
   - Default
   - TransparentFX
