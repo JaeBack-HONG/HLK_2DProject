@@ -94,9 +94,8 @@ public class BigRed_State : Monster_State
     private void BigRedSelectAttack()
     {
         
-        int randomAttack = Random.Range(0,6);
-        rigidbody.velocity = Vector2.zero;
-        Debug.Log(randomAttack);
+        int randomAttack = Random.Range(0,9);
+        rigidbody.velocity = Vector2.zero;        
         if (randomAttack.Equals(5))
         {            
             StartCoroutine(specialAttack_co);
