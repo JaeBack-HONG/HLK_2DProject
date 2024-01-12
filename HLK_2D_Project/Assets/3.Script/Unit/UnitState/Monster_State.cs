@@ -33,6 +33,7 @@ public abstract class Monster_State : MonoBehaviour
     public bool isAttack = false;
     public bool isStun = false;
     public bool rolling = false;
+    
 
     public bool Dash = false;
 
@@ -54,7 +55,8 @@ public abstract class Monster_State : MonoBehaviour
         animator = GetComponent<Animator>();
         UnitHit = GetComponent<Unit_Hit>();
         monsterMove.MoveSpeed = data.MoveSpeed;
-        monsterMove.Detection = data.Detection;        
+        monsterMove.Detection = data.Detection;
+        monsterMove.jumpUnit = data.JumpForce;
     }
 
     public abstract void Monster_HealthCheck();
