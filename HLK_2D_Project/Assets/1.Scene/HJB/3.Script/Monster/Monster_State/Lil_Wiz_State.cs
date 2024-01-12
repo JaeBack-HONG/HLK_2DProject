@@ -99,6 +99,7 @@ public class Lil_Wiz_State : Monster_State
     }
     private IEnumerator Lil_WizAttack_co()
     {              
+        rigidbody.velocity = Vector2.zero;
         monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Shot");
 
@@ -106,7 +107,6 @@ public class Lil_Wiz_State : Monster_State
         
         Vector3 direction = (monsterMove.direction < 1) ? Vector3.left : Vector3.right;
         
-        rigidbody.velocity = Vector2.zero;
 
         CreateBubble(direction);        
 

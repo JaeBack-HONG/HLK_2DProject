@@ -9,6 +9,6 @@
   "Ability_2_count": 0,
   "Ability_3_count": 0,
   "maxHealth": 3.0,
-  "currentHealth": 1.0,
-  "SceneName": "Stage1"
+  "currentHealth": 6.0,
+  "SceneName": "tutorial"
 }
