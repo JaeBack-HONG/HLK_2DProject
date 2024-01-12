@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 7986413340031863269}
   - component: {fileID: 7986413340031863270}
   - component: {fileID: 7986413340031863271}
-  - component: {fileID: 32073067274010230}
+  - component: {fileID: 9123280505007843884}
   - component: {fileID: 7986413340031863264}
   - component: {fileID: 7986413340031863266}
   - component: {fileID: 7986413340031863267}
@@ -761,8 +761,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &32073067274010230
-BoxCollider2D:
+--- !u!60 &9123280505007843884
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -774,7 +774,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.075, y: -0.2}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -784,9 +784,22 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.1, y: 0.6}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.3249321, y: 0.15868378}
+      - {x: 0.17767334, y: 0.19453704}
+      - {x: -0.28884506, y: 0.19574618}
+      - {x: -0.46862602, y: 0.13743138}
+      - {x: -0.59781075, y: -0.02222842}
+      - {x: -0.64291763, y: -0.33643335}
+      - {x: -0.61909294, y: -0.46236253}
+      - {x: -0.60665894, y: -0.47950888}
+      - {x: -0.5798588, y: -0.4884981}
+      - {x: 0.4332428, y: -0.48849812}
+      - {x: 0.45453072, y: -0.4801598}
+      - {x: 0.4682064, y: -0.46641105}
+      - {x: 0.49085426, y: -0.41161326}
+      - {x: 0.460783, y: 0.0119045675}
 --- !u!50 &7986413340031863264
 Rigidbody2D:
   serializedVersion: 4
@@ -803,7 +816,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.04
   m_GravityScale: 4
-  m_Material: {fileID: 6200000, guid: 73be1ed0d0ba3804aa136a1bf7657b00, type: 2}
+  m_Material: {fileID: 6200000, guid: 1114a5c3c01479c419a1304176f73688, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
