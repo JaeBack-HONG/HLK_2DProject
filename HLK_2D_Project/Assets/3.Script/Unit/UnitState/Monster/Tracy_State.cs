@@ -45,7 +45,8 @@ public class Tracy_State : Monster_State
                 Tracy_PlayerCheck();
                 monsterMove.TotalMove();
                 break;
-            case Unit_state.Attack:                
+            case Unit_state.Attack:
+                rigidbody.velocity = Vector2.zero;
                 break;
             case Unit_state.Grab:                
                 IsGrab();
@@ -105,13 +106,13 @@ public class Tracy_State : Monster_State
 private IEnumerator TracyAttack_Co()
     {        
         rigidbody.velocity = Vector2.zero;
+        animator.SetBool("Move", false);
         monsterMove.PlayerDirectionCheck();
         animator.SetTrigger("Shot");
 
         yield return WaitCool;
 
         Vector3 direction = (monsterMove.direction < 1) ? Vector3.left : Vector3.right;
-
 
         CreateBullet(direction);
         
