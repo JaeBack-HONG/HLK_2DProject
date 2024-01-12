@@ -24,7 +24,7 @@ public class Player_State : MonoBehaviour
     public int MaxHealth;
     public float JumpForce;
 
-    
+
     private Animator animator;
     private Player_Ability P_Ability;
     private Player_Move P_Move;
@@ -135,10 +135,12 @@ public class Player_State : MonoBehaviour
 
             if (hit1.collider != null || hit2.collider != null)
             {
+                if (isAttack) return;
+
                 ChangeState(Jump_State.Idle);
                 P_Move.jumpCount = P_Move.maxJumps;
 
-                if (!actState.Equals(Unit_state.Idle) && !isAttack) actState = Unit_state.Idle;
+                if (!actState.Equals(Unit_state.Idle)) actState = Unit_state.Idle;
             }
         }
     }
@@ -149,7 +151,7 @@ public class Player_State : MonoBehaviour
         {
             if (P_Move.jumpCount.Equals(P_Move.maxJumps)) P_Move.jumpCount--;
 
-            if (!JumState.Equals(Jump_State.Falling) && !isAttack) ChangeState(Jump_State.Falling);
+            if (!JumState.Equals(Jump_State.Falling)) ChangeState(Jump_State.Falling);
         }
     }
 
@@ -201,9 +203,9 @@ public class Player_State : MonoBehaviour
     public void Die()
     {
         //카메라 확대 애니메이션 실행 후 
-        GameManager.instance.PlayerDieUI();        
+        GameManager.instance.PlayerDieUI();
         gameObject.SetActive(false);
-        
+
     }
 
     public void Attack(Monster_State other)
