@@ -466,6 +466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2180486103596384056}
   - component: {fileID: 1435816640199510080}
+  - component: {fileID: 270635301395609276}
   m_Layer: 0
   m_Name: TileCheck
   m_TagString: TileCheck
@@ -513,6 +514,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.01}
   m_EdgeRadius: 0
+--- !u!50 &270635301395609276
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5510573906306680086}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5772524116248921728
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
+  - {fileID: 0}
   - {fileID: 6733462574698497862}
   - {fileID: 8305806322938161891}
   - {fileID: 6280675499122737481}
@@ -1121,7 +1144,6 @@ MonoBehaviour:
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
-  HealValue: 1
 --- !u!114 &851391039751932251
 MonoBehaviour:
   m_ObjectHideFlags: 0

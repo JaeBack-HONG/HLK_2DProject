@@ -99,7 +99,7 @@ public class Player_State : MonoBehaviour
                 break;
             case Unit_state.Attack:
                 if (P_Ability.current_Ab != null &&
-                    !PlayerManager.instance.count_List[PlayerManager.instance.current_Count].Equals(0))
+                    !PlayerManager.instance.count_List[PlayerManager.instance.Select_Idx].Equals(0))
                 {
                     P_Ability.current_Ab.UseAbility();
                 }

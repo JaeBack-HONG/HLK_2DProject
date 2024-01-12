@@ -22,8 +22,8 @@ public class Player_Ability : MonoBehaviour
 
     public void AbilitySet(int idx)
     {
-        PlayerManager.instance.current_Count = idx;
-        current_Ab = my_Abilities[PlayerManager.instance.current_Count];
+        PlayerManager.instance.Select_Idx = idx;
+        current_Ab = my_Abilities[PlayerManager.instance.Select_Idx];
         PlayerManager.instance.Border_Link(idx);
     }
 
@@ -35,13 +35,13 @@ public class Player_Ability : MonoBehaviour
             
             for (int i = 0; i < my_Abilities.Length; i++)
             {
-                if (my_Abilities[i] == null)
+                if (my_Abilities[i] == abilities[0])
                 {
-                    PlayerManager.instance.current_Count = i; 
+                    PlayerManager.instance.Select_Idx = i; 
                     break;
                 }
             }
-            TriggerEvent(PlayerManager.instance.current_Count, collision);
+            TriggerEvent(PlayerManager.instance.Select_Idx, collision);
 
         }
     }
@@ -50,7 +50,7 @@ public class Player_Ability : MonoBehaviour
     {
         PlayerManager.instance.AbIdx[current_idx] = collision.gameObject.GetComponent<AbilityItem>().itemidx;
         my_Abilities[current_idx] = abilities[(int)PlayerManager.instance.AbIdx[current_idx]];
-        PlayerManager.instance.icon_Image[current_idx].sprite = PlayerManager.instance.AbilityItem_All[(int)PlayerManager.instance.AbIdx[current_idx]];
+        PlayerManager.instance.icon_Image[current_idx].sprite = PlayerManager.instance.icon_Image_All[(int)PlayerManager.instance.AbIdx[current_idx]];
         current_Ab = my_Abilities[current_idx];
         PlayerManager.instance.count_List[current_idx] = PlayerManager.instance.max_Count;
         PlayerManager.instance.icon_Bar[current_idx].sprite = PlayerManager.instance.icon_Bar_All[current_idx * 5 + 4];
