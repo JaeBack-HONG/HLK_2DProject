@@ -1097,7 +1097,7 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  anispeed: 1.5
+  anispeed: 2
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
   diego_Bullet_obj: {fileID: 601019318901146435, guid: eee847dde09051f4fbb36ca86ffb9700, type: 3}

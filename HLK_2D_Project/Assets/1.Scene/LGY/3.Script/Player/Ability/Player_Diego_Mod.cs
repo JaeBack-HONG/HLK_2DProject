@@ -20,7 +20,7 @@ public class Player_Diego_Mod : Ability
 
         PlayerManager.instance.UsedAb();
 
-        animator.speed = anispeed * 1.5f;
+        animator.speed = anispeed;
         yield return new WaitForSeconds(0.675f / anispeed);
         CreateBullet();
         noise.m_AmplitudeGain = 2;

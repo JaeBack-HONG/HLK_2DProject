@@ -1062,7 +1062,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2797919914270543858, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: itemidx
-      value: 16
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2797919914270543858, guid: 3529da6e8b55c3b41a4cc0b5fb03dfa1, type: 3}
       propertyPath: sprites.Array.data[3]
@@ -1607,7 +1607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7433568508982086788, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: anispeed
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7986413340031863258, guid: db2467dbfccf1954b9f091bbc763da8d, type: 3}
       propertyPath: m_Name
