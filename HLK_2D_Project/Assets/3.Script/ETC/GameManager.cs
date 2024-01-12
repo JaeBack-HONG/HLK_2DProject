@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject PlayerDieUI_obj;
 
     [SerializeField] private string introSceneName;
-    [SerializeField] private string currentSceneName;
-    [SerializeField] private string saveSceneName;
+    [SerializeField] private int currentSceneName;
+    [SerializeField] private int saveSceneName;
     private AudioSource bgmAudio;
 
 
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         if (!SceneManager.GetActiveScene().name.Equals(introSceneName))
         {
             player_Ability = FindObjectOfType<PlayerManager>();        
-            currentSceneName = SceneManager.GetActiveScene().name;
+            currentSceneName = SceneManager.GetActiveScene().buildIndex;
             PlayerData.SceneName = currentSceneName;
 
             PlayerData.currentHealth = player.Health;
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
 
     public void SceneDataSave()
     {
-        currentSceneName = SceneManager.GetActiveScene().name;
+        currentSceneName = SceneManager.GetActiveScene().buildIndex;
         PlayerData.SceneName = currentSceneName;
         string fileName;
 
@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerData.maxHealth = MaxHealthSet;
         PlayerData.currentHealth = CurrentHealthSet;
-        PlayerData.SceneName = "";
+        PlayerData.SceneName = 0;
 
         PlayerData.AbilityCheck_1 = 0;
         PlayerData.AbilityCheck_2 = 0;
@@ -225,7 +225,8 @@ public class GameManager : MonoBehaviour
         }
         Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;
         SceneDataSave();
-        SceneManager.LoadScene("MainMenu");        
+        AudioManager.Instance.BGM_Play((int)Scene_Name.MainMenu);
+        SceneManager.LoadScene((int)Scene_Name.MainMenu);        
     }        
 
     public void OnClickOption_Btn()
@@ -235,7 +236,8 @@ public class GameManager : MonoBehaviour
     }
     public void SceneLoadData_Btn()
     {        
-        DataLoad();        
+        DataLoad();
+        AudioManager.Instance.BGM_Play(PlayerData.SceneName);
         SceneManager.LoadScene(PlayerData.SceneName);
     }
     #endregion

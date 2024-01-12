@@ -21,5 +21,5 @@ public class PlayerDataJson
     public int maxHealth = 6;
     public int currentHealth = 3;    
     
-    public string SceneName = string.Empty;    
+    public int SceneName = 0;    
 }
