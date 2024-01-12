@@ -1316,6 +1316,7 @@ MonoBehaviour:
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
+  glideSpeed: 10
 --- !u!1 &9147761030394907054
 GameObject:
   m_ObjectHideFlags: 0
