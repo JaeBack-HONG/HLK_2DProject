@@ -9343,7 +9343,8 @@ MonoBehaviour:
   direction: 0
   isGrab: 0
   groundCheck: 0
-  targetPlayer: {fileID: 0}
+  targetPlayer: {fileID: 8418561068527823187}
+  jumpUnit: 0
 --- !u!1 &1102642502
 GameObject:
   m_ObjectHideFlags: 0
