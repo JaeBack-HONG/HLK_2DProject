@@ -466,7 +466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2180486103596384056}
   - component: {fileID: 1435816640199510080}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: TileCheck
   m_TagString: TileCheck
   m_Icon: {fileID: 0}
@@ -890,7 +890,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 2
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -910,7 +909,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1.3
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -918,6 +916,7 @@ MonoBehaviour:
   rushSpeed: 13
   spearcol: {fileID: 1874003419837650092}
   gaugecor: 2
+  gaugeUI: {fileID: 0}
 --- !u!114 &8305806322938161891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -934,7 +933,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1.3
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -955,7 +953,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1.2
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -976,7 +973,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -997,7 +993,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1018,12 +1013,12 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
   rollingSpeed: 5
   attackDmg: 3
+  gaugeUI: {fileID: 0}
 --- !u!114 &3329743050120156444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,7 +1035,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1.5
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1061,7 +1055,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1082,7 +1075,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1105,7 +1097,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1.5
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1126,7 +1117,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1147,7 +1137,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1168,7 +1157,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1189,7 +1177,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1209,7 +1196,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1229,7 +1215,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1250,7 +1235,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 0.7
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1272,7 +1256,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1292,7 +1275,6 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
@@ -1312,11 +1294,11 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  gaugeUI: {fileID: 0}
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
   glideSpeed: 10
+  dmg: 1
 --- !u!1 &9147761030394907054
 GameObject:
   m_ObjectHideFlags: 0
