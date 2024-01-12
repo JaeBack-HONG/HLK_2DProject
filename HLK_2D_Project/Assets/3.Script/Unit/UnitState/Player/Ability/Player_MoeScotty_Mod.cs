@@ -35,17 +35,17 @@ public class Player_MoeScotty_Mod : Ability
         yield return null;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.layer.Equals((int)Layer_Index.Enemy))
-        {
-            rigidbody.velocity = Vector2.zero;
-            Monster_State monstate = collision.gameObject.GetComponent<Monster_State>();
-            monstate.Health -= dmg; 
-            monstate.UnitHit.Hit(monstate.gameObject.layer, transform.position);
-            P_state.Health += dmg;
-            P_state.Health = P_state.Health > P_state.data.HP ? P_state.data.HP : P_state.Health;
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if(collision.gameObject.layer.Equals((int)Layer_Index.Enemy))
+    //    {
+    //        rigidbody.velocity = Vector2.zero;
+    //        Monster_State monstate = collision.gameObject.GetComponent<Monster_State>();
+    //        monstate.Health -= dmg; 
+    //        monstate.UnitHit.Hit(monstate.gameObject.layer, transform.position);
+    //        P_state.Health += dmg;
+    //        P_state.Health = P_state.Health > P_state.data.HP ? P_state.data.HP : P_state.Health;
+    //    }
+    //}
 
 }

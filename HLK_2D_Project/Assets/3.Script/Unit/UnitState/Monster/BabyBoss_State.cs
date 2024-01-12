@@ -22,8 +22,8 @@ public class BabyBoss_State : Monster_State
 
     private void Start()
     {
-        MonsterDataSetting();
         noise = cinemachinevir.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        MonsterDataSetting();
     }
 
     public override void MonsterDataSetting()
@@ -79,7 +79,7 @@ public class BabyBoss_State : Monster_State
     {
         float targetDistance = monsterMove.DistanceAndDirection();
 
-        if (targetDistance < 3f)
+        if (targetDistance < 3.5f)
         {
             state = Unit_state.Attack;
         }
@@ -128,7 +128,7 @@ public class BabyBoss_State : Monster_State
         yield return new WaitForSeconds(0.1f);
         animator.SetTrigger("Walk");
         animator.SetTrigger("Gimmick");
-        yield return new WaitForSeconds(0.95f);
+        yield return new WaitForSeconds(1.05f);
         attackboxobj.SetActive(true);
         attackboxcol.size = new Vector2(5f, attackboxcol.size.y);
         effect.SetActive(true);
@@ -138,7 +138,7 @@ public class BabyBoss_State : Monster_State
         attackboxcol.size = new Vector2(1.4f, attackboxcol.size.y);
         yield return new WaitForSeconds(0.15f);
         noise.m_AmplitudeGain = 0;
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(0.25f);
         animator.SetTrigger("Walk");
         effect.SetActive(false);
         state = Unit_state.Move;

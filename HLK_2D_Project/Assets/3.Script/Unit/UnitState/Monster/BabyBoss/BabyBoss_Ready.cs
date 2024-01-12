@@ -30,9 +30,9 @@ public class BabyBoss_Ready : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         babyboss_anime.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.6f);
         babyboss_anime.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.6f);
         babyboss_anime.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         yield return new WaitForSeconds(1.5f);
         babyboss_anime.SetTrigger("Trans");
