@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string introSceneName;
     [SerializeField] private string currentSceneName;
     [SerializeField] private string saveSceneName;
+    private AudioSource bgmAudio;
+
 
     public PlayerDataJson PlayerData;
 
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+        TryGetComponent<AudioSource>(out bgmAudio);
     }   
     
     
@@ -68,6 +70,10 @@ public class GameManager : MonoBehaviour
         GetCompoPlayerCheck();
         OptionKeyDown_Set();       
 
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            Time.timeScale = 0.1f;
+        }
     }
     
     private void OptionKeyDown_Set()
@@ -79,8 +85,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = OptionUI_obj.activeSelf ? 0 : 1;            
         }
     }
-        
-    
+
     private void GetCompoPlayerCheck()
     {        
         try
@@ -203,7 +208,10 @@ public class GameManager : MonoBehaviour
         DefaultDataSet();
         //DataLoad();
         DataSave();
-        SceneManager.LoadScene("tutorial");
+
+        AudioManager.Instance.BGM_Play((int)Scene_Name.tutorial);
+        SceneManager.LoadScene((int)Scene_Name.tutorial);
+        
     }
     public void MainMenu_Btn()
     {

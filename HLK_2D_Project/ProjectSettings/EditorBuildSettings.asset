@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scene/MainMenu.unity
     guid: 64ebc5d8c89fcdd4cb8b40611a124104
-  - enabled: 0
-    path: Assets/1.Scene/HJB_Scene.unity
-    guid: 7a979877f72c71c4dae77737e5e26e5b
   - enabled: 1
     path: Assets/1.Scene/tutorial.unity
     guid: 56e72ac22d4a8e147a40868545a88565

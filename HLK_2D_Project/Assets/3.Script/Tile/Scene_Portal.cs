@@ -3,8 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum Scene_Name
+{
+    MainMenu,
+    tutorial,
+    Stage1,
+    Stage2_1,
+    Stage2_2,
+    Stage3
+}
+
 public class Scene_Portal : MonoBehaviour
 {
+
+
     IEnumerator waitSet_co;
 
     private bool able = true;
@@ -12,7 +24,7 @@ public class Scene_Portal : MonoBehaviour
     [SerializeField] GameObject portalArrowImage_obj;
 
     [Header("¿Ãµø æ¿ º≥¡§")]
-    [SerializeField] private string sceneName;
+    [SerializeField] private Scene_Name scenename;
     
 
 
@@ -58,7 +70,8 @@ public class Scene_Portal : MonoBehaviour
         Debug.Log("æ¿ ¿Ãµø");
 
         GameManager.instance.DataSave();
-        SceneManager.LoadScene(sceneName);
+        AudioManager.Instance.BGM_Play((int)scenename);
+        SceneManager.LoadScene((int)scenename);
         
     }
 }

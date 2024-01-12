@@ -7,10 +7,11 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance = null;
 
-    [SerializeField] private AudioSource[] source;
+    public AudioSource BGMAudio;
+    public AudioSource[] SFXAudio;
 
-    [SerializeField] private AudioClip[] bgmClip;
-    [SerializeField] private AudioClip[] sfxClip;
+    public AudioClip[] bgmClip;
+    public AudioClip[] sfxClip;
     private void Awake()
     {
         if (Instance == null )
@@ -24,25 +25,29 @@ public class AudioManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        source = GetComponents<AudioSource>();
+        SFXAudio = GetComponents<AudioSource>();
         
     }
 
     private void Start()
     {
-        source[0].clip = bgmClip[0];
-        source[0].Play();
+        BGM_Play(0);
+
     }
 
-
-
-    private void BGM_Play()
+    public void BGM_Play(int idx)
     {
-        for (int i = 0; i < source.Length; i++)
+        BGMAudio.clip = bgmClip[idx];
+        BGMAudio.Play();
+    }
+
+    private void SFX_Play()
+    {
+        for (int i = 0; i < SFXAudio.Length; i++)
         {
-            if (!source[i].isPlaying)
+            if (!SFXAudio[i].isPlaying)
             {
-                source[i].Play();
+                SFXAudio[i].Play();
                 break;
             }
             

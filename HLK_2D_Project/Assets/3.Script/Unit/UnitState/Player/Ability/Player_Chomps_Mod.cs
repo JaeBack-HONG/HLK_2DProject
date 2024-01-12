@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Player_Chomps_Mod : Ability
 {
-    [Range(1, 4)]
-    [SerializeField] private int HealValue = 2;
+    private int HealValue = 2;
 
     public override void UseAbility()
     {
-        if (P_state.Health.Equals(P_state.data.HP))
+        if (P_state.Health.Equals(P_state.MaxHealth))
         {
             P_state.actState = Unit_state.Idle;
             return;
@@ -24,7 +23,7 @@ public class Player_Chomps_Mod : Ability
 
         PlayerManager.instance.UsedAb();
         P_state.Health += HealValue;
-        P_state.Health = P_state.Health > P_state.data.HP ? P_state.data.HP : P_state.Health;
+        P_state.Health = P_state.Health > P_state.MaxHealth ? P_state.MaxHealth : P_state.Health;
         PlayerManager.instance.HeartCheck(P_state.Health);
         P_state.actState = Unit_state.Idle;
 
