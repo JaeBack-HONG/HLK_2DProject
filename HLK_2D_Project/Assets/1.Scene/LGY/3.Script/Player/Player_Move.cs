@@ -33,7 +33,7 @@ public class Player_Move : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("DTop") && gameObject.layer.Equals((int)Layer_Index.Player))
         {
-            Jump(P_State.JumpForce * 0.5f);
+            Jump(P_State.JumpForce * 0.7f);
             jumpCount++;
         }
     }

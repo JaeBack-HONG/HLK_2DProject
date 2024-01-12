@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 4393742416317461524}
   m_Layer: 0
   m_Name: TopCheck
-  m_TagString: Top
+  m_TagString: DTop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
