@@ -107,6 +107,7 @@ public class Holly_State : Monster_State
                 IsGrab();
                 break;
             case Unit_state.Stun:
+                
                 break;
             case Unit_state.Dash:
                 break;
@@ -135,16 +136,17 @@ public class Holly_State : Monster_State
 
     #region //베이비 공격(Co)
     private IEnumerator HollyAttack_Co(int noisescale)
-    {        
+    {
+        animator.SetBool("Move", false);
         rigidbody.velocity = Vector2.zero;
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.6f/2);
         attackboxobj.SetActive(true);
         noise.m_AmplitudeGain = 0;
+        animator.SetTrigger("Default");
         yield return new WaitForSeconds(0.2f);
         attackboxobj.SetActive(false);
         noise.m_AmplitudeGain = 0;
-        animator.SetTrigger("Default");
         yield return new WaitForSeconds(0.5f);
         ChangeState(Unit_state.Move);
         gimmickcount++;
@@ -176,12 +178,14 @@ public class Holly_State : Monster_State
         animator.SetTrigger("Default");
         animator.SetTrigger("Gimick");
         
-        rigidbody.AddForce(Vector2.up*7f, ForceMode2D.Impulse);
+        rigidbody.AddForce(Vector2.up*12f, ForceMode2D.Impulse);
+        Vector3 playerDirection = (Player.transform.position - transform.position).normalized;
+        monsterMove.PlayerDirectionCheck();
         while (currentTime<0.8f)
         {            
             currentTime += Time.deltaTime;
-            float step = 10f * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, step);
+            
+            rigidbody.velocity = new Vector2(playerDirection.x*8f, rigidbody.velocity.y);           
             
             yield return null;
         }
@@ -190,13 +194,13 @@ public class Holly_State : Monster_State
         attackboxcol.size = new Vector2(5f, attackboxcol.size.y);
         effect.SetActive(true);
         noise.m_AmplitudeGain = 23;
+        animator.SetBool("Move", false);
         yield return new WaitForSeconds(0.15f);
         attackboxobj.SetActive(false);
         attackboxcol.size = new Vector2(1.4f, attackboxcol.size.y);
         yield return new WaitForSeconds(0.15f);
         noise.m_AmplitudeGain = 0;
         yield return new WaitForSeconds(0.35f);
-        animator.SetTrigger("Default");
         effect.SetActive(false);
         ChangeState(Unit_state.Move);
         gimmickcount = 0;
