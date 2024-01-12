@@ -21,9 +21,10 @@ public class Player_State : MonoBehaviour
     public Unit_Hit unithit;
 
     public int Health;
+    public int MaxHealth;
     public float JumpForce;
 
-    private PlayerDataJson playerdata;
+    
     private Animator animator;
     private Player_Ability P_Ability;
     private Player_Move P_Move;
@@ -52,6 +53,7 @@ public class Player_State : MonoBehaviour
         TryGetComponent<Unit_Hit>(out unithit);
         TryGetComponent<Player_Ability>(out P_Ability);
         Health = (int)GameManager.instance.PlayerData.currentHealth;
+        MaxHealth = (int)GameManager.instance.PlayerData.maxHealth;
     }
 
 

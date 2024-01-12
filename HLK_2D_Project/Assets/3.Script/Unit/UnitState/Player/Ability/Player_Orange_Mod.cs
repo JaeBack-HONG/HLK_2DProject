@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player_Orange_Mod : Ability
 {
     [Header("구르기 속도")]
-    [SerializeField] private float rollingSpeed = 30f;
+    private float rollingSpeed = 15f;
     private bool ishit;
 
     [SerializeField] private int attackDmg = 3;

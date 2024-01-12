@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     public Sprite[] icon_Bar_All;
 
     [Header("체력UI")]
+    public GameObject[] heart_obj;
     public Image[] heart_Panels;
     public Sprite[] heart_All;
 
@@ -63,15 +64,9 @@ public class PlayerManager : MonoBehaviour
     }
     private void AbilityDataLoad()
     {
-        Debug.Log("초기화");
-        
-        
-        
-
         P_Ab.my_Abilities[0] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_1];
         P_Ab.my_Abilities[1] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_2];
-        P_Ab.my_Abilities[2] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_3];
-        
+        P_Ab.my_Abilities[2] = P_Ab.abilities[GameManager.instance.PlayerData.Ability_3];       
         
         count_List[0] = GameManager.instance.PlayerData.AbilityCheck_1;
         count_List[1] = GameManager.instance.PlayerData.AbilityCheck_2;
@@ -80,17 +75,17 @@ public class PlayerManager : MonoBehaviour
         count_List[0] = GameManager.instance.PlayerData.Ability_1_count;
         count_List[1] = GameManager.instance.PlayerData.Ability_2_count;
         count_List[2] = GameManager.instance.PlayerData.Ability_3_count;
-        StartSetting();
+
+        MaxHealthCheck(GameManager.instance.PlayerData.maxHealth);
+        StartSetting();        
         
-        HeartCheck((int)GameManager.instance.PlayerData.currentHealth);
+        HeartCheck(GameManager.instance.PlayerData.currentHealth);
 
     }
     private void FixedUpdate()
-    {
-        
+    {        
         RemoveItem();
-        ResetAbList();      
-        
+        ResetAbList();  
     }
 
     public void StartSetting()
@@ -101,8 +96,7 @@ public class PlayerManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             icon_Image[i].sprite = AbilityItem_All[(int)AbIdx[i]];
-            icon_Bar[i].sprite = icon_Bar_All[i * 5 + 4];
-            
+            icon_Bar[i].sprite = icon_Bar_All[i * 5 + 4];            
         }
         for (int i = 0; i < icon_Image.Length; i++)
         {
@@ -152,6 +146,22 @@ public class PlayerManager : MonoBehaviour
     }
 
     #region PlayerHPCheck
+
+    public void MaxHealthCheck(int maxHealth)
+    {
+        maxHealth = (int)(maxHealth / 2f);
+        for (int i = 0; i < heart_Panels.Length; i++)
+        {
+            if (maxHealth>i)
+            {
+                heart_obj[i].SetActive(true);
+            }
+            else
+            {
+                heart_obj[i].SetActive(false);
+            }
+        }
+    }
     public void HeartCheck(int Health)
     {
         int currentHealth = Health;
@@ -160,9 +170,18 @@ public class PlayerManager : MonoBehaviour
 
         for (int i = 0; i < heart_Panels.Length; i++)
         {
-            if (i <= currentHealth) heart_Panels[i].sprite = heart_All[2];
-            else if (i.Equals(currentHealth + 1) && Health.Equals(1)) heart_Panels[i].sprite = heart_All[1];
-            else heart_Panels[i].sprite = heart_All[0];
+            if (i <= currentHealth)
+            {
+                heart_Panels[i].sprite = heart_All[2];
+            }
+            else if (i.Equals(currentHealth + 1) && Health.Equals(1))
+            {
+                heart_Panels[i].sprite = heart_All[1];
+            }
+            else
+            {
+                heart_Panels[i].sprite = heart_All[0];
+            }
         }
     }
     #endregion

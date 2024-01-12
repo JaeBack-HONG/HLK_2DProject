@@ -128,8 +128,7 @@ public class Moescotty_State : Monster_State
         {
             currentTime += Time.fixedDeltaTime;
             transform.position = Vector2.Lerp(transform.position, M_position, currentTime/20f);            
-            yield return new WaitForFixedUpdate();
-            Debug.Log(M_position);
+            yield return new WaitForFixedUpdate();            
         }
         rigidbody.velocity = Vector2.zero;
         currentTime = 0f;

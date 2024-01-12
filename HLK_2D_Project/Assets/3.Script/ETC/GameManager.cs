@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviour
 
     public Player_State player;
     public PlayerManager player_Ability;
+
+    [Header("플레이어 체력 설정")]
+    [SerializeField] int MaxHealthSet = 6;
+    [SerializeField] int CurrentHealthSet = 6;
+
     private void Awake()
     {        
         FileDataCheck();
@@ -100,7 +105,7 @@ public class GameManager : MonoBehaviour
             PlayerData.SceneName = currentSceneName;
 
             PlayerData.currentHealth = player.Health;
-            PlayerData.maxHealth = 3f;
+            PlayerData.maxHealth = player.MaxHealth;
 
             PlayerData.AbilityCheck_1 = PlayerManager.instance.count_List[0];
             PlayerData.AbilityCheck_2 = PlayerManager.instance.count_List[1]; 
@@ -169,8 +174,8 @@ public class GameManager : MonoBehaviour
     }
     private void DefaultDataSet()
     {
-        PlayerData.maxHealth = 6;
-        PlayerData.currentHealth = 6;
+        PlayerData.maxHealth = MaxHealthSet;
+        PlayerData.currentHealth = CurrentHealthSet;
         PlayerData.SceneName = "";
 
         PlayerData.AbilityCheck_1 = 0;

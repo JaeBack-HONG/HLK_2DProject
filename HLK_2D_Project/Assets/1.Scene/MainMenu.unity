@@ -4443,6 +4443,8 @@ MonoBehaviour:
     SceneName: 
   player: {fileID: 0}
   player_Ability: {fileID: 0}
+  MaxHealthSet: 6
+  CurrentHealthSet: 6
 --- !u!4 &1129841680
 Transform:
   m_ObjectHideFlags: 0
