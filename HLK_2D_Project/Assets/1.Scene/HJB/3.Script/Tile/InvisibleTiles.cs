@@ -19,8 +19,8 @@ public class InvisibleTiles : MonoBehaviour
 
     Collider2D collider;
 
-    SpriteRenderer sprite;    
-
+    SpriteRenderer sprite;
+    
     [SerializeField] private Collider2D[] collider_m;
     [SerializeField] private SpriteRenderer[] sprite_m;
 
@@ -119,14 +119,14 @@ public class InvisibleTiles : MonoBehaviour
 
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {        
-        if (collision.gameObject.layer.Equals((int)Layer_Index.Player)&&!check)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("TileCheck")&& !check)
         {
             //또는 로직 메서드 만들기
-            
+
             if (multiple)
-            {                
+            {
                 StartCoroutine(InvisibleTileSet_M());
             }
             else
@@ -135,4 +135,5 @@ public class InvisibleTiles : MonoBehaviour
             }
         }
     }
+    
 }

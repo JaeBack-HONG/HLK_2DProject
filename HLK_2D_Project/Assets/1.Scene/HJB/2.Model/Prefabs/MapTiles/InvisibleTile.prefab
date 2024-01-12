@@ -125,4 +125,9 @@ MonoBehaviour:
   F_timeSet: 5
   M_timeSet: 2
   L_timeSet: 1
+  multiple: 0
+  destroy: 0
   check: 0
+  triggerCheck: {fileID: 0}
+  collider_m: []
+  sprite_m: []

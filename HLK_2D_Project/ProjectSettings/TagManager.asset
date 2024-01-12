@@ -9,6 +9,7 @@ TagManager:
   - Item
   - Projectile
   - DTop
+  - TileCheck
   layers:
   - Default
   - TransparentFX
