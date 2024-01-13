@@ -4044,7 +4044,8 @@ PrefabInstance:
     - target: {fileID: 6059558453769081549, guid: 812065793ea31f94aa88da084c191f23, type: 3}
       propertyPath: text_Message
       value: "\uB9F5 \uACF3\uACF3\uC5D0 \uCD5C\uB300 HP\uB97C \uC99D\uAC00\uC2DC\uCF1C\uC8FC\uB294
-        \uBB3C\uC57D\uC774 \uC788\uC5B4 \uB3C4\uC6C0\uC774 \uB418\uAE38 \uBC14\uB784\uAC8C"
+        \uBB3C\uC57D\uC774 \uC788\uC5B4, R\uD0A4\uB85C \uBA39\uC73C\uBA74 \uCCB4\uB825\uC774
+        \uB298\uC5B4\uB098"
       objectReference: {fileID: 0}
     - target: {fileID: 6059558453769081550, guid: 812065793ea31f94aa88da084c191f23, type: 3}
       propertyPath: m_Size.x
