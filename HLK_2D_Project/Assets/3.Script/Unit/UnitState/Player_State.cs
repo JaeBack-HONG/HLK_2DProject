@@ -78,7 +78,7 @@ public class Player_State : MonoBehaviour
 
     private void PlayerDataSetting()
     {
-        data = new UnitData(name: "Player", hp: 10, detection: 5, range: 1, attackSpeed: 1, strength: 2, moveSpeed: 10, jumpForce: 18);
+        data = new UnitData(name: "Player", hp: 10, detection: 5, range: 1, attackSpeed: 1, strength: 2, moveSpeed: 10, jumpForce: JumpForce);
         Health = data.HP;
         JumpForce = data.JumpForce;
     }
