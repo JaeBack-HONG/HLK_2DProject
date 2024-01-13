@@ -9,7 +9,8 @@ public abstract class Monster_State : MonoBehaviour
     [SerializeField] public int healthSet = 4;
     [SerializeField] public int damageSet = 2;
     [SerializeField] public int speedSet = 5;
-
+    [Header("ÈÆ·Ã¸ðµå")]
+    public bool trainingMod;
     [Header("")]
     public Unit_state state;
     public Unit_state currentState;

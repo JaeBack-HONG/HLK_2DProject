@@ -43,6 +43,11 @@ public class Handrick_state : Monster_State
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
+                if (trainingMod)
+                {
+                    state = Unit_state.Idle;
+                    return;
+                }
                 monsterMove.TotalMove();
                 HandrickAttack_PlayerCheck();
                 break;

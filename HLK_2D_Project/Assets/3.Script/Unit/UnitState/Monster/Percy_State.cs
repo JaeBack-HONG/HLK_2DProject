@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Percy_State : Monster_State
 {
+
     
     WaitForSeconds WaitCool = new WaitForSeconds(1f);
     [SerializeField] private GameObject Percy_FireBall_obj;
@@ -23,24 +24,31 @@ public class Percy_State : Monster_State
                 strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
         Strength = data.Strength;
-        state = Unit_state.Move;
+        state = Unit_state.Move;        
         ability_Item = Ability_Item.Percy;
         PercyAttack_co = PercyAttack_Co();
         base.MonsterDataSetting();
     }
     private void FixedUpdate()
-    {        
+    {       
         if (!state.Equals(Unit_state.Die))
         {
             Monster_HealthCheck();            
             BerserkCheck();
         }
+        
+        
 
         switch (state)
         {            
             case Unit_state.Idle:
                 break;
             case Unit_state.Move:
+                if (trainingMod)
+                {
+                    state = Unit_state.Idle;
+                    return;
+                }
                 monsterMove.TotalMove();
                 Tracy_PlayerCheck();
                 break;
