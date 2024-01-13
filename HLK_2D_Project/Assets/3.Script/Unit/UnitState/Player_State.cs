@@ -52,8 +52,8 @@ public class Player_State : MonoBehaviour
         JumState = Jump_State.Idle;
         TryGetComponent<Unit_Hit>(out unithit);
         TryGetComponent<Player_Ability>(out P_Ability);
-        Health = (int)GameManager.instance.PlayerData.currentHealth;
-        MaxHealth = (int)GameManager.instance.PlayerData.maxHealth;
+        Health = GameManager.instance.PlayerData.currentHealth;
+        MaxHealth = GameManager.instance.PlayerData.maxHealth;
     }
 
 

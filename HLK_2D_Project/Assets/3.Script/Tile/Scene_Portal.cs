@@ -10,7 +10,8 @@ public enum Scene_Name
     Stage1,
     Stage2_1,
     Stage2_2,
-    Stage3
+    Stage3,
+    WarriorBoss,
 }
 
 public class Scene_Portal : MonoBehaviour

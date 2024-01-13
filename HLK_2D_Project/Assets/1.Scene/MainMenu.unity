@@ -4040,6 +4040,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9891dcbf463a43e4f894fc2eb878697f, type: 3}
   - {fileID: 8300000, guid: 1f6f0e4c407e86847b0ecacc6b1dd29d, type: 3}
   - {fileID: 8300000, guid: cf8603b4ae9e94d4ea378bb284c9c3c2, type: 3}
+  - {fileID: 8300000, guid: 9891dcbf463a43e4f894fc2eb878697f, type: 3}
   sfxClip: []
 --- !u!4 &1051829674
 Transform:
@@ -4432,8 +4433,8 @@ MonoBehaviour:
   OptionUI_obj: {fileID: 4121577882310431354}
   PlayerDieUI_obj: {fileID: 1768252067}
   introSceneName: MainMenu
-  currentSceneName: 
-  saveSceneName: 
+  currentSceneName: 0
+  saveSceneName: 0
   PlayerData:
     AbilityCheck_1: 0
     AbilityCheck_2: 0
@@ -4446,7 +4447,7 @@ MonoBehaviour:
     Ability_3_count: 0
     maxHealth: 3
     currentHealth: 3
-    SceneName: 
+    SceneName: 0
   player: {fileID: 0}
   player_Ability: {fileID: 0}
   MaxHealthSet: 6
