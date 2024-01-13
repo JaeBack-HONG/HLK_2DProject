@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da27bfc03a115a4cbb805b5be6b501d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 8.5
   rigidbody: {fileID: 0}
   mon: {fileID: 0}
   jumpCount: 0
@@ -854,9 +854,9 @@ MonoBehaviour:
   conState: 0
   JumState: 0
   unithit: {fileID: 0}
-  Health: 0
+  Health: 2
   MaxHealth: 0
-  JumpForce: 0
+  JumpForce: 15.5
   direction: {x: 0, y: 0}
   isAttack: 0
   isGround: 1

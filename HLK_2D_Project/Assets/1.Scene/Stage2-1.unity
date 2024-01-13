@@ -6694,6 +6694,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Holly
       objectReference: {fileID: 0}
+    - target: {fileID: 2049173971015054517, guid: 3f2e6d719a8d2c74a92a72eca62fc657, type: 3}
+      propertyPath: cinemachinevir
+      value: 
+      objectReference: {fileID: 1877527579}
     - target: {fileID: 2049173971015054520, guid: 3f2e6d719a8d2c74a92a72eca62fc657, type: 3}
       propertyPath: m_RootOrder
       value: 34
