@@ -9,7 +9,12 @@ public class Player_Ability : MonoBehaviour
     public Ability[] my_Abilities;
     public Ability current_Ab;
 
+    private Player_State P_state;
 
+    private void Awake()
+    {
+        P_state = GetComponent<Player_State>();
+    }
 
     public void Choice_Ab()
     {
@@ -29,6 +34,15 @@ public class Player_Ability : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("MaxHealthPotion")&& Input.GetKey(KeyCode.R))
+        {
+            P_state.MaxHealth += 2;
+            P_state.Health += 2;
+
+            PlayerManager.instance.MaxHealthCheck(P_state.MaxHealth);
+            PlayerManager.instance.HeartCheck(P_state.Health);
+            Destroy(collision.gameObject);
+        }
 
         if (collision.gameObject.CompareTag("Item") && Input.GetKey(KeyCode.R))
         {

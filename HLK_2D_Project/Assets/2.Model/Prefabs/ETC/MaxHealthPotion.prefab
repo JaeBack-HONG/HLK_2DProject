@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3452737419699255357
+--- !u!1 &3053899956477442298
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3452737419699255353}
-  - component: {fileID: 3452737419699255358}
-  - component: {fileID: 3452737419699255359}
-  - component: {fileID: 3452737419699255356}
-  - component: {fileID: 3452737419699255352}
+  - component: {fileID: 3053899956477442296}
+  - component: {fileID: 3053899956477442297}
+  - component: {fileID: -7202629000007974317}
   m_Layer: 0
-  m_Name: TreasureBox
-  m_TagString: Untagged
+  m_Name: MaxHealthPotion
+  m_TagString: MaxHealthPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3452737419699255353
+--- !u!4 &3053899956477442296
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3452737419699255357}
+  m_GameObject: {fileID: 3053899956477442298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.62, y: -0.27, z: 0}
+  m_LocalPosition: {x: 6.65, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3452737419699255358
+--- !u!212 &3053899956477442297
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3452737419699255357}
+  m_GameObject: {fileID: 3053899956477442298}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,8 +71,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -1309413244939661745, guid: e1844b7be0296af4f8176bb66dfa71ed, type: 3}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 21300000, guid: d0e0b074db0b2be4f9d775c66dc32e31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,13 +83,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &3452737419699255359
+--- !u!61 &-7202629000007974317
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3452737419699255357}
+  m_GameObject: {fileID: 3053899956477442298}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -102,44 +100,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0625, y: 1.25}
+    oldSize: {x: 0.875, y: 0.875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0625, y: 1.25}
+  m_Size: {x: 0.875, y: 0.875}
   m_EdgeRadius: 0
---- !u!95 &3452737419699255356
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3452737419699255357}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d0c31f020125f5b4b8914b5f277b04c7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3452737419699255352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3452737419699255357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8fa258c89dcf9349939257329a64f9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Item: {fileID: 3053899956477442298, guid: 7bad3b88fe7aec247a86e11fcc7377bf, type: 3}

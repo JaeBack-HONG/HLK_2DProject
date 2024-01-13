@@ -40,6 +40,13 @@ public class TreasureBox : MonoBehaviour
             currentTime += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+        
         Instantiate(Item, transform.position + new Vector3(0, 1f), Quaternion.identity);
+        while (currentTime < 5f)
+        {
+            currentTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(gameObject);
     }
 }
