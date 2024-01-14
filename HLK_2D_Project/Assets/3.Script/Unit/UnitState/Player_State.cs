@@ -25,9 +25,10 @@ public class Player_State : MonoBehaviour
     public float JumpForce;
 
 
-    private Animator animator;
+    public Animator animator;
     private Player_Ability P_Ability;
     private Player_Move P_Move;
+    private Rigidbody2D rigidbody;
 
     public Vector2 direction;
 
@@ -45,6 +46,7 @@ public class Player_State : MonoBehaviour
     }
     private void Start()
     {
+        TryGetComponent<Rigidbody2D>(out rigidbody);
         TryGetComponent<Animator>(out animator);
         TryGetComponent<Player_Move>(out P_Move);
         PlayerDataSetting();
@@ -71,9 +73,13 @@ public class Player_State : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        animator.SetFloat("YSpeed", P_Move.rigidbody.velocity.y);
+
+
         IsFalling();
         GroundRayCheck();
+        animator.SetFloat("YSpeed", P_Move.rigidbody.velocity.y);
+        if (rigidbody.velocity.x.Equals(0)) return;
+        transform.rotation = rigidbody.velocity.x <= 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
     }
 
     private void PlayerDataSetting()
@@ -91,10 +97,12 @@ public class Player_State : MonoBehaviour
                 break;
             case Unit_state.Idle:
                 if (isArmand) actState = Unit_state.Default;
+                P_Ability.UseAbsorb();
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Move:
                 if (isArmand) actState = Unit_state.Default;
+                P_Ability.UseAbsorb();
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Attack:
@@ -160,7 +168,6 @@ public class Player_State : MonoBehaviour
         if (Health <= 0 && !isDie)
         {
             isDie = true;
-            Debug.Log("진입");
             Die();
         }
     }
@@ -180,7 +187,6 @@ public class Player_State : MonoBehaviour
                 {
                     animator.SetTrigger("Idle");
                 }
-
                 break;
             case Jump_State.Jumping:
 
@@ -188,11 +194,14 @@ public class Player_State : MonoBehaviour
                 {
                     animator.SetTrigger("ArmandJump");
                 }
+                //else
+                //{
+                //    animator.SetTrigger("Jump");
+
+                //}
                 break;
             case Jump_State.Falling:
-                if (isArmand)
-                {
-                }
+
                 break;
             default:
                 break;
@@ -204,7 +213,7 @@ public class Player_State : MonoBehaviour
     {
         //카메라 확대 애니메이션 실행 후 
         GameManager.instance.PlayerDieUI();
-        gameObject.SetActive(false);
+        animator.SetTrigger("Die");
 
     }
 

@@ -19,10 +19,9 @@ public class BabyBoss_Ready : MonoBehaviour
             rigid.constraints = RigidbodyConstraints2D.FreezeAll;
 
             StartCoroutine(BB_control());
-            
         }
-
     }
+
     IEnumerator BB_control()
     {
         yield return new WaitForSeconds(1.5f);
@@ -43,7 +42,4 @@ public class BabyBoss_Ready : MonoBehaviour
         Destroy(gameObject);
         yield return null;
     }
-
-
-
 }
