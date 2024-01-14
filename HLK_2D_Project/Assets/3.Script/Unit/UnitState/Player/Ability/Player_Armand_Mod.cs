@@ -56,8 +56,5 @@ public class Player_Armand_Mod : Ability
         P_state.actState = Unit_state.Idle;
         isAttack = false;
         yield return null;
-
     }
-
-
 }
