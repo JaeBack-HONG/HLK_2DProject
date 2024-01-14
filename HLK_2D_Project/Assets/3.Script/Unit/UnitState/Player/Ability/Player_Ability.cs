@@ -55,7 +55,7 @@ public class Player_Ability : MonoBehaviour
 
    
 
-    private void TriggerEvent(int current_idx, Collider2D collision)
+    public void TriggerEvent(int current_idx, Collider2D collision)
     {
         PlayerManager.instance.AbIdx[current_idx] = collision.gameObject.GetComponent<AbilityItem>().itemidx;
         my_Abilities[current_idx] = abilities[(int)PlayerManager.instance.AbIdx[current_idx]];
@@ -63,7 +63,7 @@ public class Player_Ability : MonoBehaviour
         LinkUI(current_idx, collision);
     }
 
-    private void LinkUI(int current_idx, Collider2D collision)
+    public void LinkUI(int current_idx, Collider2D collision)
     {
         current_Ab = my_Abilities[current_idx];
         PlayerManager.instance.count_List[current_idx] = PlayerManager.instance.max_Count;
@@ -72,43 +72,6 @@ public class Player_Ability : MonoBehaviour
         Destroy(collision.gameObject);
     }
 
-    public void Absorbcol(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("MaxHealthPotion") && Input.GetKey(KeyCode.R))
-        {
-            P_state.MaxHealth += 2;
-            P_state.Health += 2;
-
-            PlayerManager.instance.MaxHealthCheck(P_state.MaxHealth);
-            PlayerManager.instance.HeartCheck(P_state.Health);
-            Destroy(collision.gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("Item") && Input.GetKey(KeyCode.R))
-        {
-            for (int i = 0; i < my_Abilities.Length; i++)
-            {
-                if (PlayerManager.instance.AbIdx[i] == collision.gameObject.GetComponent<AbilityItem>().itemidx)
-                {
-                    PlayerManager.instance.Select_Idx = i;
-                    LinkUI(i, collision);
-                    return;
-                }
-            }
-            for (int i = 0; i < my_Abilities.Length; i++)
-            {
-                if (my_Abilities[i] == abilities[0])
-                {
-                    PlayerManager.instance.Select_Idx = i;
-                    break;
-                }
-            }
-
-
-
-            TriggerEvent(PlayerManager.instance.Select_Idx, collision);
-
-        }
-    }
+   
 
 }
