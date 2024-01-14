@@ -70,10 +70,24 @@ public class ProjectileShot : MonoBehaviour
         corutine = Arrow_Shot();
         corutine_w = Arrow_Wait();
     }
+    private void OnEnable()
+    {
+        startPoint = transform.position;
+        isMove = false;        
+        currentTime = 0f;
+        corutine_w = Arrow_Wait();        
+        corutine = Arrow_Shot();        
+    }
+    private void OnDisable()
+    {
+        StopCoroutine(corutine);
+        transform.position = startPoint;
+    }
+
 
 
     private void FixedUpdate()
-    {
+    {        
         if (!isMove)
         {
             if (!autoShot)
@@ -145,6 +159,14 @@ public class ProjectileShot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            corutine_w = Arrow_Wait();
+            StopCoroutine(corutine);
+            corutine = Arrow_Shot();
+            transform.position = startPoint;
+            StartCoroutine(corutine_w);
+        }
         if (collision.gameObject.layer.Equals((int)Layer_Index.Player))
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();

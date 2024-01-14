@@ -10,7 +10,7 @@ public class Blackwolf_State : Monster_State
 
     private int P_DefaultHP = 0;
 
-    private bool skeletonAttack = false;
+    
     IEnumerator skeletonDash_co;
     IEnumerator skeletonAttack_co;
     private void Start()
