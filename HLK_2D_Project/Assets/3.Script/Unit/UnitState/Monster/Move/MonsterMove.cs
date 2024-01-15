@@ -62,7 +62,7 @@ public class MonsterMove : MonoBehaviour
             monster_State.animator.SetBool("Move", true);
             Vector3 WaitDirection = (targetPlayer.localPosition - transform.localPosition);
             float WaitDirection_x = WaitDirection.x;
-            Debug.Log(WaitDirection_x);
+            
             if (WaitDirection_x > 2f || WaitDirection_x < -2f)
             {
                 PlayerDirectionCheck();

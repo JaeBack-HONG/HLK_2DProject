@@ -18,7 +18,7 @@ public class Warrior_Boss : Monster_State
     private float currentTime;
     private int P_DefaultHP = 0;
     private bool berserkMod = false;
-
+    IEnumerator warriorDie_co;
     IEnumerator warriorDash_co;
     IEnumerator warriorAttack_co;
     IEnumerator warriorBackStep_co;
@@ -34,6 +34,7 @@ public class Warrior_Boss : Monster_State
             (name: "Warrior", hp: healthSet, detection: 10, range: 2, attackSpeed: 1,
                 strength: damageSet, moveSpeed: speedSet, jumpForce: 0);
         Health = data.HP;
+        warriorDie_co = WarriorDie_Co();
         warriorDash_co = WarriorDash_Co();
         warriorAttack_co = WarriorAttack_Co();
         warriorBackStep_co = WarriorBackStep_Co();
@@ -52,7 +53,7 @@ public class Warrior_Boss : Monster_State
         {
             Monster_HealthCheck();
         }
-        if (Health <= 15&&!berserkMod)
+        if (Health <= 15&&!berserkMod&&!state.Equals(Unit_state.Die))
         {
             ChangeState(Unit_state.Default);
             berserkMod = true;
@@ -79,6 +80,7 @@ public class Warrior_Boss : Monster_State
             case Unit_state.Jump:
                 break;
             case Unit_state.Die:
+                gameObject.layer = 9;
                 break;
             case Unit_state.Stun:
                 break;
@@ -91,6 +93,7 @@ public class Warrior_Boss : Monster_State
             default:
                 break;
         }
+        
     }
     private void ChangeState(Unit_state newState)
     {
@@ -125,7 +128,8 @@ public class Warrior_Boss : Monster_State
                 StartCoroutine(warriorArrowGimmick_co);
                 break;
             case Unit_state.Die:
-                StartCoroutine(WarriorDie_Co());
+                StopCoroutine();
+                StartCoroutine(warriorDie_co);                
                 break;
             case Unit_state.Stun:
                 break;
@@ -467,11 +471,11 @@ public class Warrior_Boss : Monster_State
     }
     private IEnumerator WarriorDie_Co()
     {
-        rigidbody.velocity = Vector2.zero;
-        gameObject.layer = 9;
+        gameObject.layer = 9;        
         CameraControll_Warrior.Instance.WarrriorDieCamera();        
         animator.SetTrigger("Death");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);        
+        rigidbody.velocity = Vector2.zero;
         CameraControll_Warrior.Instance.WarrriorDieCameraReturn();
     }
     private void DirectionCheck(float direction)
@@ -518,6 +522,9 @@ public class Warrior_Boss : Monster_State
     {
         if (Health <= 0)
         {
+            rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+            arrow_L.SetActive(false);
+            arrow_R.SetActive(false);
             ChangeState(Unit_state.Die);
         }
     }
