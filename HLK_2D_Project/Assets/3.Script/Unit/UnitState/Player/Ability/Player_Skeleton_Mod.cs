@@ -6,18 +6,11 @@ public class Player_Skeleton_Mod : Ability
 {
     public override void UseAbility()
     {
-        throw new System.NotImplementedException();
+        PlayerManager.instance.UsedAb();
+        PlayerManager.instance.UsedAb();
+        PlayerManager.instance.UsedAb();
+        PlayerManager.instance.UsedAb();
+        P_Move.isUpgradeDash = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -942,6 +942,8 @@ MonoBehaviour:
   mon: {fileID: 0}
   jumpCount: 0
   maxJumps: 2
+  dashSpeed: 24
+  isUpgradeDash: 0
 --- !u!114 &7986413340031863267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,13 +965,13 @@ MonoBehaviour:
   JumpForce: 15.5
   Stuncool: 2
   animator: {fileID: 0}
+  rigidbody: {fileID: 0}
   Stun_obj: {fileID: 419723603701237208}
   direction: {x: 0, y: 0}
   isAttack: 0
   isGround: 1
   isFairy: 0
   isArmand: 0
-  isDie: 0
 --- !u!114 &7986413340031863260
 MonoBehaviour:
   m_ObjectHideFlags: 0
