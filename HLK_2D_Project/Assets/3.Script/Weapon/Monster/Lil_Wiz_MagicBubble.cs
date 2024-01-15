@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lil_Wiz_MagicBubble : MonoBehaviour
+public class Lil_Wiz_MagicBubble : Monster_Projectile
 {
     [Range(1f, 100f)]
     public float Speed = 2f;
-
-    [SerializeField] public int damage = 2;
 
     [Range(30f, 100f)]
     [SerializeField] private float removeDistanceSet = 35f;

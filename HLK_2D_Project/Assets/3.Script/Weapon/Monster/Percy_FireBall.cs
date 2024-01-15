@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Percy_FireBall : MonoBehaviour
+public class Percy_FireBall : Monster_Projectile
 {
     [Range(1f, 100f)]
     public float Speed = 2f;
-
-    public int damage = 2;
 
     [Range(30f, 100f)]
     [SerializeField] public float removeDistanceSet = 35f;
