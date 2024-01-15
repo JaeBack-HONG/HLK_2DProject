@@ -5,7 +5,7 @@ using UnityEngine;
 public class BabyBoss_Ready : MonoBehaviour
 {
     [SerializeField] private Animator babyboss_anime;
-    [SerializeField] private BabyBoss_State monstate;
+    [SerializeField] private Monster_State monstate;
     [SerializeField] private GameObject maplimit_left;
     private Rigidbody2D rigid;
 

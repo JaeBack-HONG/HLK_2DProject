@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80d139d272ac5b41a6ae5e11af7bad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSet: 100
+  healthSet: 28
   damageSet: 5
   speedSet: 7
   trainingMod: 0
@@ -452,6 +452,7 @@ MonoBehaviour:
   Health: 0
   Strength: 0
   isAttack: 0
+  isStun: 0
   rolling: 0
   Dash: 0
   Player: {fileID: 0}
@@ -462,10 +463,10 @@ MonoBehaviour:
   attackboxobj: {fileID: 7707036608006533342}
   attackboxcol: {fileID: 7707036608006533340}
   cinemachinevir: {fileID: 0}
-  maplimit_right: {fileID: 0}
-  maplimit_left: {fileID: 0}
-  Rock: {fileID: 1822952794302598454, guid: 6131bd71c4f895f4c8e0366e409ddc7f, type: 3}
+  maplimit: {fileID: 0}
   noiseScale: 10
+  gimmickcount: 0
+  maxcount: 5
 --- !u!114 &7707036608761063582
 MonoBehaviour:
   m_ObjectHideFlags: 0
