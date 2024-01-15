@@ -32,7 +32,7 @@ public class AttackBox : MonoBehaviour
                     break;
                 case Unit_state.Stun:
                     mon_state.Attack(player);
-                    player.Stun(2f);
+                    player.actState = Unit_state.Stun;
                     break;
                 
             }

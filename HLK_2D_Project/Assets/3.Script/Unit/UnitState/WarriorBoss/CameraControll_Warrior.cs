@@ -19,6 +19,7 @@ public class CameraControll_Warrior : MonoBehaviour
     private Warrior_Boss warrior;
     private bool firstEnter = false;
     public bool start = false;
+    public bool warriorIsDie = false;
 
     private void Awake()
     {
@@ -40,7 +41,7 @@ public class CameraControll_Warrior : MonoBehaviour
         {
             firstEnter = true;
             Debug.Log("인트로 시작");
-            cinemachinevir_Intro.Priority = priority;
+            cinemachinevir_Intro.Priority = 20;
             DoorController();
             StartCoroutine(WaitCamera());
             StartCoroutine(warrior.WarriorIntroAni());
@@ -51,7 +52,14 @@ public class CameraControll_Warrior : MonoBehaviour
         yield return new WaitForSeconds(5f);
         cinemachinevir_Boss.Priority = 30;
     }
-
+    public void WarrriorDieCamera()
+    {
+        cinemachinevir_Boss.Priority = 5;
+    }
+    public void WarrriorDieCameraReturn()
+    {
+        cinemachinevir_Intro.Priority = 5;
+    }
     private void DoorController()
     {
         DoorOpen_obj.SetActive(!DoorOpen_obj.activeSelf);
