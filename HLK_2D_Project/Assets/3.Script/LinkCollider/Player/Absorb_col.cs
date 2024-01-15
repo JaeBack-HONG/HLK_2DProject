@@ -43,7 +43,7 @@ public class Absorb_col : MonoBehaviour
                     return;
                 }
 
-                if (PlayerManager.instance.AbIdx[i].Equals(abitem.itemidx))
+                if (PlayerManager.instance.AbIdx[i] == abitem.itemidx)
                 {
                     PlayerManager.instance.Select_Idx = i;
                     P_Ab.LinkUI(i, collision);
@@ -52,7 +52,7 @@ public class Absorb_col : MonoBehaviour
             }
             for (int i = 0; i < P_Ab.my_Abilities.Length; i++)
             {
-                if (P_Ab.my_Abilities[i].Equals(P_Ab.abilities[0]))
+                if (P_Ab.my_Abilities[i] == P_Ab.abilities[0])
                 {
                     PlayerManager.instance.Select_Idx = i;
                     break;

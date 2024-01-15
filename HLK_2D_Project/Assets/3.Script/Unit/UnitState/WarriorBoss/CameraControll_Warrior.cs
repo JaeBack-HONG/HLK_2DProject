@@ -51,7 +51,7 @@ public class CameraControll_Warrior : MonoBehaviour
     }
     IEnumerator WaitCamera()
     {
-        player_state.GetComponent<Rigidbody>().velocity = Vector2.zero;
+        player_state.rigidbody.velocity = Vector2.zero;
         yield return new WaitForSeconds(5f);
         player_state.actState = Unit_state.Idle;        
         cinemachinevir_Boss.Priority = 30;
