@@ -15,6 +15,7 @@ public class Warrior_Boss : Monster_State
     [Header("타일 오브젝트")]
     [SerializeField] private GameObject Tile_obj;
 
+    private bool jumpCheck = false;
     private float currentTime;
     private int P_DefaultHP = 0;
     private bool berserkMod = false;
@@ -513,10 +514,17 @@ public class Warrior_Boss : Monster_State
     }
     public void WarriorJump()
     {
-        if (state.Equals(Unit_state.Move))
+        if (state.Equals(Unit_state.Move)&&!jumpCheck)
         {
+            jumpCheck = true;
             rigidbody.AddForce(Vector2.up * 70f, ForceMode2D.Impulse);
+            StartCoroutine(WarriorWaitJump_Co());
         }
+    }
+    private IEnumerator WarriorWaitJump_Co()
+    {
+        yield return new WaitForSeconds(5f);
+        jumpCheck = false;
     }
     public override void Monster_HealthCheck()
     {
