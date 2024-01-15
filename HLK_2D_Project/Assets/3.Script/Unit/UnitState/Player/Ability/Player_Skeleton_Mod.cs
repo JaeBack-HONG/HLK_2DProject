@@ -6,10 +6,11 @@ public class Player_Skeleton_Mod : Ability
 {
     public override void UseAbility()
     {
-        PlayerManager.instance.UsedAb();
-        PlayerManager.instance.UsedAb();
-        PlayerManager.instance.UsedAb();
-        PlayerManager.instance.UsedAb();
+        for (int i = 0; i < 4; i++)
+        {
+            PlayerManager.instance.UsedAb();
+
+        }
         P_Move.isUpgradeDash = true;
     }
 

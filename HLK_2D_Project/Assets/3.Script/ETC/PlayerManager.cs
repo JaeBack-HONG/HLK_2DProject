@@ -120,7 +120,7 @@ public class PlayerManager : MonoBehaviour
         if (count_List[Select_Idx].Equals(0))
         {
             int idx = Select_Idx;
-            icon_Image[Select_Idx].sprite = null;
+            icon_Image[Select_Idx].sprite = icon_Image_All[0];
             for (int i = 0; i < icon_Border.Length; i++)
             {
                 if (!count_List[i].Equals(0))

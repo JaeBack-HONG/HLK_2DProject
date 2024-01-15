@@ -63,7 +63,7 @@ public class Player_Ability : MonoBehaviour
     {
         PlayerManager.instance.AbIdx[current_idx] = collision.gameObject.GetComponent<AbilityItem>().itemidx;
         my_Abilities[current_idx] = abilities[(int)PlayerManager.instance.AbIdx[current_idx]];
-        PlayerManager.instance.icon_Image[current_idx].sprite = PlayerManager.instance.icon_Image_All[(int)PlayerManager.instance.AbIdx[current_idx]];
+        
         LinkUI(current_idx, collision);
     }
 
@@ -72,6 +72,7 @@ public class Player_Ability : MonoBehaviour
         current_Ab = my_Abilities[current_idx];
         PlayerManager.instance.count_List[current_idx] = PlayerManager.instance.max_Count;
         PlayerManager.instance.icon_Bar[current_idx].sprite = PlayerManager.instance.icon_Bar_All[current_idx * 5 + 4];
+        PlayerManager.instance.icon_Image[current_idx].sprite = PlayerManager.instance.icon_Image_All[(int)PlayerManager.instance.AbIdx[current_idx]];
         PlayerManager.instance.Border_Link(current_idx);
         Destroy(collision.gameObject);
     }
