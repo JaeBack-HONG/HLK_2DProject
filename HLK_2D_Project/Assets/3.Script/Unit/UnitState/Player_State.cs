@@ -74,7 +74,7 @@ public class Player_State : MonoBehaviour
 
         IsFalling();
         GroundRayCheck();
-        animator.SetFloat("YSpeed", Mathf.Abs(P_Move.rigidbody.velocity.y));
+        animator.SetFloat("YSpeed", P_Move.rigidbody.velocity.y);
 
     }
 
@@ -96,12 +96,10 @@ public class Player_State : MonoBehaviour
             case Unit_state.Default:
                 break;
             case Unit_state.Idle:
-                if (isArmand) actState = Unit_state.Default;
                 P_Ability.UseAbsorb();
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Move:
-                if (isArmand) actState = Unit_state.Default;
                 P_Ability.UseAbsorb();
                 P_Move.MoveCheck();
                 break;
