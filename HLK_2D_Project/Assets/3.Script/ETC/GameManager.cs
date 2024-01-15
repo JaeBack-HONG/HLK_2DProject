@@ -215,7 +215,7 @@ public class GameManager : MonoBehaviour
     }
     public void MainMenu_Btn()
     {
-        if (!player.isDie)
+        if (!player.actState.Equals(Unit_state.Die))
         {
             OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
         }

@@ -32,7 +32,6 @@ public abstract class Monster_State : MonoBehaviour
     public int Health;
     public int Strength;
     public bool isAttack = false;
-    public bool isStun = false;
     public bool rolling = false;
     
 
@@ -74,8 +73,11 @@ public abstract class Monster_State : MonoBehaviour
     #region//플레이어에게 데미지주는 메서드(Player_State other)
     public void Attack(Player_State other)
     {
-        other.Health -= data.Strength;
-        other.unithit.Hit((int)Layer_Index.Player,transform.position);
+        if (other.Health > 0)
+        {
+            other.Health -= data.Strength;
+            other.unithit.Hit((int)Layer_Index.Player, transform.position);
+        }
     }
     #endregion
 
@@ -158,7 +160,6 @@ public abstract class Monster_State : MonoBehaviour
     private IEnumerator Stun_Co(float cool)
     {
         state = Unit_state.Stun;
-        isStun = true;
         //오브젝트 키기
         Stun_obj.SetActive(true);
         animator.SetBool("Move", false);

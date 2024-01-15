@@ -435,9 +435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80d139d272ac5b41a6ae5e11af7bad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSet: 4
-  damageSet: 2
-  speedSet: 5
+  healthSet: 28
+  damageSet: 5
+  speedSet: 7
+  trainingMod: 0
   state: 0
   currentState: 0
   C_State: 0

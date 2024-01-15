@@ -9,35 +9,35 @@ public class Unit_Hit : MonoBehaviour
     private Rigidbody2D rigidbody;
     private bool hit = false;
     Color defaultColor;
+
     private void Awake()
     {
         TryGetComponent<Player_State>(out p_state);
         TryGetComponent<Rigidbody2D>(out rigidbody);
     }
-    
+
 
     public void Hit(int mylayer, Vector3 hitpos)
     {
         if (!hit)
         {
+            hit = true;
             TryGetComponent<SpriteRenderer>(out sprite);
             defaultColor = sprite.color;
 
-            StartCoroutine(OnDamage(mylayer, hitpos));
-        }        
-        
+            StartCoroutine(OnDamage_Co(mylayer, hitpos));
+        }
+
     }
 
-    
-
-    private IEnumerator OnDamage(int mylayer, Vector3 hitpos)
+    private IEnumerator OnDamage_Co(int mylayer, Vector3 hitpos)
     {
-        hit = true;
+        
         sprite.color = Color.red;
         if (gameObject.CompareTag("Player"))
         {
             PlayerManager.instance.HeartCheck(p_state.Health);
-            p_state.actState = Unit_state.Default;
+            p_state.actState = p_state.Health > 0 ? Unit_state.Default : Unit_state.Die;
             Vector2 direction = transform.position.x < hitpos.x ? Vector2.left : Vector2.right;
             Vector2 knockbackdir = new Vector2(direction.x, 2f).normalized;
             rigidbody.velocity = Vector2.zero;
@@ -47,7 +47,7 @@ public class Unit_Hit : MonoBehaviour
         gameObject.layer = (int)Layer_Index.Hit;
         yield return new WaitForSeconds(1f);
         sprite.color = defaultColor;
-                
+
         gameObject.layer = mylayer;
         hit = false;
         yield return null;

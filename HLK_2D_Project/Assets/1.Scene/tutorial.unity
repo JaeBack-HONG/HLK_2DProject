@@ -16142,7 +16142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2002543979632202890, guid: 38638d175d514c94685c1fff363ca4f3, type: 3}
       propertyPath: damageSet
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2002543979632202890, guid: 38638d175d514c94685c1fff363ca4f3, type: 3}
       propertyPath: trainingMod

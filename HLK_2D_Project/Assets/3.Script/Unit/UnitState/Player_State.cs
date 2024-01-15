@@ -23,12 +23,13 @@ public class Player_State : MonoBehaviour
     public int Health;
     public int MaxHealth;
     public float JumpForce;
-
+    public float Stuncool = 2f;
 
     public Animator animator;
     private Player_Ability P_Ability;
     private Player_Move P_Move;
     private Rigidbody2D rigidbody;
+    [SerializeField] private GameObject Stun_obj;
 
     public Vector2 direction;
 
@@ -39,11 +40,12 @@ public class Player_State : MonoBehaviour
     public bool isGround = true;
     public bool isFairy = false;
     public bool isArmand = false;
-    public bool isDie = false;
+
     private void Awake()
     {
         GameManager.instance.SceneDataSave();
     }
+
     private void Start()
     {
         TryGetComponent<Rigidbody2D>(out rigidbody);
@@ -61,25 +63,19 @@ public class Player_State : MonoBehaviour
 
     private void Update()
     {
-
         P_Ability.Choice_Ab();
 
         State_Check();
-
-
-        Player_HealthCheck();
 
         direction = (transform.rotation.y.Equals(0)) ? Vector2.right : Vector2.left;
     }
     private void FixedUpdate()
     {
 
-
         IsFalling();
         GroundRayCheck();
-        animator.SetFloat("YSpeed", P_Move.rigidbody.velocity.y);
-        if (rigidbody.velocity.x.Equals(0)) return;
-        transform.rotation = rigidbody.velocity.x <= 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+        animator.SetFloat("YSpeed", Mathf.Abs(P_Move.rigidbody.velocity.y));
+
     }
 
     private void PlayerDataSetting()
@@ -91,6 +87,10 @@ public class Player_State : MonoBehaviour
 
     private void State_Check()
     {
+
+        Player_HealthCheck();
+
+        //Debug.Log(actState)
         switch (actState)
         {
             case Unit_state.Default:
@@ -106,8 +106,7 @@ public class Player_State : MonoBehaviour
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Attack:
-                if (P_Ability.current_Ab != null &&
-                    !PlayerManager.instance.count_List[PlayerManager.instance.Select_Idx].Equals(0))
+                if (P_Ability.current_Ab != null && !PlayerManager.instance.count_List[PlayerManager.instance.Select_Idx].Equals(0))
                 {
                     P_Ability.current_Ab.UseAbility();
                 }
@@ -118,10 +117,13 @@ public class Player_State : MonoBehaviour
                 IsGrab();
                 break;
             case Unit_state.Stun:
-                //여기에 모든 행동 스탑 ex)실행중인 코루틴 등 정지
+                Stun(Stuncool);
                 break;
             case Unit_state.Hit:
                 unithit.Hit(gameObject.layer, transform.position);
+                break;
+            case Unit_state.Die:
+                if (!gameObject.layer.Equals((int)Layer_Index.Hit)) gameObject.layer = (int)Layer_Index.Hit;
                 break;
         }
     }
@@ -165,10 +167,49 @@ public class Player_State : MonoBehaviour
 
     public void Player_HealthCheck()
     {
-        if (Health <= 0 && !isDie)
+        if (Health <= 0 && !actState.Equals(Unit_state.Die))
         {
-            isDie = true;
-            Die();
+            ActChangeState(Unit_state.Die);
+            rigidbody.velocity = Vector2.zero;
+        }
+    }
+    public void ActChangeState(Unit_state unitstate)
+    {
+        if (JumState.Equals(unitstate))
+        {
+            return;
+        }
+        actState = unitstate;
+
+        switch (unitstate)
+        {
+            case Unit_state.Default:
+                break;
+            case Unit_state.Idle:
+                break;
+            case Unit_state.Move:
+                break;
+            case Unit_state.Attack:
+                break;
+            case Unit_state.Grab:
+                break;
+            case Unit_state.Hit:
+                break;
+            case Unit_state.Jump:
+                break;
+            case Unit_state.Die:
+                Die();
+                break;
+            case Unit_state.Stun:
+                break;
+            case Unit_state.Dash:
+                break;
+            case Unit_state.DashAttack:
+                break;
+            case Unit_state.Wait:
+                break;
+            default:
+                break;
         }
     }
 
@@ -194,11 +235,7 @@ public class Player_State : MonoBehaviour
                 {
                     animator.SetTrigger("ArmandJump");
                 }
-                //else
-                //{
-                //    animator.SetTrigger("Jump");
 
-                //}
                 break;
             case Jump_State.Falling:
 
@@ -208,11 +245,12 @@ public class Player_State : MonoBehaviour
         }
     }
 
-
     public void Die()
     {
         //카메라 확대 애니메이션 실행 후 
         GameManager.instance.PlayerDieUI();
+        Debug.Log("11");
+        gameObject.layer = (int)Layer_Index.Hit;
         animator.SetTrigger("Die");
 
     }
@@ -249,13 +287,14 @@ public class Player_State : MonoBehaviour
     }
     private IEnumerator Stun_co(float cool)
     {
-        actState = Unit_state.Stun;
-        float currentTime = 0f;
-        while (currentTime < cool)
-        {
-            currentTime += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-        actState = Unit_state.Move;
+        actState = Unit_state.Default;
+        //오브젝트 키기
+        Stun_obj.SetActive(true);
+
+        yield return new WaitForSeconds(cool);
+
+        Stun_obj.SetActive(false);
+        actState = Unit_state.Idle;
+        yield return null;
     }
 }
