@@ -465,17 +465,6 @@ public class Warrior_Boss : Monster_State
         }
         ChangeState(Unit_state.Move);
     }
-    private void DirectionCheck(float direction)
-    {
-        if (direction < 1)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-    }
     private IEnumerator WarriorDie_Co()
     {
         rigidbody.velocity = Vector2.zero;
@@ -485,11 +474,15 @@ public class Warrior_Boss : Monster_State
         yield return new WaitForSeconds(2f);
         CameraControll_Warrior.Instance.WarrriorDieCameraReturn();
     }
-    public override void Monster_HealthCheck()
+    private void DirectionCheck(float direction)
     {
-        if (Health <= 0)
+        if (direction < 1)
         {
-            ChangeState(Unit_state.Die);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
@@ -519,6 +512,13 @@ public class Warrior_Boss : Monster_State
         if (state.Equals(Unit_state.Move))
         {
             rigidbody.AddForce(Vector2.up * 70f, ForceMode2D.Impulse);
+        }
+    }
+    public override void Monster_HealthCheck()
+    {
+        if (Health <= 0)
+        {
+            ChangeState(Unit_state.Die);
         }
     }
 }
