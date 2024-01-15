@@ -115,7 +115,6 @@ public class Player_State : MonoBehaviour
                 IsGrab();
                 break;
             case Unit_state.Stun:
-                Stun(Stuncool);
                 break;
             case Unit_state.Hit:
                 unithit.Hit(gameObject.layer, transform.position);

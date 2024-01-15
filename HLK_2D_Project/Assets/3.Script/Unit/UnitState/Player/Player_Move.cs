@@ -15,10 +15,6 @@ public class Player_Move : MonoBehaviour
     public int maxJumps = 1;
     public float dashSpeed = 24f;
 
-    public bool isUpgradeDash = false;
-
-    IEnumerator Dash_temp;
-
     private void Awake()
     {
         TryGetComponent<Animator>(out animator);
@@ -49,10 +45,6 @@ public class Player_Move : MonoBehaviour
         animator.SetFloat("XSpeed", Mathf.Abs(horizontalInput));
         rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isUpgradeDash)
-        {
-            Dash();
-        }
         if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0))
         {
             Jump(P_State.JumpForce);
@@ -78,26 +70,5 @@ public class Player_Move : MonoBehaviour
         jumpCount--;
     }
 
-    public void Dash()
-    {
-        Dash_temp = Dash_Co();
-        StartCoroutine(Dash_temp);
-    }
 
-    IEnumerator Dash_Co()
-    {
-        float currenttime = 0f;
-
-        P_State.actState = Unit_state.Default;
-
-        while (currenttime < 0.2f)
-        {
-            currenttime += Time.fixedDeltaTime;
-            rigidbody.velocity = new Vector2(P_State.direction.x * 24f, 0);
-            yield return new WaitForFixedUpdate();
-        }
-
-        P_State.actState = Unit_state.Idle;
-        yield return null;
-    }
 }
