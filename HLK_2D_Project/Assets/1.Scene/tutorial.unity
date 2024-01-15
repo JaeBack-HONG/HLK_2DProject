@@ -5191,7 +5191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7895445133933576342, guid: a558a10cb33193f408007bdf3c9f6485, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 41.25
+      value: 42.72
       objectReference: {fileID: 0}
     - target: {fileID: 7895445133933576342, guid: a558a10cb33193f408007bdf3c9f6485, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5919,11 +5919,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7895445133933576328, guid: a558a10cb33193f408007bdf3c9f6485, type: 3}
       propertyPath: teleportVectorSet.x
-      value: 42.97738
+      value: 41.25
       objectReference: {fileID: 0}
     - target: {fileID: 7895445133933576328, guid: a558a10cb33193f408007bdf3c9f6485, type: 3}
       propertyPath: teleportVectorSet.y
-      value: 24.9844
+      value: 24.907
       objectReference: {fileID: 0}
     - target: {fileID: 7895445133933576340, guid: a558a10cb33193f408007bdf3c9f6485, type: 3}
       propertyPath: m_Name
@@ -9854,7 +9854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6059558453769081553, guid: 812065793ea31f94aa88da084c191f23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.2
+      value: 47.17
       objectReference: {fileID: 0}
     - target: {fileID: 6059558453769081553, guid: 812065793ea31f94aa88da084c191f23, type: 3}
       propertyPath: m_LocalPosition.y
