@@ -27,9 +27,23 @@ public class Absorb_col : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Item"))
         {
+            AbilityItem abitem = collision.gameObject.GetComponent<AbilityItem>();
             for (int i = 0; i < P_Ab.my_Abilities.Length; i++)
             {
-                if (PlayerManager.instance.AbIdx[i] == collision.gameObject.GetComponent<AbilityItem>().itemidx)
+                if (abitem.itemidx.Equals((int)Ability_Item.Skeleton))
+                {
+                    transform.root.gameObject.TryGetComponent<Player_Move>(out Player_Move P_Move);
+                    P_Move.isUpgradeDash = true;
+                    return;
+                }
+                if (abitem.itemidx.Equals((int)Ability_Item.Bird))
+                {
+                    transform.root.gameObject.TryGetComponent<Player_Move>(out Player_Move P_Move);
+                    P_Move.maxJumps = 2;
+                    return;
+                }
+
+                if (PlayerManager.instance.AbIdx[i].Equals(abitem.itemidx))
                 {
                     PlayerManager.instance.Select_Idx = i;
                     P_Ab.LinkUI(i, collision);
@@ -38,7 +52,7 @@ public class Absorb_col : MonoBehaviour
             }
             for (int i = 0; i < P_Ab.my_Abilities.Length; i++)
             {
-                if (P_Ab.my_Abilities[i] == P_Ab.abilities[0])
+                if (P_Ab.my_Abilities[i].Equals(P_Ab.abilities[0]))
                 {
                     PlayerManager.instance.Select_Idx = i;
                     break;

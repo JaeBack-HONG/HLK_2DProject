@@ -5,7 +5,6 @@ using UnityEngine;
 public class AbilityItem : MonoBehaviour
 {
     [SerializeField] private Sprite[] sprites;
-
     private SpriteRenderer spriterenderer;
 
     public Ability_Item itemidx;
@@ -13,7 +12,6 @@ public class AbilityItem : MonoBehaviour
     private void Start()
     {
         TryGetComponent<SpriteRenderer>(out spriterenderer);
-
         spriterenderer.sprite = sprites[(int)itemidx];
     }
 }

@@ -28,7 +28,7 @@ public class Player_State : MonoBehaviour
     public Animator animator;
     private Player_Ability P_Ability;
     private Player_Move P_Move;
-    private Rigidbody2D rigidbody;
+    public Rigidbody2D rigidbody;
     [SerializeField] private GameObject Stun_obj;
 
     public Vector2 direction;

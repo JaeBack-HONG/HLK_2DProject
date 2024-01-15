@@ -12,7 +12,12 @@ public class Player_Move : MonoBehaviour
     private Player_State P_State;
 
     public int jumpCount;
-    public int maxJumps = 2;
+    public int maxJumps = 1;
+    public float dashSpeed = 24f;
+
+    public bool isUpgradeDash = false;
+
+    IEnumerator Dash_temp;
 
     private void Awake()
     {
@@ -44,10 +49,20 @@ public class Player_Move : MonoBehaviour
         animator.SetFloat("XSpeed", Mathf.Abs(horizontalInput));
         rigidbody.velocity = new Vector2(horizontalInput * moveSpeed, rigidbody.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0)) Jump(P_State.JumpForce);
-
-        if (Input.GetKeyDown(KeyCode.Z) && !P_State.isArmand) P_State.actState = Unit_state.Attack;
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isUpgradeDash)
+        {
+            Dash();
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && !jumpCount.Equals(0))
+        {
+            Jump(P_State.JumpForce);
+        }
+        if (Input.GetKeyDown(KeyCode.Z) && !P_State.isArmand)
+        {
+            P_State.actState = Unit_state.Attack;
+        }
         if (rigidbody.velocity.x.Equals(0)) return;
+
         transform.rotation = rigidbody.velocity.x <= 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
     }
 
@@ -61,5 +76,28 @@ public class Player_Move : MonoBehaviour
             P_State.ChangeState(Jump_State.Jumping);
         }
         jumpCount--;
+    }
+
+    public void Dash()
+    {
+        Dash_temp = Dash_Co();
+        StartCoroutine(Dash_temp);
+    }
+
+    IEnumerator Dash_Co()
+    {
+        float currenttime = 0f;
+
+        P_State.actState = Unit_state.Default;
+
+        while (currenttime < 0.2f)
+        {
+            currenttime += Time.fixedDeltaTime;
+            rigidbody.velocity = new Vector2(P_State.direction.x * 24f, 0);
+            yield return new WaitForFixedUpdate();
+        }
+
+        P_State.actState = Unit_state.Idle;
+        yield return null;
     }
 }
