@@ -79,8 +79,9 @@ public class ProjectileShot : MonoBehaviour
         corutine = Arrow_Shot();        
     }
     private void OnDisable()
-    {
-        StopCoroutine(corutine);
+    {        
+        StopCoroutine(corutine);        
+        renderer.color = new Color(255, 255, 255, 255);
         transform.position = startPoint;
     }
 
@@ -106,7 +107,7 @@ public class ProjectileShot : MonoBehaviour
         DistanceCheck();
     }
 
-
+    
     private void Player_Check()
     {
         LayerMask playerMarsk = LayerMask.GetMask("Player");
@@ -131,7 +132,7 @@ public class ProjectileShot : MonoBehaviour
     }
 
     private IEnumerator Arrow_Wait()
-    {
+    {        
         while (currentTime <= timeSet)
         {
             renderer.color = new Color(255, 255, 255, 0);

@@ -14,11 +14,14 @@ public class Warrior_Boss : Monster_State
     [SerializeField] private GameObject arrow_L;
     [Header("타일 오브젝트")]
     [SerializeField] private GameObject Tile_obj;
+
     private float currentTime;
     private int P_DefaultHP = 0;
     private bool berserkMod = false;
+
     IEnumerator warriorDash_co;
     IEnumerator warriorAttack_co;
+    IEnumerator warriorBackStep_co;
     IEnumerator warriorDashAttack_co;
     IEnumerator warriorArrowGimmick_co;
     private void Start()
@@ -33,6 +36,7 @@ public class Warrior_Boss : Monster_State
         Health = data.HP;
         warriorDash_co = WarriorDash_Co();
         warriorAttack_co = WarriorAttack_Co();
+        warriorBackStep_co = WarriorBackStep_Co();
         warriorDashAttack_co = WarriorDashAttack_Co();
         warriorArrowGimmick_co = WarriorArrowGimmick_Co();
         state = Unit_state.Move;
@@ -48,10 +52,12 @@ public class Warrior_Boss : Monster_State
         {
             Monster_HealthCheck();
         }
-        if (Health <= 18&&!berserkMod)
+        if (Health <= 15&&!berserkMod)
         {
+            ChangeState(Unit_state.Default);
             berserkMod = true;
-            ChangeState(Unit_state.Jump);
+            speedSet = (int)(speedSet * 1.2f); 
+            
         }
         switch (state)
         {
@@ -101,6 +107,8 @@ public class Warrior_Boss : Monster_State
         {
 
             case Unit_state.Default:
+                
+                StartCoroutine(WarriorBerserkCrouch_Co());
                 break;
             case Unit_state.Idle:
                 break;
@@ -117,6 +125,7 @@ public class Warrior_Boss : Monster_State
                 StartCoroutine(warriorArrowGimmick_co);
                 break;
             case Unit_state.Die:
+                StartCoroutine(WarriorDie_Co());
                 break;
             case Unit_state.Stun:
                 break;
@@ -127,6 +136,7 @@ public class Warrior_Boss : Monster_State
                 StartCoroutine(warriorDashAttack_co);
                 break;
             case Unit_state.Wait:
+                StartCoroutine(warriorBackStep_co);
                 break;
             default:
                 break;
@@ -137,22 +147,19 @@ public class Warrior_Boss : Monster_State
         float direction = (Player.transform.localPosition.x - transform.localPosition.x);
         direction = (direction >= 0) ? 1 : -1;
         animator.SetBool("Move", true);
-        if (direction < 1)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+        DirectionCheck(direction);
         rigidbody.velocity = new Vector2(direction * speedSet, rigidbody.velocity.y);
     }
     private void StopCoroutine()
     {
+        StopCoroutine(warriorArrowGimmick_co);
         StopCoroutine(warriorDashAttack_co);
+        StopCoroutine(warriorBackStep_co);
         StopCoroutine(warriorAttack_co);
         StopCoroutine(warriorDash_co);
+        warriorArrowGimmick_co = WarriorArrowGimmick_Co();
         warriorDashAttack_co = WarriorDashAttack_Co();
+        warriorBackStep_co = WarriorBackStep_Co();
         warriorAttack_co = WarriorAttack_Co();
         warriorDash_co = WarriorDash_Co();
     }
@@ -160,6 +167,7 @@ public class Warrior_Boss : Monster_State
     public void DetectPlayer()
     {
         float distance = Vector3.Distance(transform.position, Player.transform.position);
+        //Debug.Log(distance);
         if (Player == null)
         {
             return;
@@ -198,7 +206,7 @@ public class Warrior_Boss : Monster_State
     }
     private void Warrior_PlayerCheck()
     {
-        float targetDistance = monsterMove.DistanceAndDirection();        
+        float targetDistance = Mathf.Abs(transform.position.x - Player.transform.position.x);
         if (targetDistance < 3f)
         {
             ChangeState(Unit_state.Attack);
@@ -211,9 +219,17 @@ public class Warrior_Boss : Monster_State
         rigidbody.velocity = Vector2.zero;
         animator.SetTrigger("Default");        
         animator.SetBool("Move",false);
-        yield return new WaitForSeconds(1.2f);
-        
-        ChangeState(Unit_state.Move);
+        yield return new WaitForSeconds(1f);
+        int radomAttack = Random.Range(0, 2);
+
+        if (radomAttack.Equals(1))
+        {
+            ChangeState(Unit_state.Move);
+        }
+        else
+        {
+            ChangeState(Unit_state.Wait);
+        }
     }
     
     private IEnumerator WarriorDashAttack_Co()
@@ -243,9 +259,8 @@ public class Warrior_Boss : Monster_State
 
         Vector3 initialPosition = transform.position;
         float initialDistance = Vector3.Distance(initialPosition, Player.transform.position);
-        float maxInitialDistance = 10f; //플레이어와의 초기 최대 허용 거리
-        float distance = Vector3.Distance(transform.position, Player.transform.position);
-
+        float maxInitialDistance = 10f; //플레이어와의 초기 최대 허용 거리        
+        float targetDistance = Mathf.Abs(transform.position.x - Player.transform.position.x);
         //초기 속도 계산
         float initialSpeedMultiplier = Mathf.Clamp01(initialDistance / maxInitialDistance);
         initialSpeedMultiplier = Mathf.Lerp(minSpeedMultiplier, maxSpeedMultiplier, initialSpeedMultiplier);
@@ -253,11 +268,11 @@ public class Warrior_Boss : Monster_State
 
         while (elapsedTime < attackDuration)
         {
-            if (distance < 4f)
+            if (targetDistance < 4f)
             {
                 break;
             }
-            distance = Vector3.Distance(transform.position, Player.transform.position);            
+            targetDistance = Mathf.Abs(transform.position.x - Player.transform.position.x);
             elapsedTime += Time.deltaTime;
             rigidbody.velocity = new Vector2(playerDirection.x * initialSpeed, rigidbody.velocity.y);            
             yield return null;
@@ -279,12 +294,25 @@ public class Warrior_Boss : Monster_State
     }
     public IEnumerator WarriorIntroAni()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         animator.SetTrigger("Intro_1");
         yield return new WaitForSeconds(2f);
         animator.SetTrigger("Default");
         yield return new WaitForSeconds(2f);
         CameraControll_Warrior.Instance.start = true;
+    }
+    public IEnumerator WarriorBerserkCrouch_Co()
+    {
+        rigidbody.velocity = Vector2.zero;
+        animator.SetTrigger("Crouch");
+        yield return new WaitForSeconds(0.5f);
+        animator.SetTrigger("Stay");
+        yield return new WaitForSeconds(2f);
+        animator.SetTrigger("WakeUp");
+        animator.SetTrigger("Out");
+        yield return new WaitForSeconds(1f);
+        ChangeState(Unit_state.Jump);
+
     }
     private IEnumerator WarriorArrowGimmick_Co()
     {
@@ -292,26 +320,12 @@ public class Warrior_Boss : Monster_State
         bool right = randomDirection.Equals(1) ? true : false;
 
 
-        int random_Y = Random.Range(0, 4);
-        float slide_Y = 0f;
-        switch (random_Y)
-        {
-            case 0:
-                slide_Y = 5.51f;
-                break;
-            case 1:
-                slide_Y = 8.93f;
-                break;
-            case 2:
-                slide_Y = 10.22f;
-                break;
-            case 3:
-                slide_Y = 11.42f;
-                break;            
-        }
+        float slide_Y = RandomSlideY();
+        
         animator.SetTrigger("GimmickRun");
         float currentTime = 0f;
         float distance;
+        float direction;
         if (right)
         {
             distance = transform.position.x - 45f;
@@ -320,15 +334,10 @@ public class Warrior_Boss : Monster_State
         {
             distance = transform.position.x - 11f;
         }
-        float direction = (distance <= 0) ? 1 : -1;
-        if (direction < 1)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+        direction = (distance <= 0) ? 1 : -1;
+        
+        
+        DirectionCheck(direction);
         while (currentTime<10f)
         {
             currentTime += Time.deltaTime;
@@ -353,6 +362,11 @@ public class Warrior_Boss : Monster_State
             rigidbody.velocity = new Vector2(direction * speedSet*2f, rigidbody.velocity.y);
             yield return null;
         }
+        if ((right && direction.Equals(-1)) || (!right && direction.Equals(1)))
+        {
+            direction = -direction;
+        }
+        DirectionCheck(direction);
         animator.SetTrigger("Jump");
         currentTime = 0f;
         while (currentTime < 1.3f)
@@ -372,11 +386,17 @@ public class Warrior_Boss : Monster_State
             {
                 animator.SetTrigger("WallSlideFreeze");
                 rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                break;
             }
             currentTime += Time.deltaTime;            
             yield return null;
-        }        
+        }
         currentTime = 0f;
+        while(currentTime<1f)
+        {
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
         if (right)
         {
             arrow_R.SetActive(true);
@@ -385,6 +405,7 @@ public class Warrior_Boss : Monster_State
         {
             arrow_L.SetActive(true);
         }
+        currentTime = 0f;
         while (currentTime < 4f)
         {            
             currentTime += Time.deltaTime;
@@ -420,18 +441,84 @@ public class Warrior_Boss : Monster_State
         }
 
     }
-    public override void Monster_HealthCheck()
+    private IEnumerator WarriorBackStep_Co()
     {
-        if (Health <= 0)
+        float direction = transform.position.x - Player.transform.position.x ;        
+        direction = direction>0 ? 1 : -1;
+        
+        DirectionCheck(-direction);
+        animator.SetTrigger("BackStep");
+        float currentTime = 0f;
+        while (currentTime<0.2f)
         {
-            ChangeState(Unit_state.Die);
+            currentTime += Time.fixedDeltaTime;
+            rigidbody.velocity = new Vector2(direction * 10f, rigidbody.velocity.y);
+            yield return new WaitForFixedUpdate();
         }
+        rigidbody.velocity = Vector2.zero;
+        animator.SetTrigger("Out");
+        currentTime = 0f;
+        while (currentTime < 0.2f)
+        {
+            currentTime += Time.fixedDeltaTime;            
+            yield return new WaitForFixedUpdate();
+        }
+        ChangeState(Unit_state.Move);
+    }
+    private IEnumerator WarriorDie_Co()
+    {
+        rigidbody.velocity = Vector2.zero;
+        gameObject.layer = 9;
+        CameraControll_Warrior.Instance.WarrriorDieCamera();        
+        animator.SetTrigger("Death");
+        yield return new WaitForSeconds(2f);
+        CameraControll_Warrior.Instance.WarrriorDieCameraReturn();
+    }
+    private void DirectionCheck(float direction)
+    {
+        if (direction < 1)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+
+    private float RandomSlideY()
+    {
+        float slide_Y = 0;
+        int random_Y = Random.Range(0, 4);
+        switch (random_Y)
+        {
+            case 0:
+                slide_Y = 5.51f;
+                break;
+            case 1:
+                slide_Y = 8.93f;
+                break;
+            case 2:
+                slide_Y = 10.22f;
+                break;
+            case 3:
+                slide_Y = 11.42f;
+                break;
+        }
+        return slide_Y;
     }
     public void WarriorJump()
     {
         if (state.Equals(Unit_state.Move))
         {
             rigidbody.AddForce(Vector2.up * 70f, ForceMode2D.Impulse);
+        }
+    }
+    public override void Monster_HealthCheck()
+    {
+        if (Health <= 0)
+        {
+            ChangeState(Unit_state.Die);
         }
     }
 }
