@@ -27,4 +27,9 @@ public class MainMenu_Option : MonoBehaviour
         GameManager.instance.SceneLoadData_Btn();       
         
     }
+
+    public void MainMenu_ExitGame()
+    {
+        GameManager.instance.ExitGame();
+    }
 }

@@ -424,6 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinemachinevir_Intro: {fileID: 668514979}
   cinemachinevir_Boss: {fileID: 271178271}
+  player_state: {fileID: 327710793}
   WarriorBoss_obj: {fileID: 6754695142432593360}
   DoorOpen_obj: {fileID: 543338140}
   DoorClose_obj: {fileID: 570792222}
@@ -31732,6 +31733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6754695143437700539}
   - component: {fileID: 6754695143437700536}
+  - component: {fileID: 6754695143437700540}
   m_Layer: 0
   m_Name: TopCheck
   m_TagString: Top
@@ -31753,6 +31755,20 @@ Transform:
   m_Father: {fileID: 6754695142432593370}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6754695143437700540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6754695143437700538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2fdbb3204bdc45ae1adc83e6e8f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topCheck_obj: {fileID: 0}
+  coolTime: 5
 --- !u!212 &8744950043227263904
 SpriteRenderer:
   m_ObjectHideFlags: 0
