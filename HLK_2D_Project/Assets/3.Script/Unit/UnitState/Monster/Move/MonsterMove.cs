@@ -60,8 +60,15 @@ public class MonsterMove : MonoBehaviour
         if (target)
         {            
             monster_State.animator.SetBool("Move", true);
-            
-            PlayerDirectionCheck();
+            Vector3 WaitDirection = (targetPlayer.localPosition - transform.localPosition);
+            float WaitDirection_x = WaitDirection.x;
+            Debug.Log(WaitDirection_x);
+            if (WaitDirection_x > 2f || WaitDirection_x < -2f)
+            {
+                PlayerDirectionCheck();
+                Debug.Log("ÁøÀÔ");
+            }
+            //direction = (WaitDirection_x<=0)?-1:1;
             Vector2 rayTrans;
             LayerMask groundMarsk = LayerMask.GetMask("Ground");
             if (transform.eulerAngles.y.Equals(0))
@@ -82,11 +89,9 @@ public class MonsterMove : MonoBehaviour
             {
                 rigidbody.velocity = Vector2.zero;
                 return;
-            }
-            
-            
-            rigidbody.velocity = new Vector2(direction* MoveSpeed, rigidbody.velocity.y);                
-                        
+            }               
+           
+            rigidbody.velocity = new Vector2(direction * MoveSpeed, rigidbody.velocity.y);
         }
         else
         {
