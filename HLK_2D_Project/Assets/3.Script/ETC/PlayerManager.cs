@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour
     public Image[] icon_Image;
     public Image[] icon_Bar;
     public Sprite[] icon_Bar_All;
+    public Image gaugeUI;
 
     [Header("Ã¼·ÂUI")]
     public GameObject[] heart_obj;
@@ -59,6 +60,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
+        GameObject.Find("SkillGauge").TryGetComponent<Image>(out gaugeUI);
         AbilityDataLoad();
 
     }
@@ -134,15 +136,21 @@ public class PlayerManager : MonoBehaviour
 
     private void RemoveItem()
     {
-        if (Input.GetKey(KeyCode.T))
+        if (Input.GetKey(KeyCode.T) && !count_List[Select_Idx].Equals(0))
         {
             RemoveGuage += Time.fixedDeltaTime;
+            gaugeUI.fillAmount = RemoveGuage / 2f;
             if (RemoveGuage >= 2)
             {
                 count_List[Select_Idx] = 0;
             }
         }
-        else RemoveGuage = 0;
+        else if(!Input.GetKey(KeyCode.T) && !RemoveGuage.Equals(0))
+        {
+            RemoveGuage = 0;
+            gaugeUI.fillAmount = RemoveGuage / 2f;
+        }
+
     }
 
     #region PlayerHPCheck
