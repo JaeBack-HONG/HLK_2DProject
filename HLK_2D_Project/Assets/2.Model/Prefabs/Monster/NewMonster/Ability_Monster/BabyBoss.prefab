@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 7707036608351097661}
   - component: {fileID: 7707036608351097660}
   - component: {fileID: 901580406884052731}
+  - component: {fileID: 6544980431581621248}
   m_Layer: 0
   m_Name: TopCheck
   m_TagString: Top
@@ -275,6 +276,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6544980431581621248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707036608351097662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2fdbb3204bdc45ae1adc83e6e8f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topCheck_obj: {fileID: 7707036608351097662}
+  coolTime: 5
 --- !u!1 &7707036608761063574
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,8 +478,7 @@ MonoBehaviour:
   attackboxcol: {fileID: 7707036608006533340}
   cinemachinevir: {fileID: 0}
   maplimit_right: {fileID: 0}
-  maplimit_left: {fileID: 0}
-  Rock: {fileID: 1822952794302598454, guid: 6131bd71c4f895f4c8e0366e409ddc7f, type: 3}
+  rockspawn: {fileID: 0}
   noiseScale: 10
 --- !u!114 &7707036608761063582
 MonoBehaviour:

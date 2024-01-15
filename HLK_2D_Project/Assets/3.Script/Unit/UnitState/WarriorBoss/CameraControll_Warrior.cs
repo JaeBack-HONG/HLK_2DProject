@@ -10,6 +10,7 @@ public class CameraControll_Warrior : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera cinemachinevir_Intro;
     [SerializeField] private CinemachineVirtualCamera cinemachinevir_Boss;
 
+    [SerializeField] private Player_State player_state;
     [SerializeField] private GameObject WarriorBoss_obj;
     [SerializeField] private GameObject DoorOpen_obj;
     [SerializeField] private GameObject DoorClose_obj;
@@ -39,8 +40,9 @@ public class CameraControll_Warrior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")&&!firstEnter)
         {
+            player_state.actState = Unit_state.Default;
             firstEnter = true;
-            Debug.Log("¿Œ∆Æ∑Œ Ω√¿€");
+            Debug.Log("Ïù∏Ìä∏Î°ú ÏãúÏûë");
             cinemachinevir_Intro.Priority = 20;
             DoorController();
             StartCoroutine(WaitCamera());
@@ -49,7 +51,9 @@ public class CameraControll_Warrior : MonoBehaviour
     }
     IEnumerator WaitCamera()
     {
+        player_state.GetComponent<Rigidbody>().velocity = Vector2.zero;
         yield return new WaitForSeconds(5f);
+        player_state.actState = Unit_state.Idle;        
         cinemachinevir_Boss.Priority = 30;
     }
     public void WarrriorDieCamera()

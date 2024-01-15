@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3246916225509838106}
   - component: {fileID: 3246916225509838105}
+  - component: {fileID: 1758247820487260288}
   m_Layer: 0
   m_Name: TopCheck
   m_TagString: Top
@@ -57,6 +58,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3, y: 0.022737324}
   m_EdgeRadius: 0
+--- !u!114 &1758247820487260288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3246916225509838107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2fdbb3204bdc45ae1adc83e6e8f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topCheck_obj: {fileID: 0}
+  coolTime: 3
 --- !u!1 &3246916226090319718
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +259,7 @@ MonoBehaviour:
   isGrab: 0
   groundCheck: 0
   targetPlayer: {fileID: 0}
+  jumpUnit: 0
 --- !u!50 &3246916226644841840
 Rigidbody2D:
   serializedVersion: 4
@@ -292,6 +308,7 @@ MonoBehaviour:
   healthSet: 4
   damageSet: 2
   speedSet: 5
+  trainingMod: 0
   state: 0
   currentState: 0
   C_State: 0
@@ -305,7 +322,6 @@ MonoBehaviour:
   Health: 0
   Strength: 0
   isAttack: 0
-  isStun: 0
   rolling: 0
   Dash: 0
   Player: {fileID: 0}
