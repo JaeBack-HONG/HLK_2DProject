@@ -12,13 +12,15 @@ public class BabyBoss_State : Monster_State
     [SerializeField] private GameObject attackboxobj;
     [SerializeField] private BoxCollider2D attackboxcol;
     [SerializeField] private CinemachineVirtualCamera cinemachinevir;
-    [SerializeField] private GameObject maplimit;
+    [SerializeField] private GameObject maplimit_right;
+    [SerializeField] private RockSpawner rockspawn;
+
     private CinemachineBasicMultiChannelPerlin noise;
 
     [Header("수치조정")]
     [SerializeField] private int noiseScale = 10;
-    [SerializeField] private int gimmickcount = 0;
-    [SerializeField] private int maxcount = 5;
+    private int gimmickcount = 0;
+    private int maxcount = 0;
 
     private void Start()
     {
@@ -37,7 +39,7 @@ public class BabyBoss_State : Monster_State
         ability_Item = Ability_Item.BabyBoss;
 
         base.MonsterDataSetting();
-        animator.SetTrigger("Default");
+        animator.SetTrigger("First");
     }
 
     private void FixedUpdate()
@@ -133,6 +135,9 @@ public class BabyBoss_State : Monster_State
         attackboxcol.size = new Vector2(5f, attackboxcol.size.y);
         effect.SetActive(true);
         noise.m_AmplitudeGain = 23;
+
+        rockspawn.FallRock();
+
         yield return new WaitForSeconds(0.15f);
         attackboxobj.SetActive(false);
         attackboxcol.size = new Vector2(1.4f, attackboxcol.size.y);
@@ -142,9 +147,13 @@ public class BabyBoss_State : Monster_State
         animator.SetTrigger("Walk");
         effect.SetActive(false);
         state = Unit_state.Move;
+        maxcount = Random.Range(3, 6);
         gimmickcount = 0;
+
+
     }
     #endregion
+
 
     #region// 베이비 변신(Co)
     private IEnumerator Transformation_co()
@@ -158,6 +167,8 @@ public class BabyBoss_State : Monster_State
     }
     #endregion
 
+
+
     public override void Monster_HealthCheck()
     {
         if (Health <= 0)
@@ -165,7 +176,7 @@ public class BabyBoss_State : Monster_State
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;
-            maplimit.SetActive(false);
+            maplimit_right.SetActive(false);
         }
     }
 }
