@@ -25,6 +25,8 @@ public class Player_Armand_Mod : Ability
         animator.SetLayerWeight(animator.GetLayerIndex("ArmandMod"), 1f);
         animator.SetTrigger("Idle");
 
+        PlayerManager.instance.UsedAb();
+
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
