@@ -3930,6 +3930,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mon_state: {fileID: 6754695142432593363}
   state: 0
+  poison_Cool: 0
+  poison_Damge: 0
 --- !u!1001 &794780866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16695,6 +16697,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mon_state: {fileID: 6754695142432593363}
   state: 0
+  poison_Cool: 0
+  poison_Damge: 0
 --- !u!60 &1444348787
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -31395,6 +31399,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mon_state: {fileID: 6754695142432593363}
   state: 0
+  poison_Cool: 0
+  poison_Damge: 0
 --- !u!1 &5756286762687755836
 GameObject:
   m_ObjectHideFlags: 0
@@ -31615,7 +31621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bde0c9bf87b33b468c9c89026ea082f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSet: 30
+  healthSet: 40
   damageSet: 4
   speedSet: 5
   trainingMod: 0

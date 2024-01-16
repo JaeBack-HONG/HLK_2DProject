@@ -33,7 +33,7 @@ public abstract class Player_Projectile : MonoBehaviour
             if (monstate != null)
             {
                 monstate.Health -= damage;
-                monstate.UnitHit.Hit(gameObject.layer, transform.position, Condition_state.Default);
+                monstate.UnitHit.Hit((int)Layer_Index.Enemy, transform.position, Condition_state.Default);
             }
             Destroy(gameObject);
         }

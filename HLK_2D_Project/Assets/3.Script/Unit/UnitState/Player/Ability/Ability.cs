@@ -38,9 +38,9 @@ public abstract class Ability : MonoBehaviour
 
     public void EndSet()
     {
-        P_state.actState = Unit_state.Idle;
         animator.SetTrigger("Idle");
-        animator.speed = 1f;
+        P_state.actState = Unit_state.Idle;
+        animator.speed = 1f;        
         P_state.isAttack = false;
     }
 

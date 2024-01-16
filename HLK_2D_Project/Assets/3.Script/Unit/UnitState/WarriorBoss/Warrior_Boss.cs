@@ -54,12 +54,11 @@ public class Warrior_Boss : Monster_State
         {
             Monster_HealthCheck();
         }
-        if (Health <= 15&&!berserkMod&&!state.Equals(Unit_state.Die))
+        if (Health <= 20&&!berserkMod&&!state.Equals(Unit_state.Die))
         {
             ChangeState(Unit_state.Default);
             berserkMod = true;
-            speedSet = (int)(speedSet * 1.2f); 
-            
+            speedSet = (int)(speedSet * 1.2f);            
         }
         switch (state)
         {
@@ -193,7 +192,7 @@ public class Warrior_Boss : Monster_State
             {
                 if (P_CurrentHP.Equals(P_DefaultHP)&&distance>DashDistanceCheck)
                 {
-                    int randomGimmick = Random.Range(0, 3);
+                    int randomGimmick = Random.Range(0, 4);
                     if (berserkMod&&randomGimmick.Equals(1))
                     {
                         ChangeState(Unit_state.Jump);
