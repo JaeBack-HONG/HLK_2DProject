@@ -254,8 +254,15 @@ public class Warrior_Boss : Monster_State
         float elapsedTime = 0f;
         float attackDuration = 2f;
 
-        
-        
+        while (elapsedTime<0.5f)
+        {
+            rigidbody.velocity = new Vector2(0,rigidbody.velocity.y);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        elapsedTime = 0f;
+        animator.SetTrigger("WakeUp");
+
         Vector3 playerDirection = (Player.transform.position - transform.position).normalized;
         monsterMove.PlayerDirectionCheck();
 

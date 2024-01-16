@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1970792209748235087}
   - component: {fileID: 1970792209748235086}
   m_Layer: 0
-  m_Name: ScenePortal
+  m_Name: ScenePortal_Heroes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -7590852279806083750, guid: 9fdd97b2d09bb044e89816f421744ea2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c37592e5ec793e46ba354783ec89e26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,8 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebd21028709aae46a92694ac7423699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: Stage1
   portalArrowImage_obj: {fileID: 1970792210217235641}
-  scenename: 0
+  teleportVectorSet: {x: 0, y: 0}
 --- !u!1 &1970792210217235641
 GameObject:
   m_ObjectHideFlags: 0

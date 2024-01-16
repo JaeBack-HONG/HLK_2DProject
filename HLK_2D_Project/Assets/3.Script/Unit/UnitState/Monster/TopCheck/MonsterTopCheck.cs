@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MonsterTopCheck : MonoBehaviour
 {
+    [SerializeField] private GameObject topTimer_obj;
     [SerializeField] private GameObject topCheck_obj;
     [SerializeField] private float coolTime=3f;
     IEnumerator waitTopCheck_co;
@@ -20,7 +21,8 @@ public class MonsterTopCheck : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player")&&gameObject.CompareTag("Top"))
-        {            
+        {
+            topTimer_obj.SetActive(true);
             StartCoroutine(waitTopCheck_co);
         }
     }
@@ -29,9 +31,10 @@ public class MonsterTopCheck : MonoBehaviour
     {
         
         yield return new WaitForSeconds(0.3f);
-        topCheck_obj.tag = "Untagged";
+        topCheck_obj.tag = "DTop";
         yield return new WaitForSeconds(coolTime);
         topCheck_obj.tag = currentTag;
+        topTimer_obj.SetActive(false);
         waitTopCheck_co = WaitTopCheck_Co();
     }
 
