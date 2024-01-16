@@ -10392,7 +10392,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -14995,8 +14995,8 @@ Tilemap:
     m_Data: {fileID: -5065799248461177404, guid: d6658a8cc503a524196035676c8795b0, type: 3}
   - m_RefCount: 113
     m_Data: {fileID: -9137202733848781849, guid: d6658a8cc503a524196035676c8795b0, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 1216427606803757315, guid: d6658a8cc503a524196035676c8795b0, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 19
     m_Data: {fileID: -5719848937715256222, guid: d6658a8cc503a524196035676c8795b0, type: 3}
   - m_RefCount: 9
@@ -15029,8 +15029,8 @@ Tilemap:
     m_Data: {fileID: -8752237890084566229, guid: d6658a8cc503a524196035676c8795b0, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 1216427606803757315, guid: d6658a8cc503a524196035676c8795b0, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 970
     m_Data:
@@ -31817,7 +31817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bde0c9bf87b33b468c9c89026ea082f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSet: 40
+  healthSet: 4
   damageSet: 4
   speedSet: 5
   trainingMod: 0

@@ -46,6 +46,10 @@ public class Warrior_Boss : Monster_State
     }
     private void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Health = 10;
+        }
         if (!CameraControll_Warrior.Instance.start)
         {
             return;

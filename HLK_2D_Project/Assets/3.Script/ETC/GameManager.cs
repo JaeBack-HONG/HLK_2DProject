@@ -84,7 +84,11 @@ public class GameManager : MonoBehaviour
 
     public void OnClearUI()
     {
-        playTimeText_obj.text = $"{time.ToString("F2")}초";
+        int minute = (int)(time / 60);
+        int hour = (int)(time / 600);
+        float s = time%60;
+        Debug.Log(s);
+        playTimeText_obj.text = $"{hour}시간 {minute}분 {s.ToString("F2")}초";
         ClearUI_obj.SetActive(true);
         DefaultDataSet();
         DataSave();
@@ -194,7 +198,7 @@ public class GameManager : MonoBehaviour
         string fileName;
         try
         {            
-            fileName = Application.dataPath + "/PlayerDataJson.json";            
+            fileName = Application.dataPath + "/PlayerDataJson.json";
             string readData = File.ReadAllText(fileName);
             PlayerData = JsonConvert.DeserializeObject<PlayerDataJson>(readData);            
             return PlayerData;
