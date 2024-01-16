@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public enum Jump_State
 {
@@ -42,6 +43,8 @@ public class Player_State : MonoBehaviour
     public bool isGround = true;
     public bool isFairy = false;
     public bool isArmand = false;
+
+    [SerializeField] CinemachineVirtualCamera V_camera;
 
 
 
@@ -199,7 +202,8 @@ public class Player_State : MonoBehaviour
             case Unit_state.Jump:
                 break;
             case Unit_state.Die:
-                Die();
+                StartCoroutine(PlayerDieEvent());
+                
                 break;
             case Unit_state.Stun:
                 break;
@@ -246,15 +250,7 @@ public class Player_State : MonoBehaviour
         }
     }
 
-    public void Die()
-    {
-        //카메라 확대 애니메이션 실행 후 
-        GameManager.instance.PlayerDieUI();
-        Debug.Log("11");
-        gameObject.layer = (int)Layer_Index.Hit;
-        animator.SetTrigger("Die");
-
-    }
+    
 
     public void Attack(Monster_State other)
     {
@@ -334,5 +330,14 @@ public class Player_State : MonoBehaviour
         Health -= damage;
 
         yield return null;
+    }
+    private IEnumerator PlayerDieEvent()
+    {        
+        V_camera.Priority = 30;
+        gameObject.layer = (int)Layer_Index.Hit;
+        yield return new WaitForSeconds(0.3f);
+        animator.SetTrigger("Die");
+        yield return new WaitForSeconds(1.5f);
+        GameManager.instance.PlayerDieUI();
     }
 }
