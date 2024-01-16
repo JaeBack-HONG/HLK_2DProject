@@ -14,6 +14,7 @@ public abstract class Player_Projectile : MonoBehaviour
 
     public IEnumerator Shot(Vector3 direction)
     {
+        transform.rotation = direction.x.Equals(1) ? new Quaternion(0, 0, 0, 0) : new Quaternion(0, 180, 0, 0);        
         Vector3 startPos = transform.position;
         while (Vector3.Magnitude(startPos - transform.position) < removeDistanceSet)
         {

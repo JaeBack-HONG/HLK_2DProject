@@ -16,20 +16,18 @@ public class Absorb_col : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.R) && !P_Ab.isAbsorb)
         {
-
             if (collision.gameObject.CompareTag("MaxHealthPotion"))
             {
+                P_Ab.UseAbsorb();
                 P_state.MaxHealth += 2;
                 P_state.Health += 2;
 
                 PlayerManager.instance.MaxHealthCheck(P_state.MaxHealth);
                 PlayerManager.instance.HeartCheck(P_state.Health);
                 Destroy(collision.gameObject);
-            }
-            Debug.Log(P_Ab.isAbsorb);
+            }            
             if (collision.gameObject.CompareTag("Item"))
             {
-                Debug.Log(P_Ab.isAbsorb);
                 P_Ab.UseAbsorb();
                 AbilityItem abitem = collision.gameObject.GetComponent<AbilityItem>();
                 for (int i = 0; i < P_Ab.my_Abilities.Length; i++)
@@ -52,6 +50,7 @@ public class Absorb_col : MonoBehaviour
                 P_Ab.TriggerEvent(PlayerManager.instance.Select_Idx, collision);            
 
             }
+            
         }
 
 
