@@ -64,7 +64,7 @@ public class Unit_Hit : MonoBehaviour
         yield return new WaitForSeconds(1f);
         sprite.color = defaultColor;
 
-        gameObject.layer = mylayer;
+        gameObject.layer = mylayer;        
         hit = false;
         yield return null;
     }

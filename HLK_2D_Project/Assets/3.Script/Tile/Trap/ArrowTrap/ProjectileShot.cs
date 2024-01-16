@@ -170,6 +170,7 @@ public class ProjectileShot : MonoBehaviour
         }
         if (collision.gameObject.layer.Equals((int)Layer_Index.Player))
         {
+            Debug.Log("¡¯¿‘");
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
             playerState.unithit.Hit(playerState.gameObject.layer, transform.position, Condition_state.Default);
