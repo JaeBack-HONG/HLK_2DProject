@@ -36,6 +36,7 @@ public class Player_State : MonoBehaviour
     private IEnumerator Slow_Co;
     private IEnumerator Stun_Co;
     private IEnumerator Poison_Co;
+    private IEnumerator Ignition_Co;
 
     public bool isAttack = false;
     public bool isGround = true;
@@ -312,6 +313,24 @@ public class Player_State : MonoBehaviour
         Health -= damage;
         yield return new WaitForSeconds(cool);
         unithit.Hit(gameObject.layer, transform.position, Condition_state.Poison);
+        Health -= damage;
+
+        yield return null;
+    }
+    public void Ignition(float cool, int damge)
+    {
+        Ignition_Co = Ignition_co(cool, damge);
+        StartCoroutine(Ignition_Co);
+    }
+    private IEnumerator Ignition_co(float cool, int damage)
+    {
+        unithit.Hit(gameObject.layer, transform.position, Condition_state.Ignition);
+        Health -= damage;
+        yield return new WaitForSeconds(cool);
+        unithit.Hit(gameObject.layer, transform.position, Condition_state.Ignition);
+        Health -= damage;
+        yield return new WaitForSeconds(cool);
+        unithit.Hit(gameObject.layer, transform.position, Condition_state.Ignition);
         Health -= damage;
 
         yield return null;

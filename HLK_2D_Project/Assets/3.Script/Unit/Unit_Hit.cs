@@ -39,6 +39,9 @@ public class Unit_Hit : MonoBehaviour
                 break;
             case Condition_state.Groggy:
                 break;
+            case Condition_state.Ignition:
+                sprite.color = new Color(0.9f, 0.65f, 0.2f);
+                break;
             case Condition_state.Poison:
                     sprite.color = Color.green;
                 break;

@@ -26,6 +26,7 @@ public enum Condition_state
     Default = 0,
     Groggy,
     Poison,
+    Ignition,
     Weakness,//약점노출
     GroggyCool,
     PoisonCool,

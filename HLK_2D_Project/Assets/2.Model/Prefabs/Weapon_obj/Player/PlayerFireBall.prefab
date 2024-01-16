@@ -135,3 +135,5 @@ MonoBehaviour:
   Speed: 7
   damage: 2
   removeDistanceSet: 35
+  Ignitiondamage: 1
+  IgnitionCool: 1.5

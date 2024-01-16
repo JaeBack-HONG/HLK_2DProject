@@ -9,7 +9,9 @@ public class Percy_FireBall : Monster_Projectile
 
     [Range(30f, 100f)]
     [SerializeField] public float removeDistanceSet = 35f;
-
+    [Header("Poison 설정")]
+    [SerializeField] private float Ignition_Cool;
+    [SerializeField] private int Ignition_Damge;
     public IEnumerator shot_co;
 
     public void Start_Co(Vector3 direction)
@@ -44,9 +46,9 @@ public class Percy_FireBall : Monster_Projectile
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             //여기에 플레이어 화상 데미지 불러오기
-            Debug.Log(damage);
+            playerState.Ignition(Ignition_Cool, Ignition_Damge);
             StopCoroutine(shot_co);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
     }

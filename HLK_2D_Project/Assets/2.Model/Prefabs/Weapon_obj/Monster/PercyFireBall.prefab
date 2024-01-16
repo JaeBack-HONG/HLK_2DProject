@@ -132,6 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc089bc970fc8e4090e23efe26f73f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 7
   damage: 2
+  Speed: 7
   removeDistanceSet: 35
+  Ignition_Cool: 1.5
+  Ignition_Damge: 1

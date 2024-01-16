@@ -47,6 +47,7 @@ public abstract class Monster_State : MonoBehaviour
     IEnumerator Slow_co;
     IEnumerator Stun_co;
     IEnumerator Poison_co;
+    IEnumerator Ignition_co;
 
     public virtual void MonsterDataSetting()
     {
@@ -191,6 +192,24 @@ public abstract class Monster_State : MonoBehaviour
         Health -= damage;
         yield return new WaitForSeconds(cool);
         UnitHit.Hit(gameObject.layer, transform.position, Condition_state.Poison);
+        Health -= damage;
+
+        yield return null;
+    }
+    public void Ignition(float cool, int damge)
+    {
+        Ignition_co = Ignition_Co(cool, damge);
+        StartCoroutine(Ignition_co);
+    }
+    private IEnumerator Ignition_Co(float cool, int damage)
+    {
+        UnitHit.Hit(gameObject.layer, transform.position, Condition_state.Ignition);
+        Health -= damage;
+        yield return new WaitForSeconds(cool);
+        UnitHit.Hit(gameObject.layer, transform.position, Condition_state.Ignition);
+        Health -= damage;
+        yield return new WaitForSeconds(cool);
+        UnitHit.Hit(gameObject.layer, transform.position, Condition_state.Ignition);
         Health -= damage;
 
         yield return null;
