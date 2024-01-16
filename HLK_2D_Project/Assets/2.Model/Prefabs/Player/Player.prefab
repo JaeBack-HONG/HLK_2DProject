@@ -1225,8 +1225,8 @@ MonoBehaviour:
   anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
-  speedBuff: 1.3
-  jumpBuff: 1.3
+  speedBuff: 12
+  jumpBuff: 19
   cool: 5
 --- !u!114 &7433568508982086788
 MonoBehaviour:
