@@ -301,7 +301,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topTimer_obj: {fileID: 9163090939196384735}
   topCheck_obj: {fileID: 0}
-  coolTime: 3
 --- !u!1 &5725952899762137363
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +374,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mon_state: {fileID: 2049173971015054517}
   state: 0
+  poison_Cool: 0
+  poison_Damge: 0
 --- !u!50 &5725952899762137375
 Rigidbody2D:
   serializedVersion: 4

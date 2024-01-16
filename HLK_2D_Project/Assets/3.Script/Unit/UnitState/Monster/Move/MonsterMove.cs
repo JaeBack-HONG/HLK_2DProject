@@ -65,8 +65,7 @@ public class MonsterMove : MonoBehaviour
             
             if (WaitDirection_x > 2f || WaitDirection_x < -2f)
             {
-                PlayerDirectionCheck();
-                Debug.Log("ÁøÀÔ");
+                PlayerDirectionCheck();                
             }
             //direction = (WaitDirection_x<=0)?-1:1;
             Vector2 rayTrans;

@@ -6,7 +6,7 @@ public class MonsterTopCheck : MonoBehaviour
 {
     [SerializeField] private GameObject topTimer_obj;
     [SerializeField] private GameObject topCheck_obj;
-    [SerializeField] private float coolTime=1.2f;
+    private float coolTime=1.5f;
     IEnumerator waitTopCheck_co;
     string currentTag;
     private void Awake()
