@@ -35,11 +35,14 @@ public class Player_State : MonoBehaviour
 
     private IEnumerator Slow_Co;
     private IEnumerator Stun_Co;
+    private IEnumerator Poison_Co;
 
     public bool isAttack = false;
     public bool isGround = true;
     public bool isFairy = false;
     public bool isArmand = false;
+
+
 
     private void Awake()
     {
@@ -292,6 +295,25 @@ public class Player_State : MonoBehaviour
 
         Stun_obj.SetActive(false);
         actState = Unit_state.Idle;
+        yield return null;
+    }
+
+    public void Poison(float cool,int damge)
+    {
+        Poison_Co = Poison_co(cool,damge);
+        StartCoroutine(Poison_Co);
+    }
+    private IEnumerator Poison_co(float cool,int damage)
+    {
+        unithit.Hit(gameObject.layer, transform.position);
+        Health -= damage;
+        yield return new WaitForSeconds(cool);
+        unithit.Hit(gameObject.layer, transform.position);
+        Health -= damage;
+        yield return new WaitForSeconds(cool);
+        unithit.Hit(gameObject.layer, transform.position);
+        Health -= damage;
+
         yield return null;
     }
 }

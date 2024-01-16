@@ -9,7 +9,9 @@ public class Mon_Tracy_Arrow : Monster_Projectile
 
     [Range(30f, 100f)]
     [SerializeField] private float removeDistanceSet = 35f;
-
+    [Header("Poison 설정")]
+    [SerializeField] private float poison_Cool;
+    [SerializeField] private int poison_Damge;
     public IEnumerator shot_co;
 
     public void Start_Co(Vector3 direction)
@@ -44,9 +46,9 @@ public class Mon_Tracy_Arrow : Monster_Projectile
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             //여기에 플레이어 독 데미지 불러오기
-
+            playerState.Poison(poison_Cool, poison_Damge);
             StopCoroutine(shot_co);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
     }

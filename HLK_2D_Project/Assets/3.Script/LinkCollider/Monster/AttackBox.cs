@@ -6,8 +6,13 @@ using UnityEngine;
 public class AttackBox : MonoBehaviour
 {
     
+    
     [SerializeField] private Monster_State mon_state;
-    [SerializeField] private Unit_state state;
+    [SerializeField] private Condition_state state;
+
+    [Header("Poison 설정")]
+    [SerializeField] private float poison_Cool;
+    [SerializeField] private int poison_Damge;
 
     private void Awake()
     {
@@ -23,14 +28,13 @@ public class AttackBox : MonoBehaviour
             //상태 정해서 추가해서 넣을 것 알아서
             switch (state)
             {
-                case Unit_state.Default:
+                case Condition_state.Default:
                     mon_state.Attack(player);
                     break;
-                case Unit_state.Hit:
-                    //넉백 추가 해줄 것.
-                    mon_state.Attack(player);
+                case Condition_state.Poison:
+                    player.Poison(poison_Cool, poison_Damge);
                     break;
-                case Unit_state.Stun:
+                case Condition_state.Groggy:
                     mon_state.Attack(player);
                     player.actState = Unit_state.Stun;
                     break;

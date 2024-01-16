@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSet: 4
-  damageSet: 2
+  damageSet: 0
   speedSet: 5
   trainingMod: 0
   state: 0
