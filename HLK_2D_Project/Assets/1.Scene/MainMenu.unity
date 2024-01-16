@@ -4395,7 +4395,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: " \uC784\uAD00\uC601,\uC784\uAD00\uC601,\uC784\uAD00\uC601,\uC784\uAD00\uC601,\n\uC784\uAD00\uC601,\uC784\uAD00\uC601,\uC784\uAD00\uC601,\uC784\uAD00\uC601"
+  m_Text: "\uC11C\uC6B0\uC9C4,\uC784\uAD00\uC601,\uC784\uAD00\uC601,\uC784\uAD00\uC601,\n\uC784\uAD00\uC601,\uC784\uAD00\uC601,\uC784\uAD00\uC601,\uC784\uAD00\uC601"
 --- !u!222 &1883134072
 CanvasRenderer:
   m_ObjectHideFlags: 0
