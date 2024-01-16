@@ -31817,7 +31817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bde0c9bf87b33b468c9c89026ea082f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSet: 4
+  healthSet: 40
   damageSet: 4
   speedSet: 5
   trainingMod: 0
