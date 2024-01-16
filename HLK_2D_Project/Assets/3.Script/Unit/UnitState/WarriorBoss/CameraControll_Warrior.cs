@@ -63,6 +63,7 @@ public class CameraControll_Warrior : MonoBehaviour
     public void WarrriorDieCameraReturn()
     {
         cinemachinevir_Intro.Priority = 5;
+        GameManager.instance.OnClearUI();
     }
     private void DoorController()
     {

@@ -24,7 +24,7 @@ public class Blankey_State : Monster_State
     }
     private void FixedUpdate()
     {
-        if (!state.Equals(Unit_state.Default))
+        if (!state.Equals(Unit_state.Die))
         {
             Monster_HealthCheck();
         }

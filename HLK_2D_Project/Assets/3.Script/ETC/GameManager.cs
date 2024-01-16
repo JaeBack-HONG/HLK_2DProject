@@ -30,21 +30,26 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject OptionUI_obj;
     [SerializeField] private GameObject PlayerDieUI_obj;
-
+    [SerializeField] private GameObject ClearUI_obj;
+    [SerializeField] private Text playTimeText_obj;
+    
     [SerializeField] private string introSceneName;
     [SerializeField] private int currentSceneName;
     [SerializeField] private int saveSceneName;
+    
     private AudioSource bgmAudio;
-
 
     public PlayerDataJson PlayerData;
 
     public Player_State player;
     public PlayerManager player_Ability;
 
+    [SerializeField] float time = 0f;
+
     [Header("플레이어 체력 설정")]
     [SerializeField] int MaxHealthSet = 6;
     [SerializeField] int CurrentHealthSet = 6;
+    [NonSerialized] public bool gameClear = false;
 
     private void Awake()
     {        
@@ -67,12 +72,31 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        TimeChekc();
         GetCompoPlayerCheck();
         OptionKeyDown_Set();       
 
         if(Input.GetKeyDown(KeyCode.M))
         {
             Time.timeScale = 0.1f;
+        }
+    }
+
+    public void OnClearUI()
+    {
+        playTimeText_obj.text = $"{time.ToString("F2")}초";
+        ClearUI_obj.SetActive(true);
+        DefaultDataSet();
+        DataSave();
+        gameClear = false;
+    }
+
+    private void TimeChekc()
+    {
+        if (SceneManager.GetActiveScene().name != introSceneName&&
+            SceneManager.GetActiveScene().name != "tutorial")
+        {
+            time += Time.deltaTime;
         }
     }
     
@@ -103,7 +127,7 @@ public class GameManager : MonoBehaviour
     }
     public void DataSave()
     {
-        if (!SceneManager.GetActiveScene().name.Equals(introSceneName))
+        if (!SceneManager.GetActiveScene().name.Equals(introSceneName)&&!gameClear)
         {
             player_Ability = FindObjectOfType<PlayerManager>();        
             currentSceneName = SceneManager.GetActiveScene().buildIndex;
@@ -123,13 +147,17 @@ public class GameManager : MonoBehaviour
             //현재 능력 사용횟수
             PlayerData.Ability_1_count = PlayerManager.instance.count_List[0];
             PlayerData.Ability_2_count = PlayerManager.instance.count_List[1];
-            PlayerData.Ability_3_count = PlayerManager.instance.count_List[2];            
-        }
+            PlayerData.Ability_3_count = PlayerManager.instance.count_List[2];
 
+            PlayerData.SpeedrunTime = time;            
+            
+        }
+        
         string fileName;
 
         fileName = Application.dataPath + "/PlayerDataJson.json";
         string toJson = JsonConvert.SerializeObject(PlayerData, Formatting.Indented);
+        
         File.WriteAllText(fileName, toJson);
     }
 
@@ -195,11 +223,14 @@ public class GameManager : MonoBehaviour
         PlayerData.Ability_2_count = 0;
         PlayerData.Ability_3_count = 0;
 
+        PlayerData.SpeedrunTime = 0;
+        time = 0f;        
+
     }    
 
     public void PlayerDieUI()
     {
-        PlayerDieUI_obj.SetActive(!PlayerDieUI_obj.activeSelf);
+        PlayerDieUI_obj.SetActive(true);
     }
 
     #region //버튼 이벤트 메서드
@@ -215,6 +246,9 @@ public class GameManager : MonoBehaviour
     }
     public void MainMenu_Btn()
     {
+        ClearUI_obj.SetActive(false);        
+        
+
         if (!player.actState.Equals(Unit_state.Die))
         {
             OptionUI_obj.SetActive(!OptionUI_obj.activeSelf);
@@ -243,6 +277,12 @@ public class GameManager : MonoBehaviour
     #endregion
     public void ExitGame()
     {
+        ClearUI_obj.SetActive(false);
+        //클리어시 초기화 넣어주기
+        if (gameClear)
+        {
+            DefaultDataSet();
+        }
 #if UNITY_EDITOR
         
         UnityEditor.EditorApplication.isPlaying = false;

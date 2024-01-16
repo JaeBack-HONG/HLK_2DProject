@@ -21,5 +21,7 @@ public class PlayerDataJson
     public int maxHealth = 6;
     public int currentHealth = 3;    
     
-    public int SceneName = 0;    
+    public int SceneName = 0;
+
+    public float SpeedrunTime = 0f;
 }

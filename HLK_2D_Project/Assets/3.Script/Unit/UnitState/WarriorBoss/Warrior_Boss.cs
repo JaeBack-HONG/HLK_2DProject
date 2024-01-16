@@ -129,6 +129,7 @@ public class Warrior_Boss : Monster_State
                 break;
             case Unit_state.Die:
                 StopCoroutine();
+                GameManager.instance.gameClear = true;
                 StartCoroutine(warriorDie_co);                
                 break;
             case Unit_state.Stun:
@@ -221,7 +222,7 @@ public class Warrior_Boss : Monster_State
     {
         animator.SetTrigger("Attack");
         rigidbody.velocity = Vector2.zero;
-        animator.SetTrigger("Default");        
+        animator.SetTrigger("Default");
         animator.SetBool("Move",false);
         yield return new WaitForSeconds(1f);
         int radomAttack = Random.Range(0, 2);
