@@ -47,11 +47,11 @@ public class Lil_Wiz_MagicBubble : Monster_Projectile
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
-            playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
+            playerState.unithit.Hit(playerState.gameObject.layer, transform.position, Condition_state.Default);
             //여기에 플레이어 슬로우 메서드 실행시키기
             playerState.Slow(slowSpeedSet, slowCoolSet);
             StopCoroutine(shot_co);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
     }

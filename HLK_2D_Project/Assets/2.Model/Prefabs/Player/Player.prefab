@@ -943,7 +943,6 @@ MonoBehaviour:
   jumpCount: 0
   maxJumps: 2
   dashSpeed: 24
-  isUpgradeDash: 0
 --- !u!114 &7986413340031863267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,7 +1181,7 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  anispeed: 1.5
+  anispeed: 1
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
   Tracy_Bow_obj: {fileID: 2206870464302611375, guid: c90cf2d8d7f62884ba42bbc9cdd9269e, type: 3}

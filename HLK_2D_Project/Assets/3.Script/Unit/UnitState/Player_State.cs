@@ -120,7 +120,7 @@ public class Player_State : MonoBehaviour
             case Unit_state.Stun:
                 break;
             case Unit_state.Hit:
-                unithit.Hit(gameObject.layer, transform.position);
+                unithit.Hit(gameObject.layer, transform.position,Condition_state.Default);
                 break;
             case Unit_state.Die:
                 if (!gameObject.layer.Equals((int)Layer_Index.Hit)) gameObject.layer = (int)Layer_Index.Hit;
@@ -258,7 +258,7 @@ public class Player_State : MonoBehaviour
     public void Attack(Monster_State other)
     {
         other.Health -= data.Strength;
-        other.UnitHit.Hit(other.gameObject.layer, transform.position);
+        other.UnitHit.Hit(other.gameObject.layer, transform.position, Condition_state.Default);
     }
 
     public void Slow(float speed, float cool)
@@ -305,13 +305,13 @@ public class Player_State : MonoBehaviour
     }
     private IEnumerator Poison_co(float cool,int damage)
     {
-        unithit.Hit(gameObject.layer, transform.position);
+        unithit.Hit(gameObject.layer, transform.position, Condition_state.Poison);
         Health -= damage;
         yield return new WaitForSeconds(cool);
-        unithit.Hit(gameObject.layer, transform.position);
+        unithit.Hit(gameObject.layer, transform.position, Condition_state.Poison);
         Health -= damage;
         yield return new WaitForSeconds(cool);
-        unithit.Hit(gameObject.layer, transform.position);
+        unithit.Hit(gameObject.layer, transform.position, Condition_state.Poison);
         Health -= damage;
 
         yield return null;

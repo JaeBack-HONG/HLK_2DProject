@@ -46,6 +46,7 @@ public abstract class Monster_State : MonoBehaviour
 
     IEnumerator Slow_co;
     IEnumerator Stun_co;
+    IEnumerator Poison_co;
 
     public virtual void MonsterDataSetting()
     {
@@ -76,7 +77,7 @@ public abstract class Monster_State : MonoBehaviour
         if (other.Health > 0)
         {
             other.Health -= data.Strength;
-            other.unithit.Hit((int)Layer_Index.Player, transform.position);
+            other.unithit.Hit((int)Layer_Index.Player, transform.position, Condition_state.Default);
         }
     }
     #endregion
@@ -175,4 +176,23 @@ public abstract class Monster_State : MonoBehaviour
         state = Unit_state.Move;
     }
     #endregion
+
+    public void Poison(float cool, int damge)
+    {
+        Poison_co = Poison_Co(cool, damge);
+        StartCoroutine(Poison_co);
+    }
+    private IEnumerator Poison_Co(float cool, int damage)
+    {
+        UnitHit.Hit(gameObject.layer, transform.position, Condition_state.Poison);
+        Health -= damage;
+        yield return new WaitForSeconds(cool);
+        UnitHit.Hit(gameObject.layer, transform.position, Condition_state.Poison);
+        Health -= damage;
+        yield return new WaitForSeconds(cool);
+        UnitHit.Hit(gameObject.layer, transform.position, Condition_state.Poison);
+        Health -= damage;
+
+        yield return null;
+    }
 }

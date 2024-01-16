@@ -14,7 +14,7 @@ public class Player_Punch : MonoBehaviour
             if (monstate != null)
             {
                 monstate.Health -= damage;
-                monstate.UnitHit.Hit(monstate.gameObject.layer, transform.position);
+                monstate.UnitHit.Hit(monstate.gameObject.layer, transform.position, Condition_state.Default);
             }
         }
     }

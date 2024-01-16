@@ -44,7 +44,7 @@ public class Angie_Bullet : Monster_Projectile
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
-            playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
+            playerState.unithit.Hit(playerState.gameObject.layer, transform.position, Condition_state.Default);
             StopCoroutine(shot_co);
             Destroy(this.gameObject);
         }

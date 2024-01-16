@@ -172,7 +172,7 @@ public class ProjectileShot : MonoBehaviour
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
-            playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
+            playerState.unithit.Hit(playerState.gameObject.layer, transform.position, Condition_state.Default);
 
             corutine_w = Arrow_Wait();
             StopCoroutine(corutine);

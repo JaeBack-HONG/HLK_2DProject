@@ -13,7 +13,7 @@ public class FloorTile : MonoBehaviour
         {
             Player_State playerState = col.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
-            playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
+            playerState.unithit.Hit(playerState.gameObject.layer, transform.position, Condition_state.Default);
 
             playerState.transform.position = teleportPosition;            
             
@@ -23,7 +23,7 @@ public class FloorTile : MonoBehaviour
         {
             Monster_State monsterState = col.gameObject.GetComponent<Monster_State>();
 
-            monsterState.UnitHit.Hit(monsterState.gameObject.layer, transform.position);
+            monsterState.UnitHit.Hit(monsterState.gameObject.layer, transform.position, Condition_state.Default);
             monsterState.Health -= 100;
         }
     }

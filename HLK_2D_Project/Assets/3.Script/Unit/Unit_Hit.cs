@@ -17,7 +17,7 @@ public class Unit_Hit : MonoBehaviour
     }
 
 
-    public void Hit(int mylayer, Vector3 hitpos)
+    public void Hit(int mylayer, Vector3 hitpos,Condition_state condition)
     {
         if (!hit)
         {
@@ -25,15 +25,28 @@ public class Unit_Hit : MonoBehaviour
             TryGetComponent<SpriteRenderer>(out sprite);
             defaultColor = sprite.color;
 
-            StartCoroutine(OnDamage_Co(mylayer, hitpos));
+            StartCoroutine(OnDamage_Co(mylayer, hitpos,condition));
         }
 
     }
 
-    private IEnumerator OnDamage_Co(int mylayer, Vector3 hitpos)
+    private IEnumerator OnDamage_Co(int mylayer, Vector3 hitpos,Condition_state condition)
     {
-        
-        sprite.color = Color.red;
+        switch (condition)
+        {
+            case Condition_state.Default:
+                    sprite.color = Color.red;
+                break;
+            case Condition_state.Groggy:
+                break;
+            case Condition_state.Poison:
+                    sprite.color = Color.green;
+                break;
+            case Condition_state.Weakness:
+                break;            
+            default:
+                break;
+        }
         if (gameObject.CompareTag("Player"))
         {
             PlayerManager.instance.HeartCheck(p_state.Health);

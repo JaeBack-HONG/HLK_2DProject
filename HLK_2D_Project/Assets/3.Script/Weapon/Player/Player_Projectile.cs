@@ -8,7 +8,7 @@ public abstract class Player_Projectile : MonoBehaviour
     public float Speed = 0;
 
     public int damage = 0;
-
+    public float poisonCool = 0;
     [Range(30f, 100f)]
     public float removeDistanceSet = 35f;
 
@@ -31,10 +31,9 @@ public abstract class Player_Projectile : MonoBehaviour
 
             if (monstate != null)
             {
-                monstate.Health -= damage;
-                monstate.UnitHit.Hit(monstate.gameObject.layer, transform.position);
+                monstate.Poison(poisonCool, damage);
             }
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

@@ -74,7 +74,7 @@ public class Player_Orange_Mod : Ability
                 Monster_State monstate = hit.collider.gameObject.GetComponent<Monster_State>();
                 monstate.rigidbody.AddForce(P_state.direction * 13f, ForceMode2D.Impulse);
                 monstate.Health -= attackDmg;
-                monstate.UnitHit.Hit((int)Layer_Index.Enemy, transform.position);
+                monstate.UnitHit.Hit((int)Layer_Index.Enemy, transform.position, Condition_state.Default);
             }
             rigidbody.velocity = Vector2.zero;
             rigidbody.AddForce((-P_state.direction + Vector2.up * 2f).normalized * 20f, ForceMode2D.Impulse);

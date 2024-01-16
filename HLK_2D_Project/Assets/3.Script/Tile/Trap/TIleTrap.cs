@@ -12,14 +12,14 @@ public class TIleTrap : MonoBehaviour
         {
             Player_State playerState = collision.gameObject.GetComponent<Player_State>();
             playerState.Health -= damage;
-            playerState.unithit.Hit(playerState.gameObject.layer, transform.position);
+            playerState.unithit.Hit(playerState.gameObject.layer, transform.position, Condition_state.Default);
         }
 
         if (collision.gameObject.layer.Equals((int)Layer_Index.Enemy))
         {
             Monster_State monsterState = collision.gameObject.GetComponent<Monster_State>();
 
-            monsterState.UnitHit.Hit(monsterState.gameObject.layer,transform.position);
+            monsterState.UnitHit.Hit(monsterState.gameObject.layer,transform.position, Condition_state.Default);
             monsterState.Health -= 100;
         }
     }
