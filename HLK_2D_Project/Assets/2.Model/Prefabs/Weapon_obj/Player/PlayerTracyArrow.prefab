@@ -114,5 +114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 8
   damage: 1
-  poisonCool: 2
   removeDistanceSet: 35
+  Poisondamage: 1
+  PoisonCool: 1.5

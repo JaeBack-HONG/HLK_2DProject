@@ -1,14 +1,14 @@
 {
-  "AbilityCheck_1": 0,
+  "AbilityCheck_1": 4,
   "AbilityCheck_2": 0,
   "AbilityCheck_3": 0,
-  "Ability_1": 0,
-  "Ability_2": 0,
-  "Ability_3": 0,
-  "Ability_1_count": 0,
+  "Ability_1": 9,
+  "Ability_2": 3,
+  "Ability_3": 11,
+  "Ability_1_count": 4,
   "Ability_2_count": 0,
   "Ability_3_count": 0,
-  "maxHealth": 6,
-  "currentHealth": 6,
-  "SceneName": 1
+  "maxHealth": 8,
+  "currentHealth": 8,
+  "SceneName": 6
 }

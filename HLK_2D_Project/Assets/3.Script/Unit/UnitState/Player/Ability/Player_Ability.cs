@@ -12,7 +12,7 @@ public class Player_Ability : MonoBehaviour
     private Player_State P_state;
     [SerializeField] private CircleCollider2D absorbcol;
     private IEnumerator absorbab_co;
-    private bool isAbsorb = false;
+    public bool isAbsorb = false;
 
     private void Awake()
     {
@@ -30,22 +30,20 @@ public class Player_Ability : MonoBehaviour
 
     public void UseAbsorb()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !isAbsorb)
-        {
-            isAbsorb = true;
-            absorbab_co = AbsorbAb_co();
-            StartCoroutine(absorbab_co);
-        }
+        
+        isAbsorb = true;
+        absorbab_co = AbsorbAb_co();
+        StartCoroutine(absorbab_co);
+        
     }
 
     private IEnumerator AbsorbAb_co()
     {
         P_state.animator.SetTrigger("Absorb");
         yield return new WaitForSeconds(0.3f);
-        absorbcol.enabled = true;
+        
         yield return new WaitForSeconds(0.7f);
-        P_state.animator.SetTrigger("Idle");
-        absorbcol.enabled = false;
+        P_state.animator.SetTrigger("Idle");        
         isAbsorb = false;
         yield return null;
     }

@@ -1021,6 +1021,7 @@ MonoBehaviour:
   my_Abilities: []
   current_Ab: {fileID: 0}
   absorbcol: {fileID: 4110320612734340596}
+  isAbsorb: 0
 --- !u!114 &6733462574698497862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,7 +1182,7 @@ MonoBehaviour:
   P_Move: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  anispeed: 1
+  anispeed: 2
   cinemachinevir: {fileID: 0}
   noise: {fileID: 0}
   Tracy_Bow_obj: {fileID: 2206870464302611375, guid: c90cf2d8d7f62884ba42bbc9cdd9269e, type: 3}
@@ -1505,7 +1506,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8244012551432374414}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

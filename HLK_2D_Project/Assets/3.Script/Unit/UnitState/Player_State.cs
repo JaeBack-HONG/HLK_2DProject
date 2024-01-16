@@ -100,11 +100,11 @@ public class Player_State : MonoBehaviour
             case Unit_state.Default:
                 break;
             case Unit_state.Idle:
-                P_Ability.UseAbsorb();
+                //P_Ability.UseAbsorb();
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Move:
-                P_Ability.UseAbsorb();
+                //P_Ability.UseAbsorb();
                 P_Move.MoveCheck();
                 break;
             case Unit_state.Attack:
