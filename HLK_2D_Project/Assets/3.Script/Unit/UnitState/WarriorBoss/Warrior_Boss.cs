@@ -14,16 +14,25 @@ public class Warrior_Boss : Monster_State
     [SerializeField] private GameObject arrow_L;
     [Header("타일 오브젝트")]
     [SerializeField] private GameObject Tile_obj;
+    [Header("투사체 오브젝트")]
+    [SerializeField] private GameObject diego_Bullet_obj;
+    [SerializeField] private GameObject Tracy_Bullet_obj;
+    [SerializeField] private GameObject Percy_Bullet_obj;
+    [SerializeField] private GameObject Hope_Bullet_obj;
+    [SerializeField] private GameObject[] shotPosi;
 
     private bool jumpCheck = false;
     private float currentTime;
     private int P_DefaultHP = 0;
     private bool berserkMod = false;
+    private int projectileCount = 0;
+
     IEnumerator warriorDie_co;
     IEnumerator warriorDash_co;
     IEnumerator warriorAttack_co;
     IEnumerator warriorBackStep_co;
     IEnumerator warriorDashAttack_co;
+    IEnumerator warriorProjectile_co;
     IEnumerator warriorArrowGimmick_co;
     private void Start()
     {
@@ -40,6 +49,7 @@ public class Warrior_Boss : Monster_State
         warriorAttack_co = WarriorAttack_Co();
         warriorBackStep_co = WarriorBackStep_Co();
         warriorDashAttack_co = WarriorDashAttack_Co();
+        warriorProjectile_co = WarriorProjectile_Co();
         warriorArrowGimmick_co = WarriorArrowGimmick_Co();
         state = Unit_state.Move;
         base.MonsterDataSetting();
@@ -113,13 +123,12 @@ public class Warrior_Boss : Monster_State
         switch (state)
         {
 
-            case Unit_state.Default:
-                
+            case Unit_state.Default:                
                 StartCoroutine(WarriorBerserkCrouch_Co());
                 break;
             case Unit_state.Idle:
                 break;
-            case Unit_state.Move:                
+            case Unit_state.Move:
                 break;
             case Unit_state.Attack:
                 StartCoroutine(warriorAttack_co);
@@ -147,6 +156,9 @@ public class Warrior_Boss : Monster_State
             case Unit_state.Wait:
                 StartCoroutine(warriorBackStep_co);
                 break;
+            case Unit_state.Gimmick:
+                StartCoroutine(warriorProjectile_co);
+                break;
             default:
                 break;
         }
@@ -162,11 +174,13 @@ public class Warrior_Boss : Monster_State
     private void StopCoroutine()
     {
         StopCoroutine(warriorArrowGimmick_co);
+        StopCoroutine(warriorProjectile_co);
         StopCoroutine(warriorDashAttack_co);
         StopCoroutine(warriorBackStep_co);
         StopCoroutine(warriorAttack_co);
         StopCoroutine(warriorDash_co);
         warriorArrowGimmick_co = WarriorArrowGimmick_Co();
+        warriorProjectile_co = WarriorProjectile_Co();
         warriorDashAttack_co = WarriorDashAttack_Co();
         warriorBackStep_co = WarriorBackStep_Co();
         warriorAttack_co = WarriorAttack_Co();
@@ -229,15 +243,19 @@ public class Warrior_Boss : Monster_State
         animator.SetTrigger("Default");
         animator.SetBool("Move",false);
         yield return new WaitForSeconds(1f);
-        int radomAttack = Random.Range(0, 2);
-
-        if (radomAttack.Equals(1))
+        int radomAttack = Random.Range(0, 3);
+        ++projectileCount;
+        if(projectileCount.Equals(4))
         {
-            ChangeState(Unit_state.Move);
+            ChangeState(Unit_state.Gimmick);
+        }
+        else if (radomAttack.Equals(1))
+        {
+            ChangeState(Unit_state.Wait);
         }
         else
         {
-            ChangeState(Unit_state.Wait);
+            ChangeState(Unit_state.Move);
         }
     }
     
@@ -249,6 +267,128 @@ public class Warrior_Boss : Monster_State
         yield return new WaitForSeconds(1.5f);        
         ChangeState(Unit_state.Move);
         yield return null;
+    }
+
+    private IEnumerator WarriorProjectile_Co()
+    {
+        projectileCount = 0;
+        int random_X = Random.Range(0, 8);
+        float projectile_x=0;
+        switch (random_X)
+        {
+            case 0:
+                projectile_x = 45f;
+                break;
+            case 1:
+                projectile_x = 40f;
+                break;
+            case 2:
+                projectile_x = 35f;
+                break;
+            case 3:
+                projectile_x = 30f;
+                break;
+            case 4:
+                projectile_x = 25f;
+                break;
+            case 5:
+                projectile_x = 20f;
+                break;
+            case 6:
+                projectile_x = 15f;
+                break;
+            case 7:
+                projectile_x = 11f;
+                break;
+            
+        }
+        animator.SetBool("Move", false);
+        int randomDirection = Random.Range(0, 2);
+        bool right = randomDirection.Equals(1) ? true : false;
+        float currentTime = 0f;
+        float distance;
+        float direction;
+        if (right)
+        {
+            distance = transform.position.x - projectile_x;
+        }
+        else
+        {
+            distance = transform.position.x - projectile_x;
+        }       
+        
+        direction = (distance <= 0) ? 1 : -1;
+
+        DirectionCheck(direction);
+        animator.SetTrigger("ProjectileRun");
+        while (currentTime < 10f)
+        {
+            currentTime += Time.deltaTime;
+            if (right)
+            {
+                if (transform.position.x > projectile_x && transform.position.x < projectile_x+0.5f)
+                {
+                    rigidbody.velocity = Vector2.zero;                    
+                    break;
+                }
+            }
+            else
+            {
+                if (transform.position.x > projectile_x && transform.position.x < projectile_x + 0.5f)
+                {
+                    rigidbody.velocity = Vector2.zero;                    
+                    break;
+                }
+            }
+            rigidbody.velocity = new Vector2(direction * speedSet * 2f, rigidbody.velocity.y);
+            yield return null;
+        }
+        monsterMove.PlayerDirectionCheck();
+        animator.SetTrigger("ProjectileAttack");
+        animator.SetTrigger("Out");
+        yield return new WaitForSeconds(0.3f);
+        Vector3 projectileDirection = (monsterMove.direction < 1) ? Vector3.left : Vector3.right;
+        WarriorCreateBullet(projectileDirection);
+        yield return new WaitForSeconds(2f);
+        ChangeState(Unit_state.Move);
+        
+    }
+    private void WarriorCreateBullet(Vector3 direction)
+    {
+        for (int i = 0; i < shotPosi.Length; i++)
+        {
+            int randomProjectile =  Random.Range(0, 4);
+            switch (randomProjectile)
+            {
+                case 0:
+                    GameObject bullet = Instantiate(diego_Bullet_obj, shotPosi[i].transform.position, Quaternion.identity);
+                    Diego_Bullet bullet_C = bullet.GetComponent<Diego_Bullet>();
+                    bullet_C.damage = data.Strength;
+                    bullet_C.Start_Co(direction);
+                    break;
+                case 1:
+                    GameObject tracy_bullet = Instantiate(Tracy_Bullet_obj, shotPosi[i].transform.position, Quaternion.identity);
+                    Mon_Tracy_Arrow bullet_T = tracy_bullet.GetComponent<Mon_Tracy_Arrow>();
+                    bullet_T.damage = data.Strength;
+                    bullet_T.Start_Co(direction);
+                    break;
+                case 2:
+                    GameObject percy_bullet = Instantiate(Percy_Bullet_obj, shotPosi[i].transform.position, Quaternion.identity);
+                    Percy_FireBall bullet_P = percy_bullet.GetComponent<Percy_FireBall>();
+                    bullet_P.damage = data.Strength;
+                    bullet_P.Start_Co(direction);
+                    break;
+                case 3:
+                    GameObject hope_bullet = Instantiate(Hope_Bullet_obj, shotPosi[i].transform.position, Quaternion.identity);
+                    Hope_Bullet bullet_H = hope_bullet.GetComponent<Hope_Bullet>();
+                    bullet_H.damage = data.Strength;
+                    bullet_H.Start_Co(direction);
+                    break;
+                default:
+                    break;
+            }
+        }
+       
     }
     private IEnumerator WarriorDash_Co()
     {

@@ -4021,6 +4021,36 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!1 &751322507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751322508}
+  m_Layer: 7
+  m_Name: ShotPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &751322508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751322507}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.79, y: 0.53, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6754695142432593370}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &760572020
 GameObject:
   m_ObjectHideFlags: 0
@@ -29945,6 +29975,36 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!1 &1722643852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1722643853}
+  m_Layer: 7
+  m_Name: ShotPosition (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1722643853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722643852}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.79, y: -0.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6754695142432593370}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1736839588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30387,6 +30447,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3219591720854836391, guid: 0ea09550c11d6b8408d24255e4807235, type: 3}
   m_PrefabInstance: {fileID: 1776218948}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1780393011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1780393012}
+  m_Layer: 7
+  m_Name: ShotPosition (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1780393012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780393011}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.79, y: -1.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6754695142432593370}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1830359980
 GameObject:
   m_ObjectHideFlags: 0
@@ -32004,6 +32094,14 @@ MonoBehaviour:
   arrow_R: {fileID: 1595631825}
   arrow_L: {fileID: 720255553}
   Tile_obj: {fileID: 50921829}
+  diego_Bullet_obj: {fileID: 2206870464302611375, guid: 0479f1e771a1aad4da8b0e4b294fae97, type: 3}
+  Tracy_Bullet_obj: {fileID: 2206870464302611375, guid: 2a26a69e61fd96949bf3d3c45d0244a6, type: 3}
+  Percy_Bullet_obj: {fileID: 2206870464302611375, guid: 3a8c23ee9510d5c458ebe6a17df6c455, type: 3}
+  Hope_Bullet_obj: {fileID: 601019318901146435, guid: 4920567ad137ca04993937c0d9478780, type: 3}
+  shotPosi:
+  - {fileID: 751322507}
+  - {fileID: 1722643852}
+  - {fileID: 1780393011}
 --- !u!114 &6754695142432593364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32059,6 +32157,9 @@ Transform:
   - {fileID: 1444348785}
   - {fileID: 760572021}
   - {fileID: 1948760822}
+  - {fileID: 751322508}
+  - {fileID: 1722643853}
+  - {fileID: 1780393012}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}

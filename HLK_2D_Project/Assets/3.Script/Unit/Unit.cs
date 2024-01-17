@@ -19,7 +19,8 @@ public enum Unit_state
     Stun,
     Dash,
     DashAttack,
-    Wait = 11,
+    Wait,
+    Gimmick= 12,
 }
 public enum Condition_state
 {
