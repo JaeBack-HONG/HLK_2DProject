@@ -161,7 +161,7 @@ public class Player_State : MonoBehaviour
                     rigidbody.velocity = Vector2.zero;
                 }
 
-                if (!actState.Equals(Unit_state.Idle) && !actState.Equals(Unit_state.Default))
+                if (!actState.Equals(Unit_state.Idle))
                 {
                     actState = Unit_state.Idle;
                 }
