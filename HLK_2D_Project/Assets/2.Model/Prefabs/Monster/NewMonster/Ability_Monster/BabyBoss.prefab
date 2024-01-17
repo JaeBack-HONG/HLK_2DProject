@@ -195,7 +195,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mon_state: {fileID: 0}
-  state: 8
+  state: 1
+  poison_Cool: 0
+  poison_Damge: 0
 --- !u!1 &7707036608351097662
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +292,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topTimer_obj: {fileID: 531354106167172860}
   topCheck_obj: {fileID: 7707036608351097662}
-  coolTime: 5
 --- !u!1 &7707036608761063574
 GameObject:
   m_ObjectHideFlags: 0

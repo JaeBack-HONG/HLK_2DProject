@@ -44,6 +44,7 @@ public class Player_State : MonoBehaviour
     public bool isFairy = false;
     public bool isArmand = false;
 
+
     [SerializeField] CinemachineVirtualCamera V_camera;
 
 
@@ -122,9 +123,10 @@ public class Player_State : MonoBehaviour
                 IsGrab();
                 break;
             case Unit_state.Stun:
+                Stun(1.5f);
                 break;
             case Unit_state.Hit:
-                unithit.Hit(gameObject.layer, transform.position,Condition_state.Default);
+                unithit.Hit(gameObject.layer, transform.position, Condition_state.Default);
                 break;
             case Unit_state.Die:
                 if (!gameObject.layer.Equals((int)Layer_Index.Hit)) gameObject.layer = (int)Layer_Index.Hit;
@@ -154,7 +156,15 @@ public class Player_State : MonoBehaviour
                 ChangeState(Jump_State.Idle);
                 P_Move.jumpCount = P_Move.maxJumps;
 
-                if (!actState.Equals(Unit_state.Idle)) actState = Unit_state.Idle;
+                if (actState.Equals(Unit_state.Default))
+                {
+                    rigidbody.velocity = Vector2.zero;
+                }
+
+                if (!actState.Equals(Unit_state.Idle) && !actState.Equals(Unit_state.Default))
+                {
+                    actState = Unit_state.Idle;
+                }
             }
         }
     }
@@ -203,7 +213,7 @@ public class Player_State : MonoBehaviour
                 break;
             case Unit_state.Die:
                 StartCoroutine(PlayerDieEvent());
-                
+
                 break;
             case Unit_state.Stun:
                 break;
@@ -250,7 +260,7 @@ public class Player_State : MonoBehaviour
         }
     }
 
-    
+
 
     public void Attack(Monster_State other)
     {
@@ -295,12 +305,12 @@ public class Player_State : MonoBehaviour
         yield return null;
     }
 
-    public void Poison(float cool,int damge)
+    public void Poison(float cool, int damge)
     {
-        Poison_Co = Poison_co(cool,damge);
+        Poison_Co = Poison_co(cool, damge);
         StartCoroutine(Poison_Co);
     }
-    private IEnumerator Poison_co(float cool,int damage)
+    private IEnumerator Poison_co(float cool, int damage)
     {
         unithit.Hit(gameObject.layer, transform.position, Condition_state.Poison);
         Health -= damage;
@@ -332,7 +342,7 @@ public class Player_State : MonoBehaviour
         yield return null;
     }
     private IEnumerator PlayerDieEvent()
-    {        
+    {
         V_camera.Priority = 30;
         gameObject.layer = (int)Layer_Index.Hit;
         yield return new WaitForSeconds(0.3f);
