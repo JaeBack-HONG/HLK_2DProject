@@ -46,7 +46,7 @@ public class Warrior_Boss : Monster_State
     }
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             Health = 10;
         }
