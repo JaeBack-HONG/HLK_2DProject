@@ -94,7 +94,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topTimer_obj: {fileID: 3266413412986762112}
   topCheck_obj: {fileID: 2002543979622995882}
-  coolTime: 3
 --- !u!1 &2002543979632202889
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,8 +221,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20609999, y: -0.43774253}
-  m_Size: {x: 1.3365335, y: 1.7741059}
+  m_Offset: {x: -0.11, y: -0.43774253}
+  m_Size: {x: 0.93, y: 1.7741059}
   m_Direction: 0
 --- !u!114 &2002543979632202892
 MonoBehaviour:

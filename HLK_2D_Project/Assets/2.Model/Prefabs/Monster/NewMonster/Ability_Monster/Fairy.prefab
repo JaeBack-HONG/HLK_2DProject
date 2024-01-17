@@ -153,7 +153,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.017769217, y: 0.030161917}
-  m_Size: {x: 1.367682, y: 1.6993753}
+  m_Size: {x: 1.03, y: 1.26}
   m_Direction: 0
 --- !u!114 &8879902961659211390
 MonoBehaviour:
@@ -341,7 +341,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topTimer_obj: {fileID: 683845309530445763}
   topCheck_obj: {fileID: 0}
-  coolTime: 5
 --- !u!1001 &219729631632247678
 PrefabInstance:
   m_ObjectHideFlags: 0

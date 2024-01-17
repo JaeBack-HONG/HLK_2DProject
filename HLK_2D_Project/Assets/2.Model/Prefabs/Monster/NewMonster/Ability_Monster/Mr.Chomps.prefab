@@ -62,6 +62,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mon_state: {fileID: 1153707698152757151}
   state: 0
+  poison_Cool: 0
+  poison_Damge: 0
 --- !u!1 &1153707697018638326
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topTimer_obj: {fileID: 8107916117072152093}
   topCheck_obj: {fileID: 0}
-  coolTime: 3
 --- !u!1 &1153707697498619275
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,8 +299,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07633792, y: -0.80916137}
-  m_Size: {x: 2.3566415, y: 0.8424753}
+  m_Offset: {x: 0.16, y: -0.80916137}
+  m_Size: {x: 1.7, y: 0.8424753}
   m_Direction: 1
 --- !u!114 &1153707698152757138
 MonoBehaviour:
