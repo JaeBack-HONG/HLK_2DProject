@@ -84,9 +84,14 @@ public class GameManager : MonoBehaviour
 
     public void OnClearUI()
     {
-        int minute = (int)(time / 60);
-        int hour = (int)(time / 600);
+        int hour = (int)(time / 3600);
         float s = time%60;
+        if (time>=3600)
+        {
+            time = time - hour*3600;
+        }
+        int minute = (int)(time / 60);
+        
         Debug.Log(s);
         playTimeText_obj.text = $"{hour}시간 {minute}분 {s.ToString("F2")}초";
         ClearUI_obj.SetActive(true);
