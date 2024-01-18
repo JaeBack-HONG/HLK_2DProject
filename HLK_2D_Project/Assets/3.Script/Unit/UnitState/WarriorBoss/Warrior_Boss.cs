@@ -350,8 +350,7 @@ public class Warrior_Boss : Monster_State
         Vector3 projectileDirection = (monsterMove.direction < 1) ? Vector3.left : Vector3.right;
         WarriorCreateBullet(projectileDirection);
         yield return new WaitForSeconds(2f);
-        ChangeState(Unit_state.Move);
-        
+        ChangeState(Unit_state.Move);        
     }
     private void WarriorCreateBullet(Vector3 direction)
     {
