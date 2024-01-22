@@ -14,6 +14,7 @@ public class BabyBoss_State : Monster_State
     [SerializeField] private CinemachineVirtualCamera cinemachinevir;
     [SerializeField] private GameObject maplimit_right;
     [SerializeField] private RockSpawner rockspawn;
+    bool isDie = false;
 
     private CinemachineBasicMultiChannelPerlin noise;
 
@@ -171,8 +172,9 @@ public class BabyBoss_State : Monster_State
 
     public override void Monster_HealthCheck()
     {
-        if (Health <= 0)
+        if (Health <= 0 && !isDie)
         {
+            isDie = true;
             base.Die();
             GameObject ability_obj = Instantiate(Ability_Item_obj, transform.position, Quaternion.identity);
             ability_obj.GetComponent<AbilityItem>().itemidx = ability_Item;

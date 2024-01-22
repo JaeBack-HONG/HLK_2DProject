@@ -113,5 +113,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 18
-  damage: 4
+  damage: 20
   removeDistanceSet: 35
