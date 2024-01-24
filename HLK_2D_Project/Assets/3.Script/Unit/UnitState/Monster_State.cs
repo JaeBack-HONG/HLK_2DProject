@@ -11,31 +11,27 @@ public abstract class Monster_State : MonoBehaviour
     [SerializeField] public int speedSet = 5;
     [Header("훈련모드")]
     public bool trainingMod;
-    [Header("")]
+    [Header("상태")]
     public Unit_state state;
-    public Unit_state currentState;
 
-    public Condition_state C_State;
-
-    public UnitData data;
-    public Unit_Hit UnitHit;
-    public MonsterMove monsterMove;    
-    public Animator animator;
-    public Rigidbody2D rigidbody;
-    public AbilityItem abilityItem;
-    public SpriteRenderer renderer;
-
+    [HideInInspector] public UnitData data;
+    [HideInInspector] public Unit_Hit UnitHit;
+    [HideInInspector] public MonsterMove monsterMove;
+    [HideInInspector] public Animator animator;
+    [HideInInspector] public Rigidbody2D rigidbody;
+    [HideInInspector] public AbilityItem abilityItem;
+    [HideInInspector] public SpriteRenderer renderer;
 
     [Header("스턴지속시간")]
     [SerializeField] private float stunTime = 0f;
 
-    public int Health;
-    public int Strength;
-    public bool isAttack = false;
-    public bool rolling = false;
-    
+    [HideInInspector] public int Health;
+    [HideInInspector] public int Strength;
+    [HideInInspector] public bool isAttack = false;
+    [HideInInspector] public bool rolling = false;
 
-    public bool Dash = false;
+
+    [HideInInspector] public bool Dash = false;
 
     public Player_State Player;
 

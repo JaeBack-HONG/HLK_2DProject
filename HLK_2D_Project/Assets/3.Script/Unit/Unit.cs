@@ -77,12 +77,42 @@ public class UnitData
 
     //Ä¸½¶È­µÈ ÇÁ·ÎÆÛÆ¼µé
     public string Name => _Name;
-    public int HP => _HP;
+    public int HP
+    {
+        get
+        {
+            return _HP;
+        }
+        set 
+        {
+            _HP = value;
+
+            if (_HP<=0)
+            {
+                _HP = 0;
+            }
+        }
+    }
     public float Detection => _Detection;
     public float Range => _Range;
     public float AttackSpeed => _AttackSpeed;
     public int Strength => _Strength;
-    public float MoveSpeed => _MoveSpeed;
+    public float MoveSpeed
+    {
+        get 
+        {
+            return _MoveSpeed;
+        }
+        set
+        {
+            _MoveSpeed = value;
+
+            if (_MoveSpeed <= 0)
+            {
+                _MoveSpeed = 0;
+            }
+        }
+    }
     public float JumpForce => _JumpForce;
 
     public UnitData(string name, int hp, float detection, float range, float attackSpeed, int strength, float moveSpeed, float jumpForce)

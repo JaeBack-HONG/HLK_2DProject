@@ -18,11 +18,11 @@ public class AudioManager : MonoBehaviour
         {
             
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         SFXAudio = GetComponents<AudioSource>();
